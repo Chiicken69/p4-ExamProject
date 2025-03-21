@@ -1,23 +1,45 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 
 
-enum FactoryState {Idle, Processing, Crafting};
+enum FactoryState {Idle, Building, Processing, Crafting};
+
 
 
 
 public class FactoryBase : MonoBehaviour
 {
+
+
+
     FactoryState state;
+    private ItemBase.ItemType ListOfItems;
+    List<GameObject> OutputInventory;
+
+
 
 
 
 
 public void InitializeFactory()
     {
-        state = FactoryState.Idle;
+        state = FactoryState.Building;
+       
 
     }
+
+    public void CreateOutputInventory()
+    {
+        OutputInventory.Clear();   
+    }
+
+    public void CreateInputInventory()
+    {
+
+    }
+
+    
 
 
 
