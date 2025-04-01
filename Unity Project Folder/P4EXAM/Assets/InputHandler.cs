@@ -1,11 +1,12 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InputHandler : MonoBehaviour
 {
     public enum InputType
     {
-        MovementDirection,
+        MovementDirection,Scroll
 
     }
 
@@ -13,6 +14,8 @@ public class InputHandler : MonoBehaviour
 
     private float InputDirY;
     private float InputDirX;
+    private float Scroll;
+
     private Vector3 MoveDir;
 
     public static InputHandler Instance;
@@ -37,14 +40,22 @@ public class InputHandler : MonoBehaviour
         return MoveDir;
     }
 
+    public float PassInputVloatValue()
+    {
+        return Scroll;
+    }
+
     private void ProcessMoveDirection(float vertical, float horizontal)
     {
         MoveDir = new Vector3(horizontal, vertical, 0);
     }
+ 
     private void GetInput()
     {
         InputDirY = Input.GetAxisRaw("Horizontal");
         InputDirX = Input.GetAxisRaw("Vertical");
+
+        Scroll = Input.GetAxis("Mouse ScrollWheel");
 
     }
 
