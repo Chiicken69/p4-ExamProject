@@ -103,7 +103,7 @@ IEnumerator craft()
         }
     }
 
-    public bool ItemsFilled()
+    public bool ItemsFilled() // hashmap when :pleading emoji:
     {
         int i = 0;
         int k = 0;
