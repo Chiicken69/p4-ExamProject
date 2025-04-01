@@ -10,6 +10,11 @@ public class IronFactory : FactoryBase
         base.InitializeFactory();
     }
 
+    private void Update()
+    {
+        base.CheckForCraftingPossible();
+    }
+
 
 
 

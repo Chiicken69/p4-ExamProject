@@ -17,14 +17,14 @@ public class FactoryBase : MonoBehaviour
     FactoryState state;
     private ItemBase.ItemType ListOfItems;
     List<GameObject> OutputInventory;
-    List<GameObject> InputInventory;
+   [SerializeField] List<GameObject> InputInventory;
 
     [Header("Ingredients")]
-    private bool _readyToCraft;
+    private bool _readyToCraft = true;
     // Ingredient amount should be at same index as ingredient list.
     [SerializeField] List<ItemBase.ItemType> _ingredientList;
     [SerializeField] List<int> _ingredientAmountForCraft;
-    [SerializeField] ItemBase.ItemType _itemOutputType;
+    [SerializeField] GameObject _itemOutputType;
 
     [Header("Internal mechanics")]
     [SerializeField] private float _craftingTime;
@@ -33,6 +33,7 @@ public class FactoryBase : MonoBehaviour
 
 
 
+    
 
     public void InitializeFactory()
     {
@@ -44,9 +45,14 @@ public class FactoryBase : MonoBehaviour
         OutputInventory.Clear();   
     }
 
+    public void SetIngredientList()
+    {
+
+    }
+
     public void CreateOutput()
     {
-        GameObject ObjectToAdd = new GameObject(_itemOutputType.ToString());
+        GameObject ObjectToAdd = _itemOutputType;
         ObjectToAdd.AddComponent<ItemBase>();
         OutputInventory.Add(ObjectToAdd); 
     }
@@ -59,6 +65,7 @@ public class FactoryBase : MonoBehaviour
     public GameObject TakeItemFromOutputInventory()
     {
         int i = OutputInventory.Count;
+
         GameObject TemporaryObject = OutputInventory[i];
         OutputInventory.RemoveAt(i);
         return TemporaryObject;
@@ -71,44 +78,81 @@ public class FactoryBase : MonoBehaviour
 
 IEnumerator craft()
     {
-        ClearInputInventory();
+        //not done
+       // ClearInputInventory();
+        print("crafting started");
         yield return new WaitForSeconds(_craftingTime);
+        _readyToCraft = true;
+        StopCoroutine(craft());
 
     }
 
-    private void CheckForCraftingPossible()
-    {
+    public void CheckForCraftingPossible()
+    { // not done
+
+        print("checking called");
         if (_readyToCraft)
         {
-            craft();
-            _readyToCraft = false;
-        }
-    }
-
-    private bool ItemsFilled()
-    {
-        int x = 0;
-        int p = 0;
-
-        for (int i = 0; i < _ingredientList.Count; i++)
-        {
-            x++;
-
-            for (int k = 0; k < InputInventory.Count; k++)
+            if (ItemsFilled())
             {
-                if (InputInventory[i].name == _ingredientList[k].ToString())
-                {
-                    p++;
-                }
-
+                print("Check is true!");
+                StartCoroutine(craft());
+                _readyToCraft = false;
             }
-
            
         }
-        return true;
     }
 
-    
+    public bool ItemsFilled()
+    {
+        int i = 0;
+        int k = 0;
+        int TrueReturns = 0;
+
+        foreach (var ingredient in _ingredientList)
+        {
+            foreach (var item in InputInventory)
+            {
+                ItemBase tempItemBase = item.GetComponent<ItemBase>();
+                if (tempItemBase.type == ingredient) k++;
+
+
+            }
+            if (k >= _ingredientAmountForCraft[i])
+            {
+                TrueReturns++;
+            }
+            i++;
+            k = 0;
+        }
+        if (TrueReturns >= _ingredientList.Count)
+        {
+            return true;
+        }
+        else return false;
+
+        /*
+        foreach (var item in InputInventory)
+        {
+            ItemBase tempItemBase = item.GetComponent<ItemBase>();
+
+            foreach (var ingredient in _ingredientList)
+            {
+                if (tempItemBase.type == ingredient) k++;
+            }
+
+            if (k >= _ingredientAmountForCraft[i])
+            {
+                TrueReturns++;
+            }
+
+            k = 0;
+        }
+        */
+
+
+    }
+  
 
 
 

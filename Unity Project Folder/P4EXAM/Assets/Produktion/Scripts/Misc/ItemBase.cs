@@ -8,7 +8,7 @@ public class ItemBase : MonoBehaviour
 {
     [System.Serializable]
     public enum ItemType { Wood, iron, Copper };
-    [SerializeField]ItemType type;
+    [SerializeField] public ItemType type;
     public string itemName;
     public string itemDescription;
 
