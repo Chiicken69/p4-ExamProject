@@ -17,6 +17,10 @@ public class InputHandler : MonoBehaviour
     private float Scroll;
     private bool Interact;
     private bool CloseUI;
+    private bool DownArrow;
+    private bool UpArrow;
+    private bool LeftArrow;
+    private bool RightArrow;
 
     private Vector3 MoveDir;
 
@@ -54,6 +58,14 @@ public class InputHandler : MonoBehaviour
             return Interact;
             case 2:
             return CloseUI;
+            case 3:
+                return RightArrow;
+            case 4:
+                return LeftArrow;
+            case 5:
+                return DownArrow;
+            case 6:
+                return UpArrow;
             default:
             return false;
         }
@@ -74,6 +86,14 @@ public class InputHandler : MonoBehaviour
 
         Interact = Input.GetKeyDown(KeyCode.E);
         CloseUI = Input.GetKeyDown(KeyCode.Escape);
+
+        DownArrow = Input.GetKeyDown(KeyCode.DownArrow);
+
+        UpArrow = Input.GetKeyDown(KeyCode.UpArrow);
+
+        LeftArrow = Input.GetKeyDown(KeyCode.LeftArrow);
+
+        RightArrow = Input.GetKeyDown(KeyCode.RightArrow);
     }
 
 

@@ -20,7 +20,12 @@ public class ArrowMinigame : MonoBehaviour
 
     private bool _interact;
     private bool _closeUI;
-    private Vector3 _moveDir;
+    private bool RightArrow;
+    private bool UpArrow;
+    private bool DownArrow;
+    private bool LeftArrow;
+
+
 
     private bool currentRoundPlaying = false;
     private Sprite arrowImage;
@@ -38,7 +43,9 @@ public class ArrowMinigame : MonoBehaviour
     private void Update()
     {
         GetKeyInfo();
+      
         StartMinigame();
+        
         if (currentRoundPlaying == true)
         {
             RunRound();
@@ -48,8 +55,11 @@ public class ArrowMinigame : MonoBehaviour
     {
         _interact = InputHandler.Instance.PassInputBoolValue(1);
         _closeUI = InputHandler.Instance.PassInputBoolValue(2);
+        RightArrow = InputHandler.Instance.PassInputBoolValue(3);
+        LeftArrow = InputHandler.Instance.PassInputBoolValue(4);
+        DownArrow = InputHandler.Instance.PassInputBoolValue(5);
+        UpArrow = InputHandler.Instance.PassInputBoolValue(6);
 
-        _moveDir = InputHandler.Instance.PassInputMoveDir();
     }
 
     private void StartMinigame()
@@ -65,13 +75,17 @@ public class ArrowMinigame : MonoBehaviour
         }
         else if (_closeUI == true && minigameUI.activeInHierarchy)
         {
-            minigameUI.SetActive(false);
-            playerMovement.enabled = true;
-            playerZoom.enabled = true;
-            CalculateArrows(false);
-            Debug.Log("closed arrow ui");
-
+            StopMinigame();
         }
+    }
+    private void StopMinigame()
+    {
+        CalculateArrows(false);
+        minigameUI.SetActive(false);
+        playerMovement.enabled = true;
+        playerZoom.enabled = true;
+        Debug.Log("closed arrow ui");
+
     }
     private void CalculateArrows(bool gameState)
     {
@@ -145,12 +159,18 @@ public class ArrowMinigame : MonoBehaviour
         {
             Debug.Log("All inputs correct! Round finished.");
             currentRoundPlaying = false;
+            cloneArrowList.Clear();
+            directionList.Clear();
+            currentArrowIndex = 0;
+            CalculateArrows(true);
             return;
         }
 
-        if (_moveDir != Vector3.zero)
+        DirectionName inputDirection = CheckCombo();
+
+        if (inputDirection != DirectionName.None)
         {
-            if (CheckCombo(_moveDir) == directionList[currentArrowIndex])
+            if (inputDirection == directionList[currentArrowIndex])
             {
                 Debug.Log("Correct input for arrow " + currentArrowIndex);
                 Destroy(cloneArrowList[currentArrowIndex]);
@@ -159,7 +179,9 @@ public class ArrowMinigame : MonoBehaviour
             else
             {
                 Debug.Log("Incorrect input for arrow " + currentArrowIndex);
-                // Optional: Add penalty logic here
+                // Optional: feedback or penalty
+                currentRoundPlaying = false;
+                StopMinigame();
             }
         }
 
@@ -167,24 +189,17 @@ public class ArrowMinigame : MonoBehaviour
 
 
 
-    private DirectionName CheckCombo(Vector3 input)
+    private DirectionName CheckCombo()
     {
-        if (input == Vector3.up)
-        { 
-        return DirectionName.Up;
-        }
-        if (input == Vector3.left)
-        {
-            return DirectionName.Left;
-        }
-        if (input == Vector3.right)
-        {
-            return DirectionName.Right;
-        }
-        if (input == Vector3.down)
-        {
+        if (UpArrow)
+            return DirectionName.Up;
+        if (DownArrow)
             return DirectionName.Down;
-        }
+        if (LeftArrow)
+            return DirectionName.Left;
+        if (RightArrow)
+            return DirectionName.Right;
+
         return DirectionName.None;
     }
 }
