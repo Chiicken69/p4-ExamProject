@@ -19,7 +19,7 @@ public class CameraZoom : MonoBehaviour
 
     private void Update()
     {
-        _zoom -= InputHandler.Instance.PassInputVloatValue() * _zoomMultiplier;
+        _zoom -= InputHandler.Instance.PassInputFloatValue() * _zoomMultiplier;
         _zoom = Mathf.Clamp(_zoom, _minZoom, _maxZoom);
         _camera.orthographicSize = Mathf.SmoothDamp(_camera.orthographicSize, _zoom, ref _velocity, _smoothTime);
     }

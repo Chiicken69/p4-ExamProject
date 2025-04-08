@@ -16,6 +16,7 @@ public class InputHandler : MonoBehaviour
     private float InputDirX;
     private float Scroll;
     private bool Interact;
+    private bool CloseUI;
 
     private Vector3 MoveDir;
 
@@ -41,14 +42,23 @@ public class InputHandler : MonoBehaviour
         return MoveDir;
     }
 
-    public float PassInputVloatValue()
+    public float PassInputFloatValue()
     {
         return Scroll;
     }
-    public bool PassInputBoolValue()
+    public bool PassInputBoolValue(int key)
     {
-        return Interact;
+        switch(key)
+        {
+            case 1:
+            return Interact;
+            case 2:
+            return CloseUI;
+            default:
+            return false;
+        }
     }
+    
 
     private void ProcessMoveDirection(float vertical, float horizontal)
     {
@@ -63,7 +73,7 @@ public class InputHandler : MonoBehaviour
         Scroll = Input.GetAxis("Mouse ScrollWheel");
 
         Interact = Input.GetKey(KeyCode.E);
-
+        CloseUI = Input.GetKey(KeyCode.Escape);
     }
 
 

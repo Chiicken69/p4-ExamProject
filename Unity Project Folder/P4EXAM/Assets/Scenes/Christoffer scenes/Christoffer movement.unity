@@ -892,6 +892,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigameUI: {fileID: 1400637538}
   playerMovement: {fileID: 475506944}
+  playerZoom: {fileID: 566712508}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
