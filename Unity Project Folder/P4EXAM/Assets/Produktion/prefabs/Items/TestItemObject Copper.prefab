@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 6224362806024809039}
   - component: {fileID: 3619611143285694720}
   - component: {fileID: 1850170191104925652}
+  - component: {fileID: -2209798142029580208}
+  - component: {fileID: 6225456185060141379}
+  - component: {fileID: 6315919277765721407}
   m_Layer: 0
   m_Name: TestItemObject Copper
   m_TagString: Untagged
@@ -104,3 +107,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-2209798142029580208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6265168742392683810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b42a1e72177b641b58f02774e1e388, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  itemName: 
+  itemDescription: 
+  Sprite: {fileID: 0}
+--- !u!114 &6225456185060141379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6265168742392683810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b42a1e72177b641b58f02774e1e388, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  itemName: 
+  itemDescription: 
+  Sprite: {fileID: 0}
+--- !u!114 &6315919277765721407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6265168742392683810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b42a1e72177b641b58f02774e1e388, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  itemName: 
+  itemDescription: 
+  Sprite: {fileID: 0}

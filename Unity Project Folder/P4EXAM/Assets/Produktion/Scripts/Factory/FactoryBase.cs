@@ -16,7 +16,7 @@ public class FactoryBase : MonoBehaviour
 
     FactoryState state;
     private ItemBase.ItemType ListOfItems;
-    List<GameObject> OutputInventory;
+   [SerializeField] List<GameObject> OutputInventory;
    [SerializeField] List<GameObject> InputInventory;
 
     [Header("Ingredients")]
@@ -76,12 +76,13 @@ public class FactoryBase : MonoBehaviour
         InputInventory.Clear();
     }
 
-IEnumerator craft()
+    IEnumerator craft()
     {
         //not done
-       // ClearInputInventory();
+        ClearInputInventory();
         print("crafting started");
         yield return new WaitForSeconds(_craftingTime);
+        CreateOutput();
         _readyToCraft = true;
         StopCoroutine(craft());
 
@@ -103,7 +104,7 @@ IEnumerator craft()
         }
     }
 
-    public bool ItemsFilled() // hashmap when :pleading emoji:
+    public bool ItemsFilled() // hashmap when? :pleading emoji:
     {
         int i = 0;
         int k = 0;
@@ -130,26 +131,6 @@ IEnumerator craft()
             return true;
         }
         else return false;
-
-        /*
-        foreach (var item in InputInventory)
-        {
-            ItemBase tempItemBase = item.GetComponent<ItemBase>();
-
-            foreach (var ingredient in _ingredientList)
-            {
-                if (tempItemBase.type == ingredient) k++;
-            }
-
-            if (k >= _ingredientAmountForCraft[i])
-            {
-                TrueReturns++;
-            }
-
-            k = 0;
-        }
-        */
-
 
     }
   
