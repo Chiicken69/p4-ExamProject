@@ -16,6 +16,7 @@ public class FactoryBase : MonoBehaviour
 
     FactoryState state;
     private ItemBase.ItemType ListOfItems;
+   [SerializeField] private SpriteRenderer _spriteRenderer;
 
     [Header("Inventory sneak peek")]
     [SerializeField] List<GameObject> OutputInventory;
@@ -32,6 +33,8 @@ public class FactoryBase : MonoBehaviour
     Sprite _currentSprite;
 
     [SerializeField] private float _craftingTime;
+    [SerializeField] private float _tempCraftingTime;
+    private float _CraftingBoosterValue = 1f;
     private bool _readyToCraft = true;
     // Ingredient amount should be at same index as ingredient list.
     [SerializeField] List<ItemBase.ItemType> _ingredientList;
@@ -47,11 +50,18 @@ public class FactoryBase : MonoBehaviour
 
     private void Awake()
     {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         state = FactoryState.Building;
+        _tempCraftingTime = _craftingTime;
     }
 
     public void Update()
     {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            DecreaseTempCraftingTime();
+        }
+
         switch (state)
         {
             case FactoryState.Idle:
@@ -70,7 +80,9 @@ public class FactoryBase : MonoBehaviour
                 break;
         }
         print(state);
-       
+        SwitchSprite(state);
+        
+
     }
 
     private void SwitchSprite(FactoryState state)
@@ -93,6 +105,7 @@ public class FactoryBase : MonoBehaviour
                 _currentSprite = idleSprite;
                 break;
         }
+        _spriteRenderer.sprite = _currentSprite;
     }
 
 
@@ -165,7 +178,7 @@ public class FactoryBase : MonoBehaviour
         ClearInputInventory();
         print("crafting started");
         state = FactoryState.Crafting;
-        yield return new WaitForSeconds(_craftingTime);
+        yield return new WaitForSeconds(_tempCraftingTime);
         CreateOutput();
         _readyToCraft = true;
         state = FactoryState.Idle;
@@ -220,6 +233,12 @@ public class FactoryBase : MonoBehaviour
         // state = FactoryState.Idle;
          return false;
 
+    }
+
+    public void DecreaseTempCraftingTime()
+    {
+        _CraftingBoosterValue++;
+        _tempCraftingTime /= _CraftingBoosterValue;
     }
   
 
