@@ -265,7 +265,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 205125034}
-  - component: {fileID: 205125033}
+  - component: {fileID: 205125035}
   m_Layer: 0
   m_Name: TestObjectFactory
   m_TagString: Untagged
@@ -273,33 +273,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &205125033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 205125032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee8beee65ae47ea408108cc172a085a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OutputInventory: []
-  InputInventory:
-  - {fileID: 6265168742392683810, guid: 23c7f7596e6e3cd44941deeffc09023c, type: 3}
-  - {fileID: 344330240117537175, guid: 833d21340b6d07a4881629b9e5a645b8, type: 3}
-  - {fileID: 3632619094670410106, guid: 9c4acc03301030647b60f42fe547cbb7, type: 3}
-  - {fileID: 6265168742392683810, guid: 23c7f7596e6e3cd44941deeffc09023c, type: 3}
-  - {fileID: 344330240117537175, guid: 833d21340b6d07a4881629b9e5a645b8, type: 3}
-  - {fileID: 3632619094670410106, guid: 9c4acc03301030647b60f42fe547cbb7, type: 3}
-  - {fileID: 6265168742392683810, guid: 23c7f7596e6e3cd44941deeffc09023c, type: 3}
-  - {fileID: 344330240117537175, guid: 833d21340b6d07a4881629b9e5a645b8, type: 3}
-  - {fileID: 3632619094670410106, guid: 9c4acc03301030647b60f42fe547cbb7, type: 3}
-  _ingredientList: 0000000001000000
-  _ingredientAmountForCraft: 0200000002000000
-  _itemOutputType: {fileID: 6265168742392683810, guid: 23c7f7596e6e3cd44941deeffc09023c, type: 3}
-  _craftingTime: 3
 --- !u!4 &205125034
 Transform:
   m_ObjectHideFlags: 0
@@ -315,6 +288,39 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &205125035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205125032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 603992a0af98bd8458ceb8f6abff54ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OutputInventory: []
+  InputInventory:
+  - {fileID: 6265168742392683810, guid: 23c7f7596e6e3cd44941deeffc09023c, type: 3}
+  - {fileID: 344330240117537175, guid: 833d21340b6d07a4881629b9e5a645b8, type: 3}
+  - {fileID: 3632619094670410106, guid: 9c4acc03301030647b60f42fe547cbb7, type: 3}
+  - {fileID: 6265168742392683810, guid: 23c7f7596e6e3cd44941deeffc09023c, type: 3}
+  - {fileID: 344330240117537175, guid: 833d21340b6d07a4881629b9e5a645b8, type: 3}
+  - {fileID: 3632619094670410106, guid: 9c4acc03301030647b60f42fe547cbb7, type: 3}
+  - {fileID: 6265168742392683810, guid: 23c7f7596e6e3cd44941deeffc09023c, type: 3}
+  - {fileID: 344330240117537175, guid: 833d21340b6d07a4881629b9e5a645b8, type: 3}
+  - {fileID: 3632619094670410106, guid: 9c4acc03301030647b60f42fe547cbb7, type: 3}
+  buildingSprite: {fileID: 0}
+  idleSprite: {fileID: 0}
+  craftingSprite: {fileID: 0}
+  processingSprite: {fileID: 0}
+  _craftingTime: 2
+  _ingredientList: 0000000001000000
+  _ingredientAmountForCraft: 0200000002000000
+  _itemOutputType: {fileID: 6265168742392683810, guid: 23c7f7596e6e3cd44941deeffc09023c, type: 3}
+  _itemListToCraftFactory: 00000000
+  _itemAmountToCraftFactory: 01000000
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -16,24 +16,112 @@ public class FactoryBase : MonoBehaviour
 
     FactoryState state;
     private ItemBase.ItemType ListOfItems;
-   [SerializeField] List<GameObject> OutputInventory;
+
+    [Header("Inventory sneak peek")]
+    [SerializeField] List<GameObject> OutputInventory;
    [SerializeField] List<GameObject> InputInventory;
 
-    [Header("Ingredients")]
+
+
+    [Header("Internal mechanics")]
+    [SerializeField] Sprite buildingSprite;
+    [SerializeField] Sprite idleSprite;
+    [SerializeField] Sprite craftingSprite;
+    [SerializeField] Sprite processingSprite;
+
+    Sprite _currentSprite;
+
+    [SerializeField] private float _craftingTime;
     private bool _readyToCraft = true;
     // Ingredient amount should be at same index as ingredient list.
     [SerializeField] List<ItemBase.ItemType> _ingredientList;
     [SerializeField] List<int> _ingredientAmountForCraft;
     [SerializeField] GameObject _itemOutputType;
 
-    [Header("Internal mechanics")]
-    [SerializeField] private float _craftingTime;
+
+    [Header("Information to Construct this factory")]
+
+    [SerializeField] List<ItemBase.ItemType> _itemListToCraftFactory;
+    [SerializeField] List<int> _itemAmountToCraftFactory;
+
+
+    private void Awake()
+    {
+        state = FactoryState.Building;
+    }
+
+    public void Update()
+    {
+        switch (state)
+        {
+            case FactoryState.Idle:
+                CheckForCraftingPossible();
+                break;
+            case FactoryState.Building:
+                //building logic
+                break;
+            case FactoryState.Processing:
+                //processing logic
+                break;
+            case FactoryState.Crafting:
+                //crafting logic
+                break;
+            default:
+                break;
+        }
+        print(state);
+       
+    }
+
+    private void SwitchSprite(FactoryState state)
+    {
+        switch (state)
+        {
+            case FactoryState.Idle:
+                _currentSprite = idleSprite;
+                break;
+            case FactoryState.Building:
+                _currentSprite = buildingSprite;
+                break;
+            case FactoryState.Processing:
+                _currentSprite = processingSprite;
+                break;
+            case FactoryState.Crafting:
+                _currentSprite = craftingSprite;
+                break;
+            default:
+                _currentSprite = idleSprite;
+                break;
+        }
+    }
 
 
 
+    private void Start()
+    {
+        InitializeFactory();
+        StartCoroutine(BuildFactory());
+    }
 
+    public IEnumerator BuildFactory()
+    {
+        while (true)
+        {
+            
+            if (ItemsFilled(_itemListToCraftFactory, InputInventory, _itemAmountToCraftFactory))
+            {
+                
+                ClearInputInventory();
+                state = FactoryState.Idle;
+                StopCoroutine(BuildFactory());
+                break;
+            }
+            yield return null;
+        }
 
-    
+        
+
+    }
 
     public void InitializeFactory()
     {
@@ -43,11 +131,6 @@ public class FactoryBase : MonoBehaviour
     public void ClearOutputInventory()
     {
         OutputInventory.Clear();   
-    }
-
-    public void SetIngredientList()
-    {
-
     }
 
     public void CreateOutput()
@@ -81,9 +164,11 @@ public class FactoryBase : MonoBehaviour
         //not done
         ClearInputInventory();
         print("crafting started");
+        state = FactoryState.Crafting;
         yield return new WaitForSeconds(_craftingTime);
         CreateOutput();
         _readyToCraft = true;
+        state = FactoryState.Idle;
         StopCoroutine(craft());
 
     }
@@ -91,10 +176,11 @@ public class FactoryBase : MonoBehaviour
     public void CheckForCraftingPossible()
     { // not done
 
-        print("checking called");
+        
         if (_readyToCraft)
         {
-            if (ItemsFilled())
+            print("test");
+            if (ItemsFilled(_ingredientList, InputInventory, _ingredientAmountForCraft))
             {
                 print("Check is true!");
                 StartCoroutine(craft());
@@ -104,33 +190,35 @@ public class FactoryBase : MonoBehaviour
         }
     }
 
-    public bool ItemsFilled() // hashmap when? :pleading emoji:
+    public bool ItemsFilled(List<ItemBase.ItemType> itemlist, List<GameObject> inventory, List<int> itemAmount) // hashmap when? :pleading emoji:
     {
         int i = 0;
         int k = 0;
         int TrueReturns = 0;
 
-        foreach (var ingredient in _ingredientList)
+        foreach (var ingredient in itemlist)
         {
-            foreach (var item in InputInventory)
+            foreach (var item in inventory)
             {
                 ItemBase tempItemBase = item.GetComponent<ItemBase>();
                 if (tempItemBase.type == ingredient) k++;
 
 
             }
-            if (k >= _ingredientAmountForCraft[i])
+            if (k >= itemAmount[i])
             {
                 TrueReturns++;
             }
             i++;
             k = 0;
         }
-        if (TrueReturns >= _ingredientList.Count)
+        if (TrueReturns >= itemlist.Count)
         {
             return true;
-        }
-        else return false;
+          
+        } else
+        // state = FactoryState.Idle;
+         return false;
 
     }
   
