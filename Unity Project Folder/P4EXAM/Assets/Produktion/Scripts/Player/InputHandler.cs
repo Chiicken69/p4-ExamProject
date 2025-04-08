@@ -72,8 +72,8 @@ public class InputHandler : MonoBehaviour
 
         Scroll = Input.GetAxis("Mouse ScrollWheel");
 
-        Interact = Input.GetKey(KeyCode.E);
-        CloseUI = Input.GetKey(KeyCode.Escape);
+        Interact = Input.GetKeyDown(KeyCode.E);
+        CloseUI = Input.GetKeyDown(KeyCode.Escape);
     }
 
 

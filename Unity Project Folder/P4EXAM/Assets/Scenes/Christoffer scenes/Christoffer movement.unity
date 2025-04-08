@@ -571,7 +571,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -412, y: 11}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1221620320
@@ -612,6 +612,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1221620318}
   m_CullTransparentMesh: 1
+--- !u!1 &1241576573
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1241576574}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1241576574
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241576573}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1460, y: 560, z: 17.591003}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1400637538
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,8 +922,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minigameUI: {fileID: 1400637538}
+  arrow: {fileID: 1221620318}
+  Parent: {fileID: 1400637539}
   playerMovement: {fileID: 475506944}
   playerZoom: {fileID: 566712508}
+  spriteList:
+  - {fileID: 3294924491041038190, guid: b424a63a700ca2242b79fd3766a10602, type: 3}
+  - {fileID: -254267079344088968, guid: 6a2ef90e662bbae46aee243bf06381d6, type: 3}
+  - {fileID: 767069337337205115, guid: 8365fff1b0b55e443a6aeaeb9a9b7734, type: 3}
+  - {fileID: 7361498936159341154, guid: 417e3239dddec30498921b5982dae986, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -903,3 +941,4 @@ SceneRoots:
   - {fileID: 1614149858}
   - {fileID: 611562324}
   - {fileID: 2061527057}
+  - {fileID: 1241576574}
