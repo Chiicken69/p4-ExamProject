@@ -237,9 +237,14 @@ public class FactoryBase : MonoBehaviour
 
     public void DecreaseTempCraftingTime()
     {
-        _CraftingBoosterValue++;
-        _tempCraftingTime /= _CraftingBoosterValue;
+        //_CraftingBoosterValue++;
+        //_tempCraftingTime /= _CraftingBoosterValue;
+
+
+        print("Decrease temporary crafting time function was called, this should only be called once");
     }
+
+   
   
 
 
