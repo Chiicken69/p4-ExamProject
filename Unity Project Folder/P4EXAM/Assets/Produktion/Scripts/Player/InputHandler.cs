@@ -46,10 +46,18 @@ public class InputHandler : MonoBehaviour
         return MoveDir;
     }
 
+    public Vector3 PassMousePosInWorld()
+    {
+        return Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
+    }
+
     public float PassInputFloatValue()
     {
         return Scroll;
     }
+
+    
+
     public bool PassInputBoolValue(int key)
     {
         switch(key)

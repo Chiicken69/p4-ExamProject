@@ -51,7 +51,7 @@ public class FactoryBase : MonoBehaviour
     [SerializeField] List<ItemBase.ItemType> _ingredientList;
     [SerializeField] List<int> _ingredientAmountForCraft;
     [SerializeField] GameObject _itemOutputType;
-
+     
 
     [Header("Factory building recipe")]
 
@@ -317,7 +317,12 @@ public class FactoryBase : MonoBehaviour
         //works but needs to be adjusted later for actual gameplay, 
         // _CraftingBoosterValue++;
         // _tempCraftingTime /= _CraftingBoosterValue;
-        speedIncreasePercentage += 100;
+        if (state != FactoryState.Building)
+        {
+            speedIncreasePercentage += 100;
+        }
+
+        
 
 
         print("Decrease temporary crafting time function was called, this should only be called once");
