@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 4579678600894866169}
   - component: {fileID: 6869042962465134602}
   - component: {fileID: 6791683756638734249}
-  - component: {fileID: 65424671244654449}
+  - component: {fileID: -7230496551092666868}
   m_Layer: 0
   m_Name: TestObjectFactory
-  m_TagString: Factory
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,29 +46,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 603992a0af98bd8458ceb8f6abff54ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spriteRenderer: {fileID: 65424671244654449}
+  _spriteRenderer: {fileID: 0}
   OutputInventory: []
   InputInventory:
-  - {fileID: 6265168742392683810, guid: 23c7f7596e6e3cd44941deeffc09023c, type: 3}
-  - {fileID: 344330240117537175, guid: 833d21340b6d07a4881629b9e5a645b8, type: 3}
-  - {fileID: 3632619094670410106, guid: 9c4acc03301030647b60f42fe547cbb7, type: 3}
-  - {fileID: 6265168742392683810, guid: 23c7f7596e6e3cd44941deeffc09023c, type: 3}
-  - {fileID: 344330240117537175, guid: 833d21340b6d07a4881629b9e5a645b8, type: 3}
-  - {fileID: 3632619094670410106, guid: 9c4acc03301030647b60f42fe547cbb7, type: 3}
-  - {fileID: 6265168742392683810, guid: 23c7f7596e6e3cd44941deeffc09023c, type: 3}
-  - {fileID: 344330240117537175, guid: 833d21340b6d07a4881629b9e5a645b8, type: 3}
   - {fileID: 3632619094670410106, guid: 9c4acc03301030647b60f42fe547cbb7, type: 3}
   buildingSprite: {fileID: 21300000, guid: 4eb1b1f977ee2584798593e4d3c54fdb, type: 3}
   idleSprite: {fileID: 21300000, guid: 0aacdad0b4cbda84d9ac3a94c81860cb, type: 3}
-  craftingSprite: {fileID: 3294924491041038190, guid: b424a63a700ca2242b79fd3766a10602, type: 3}
+  craftingSprite: {fileID: 7361498936159341154, guid: 417e3239dddec30498921b5982dae986, type: 3}
   processingSprite: {fileID: 0}
-  _craftingTime: 2
+  _craftingTime: 60
   _tempCraftingTime: 0
-  _ingredientList: 0000000001000000
+  _secondsToDecreaseSpeed: 2
+  speedIncreasePercentage: 0
+  _ingredientList: 00000000
   _ingredientAmountForCraft: 0200000002000000
   _itemOutputType: {fileID: 6265168742392683810, guid: 23c7f7596e6e3cd44941deeffc09023c, type: 3}
   _itemListToCraftFactory: 00000000
-  _itemAmountToCraftFactory: 01000000
+  _itemAmountToCraftFactory: 02000000
 --- !u!61 &6791683756638734249
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -115,7 +109,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!212 &65424671244654449
+--- !u!212 &-7230496551092666868
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

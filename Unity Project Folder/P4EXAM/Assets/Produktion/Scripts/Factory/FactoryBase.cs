@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using Unity.VisualScripting;
 
 
 
@@ -22,9 +23,9 @@ public class FactoryBase : MonoBehaviour
     [SerializeField] List<GameObject> OutputInventory;
    [SerializeField] List<GameObject> InputInventory;
 
+    [Header("Sprites for states")]
 
-
-    [Header("Internal mechanics")]
+   
     [SerializeField] Sprite buildingSprite;
     [SerializeField] Sprite idleSprite;
     [SerializeField] Sprite craftingSprite;
@@ -32,17 +33,27 @@ public class FactoryBase : MonoBehaviour
 
     Sprite _currentSprite;
 
-    [SerializeField] private float _craftingTime;
+    [Header("For looking at, dont change in editor")]
     [SerializeField] private float _tempCraftingTime;
-    private float _CraftingBoosterValue = 1f;
+    [SerializeField] private float speedIncreasePercentage;
+
+    [Header("Internal mechanics")]
+
+    [SerializeField] private float _craftingTime;
+    [SerializeField] private float _secondsToDecreaseSpeed;
+    private float internalTimer;
     private bool _readyToCraft = true;
+
+
+    [Header("Item recipe, and output type")]
+
     // Ingredient amount should be at same index as ingredient list.
     [SerializeField] List<ItemBase.ItemType> _ingredientList;
     [SerializeField] List<int> _ingredientAmountForCraft;
     [SerializeField] GameObject _itemOutputType;
 
 
-    [Header("Information to Construct this factory")]
+    [Header("Factory building recipe")]
 
     [SerializeField] List<ItemBase.ItemType> _itemListToCraftFactory;
     [SerializeField] List<int> _itemAmountToCraftFactory;
@@ -53,13 +64,16 @@ public class FactoryBase : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         state = FactoryState.Building;
         _tempCraftingTime = _craftingTime;
+        internalTimer = _secondsToDecreaseSpeed;
     }
 
     public void Update()
     {
+        DecreaseCraftingSpeed();
+        // temporary testing code
         if (Input.GetKeyDown(KeyCode.W))
         {
-            DecreaseTempCraftingTime();
+            IncreaseCraftingSpeed();
         }
 
         switch (state)
@@ -155,9 +169,42 @@ public class FactoryBase : MonoBehaviour
 
     public void AddItemToInventory(GameObject ObjectToAdd)
     {
+        if (ObjectToAdd = null)
+        {
+            print("Object to add was null");
+            
+        } else if (CheckAgainstRecipe(ObjectToAdd))
+        {
+            print("GAYYYYYYY");
+        }
+
+
         InputInventory.Add(ObjectToAdd);
     }
+    /// <summary>
+    /// Returns true if item is in recipe, returns false if not
+    /// </summary>
+    /// <param name="gameObject"></param>
+    /// <returns></returns>
+    private bool CheckAgainstRecipe(GameObject gameObject)
+    {
+        
+        ItemBase.ItemType ObjItemType = gameObject.GetComponent<ItemBase.ItemType>();
+        foreach (var item in _ingredientList)
+        {
+            if (ObjItemType == item)
+            {
+                return true;
+            }
 
+
+        }
+        return false;
+
+    }
+
+
+    // other scripts call this to take items
     public GameObject TakeItemFromOutputInventory()
     {
         int i = OutputInventory.Count;
@@ -172,17 +219,44 @@ public class FactoryBase : MonoBehaviour
         InputInventory.Clear();
     }
 
-    IEnumerator craft()
+    IEnumerator Craft()
     {
         //not done
         ClearInputInventory();
         print("crafting started");
         state = FactoryState.Crafting;
-        yield return new WaitForSeconds(_tempCraftingTime);
-        CreateOutput();
-        _readyToCraft = true;
-        state = FactoryState.Idle;
-        StopCoroutine(craft());
+        _tempCraftingTime = _craftingTime;
+
+        while (_tempCraftingTime >= 0)
+        {
+
+
+
+            _tempCraftingTime -= Time.deltaTime * (1f + (speedIncreasePercentage / 100f));
+
+
+
+
+
+
+
+            yield return null;
+
+            if (_tempCraftingTime <= 0)
+            {
+                CreateOutput();
+                _readyToCraft = true;
+                state = FactoryState.Idle;
+                StopCoroutine(Craft());
+                //break;
+            }
+
+        }
+
+
+
+
+
 
     }
 
@@ -196,7 +270,7 @@ public class FactoryBase : MonoBehaviour
             if (ItemsFilled(_ingredientList, InputInventory, _ingredientAmountForCraft))
             {
                 print("Check is true!");
-                StartCoroutine(craft());
+                StartCoroutine(Craft());
                 _readyToCraft = false;
             }
            
@@ -234,17 +308,31 @@ public class FactoryBase : MonoBehaviour
          return false;
 
     }
-
-    public void DecreaseTempCraftingTime()
+    
+    /// <summary>
+    /// Decreases the crafting time of the factory the script is on. Call this from other scripts
+    /// </summary>
+    public void IncreaseCraftingSpeed()
     {
-        //_CraftingBoosterValue++;
-        //_tempCraftingTime /= _CraftingBoosterValue;
+        //works but needs to be adjusted later for actual gameplay, 
+        // _CraftingBoosterValue++;
+        // _tempCraftingTime /= _CraftingBoosterValue;
+        speedIncreasePercentage += 100;
 
 
         print("Decrease temporary crafting time function was called, this should only be called once");
     }
-
    
+
+   private void DecreaseCraftingSpeed()
+    {
+        internalTimer -= Time.deltaTime;
+        if (internalTimer <= 0 && speedIncreasePercentage > 0)
+        {
+            speedIncreasePercentage--;
+            internalTimer = _secondsToDecreaseSpeed;
+        }
+    }
   
 
 
