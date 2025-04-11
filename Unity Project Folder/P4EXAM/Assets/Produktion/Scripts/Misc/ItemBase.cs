@@ -7,7 +7,7 @@ using UnityEngine;
 public class ItemBase : MonoBehaviour
 {
     [System.Serializable]
-    public enum ItemType { Wood, iron, Copper };
+    public enum ItemType {Drone, Spool, Wire, metalParts, Gear, MetalPipe, SheetMetal, Fabric, Generator, Structure, Blade, FlyingWindmill };
     [SerializeField] public ItemType type;
     public string itemName;
     public string itemDescription;

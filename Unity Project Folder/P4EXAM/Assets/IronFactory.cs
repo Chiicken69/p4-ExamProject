@@ -12,7 +12,7 @@ public class IronFactory : FactoryBase
 
     private void Update()
     {
-        base.CheckForCraftingPossible();
+        base.Update();
     }
 
 
