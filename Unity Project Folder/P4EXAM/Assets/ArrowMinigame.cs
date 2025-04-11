@@ -18,14 +18,12 @@ public class ArrowMinigame : MonoBehaviour
     List<GameObject> cloneArrowList = new List<GameObject>();
     List<DirectionName> directionList = new List<DirectionName>();
 
-    private bool _interact;
+    //private bool _interact;
     private bool _closeUI;
     private bool RightArrow;
     private bool UpArrow;
     private bool DownArrow;
     private bool LeftArrow;
-
-
 
     private bool currentRoundPlaying = false;
     private Sprite arrowImage;
@@ -43,9 +41,9 @@ public class ArrowMinigame : MonoBehaviour
     private void Update()
     {
         GetKeyInfo();
-      
-        StartMinigame();
-        
+
+        Checkstate();
+
         if (currentRoundPlaying == true)
         {
             RunRound();
@@ -53,7 +51,7 @@ public class ArrowMinigame : MonoBehaviour
     }
     private void GetKeyInfo()
     {
-        _interact = InputHandler.Instance.PassInputBoolValue(1);
+        //_interact = InputHandler.Instance.PassInputBoolValue(1);
         _closeUI = InputHandler.Instance.PassInputBoolValue(2);
         RightArrow = InputHandler.Instance.PassInputBoolValue(3);
         LeftArrow = InputHandler.Instance.PassInputBoolValue(4);
@@ -62,21 +60,23 @@ public class ArrowMinigame : MonoBehaviour
 
     }
 
-    private void StartMinigame()
+    private void Checkstate()
     {
-        if (_interact == true && !minigameUI.activeInHierarchy)
-        {
-            minigameUI.SetActive(true);
-            playerMovement.enabled = false;
-            playerZoom.enabled = false;
-            CalculateArrows(true);
-            Debug.Log("Opened arrowui");
-
-        }
-        else if (_closeUI == true && minigameUI.activeInHierarchy)
+    
+        if (_closeUI == true && minigameUI.activeInHierarchy)
         {
             StopMinigame();
         }
+    }
+
+
+    public void StartMinigame()
+    {
+        minigameUI.SetActive(true);
+        playerMovement.enabled = false;
+        playerZoom.enabled = false;
+        CalculateArrows(true);
+        Debug.Log("Opened arrowui");
     }
     private void StopMinigame()
     {
@@ -202,5 +202,6 @@ public class ArrowMinigame : MonoBehaviour
 
         return DirectionName.None;
     }
+
 }
 
