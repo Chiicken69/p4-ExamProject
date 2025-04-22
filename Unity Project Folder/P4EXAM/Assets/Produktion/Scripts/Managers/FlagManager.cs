@@ -5,18 +5,36 @@ using UnityEngine;
 
 public class FlagManager : MonoBehaviour
 {
+    [SerializeField] public int _allowedFlagCount;
+    [SerializeField] public List<Vector2> _flagPoints;
+
+    public static FlagManager Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            DestroyImmediate(gameObject);
+        }
+
+        _flagPoints = new List<Vector2>();
+    }
+
     private Vector3 MouseWorldPos;
 
-    [SerializeField] private int _allowedFlagCount;
-    [SerializeField] private List<Vector2> _flagPoints;
-
+   
 
 
 
     private void Update()
     {
         SetFlags();
-        
+        DroneManager.Instance.UpdateDroneMoves();
+
     }
 
 
@@ -38,6 +56,7 @@ public class FlagManager : MonoBehaviour
             _flagPoints.Add(MouseWorldPos);
         }
         CleanUpFlags();
+        
     }
 
     
