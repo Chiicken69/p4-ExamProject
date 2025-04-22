@@ -21,6 +21,8 @@ public class InputHandler : MonoBehaviour
     private bool UpArrow;
     private bool LeftArrow;
     private bool RightArrow;
+    private bool openBlueprintUI;
+    private bool LeftMouseButton;
 
     private Vector3 MoveDir;
 
@@ -74,6 +76,10 @@ public class InputHandler : MonoBehaviour
                 return DownArrow;
             case 6:
                 return UpArrow;
+            case 7:
+                return openBlueprintUI;
+            case 8:
+                return LeftMouseButton;
             default:
             return false;
         }
@@ -102,6 +108,10 @@ public class InputHandler : MonoBehaviour
         LeftArrow = Input.GetKeyDown(KeyCode.LeftArrow);
 
         RightArrow = Input.GetKeyDown(KeyCode.RightArrow);
+
+        openBlueprintUI = Input.GetKeyDown(KeyCode.B);
+
+        LeftMouseButton = Input.GetKeyDown(KeyCode.Mouse0);
     }
 
 
