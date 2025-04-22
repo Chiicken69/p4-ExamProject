@@ -42,9 +42,6 @@ public class ArrowMinigame : MonoBehaviour
     {
         GetKeyInfo();
 
-        
-
-  
     }
     private void GetKeyInfo()
     {

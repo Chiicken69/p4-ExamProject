@@ -15,6 +15,9 @@ public class BlueprintBook : MonoBehaviour
     private bool listenerAdded = false;
     GameObject buildingPreview;
 
+    //here is where u determin scale for buildings
+    int Scaleforsprite = 1;
+
     int TempBuildingID;
 
     private Vector3 _mousePos;
@@ -28,7 +31,7 @@ public class BlueprintBook : MonoBehaviour
 
     [SerializeField] GameObject building;
 
-[System.Serializable]
+    [System.Serializable]
     public class BuildingData
     {
         public int buildingID;
@@ -128,7 +131,7 @@ public class BlueprintBook : MonoBehaviour
             if (_LeftMouseButton == true) 
             {
                 PlaceSpriteAtCell(gridPos, sprite, false);
-                _enteredBuildingMode = false;
+          
             }
         }
         else
@@ -158,8 +161,33 @@ public class BlueprintBook : MonoBehaviour
                 if (buildingPreview == null) { 
                 buildingPreview = new GameObject("PreviewBuilding");
                 var previewSR = buildingPreview.AddComponent<SpriteRenderer>();
-                previewSR.sprite = sprite;
-                buildingPreview.transform.position = cellPos;
+                    previewSR.sprite = sprite;
+
+                    var boxCollider = buildingPreview.AddComponent<BoxCollider2D>();
+                    boxCollider.size = previewSR.sprite.bounds.size;
+                    buildingPreview.GetComponent<BoxCollider2D>().isTrigger = true;
+
+
+                    // Add Rigidbody2D
+                    var rb = buildingPreview.AddComponent<Rigidbody2D>();
+                    rb.bodyType = RigidbodyType2D.Kinematic;
+                    rb.gravityScale = 0;
+                    rb.simulated = true;
+
+                    var checker = buildingPreview.AddComponent<CollisionChecker>();
+
+
+           
+
+                    
+
+                    //checks if building id is for the factory check the scipt under player to see all id's
+                    if(TempBuildingID == 1)
+                    { Scaleforsprite = 3;}
+                    else { Scaleforsprite = 1;}
+
+                    buildingPreview.transform.localScale = new Vector3(Scaleforsprite, Scaleforsprite, Scaleforsprite);
+                    buildingPreview.transform.position = cellPos; 
                 }
                 else
                 {
@@ -168,10 +196,15 @@ public class BlueprintBook : MonoBehaviour
                 break;
 
             case false:
+                var checkerComp = buildingPreview.GetComponent<CollisionChecker>();
+                if (checkerComp != null && checkerComp.isOverlapping)
+                {
+                    Debug.Log("Cannot place building: Overlaps another structure.");
+                    return;
+                }
+                _enteredBuildingMode = false;
                 Destroy(buildingPreview);
                 GameObject buildingPlaced = Instantiate(building);
-                //var sr = building.AddComponent<SpriteRenderer>();
-                buildingPlaced.GetComponent<SpriteRenderer>().sprite = sprite;
                 buildingPlaced.transform.position = cellPos;
                 break;
         }
