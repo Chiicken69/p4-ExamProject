@@ -3233,6 +3233,7 @@ GameObject:
   - component: {fileID: 228892413349003467}
   - component: {fileID: -1858934055338622899}
   - component: {fileID: 7034566564531975626}
+  - component: {fileID: 8782259522357866789}
   m_Layer: 0
   m_Name: TestItemObject Copper
   m_TagString: Untagged
@@ -54863,6 +54864,22 @@ MonoBehaviour:
   itemDescription: 
   Sprite: {fileID: 0}
 --- !u!114 &7034566564531975626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6265168742392683810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b42a1e72177b641b58f02774e1e388, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  itemName: 
+  itemDescription: 
+  Sprite: {fileID: 0}
+--- !u!114 &8782259522357866789
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
