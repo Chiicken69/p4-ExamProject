@@ -42,12 +42,9 @@ public class ArrowMinigame : MonoBehaviour
     {
         GetKeyInfo();
 
-        Checkstate();
+        
 
-        if (currentRoundPlaying == true)
-        {
-            RunRound();
-        }
+  
     }
     private void GetKeyInfo()
     {
@@ -60,12 +57,16 @@ public class ArrowMinigame : MonoBehaviour
 
     }
 
-    private void Checkstate()
+    public void Checkstate(FactoryBase currentFactory)
     {
     
         if (_closeUI == true && minigameUI.activeInHierarchy)
         {
             StopMinigame();
+        }
+        if (currentRoundPlaying == true)
+        {
+            RunRound(currentFactory);
         }
     }
 
@@ -153,11 +154,13 @@ public class ArrowMinigame : MonoBehaviour
         }
     }
 
-    private void RunRound()
+    private void RunRound(FactoryBase currentFactory)
     {
         if (currentArrowIndex >= directionList.Count)
         {
             Debug.Log("All inputs correct! Round finished.");
+            currentFactory.IncreaseCraftingSpeed();
+            currentFactory = null;
             currentRoundPlaying = false;
             cloneArrowList.Clear();
             directionList.Clear();
@@ -173,6 +176,7 @@ public class ArrowMinigame : MonoBehaviour
             if (inputDirection == directionList[currentArrowIndex])
             {
                 Debug.Log("Correct input for arrow " + currentArrowIndex);
+           
                 Destroy(cloneArrowList[currentArrowIndex]);
                 currentArrowIndex++;
             }
