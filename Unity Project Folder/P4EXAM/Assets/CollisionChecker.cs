@@ -6,7 +6,7 @@ public class CollisionChecker : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log("Trigger Enter with: " + other.name);
+       // Debug.Log("Trigger Enter with: " + other.name);
         if (other.CompareTag("Factory") || other.CompareTag("Player"))
         {
             isOverlapping = true;
@@ -15,7 +15,7 @@ public class CollisionChecker : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("Trigger Exit with: " + other.name);
+        //Debug.Log("Trigger Exit with: " + other.name);
         if (other.CompareTag("Factory") || other.CompareTag("Player"))
         {
             isOverlapping = false;

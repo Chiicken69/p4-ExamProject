@@ -27,7 +27,7 @@ public class FactoryBase : MonoBehaviour
 
    
     [SerializeField] Sprite buildingSprite;
-    [SerializeField] Sprite idleSprite;
+    [SerializeField] public Sprite idleSprite;
     [SerializeField] Sprite craftingSprite;
     [SerializeField] Sprite processingSprite;
 
