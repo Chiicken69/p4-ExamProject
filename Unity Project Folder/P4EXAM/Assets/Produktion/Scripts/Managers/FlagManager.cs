@@ -33,7 +33,7 @@ public class FlagManager : MonoBehaviour
     private void Update()
     {
         SetFlags();
-        DroneManager.Instance.UpdateDroneMoves();
+      
 
     }
 
@@ -43,6 +43,7 @@ public class FlagManager : MonoBehaviour
     {
         if (_flagPoints.Count > _allowedFlagCount)
         {
+            DroneManager.Instance.RemoveMoveCommands();
             _flagPoints.RemoveAt(0);
         }
     }
@@ -54,8 +55,10 @@ public class FlagManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             _flagPoints.Add(MouseWorldPos);
+            CleanUpFlags();
+            DroneManager.Instance.UpdateDroneMoves();
         }
-        CleanUpFlags();
+       
         
     }
 

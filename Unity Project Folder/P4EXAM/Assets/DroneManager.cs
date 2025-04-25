@@ -27,9 +27,11 @@ public class DroneManager : MonoBehaviour
 
     public void UpdateDroneMoves()
     {
-        foreach (var flag in drones)
+        foreach (var drone in drones)
         {
-            flag.GetComponent<Drone>().AddMoveCommand();
+
+
+            drone.GetComponent<Drone>().AddMoveCommand();
         }
     }
 
@@ -38,7 +40,17 @@ public class DroneManager : MonoBehaviour
         if (InputHandler.Instance.PassInputBoolValue(3))
         {
             drones.Add(Instantiate(dronePrefab));
+            UpdateDroneMoves();
             
+            
+        }
+    }
+
+    public void RemoveMoveCommands()
+    {
+        foreach (var item in drones)
+        {
+            item.GetComponent<Drone>().RemovMoveCommand();
         }
     }
 

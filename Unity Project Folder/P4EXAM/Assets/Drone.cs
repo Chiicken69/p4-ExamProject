@@ -1,6 +1,7 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 
 
@@ -27,38 +28,49 @@ public class Drone : MonoBehaviour
        
     }
 
-    IEnumerator MoveDrone(Vector2 PositionB)
+    IEnumerator MoveDrone(Vector2 target)
     {
-        Vector2 PositionA = this.transform.position;
-        Debug.Log("MoveDrone Routine Started");
-        bool _moveObjectSmoothIsRunning = true;
-        float _timeElapsed = 0f;
-        Vector3 pos = new Vector3();
-        float durationByDistance;
+        float accel = 10f;   // units/sec²
+        float maxSpeed = 100f;   // units/sec
+        float speed = 0f;   // current speed
+        const float stopThreshold = 0.01f;
 
-
-        durationByDistance = Vector2.Distance(PositionA, PositionB);
-        durationByDistance = durationByDistance / _speed;
-
-        while (_timeElapsed < durationByDistance)
+        while (true)
         {
-            // pos = Vector2.Lerp(PositionA, PositionB, _timeElapsed / durationByDistance);
-            pos.x = Mathf.SmoothStep(PositionA.x, PositionB.x, _timeElapsed / durationByDistance);
-            pos.y = Mathf.SmoothStep(PositionA.y, PositionB.y, _timeElapsed / durationByDistance);
-           // print("CoroutinePOSITION: " + pos);
+            float remaining = Vector2.Distance(transform.position, target);
+            if (remaining <= stopThreshold)
+                break;  // only stop when you’re actually at (or very near) the target
 
-            this.transform.position = pos;
+            // distance needed to brake to zero: d = v² / (2·a)
+            float stoppingDist = (speed * speed) / (2f * accel);
 
-            _timeElapsed += Time.deltaTime;
+            // accelerate if you can still cruise, otherwise decelerate
+            if (remaining > stoppingDist && speed < maxSpeed)
+            {
+                speed += accel * Time.deltaTime;
+                speed = Mathf.Min(speed, maxSpeed);
+            }
+            else
+            {
+                speed -= accel * Time.deltaTime;       // decelerate by the same accel
+                speed = Mathf.Max(speed, 0f);
+            }
+
+            // move towards the target at your computed speed
+            transform.position = Vector2.MoveTowards(
+                transform.position,
+                target,
+                speed * Time.deltaTime
+            );
+
             yield return null;
-
-
         }
 
-        // coroutine = null;
+        // snap exactly
+        transform.position = target;
         droneState = DroneState.idle;
-        Debug.Log("drone is at location :3");
-
+        Debug.Log($"Drone arrived at {target}");
+       
     }
 
     private void Update()
@@ -82,6 +94,7 @@ public class Drone : MonoBehaviour
             default:
                 droneState = DroneState.idle;
                 Debug.Log("is idle");
+                StartMoveCommand();
                 break;
         }
 
@@ -94,17 +107,25 @@ public class Drone : MonoBehaviour
     public void AddMoveCommand()
     {
         MoveCommands.Enqueue(MoveDrone(CalcMoveCommand()));
+        print("Queue length: " + MoveCommands.Count);
     }
 
     private void StartMoveCommand()
     {
         if (MoveCommands.Count > 0)
         {
-            StartCoroutine(MoveCommands.Dequeue());
+            IEnumerator temp = MoveCommands.Dequeue();
+            StartCoroutine(temp);
+           // MoveCommands.Enqueue(temp);
             
             droneState = DroneState.flying;
         }
 
+    }
+
+    public void RemovMoveCommand()
+    {
+        MoveCommands.Dequeue();
     }
 
     
