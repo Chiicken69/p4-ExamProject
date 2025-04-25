@@ -86,7 +86,7 @@ public class BuildingDeleter : MonoBehaviour
             {
                 hasTriggered = true;
                 Destroy(hit.gameObject);
-            }
+            }   
         }
     }
 }   

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2420718596193280420}
   - component: {fileID: 1784684658563574652}
   m_Layer: 0
-  m_Name: TestItemObject Wood
+  m_Name: Copper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b42a1e72177b641b58f02774e1e388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
-  itemName: Wood Item
-  itemDescription: This is wood
-  Sprite: {fileID: 0}
+  type: 13
+  itemName: Copper Item
+  itemDescription: This is Copper
+  Sprite: {fileID: 3183417767498194485, guid: 161559759d3c3434d8134002af4c24bf, type: 3}
 --- !u!212 &1784684658563574652
 SpriteRenderer:
   m_ObjectHideFlags: 0

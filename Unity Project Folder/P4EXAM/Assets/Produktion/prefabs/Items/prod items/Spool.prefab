@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2420718596193280420}
   - component: {fileID: 1784684658563574652}
   m_Layer: 0
-  m_Name: TestItemObject Wood
+  m_Name: Spool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,9 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  itemName: Wood Item
-  itemDescription: This is wood
-  Sprite: {fileID: 0}
+  itemName: Spool Item
+  itemDescription: This is Spool
+  Sprite: {fileID: 3929943276327574795, guid: cadd30bd785eb98499575180d2c5bca2, type: 3}
 --- !u!212 &1784684658563574652
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6791683756638734249}
   - component: {fileID: -7230496551092666868}
   m_Layer: 0
-  m_Name: TestObjectFactory
+  m_Name: Wire Factory
   m_TagString: Factory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,17 +50,17 @@ MonoBehaviour:
   OutputInventory: []
   InputInventory:
   - {fileID: 3632619094670410106, guid: 9c4acc03301030647b60f42fe547cbb7, type: 3}
-  buildingSprite: {fileID: 21300000, guid: fdf513767d516f944baa726cb73bac35, type: 2}
-  idleSprite: {fileID: 21300000, guid: 1a80d083a0f5fa94d9a789e2318d3a3f, type: 2}
+  buildingSprite: {fileID: 21300000, guid: da7f8c2dbc2635e43857a8b6027d006a, type: 2}
+  idleSprite: {fileID: 21300000, guid: 3cb0e3d9d762667429c6a663e77ffdeb, type: 2}
   craftingSprite: {fileID: 7361498936159341154, guid: 417e3239dddec30498921b5982dae986, type: 3}
   processingSprite: {fileID: 0}
   _tempCraftingTime: 0
   speedIncreasePercentage: 0
   _craftingTime: 60
   _secondsToDecreaseSpeed: 2
-  _ingredientList: 02000000
+  _ingredientList: 0d000000
   _ingredientAmountForCraft: 02000000
-  _itemOutputType: {fileID: 6265168742392683810, guid: 23c7f7596e6e3cd44941deeffc09023c, type: 3}
+  _itemOutputType: {fileID: 3632619094670410106, guid: 0e6edc9f6b641cc4386df3c396e0160b, type: 3}
   _itemListToCraftFactory: 00000000
   _itemAmountToCraftFactory: 02000000
 --- !u!61 &6791683756638734249

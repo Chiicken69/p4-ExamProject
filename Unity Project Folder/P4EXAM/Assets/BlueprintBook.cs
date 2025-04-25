@@ -27,9 +27,11 @@ public class BlueprintBook : MonoBehaviour
 
     [SerializeField] private List<BuildingData> buildingPalette = new List<BuildingData>();
 
-    private Dictionary<int, Sprite> idToSprite = new Dictionary<int, Sprite>();
+    //private Dictionary <int, Sprite> idToSprite = new Dictionary<int, Sprite>();
 
-    [SerializeField] GameObject building;
+    [SerializeField] private List<GameObject> building;
+
+    Sprite _GhostPreview;
 
     [System.Serializable]
     public class BuildingData
@@ -40,6 +42,7 @@ public class BlueprintBook : MonoBehaviour
 
     private void Start()
     {
+        /*
         foreach (var data in buildingPalette)
         {
             if (!idToSprite.ContainsKey(data.buildingID))
@@ -47,6 +50,8 @@ public class BlueprintBook : MonoBehaviour
                 idToSprite.Add(data.buildingID, data.buildingSprite);
             }
         }
+        */
+
     }
 
     // Update is called once per frame
@@ -102,44 +107,53 @@ public class BlueprintBook : MonoBehaviour
     }
     public void PlaceBuilding(int buildingID)
     {
-        Sprite result = CalculateIdentification(buildingID);
-        Debug.Log("Placing building: " + result);
-
         blueprintUI.SetActive(false);
         listenerAdded = false;
         _enteredBuildingMode = true;
 
         TempBuildingID = buildingID;
 
-    }
-
-    private void BuildingMode(int buildingID)
-    {
-
-        if (idToSprite.TryGetValue(buildingID, out Sprite sprite))
+        if (_GhostPreview == null)
         {
-
-            Vector3 gridPos = new Vector3(
-            Mathf.RoundToInt(_mousePos.x),
-            Mathf.RoundToInt(_mousePos.y), 0);
-            for (int i = 0;i < 1;i++)
-            {
-                PlaceSpriteAtCell(gridPos, sprite, true);
-            }
-            
-           
-            if (_LeftMouseButton == true) 
-            {
-                PlaceSpriteAtCell(gridPos, sprite, false);
-          
-            }
+            _GhostPreview = building[TempBuildingID].GetComponent<SpriteRenderer>().sprite;
         }
         else
         {
             Debug.LogWarning("No sprite found for building ID: " + buildingID);
         }
 
+        //Sprite result = CalculateIdentification(buildingID);
+
+
+        Debug.Log("Placing building: " + _GhostPreview);
+
     }
+
+    private void BuildingMode(int buildingID)
+    {
+
+        else
+        {
+
+            Vector3 gridPos = new Vector3(
+            Mathf.RoundToInt(_mousePos.x),
+            Mathf.RoundToInt(_mousePos.y), 0);
+ 
+
+            PlaceSpriteAtCell(gridPos, _GhostPreview, true);
+
+            
+           
+            if (_LeftMouseButton == true) 
+            {
+                PlaceSpriteAtCell(gridPos, _GhostPreview, false);
+          
+            }
+        }
+ 
+
+    }
+    /*
     public Sprite CalculateIdentification(int buildingID)
     {
         foreach (var item in idToSprite)
@@ -152,63 +166,87 @@ public class BlueprintBook : MonoBehaviour
         }
         return null;
     }
+    
+    public GameObject PlaceWhatBuilding(Sprite Building)
+    {
+        //goofy aaa way of checking what building to place based on sprite
+        switch (Building.name)
+        {
+            case "Wire Factory":
+
+                print("made wire");
+                return buildingPlaced;
+
+            case "Spool Factory":
+                GameObject buildingPlaced = Instantiate(building[TempBuildingID]);
+                print("made spool");
+                return buildingPlaced;
+            default:
+                print("Incorrect intelligence level.");
+                return null;
+        }
+    }
+    */
+
     void PlaceSpriteAtCell(Vector3 cellPos, Sprite sprite, bool preview)
     {
-
-        switch (preview)
+        if (sprite != null)
         {
-            case true:
-                if (buildingPreview == null) { 
-                buildingPreview = new GameObject("PreviewBuilding");
-                var previewSR = buildingPreview.AddComponent<SpriteRenderer>();
-                    previewSR.sprite = sprite;
+            switch (preview)
+            {
+                case true:
 
-                    var boxCollider = buildingPreview.AddComponent<BoxCollider2D>();
-                    boxCollider.size = previewSR.sprite.bounds.size;
-                    buildingPreview.GetComponent<BoxCollider2D>().isTrigger = true;
+                    if (buildingPreview == null)
+                    {
+                        buildingPreview = new GameObject("PreviewBuilding");
+                        var previewSR = buildingPreview.AddComponent<SpriteRenderer>();
+                        previewSR.sprite = sprite;
 
-
-                    // Add Rigidbody2D
-                    var rb = buildingPreview.AddComponent<Rigidbody2D>();
-                    rb.bodyType = RigidbodyType2D.Kinematic;
-                    rb.gravityScale = 0;
-                    rb.simulated = true;
-
-                    var checker = buildingPreview.AddComponent<CollisionChecker>();
+                        var boxCollider = buildingPreview.AddComponent<BoxCollider2D>();
+                        boxCollider.size = previewSR.sprite.bounds.size;
+                        buildingPreview.GetComponent<BoxCollider2D>().isTrigger = true;
 
 
-           
+                        // Add Rigidbody2D
+                        var rb = buildingPreview.AddComponent<Rigidbody2D>();
+                        rb.bodyType = RigidbodyType2D.Kinematic;
+                        rb.gravityScale = 0;
+                        rb.simulated = true;
 
-                    
+                        var checker = buildingPreview.AddComponent<CollisionChecker>();
 
-                    //checks if building id is for the factory check the scipt under player to see all id's
-                    if(TempBuildingID == 1)
-                    { Scaleforsprite = 3;}
-                    else { Scaleforsprite = 1;}
+                        //checks if building id is for the factory check the scipt under player to see all id's
+                        if (TempBuildingID <= 2)
+                        { Scaleforsprite = 3; }
+                        else { Scaleforsprite = 1; }
 
-                    buildingPreview.transform.localScale = new Vector3(Scaleforsprite, Scaleforsprite, Scaleforsprite);
-                    buildingPreview.transform.position = cellPos; 
-                }
-                else
-                {
-                    buildingPreview.transform.position = cellPos;
-                }
-                break;
+                        buildingPreview.transform.localScale = new Vector3(Scaleforsprite, Scaleforsprite, Scaleforsprite);
+                        buildingPreview.transform.position = cellPos;
+                    }
+                    else
+                    {
+                        buildingPreview.transform.position = cellPos;
+                    }
 
-            case false:
-                var checkerComp = buildingPreview.GetComponent<CollisionChecker>();
-                if (checkerComp != null && checkerComp.isOverlapping)
-                {
-                    Debug.Log("Cannot place building: Overlaps another structure.");
-                    return;
-                }
-                _enteredBuildingMode = false;
-                Destroy(buildingPreview);
-                GameObject buildingPlaced = Instantiate(building);
-                buildingPlaced.transform.position = cellPos;
-                break;
+                    break;
+
+                case false:
+
+                    var checkerComp = buildingPreview.GetComponent<CollisionChecker>();
+                    if (checkerComp != null && checkerComp.isOverlapping)
+                    {
+                        Debug.Log("Cannot place building: Overlaps another structure.");
+                        return;
+                    }
+                    _enteredBuildingMode = false;
+                    Destroy(buildingPreview);
+
+                    GameObject buildingPlaced = Instantiate(building[TempBuildingID]);
+
+                    buildingPlaced.transform.position = cellPos;
+                    break;
+            }
         }
-
 
     }
 }
