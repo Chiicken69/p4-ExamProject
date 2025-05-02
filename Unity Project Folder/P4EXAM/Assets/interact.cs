@@ -16,7 +16,7 @@ public class interact : MonoBehaviour
         _interact = InputHandler.Instance.PassInputBoolValue(1);
         if ((playerInTrigger == true && _interact == true) && !minigameUI.activeInHierarchy)
         {
-            print("WHAT THE FUCK");
+            //print("WHAT THE FUCK");
             arrowMinigame.StartMinigame();
             
         }
@@ -52,12 +52,12 @@ public class interact : MonoBehaviour
     }
     void OnTriggerExit2D(Collider2D other)
     {
-        print("omew");
+       // print("omew");
         if (other.gameObject.CompareTag("Factory"))
         {
             playerInTrigger = false;
             currentFactory = null;
-            print("i have turned off");
+           // print("i have turned off");
         }
     }
 }
