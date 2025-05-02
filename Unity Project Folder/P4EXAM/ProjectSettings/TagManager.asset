@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Factory
   - Building
+  - Radio
   layers:
   - Default
   - TransparentFX

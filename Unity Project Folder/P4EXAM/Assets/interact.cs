@@ -2,19 +2,21 @@ using UnityEngine;
 
 public class interact : MonoBehaviour
 {
-    private bool playerInTrigger = false;
+    private bool playerInFactoryTrigger = false;
+    private bool playerInRadioTrigger = false;
 
     private bool _interact;
 
     public ArrowMinigame arrowMinigame;
     [SerializeField] private GameObject minigameUI;
+    [SerializeField] private GameObject radioUI;
     private FactoryBase currentFactory;
 
     private void Update()
     {
 
         _interact = InputHandler.Instance.PassInputBoolValue(1);
-        if ((playerInTrigger == true && _interact == true) && !minigameUI.activeInHierarchy)
+        if ((playerInFactoryTrigger == true && _interact == true) && !minigameUI.activeInHierarchy)
         {
             //print("WHAT THE FUCK");
             arrowMinigame.StartMinigame();
@@ -24,7 +26,10 @@ public class interact : MonoBehaviour
         {
             arrowMinigame.Checkstate(currentFactory);
         }
-
+        if ((playerInRadioTrigger && _interact) && !radioUI.activeInHierarchy) 
+        {
+            radioUI.SetActive(true);
+        } 
     }
 
 
@@ -33,7 +38,7 @@ public class interact : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Factory"))
         {
-            playerInTrigger = true;
+            playerInFactoryTrigger = true;
 
             // Attempt to get the FactoryBase component from the collided object
             FactoryBase factory = other.gameObject.GetComponent<FactoryBase>();
@@ -48,6 +53,9 @@ public class interact : MonoBehaviour
             }
 
 
+        }else if (other.gameObject.CompareTag("Radio"))
+        {
+            playerInRadioTrigger = true;  
         }
     }
     void OnTriggerExit2D(Collider2D other)
@@ -55,9 +63,15 @@ public class interact : MonoBehaviour
        // print("omew");
         if (other.gameObject.CompareTag("Factory"))
         {
-            playerInTrigger = false;
+            playerInFactoryTrigger = false;
             currentFactory = null;
            // print("i have turned off");
         }
-    }
+        if (other.gameObject.CompareTag("Radio"))
+        {
+            playerInRadioTrigger = false;
+            radioUI.SetActive(false);
+        }
+
+        }
 }

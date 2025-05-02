@@ -1446,7 +1446,7 @@ GameObject:
   - component: {fileID: 1491076606}
   m_Layer: 0
   m_Name: Radio
-  m_TagString: Factory
+  m_TagString: Radio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1463,6 +1463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dd0a132116830042af8b63e12f3bd38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radioUI: {fileID: 714042917}
 --- !u!212 &1491076604
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1774,6 +1775,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowMinigame: {fileID: 2061527058}
   minigameUI: {fileID: 1400637538}
+  radioUI: {fileID: 714042917}
 --- !u!114 &1977578891
 MonoBehaviour:
   m_ObjectHideFlags: 0
