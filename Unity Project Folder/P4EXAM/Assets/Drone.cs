@@ -150,4 +150,15 @@ public class Drone : MonoBehaviour
         
     }
 
+    private void TakeItem()
+    {
+        if (!_carryingItem && _speed <= 0.2)
+        {
+            
+        }
+    }
+
+   
+
+
 }
