@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.UI;
 
 
 
@@ -11,11 +12,12 @@ public class BlueprintBook : MonoBehaviour
 
     SpriteRenderer previewSR;
 
-    private bool _openBlueprintUI;
-    private bool _closeUI;
+    [SerializeField] private Text _placeingText;
+
     private bool _enteredBuildingMode = false;
     private bool listenerAdded = false;
     GameObject buildingPreview;
+    [SerializeField] GridLayout _gridLayout;
 
     //here is where u determin scale for buildings
     int Scaleforsprite = 1;
@@ -87,8 +89,6 @@ public class BlueprintBook : MonoBehaviour
  
     private void GetKeyInfo()
     {
-        _closeUI = InputHandler.Instance.PassInputBoolValue(2);
-        _openBlueprintUI = InputHandler.Instance.PassInputBoolValue(7);
             
         _mousePos = InputHandler.Instance.PassMousePosInWorld();
         _LeftMouseButton = InputHandler.Instance.PassInputBoolValue(8);
@@ -155,9 +155,8 @@ public class BlueprintBook : MonoBehaviour
         GetScrollInfo();
 
 
-        Vector3 gridPos = new Vector3(
-            Mathf.RoundToInt(_mousePos.x),
-            Mathf.RoundToInt(_mousePos.y), 0);
+        Vector3 gridPos = _gridLayout.WorldToCell(_mousePos);
+ 
 
         if (TempBuildingID != 0)
         {
@@ -176,7 +175,10 @@ public class BlueprintBook : MonoBehaviour
         {
             PlaceSpriteAtCell(gridPos, true);
         }
-        else if(_GhostPreview == null) { Destroy(buildingPreview); }
+        else if(_GhostPreview == null) { 
+            Destroy(buildingPreview);
+            _placeingText.text = "Placeing: Nothing";
+        }
         if (_LeftMouseButton == true) 
             {
                 PlaceSpriteAtCell(gridPos, false);
@@ -222,8 +224,10 @@ public class BlueprintBook : MonoBehaviour
                 else
                 {
                     //oppsie
+
                     buildingPreview.GetComponent<SpriteRenderer>().sprite = _GhostPreview;
                     buildingPreview.transform.position = cellPos;
+                    _placeingText.text = "Placeing: " + building[TempBuildingID].name;
                 }
 
                 break;
@@ -239,6 +243,7 @@ public class BlueprintBook : MonoBehaviour
                         return;
                     }
                     _enteredBuildingMode = false;
+                    _placeingText.text = "";
                     Destroy(buildingPreview);
 
                     GameObject buildingPlaced = Instantiate(building[TempBuildingID]);
@@ -248,6 +253,7 @@ public class BlueprintBook : MonoBehaviour
                 }
                 else
                 {
+                    _placeingText.text = "";
                     _enteredBuildingMode = false;
                     break;
                 }

@@ -7,7 +7,7 @@ public class CollisionChecker : MonoBehaviour
     private void OnTriggerStay2D(Collider2D other)
     {
        // Debug.Log("Trigger Enter with: " + other.name);
-        if (other.CompareTag("Factory") || other.CompareTag("Player"))
+        if ((other.CompareTag("Factory") || other.CompareTag("Player")) || other.CompareTag("Building"))
         {
             isOverlapping = true;
         }
