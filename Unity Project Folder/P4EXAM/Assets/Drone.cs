@@ -154,11 +154,39 @@ public class Drone : MonoBehaviour
     {
         if (!_carryingItem && _speed <= 0.2)
         {
-            
+          GameObject tempGB =  FactoryManager.Instance.ReturnFactory(this.transform.position);
+
+            if (tempGB == null)
+            {
+                Debug.Log("yo dawg this shit null");
+            }
+            else
+            {
+                tempGB.GetComponent<FactoryBase>().TakeItemFromOutputInventory();
+            }
+
         }
     }
 
-   
+    private void DepositItem()
+    {
+        if (_carryingItem && _speed <= 0.2)
+        {
+            GameObject tempGB = FactoryManager.Instance.ReturnFactory(this.transform.position);
+
+            if (tempGB == null)
+            {
+                Debug.Log("yo dawg this shit null");
+            }
+            else
+            {
+                tempGB.GetComponent<FactoryBase>().TakeItemFromOutputInventory();
+            }
+
+        }
+    }
+
+
 
 
 }

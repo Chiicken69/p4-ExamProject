@@ -6,11 +6,12 @@ using UnityEngine.Tilemaps;
 
 public class FactoryManager : MonoBehaviour
 {
-    public List<Vector3Int> _factoryGridPositions;
-    public GameObject[] _factories;
+    public List<Vector3Int> FactoryGridPositions;
+    public List<GameObject> Factories;
+    
     [SerializeField] private Tilemap _tilemap;
     private bool _routineRunning = false;
-    private int TempInt;
+    private int _tempInt;
     
 
 
@@ -38,29 +39,37 @@ public class FactoryManager : MonoBehaviour
         }
     }
 
-    private void tempfuncname()
+    public void AddFactory(GameObject gb)
     {
-        TempInt = 0;
-       _factories = GameObject.FindGameObjectsWithTag("Factory");
+        Factories.Add(gb);
+        //_factoryGridPositions.Add(ConvertToGrid(gb.transform.position));
 
+    }
+    [ContextMenu("pluh")]
 
-        foreach (var factory in _factories)
+    public GameObject ReturnFactory(Vector3 DronePos)
+    {
+       
+        if (CheckNearFactory(DronePos) != -1)
         {
-            for (int i = 1; i < _factoryGridPositions.Count; i++)
-            {
-               
-                if (_factoryGridPositions[i] != ConvertToGrid(factory.transform.position)) ;
-                {
-                    TempInt++;
-                }
-            }
-            if (TempInt >= _factoryGridPositions.Count)
-            {
-                _factoryGridPositions.Add(ConvertToGrid(factory.transform.position));
-            }
+            return Factories[CheckNearFactory(DronePos)]; 
         }
+        return null;    
+    }
 
-
+    private int CheckNearFactory(Vector3 DronePos)
+    {
+        DronePos = ConvertToGrid(DronePos);
+        int i = 0;
+        foreach (var FactoryPosition in FactoryGridPositions)
+        {
+            if (DronePos == FactoryPosition)
+            {
+                return i;
+            }
+            i++;
+        }
+        return -1;
     }
 
     private Vector3Int ConvertToGrid(Vector2 pos)
@@ -68,15 +77,6 @@ public class FactoryManager : MonoBehaviour
         return _tilemap.layoutGrid.WorldToCell(pos);
     }
 
-    private IEnumerator FactoryCheck()
-    {
-        _routineRunning = true;
-        yield return new WaitForSecondsRealtime(2f);
-
-
-        tempfuncname();
-        _routineRunning = false;
- 
-    }
+    
 
 }
