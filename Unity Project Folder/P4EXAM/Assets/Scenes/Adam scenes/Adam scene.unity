@@ -342,7 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05726aac15a03ba4b922c9d7dd958548, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _allowedFlagCount: 4
+  _allowedFlagCount: 5
   _flagPoints: []
 --- !u!4 &732704422
 Transform:
@@ -354,6 +354,52 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.07510778, y: 0.7432177, z: 0.031211741}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &778523059
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 778523061}
+  - component: {fileID: 778523060}
+  m_Layer: 0
+  m_Name: DroneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &778523060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778523059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26a525b8d485982409bcbe6ed132e558, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dronePrefab: {fileID: 1516603051}
+  drones: []
+--- !u!4 &778523061
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778523059}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.5766368, y: 3.0462651, z: 0.026154377}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -389,8 +435,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738aa80c22625024fb22eac8f6c17e6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
+  _speed: 6
   _carryingItem: 0
+  _Item: {fileID: 0}
   _sprite: {fileID: 7361498936159341154, guid: 417e3239dddec30498921b5982dae986, type: 3}
 --- !u!212 &1516603053
 SpriteRenderer:
@@ -515,3 +562,4 @@ SceneRoots:
   - {fileID: 732704422}
   - {fileID: 1631706033}
   - {fileID: 1516603054}
+  - {fileID: 778523061}
