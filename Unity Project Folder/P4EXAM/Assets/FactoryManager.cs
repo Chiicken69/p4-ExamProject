@@ -10,8 +10,7 @@ public class FactoryManager : MonoBehaviour
     public List<GameObject> Factories;
     
     [SerializeField] private Tilemap _tilemap;
-    private bool _routineRunning = false;
-    private int _tempInt;
+   
     
 
 
@@ -33,10 +32,7 @@ public class FactoryManager : MonoBehaviour
 
     private void Update()
     {
-        if (!_routineRunning)
-        {
-            StartCoroutine("FactoryCheck");
-        }
+       
     }
 
     public void AddFactory(GameObject gb)
