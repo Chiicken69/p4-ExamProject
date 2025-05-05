@@ -16,8 +16,9 @@ public class RadioScript : MonoBehaviour
     [SerializeField] private Text unreadMessagesText;
     private int amountOfUnread;
     [SerializeField] private Text personWhoMessaged;
-    [SerializeField] private Text dialogText;
-    [SerializeField] private Button buttonForMessages;
+    [SerializeField] private GameObject dialogTextGameObject;
+    [SerializeField] private GameObject dialogPersonThatMessagedGameObject;
+    [SerializeField] private GameObject buttonForMessages;
     private bool listenerAdded = false;
 
     [SerializeField] private GameObject radioUI;
@@ -34,6 +35,16 @@ public class RadioScript : MonoBehaviour
         public bool triggered = false; // tracks if it has been added
     }
     DialogList currentDialog;
+private Button messageButton;
+private Text dialogText;
+private Text DialogPersonText;
+
+    void Start()
+{
+        messageButton = buttonForMessages.GetComponent<Button>();
+        dialogText = dialogTextGameObject.GetComponent<Text>();
+        DialogPersonText = dialogPersonThatMessagedGameObject.GetComponent<Text>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -46,6 +57,12 @@ public class RadioScript : MonoBehaviour
         if (isInDialogMode)
         {
             ShowDialog();
+        }else if (!isInDialogMode){
+            unreadMessagesText.enabled = true;
+            dialogTextGameObject.SetActive(false);
+            dialogPersonThatMessagedGameObject.SetActive(false);
+            buttonForMessages.SetActive(true);
+
         }
     }
 
@@ -61,37 +78,45 @@ public class RadioScript : MonoBehaviour
             isInDialogMode = false;
         }
     }
-    void CharPicker()
+  void CharPicker()
+{
+    if (currentDialog == null && dialogData.Count > 0)
     {
-        // If there are dialog messages to process
+        currentDialog = dialogData.Peek();
+    }
 
-        if (dialogData.Count > 0)
+    if (dialogData.Count > 0)
+    {
+        personWhoMessaged.text = currentDialog.personMessageing;
+        DialogPersonText.text = currentDialog.personMessageing;
+
+        unreadMessagesText.text = $"You have {dialogData.Count} unread messages.";
+        if (!listenerAdded)
         {
-            personWhoMessaged.text = currentDialog.personMessageing;
-
-            unreadMessagesText.text = $"You have {dialogData.Count} unread messages.";
-            if (!listenerAdded)
-            {
-                buttonForMessages.onClick.AddListener(() => ShowDialog());
-                listenerAdded = true;
-            }
-        }
-        else if (dialogData.Count == 0)
-        {
-
-            unreadMessagesText.text = "You have 0 Messages";
-            personWhoMessaged.text = "No one";
+            messageButton.onClick.AddListener(() => ShowDialog());
+            listenerAdded = true;
         }
     }
+    else
+    {
+        unreadMessagesText.text = "You have 0 Messages";
+        messageButton.onClick.RemoveAllListeners();
+        personWhoMessaged.text = "No one";
+    }
+}
     void DialogController()
     {
   
         if ((timeInSeconds >= 0 && timeInSeconds < 3) && (currentDialog == null || !currentDialog.triggered))
         {
-            EnqueueDialog("Radio Operator", "Hello, are you still there?", true);
+            EnqueueDialog("Turiel", "Hello, are you there? Ah good, i've been told to read you a few intrustions from my notebook. Hmm let's see, if u open your blueprint book by clicking on it, you should be able to scroll though it to see diffrent buildable objects, try building a factory! Any will do.", true);
             Debug.Log("I HAVE QUEUED");
-
-            currentDialog = dialogData.Peek();
+        }
+        if ((timeInSeconds >= 10 && timeInSeconds < 12) && (currentDialog == null || !currentDialog.triggered))
+        {
+            EnqueueDialog("Turiel", "Next up try using your drones, you should be able to move them between" + FlagManager.Instance._allowedFlagCount + "diffrent locations, by making them pass over building like factorys, they should be able to take the output and move them around into another building to craft items. For example transfering copper into a wire factory, it shoooould make wires for you to make spools and uhhh you know stuff with.", true);
+            Debug.Log("I HAVE QUEUED");
+ 
         }
     }
 
@@ -118,11 +143,17 @@ public class RadioScript : MonoBehaviour
 
             // Once the dialog is shown, dequeue it
             dialogData.Dequeue();
+            currentDialog = null;
             isInDialogMode = true;
 
         }
         else
         {
+            unreadMessagesText.enabled = false;
+            dialogTextGameObject.SetActive(true);
+            dialogPersonThatMessagedGameObject.SetActive(true);
+            buttonForMessages.SetActive(false);
+
 
         }
     }
