@@ -67,6 +67,8 @@ public class FactoryManager : MonoBehaviour
        
         if (CheckNearFactory(DronePos) != -1)
         {
+
+            
             return Factories[CheckNearFactory(DronePos)]; 
         }
         return null;    
@@ -75,11 +77,17 @@ public class FactoryManager : MonoBehaviour
     private int CheckNearFactory(Vector3 DronePos)
     {
         DronePos = ConvertToGrid(DronePos);
+        
+      //  Debug.Log("drone position in grid is: " + DronePos);
         int i = 0;
-        foreach (var FactoryPosition in FactoryGridPositions)
+        foreach (var Factory in Factories)
         {
-            if (DronePos == FactoryPosition)
+            Vector3Int factoryPosition = ConvertToGrid(Factory.transform.position);
+
+          //  Debug.Log("Factory position is: " + factoryPosition);
+            if (DronePos == factoryPosition)
             {
+            //    Debug.Log("Drone is at factory position");
                 return i;
             }
             i++;

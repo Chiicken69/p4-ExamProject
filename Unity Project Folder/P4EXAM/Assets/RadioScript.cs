@@ -18,7 +18,7 @@ public class RadioScript : MonoBehaviour
     [SerializeField] private GameObject radioUI;
     //name,Dialog
 
-    [SerializeField] List<DialogList> = new List<DialogList>();
+  //  [SerializeField] List<DialogList> = new List<DialogList>();
 
             [System.Serializable]
    public class DialogList
