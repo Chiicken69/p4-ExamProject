@@ -351,13 +351,13 @@ MonoBehaviour:
   buildingButton: {fileID: 844222443}
   buildingPalette:
   - buildingID: 0
-    buildingSprite: {fileID: 0}
+    buildingSprite: {fileID: 21300000, guid: d3289b039998b524a9bcdd83283b92eb, type: 2}
   - buildingID: 1
     buildingSprite: {fileID: 21300000, guid: 3cb0e3d9d762667429c6a663e77ffdeb, type: 2}
   - buildingID: 2
     buildingSprite: {fileID: 21300000, guid: 1a80d083a0f5fa94d9a789e2318d3a3f, type: 2}
   building:
-  - {fileID: 0}
+  - {fileID: 122399579427468651, guid: 4e956ab606495f745be4dac20f485d80, type: 3}
   - {fileID: 1883427552500268258, guid: 529c469e03a4d5c4293cfc10967b4e1c, type: 3}
   - {fileID: 1883427552500268258, guid: c3d468cf28203644ead081873b005cbd, type: 3}
 --- !u!1 &566712503
