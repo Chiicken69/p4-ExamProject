@@ -20,7 +20,7 @@ public class RadioScript : MonoBehaviour
     {
         if (_closeUI ==true && radioUI.activeInHierarchy)
         {
-
+            radioUI.SetActive(false);
         }
     }
 }
