@@ -9,7 +9,9 @@ public class RadioScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GetKeyInfo();
         CloseUI();
+        QuestPicker();
     }
 
     private void GetKeyInfo()
@@ -18,9 +20,14 @@ public class RadioScript : MonoBehaviour
     }
         void CloseUI()
     {
-        if (_closeUI ==true && radioUI.activeInHierarchy)
+        if (_closeUI == true && radioUI.activeInHierarchy)
         {
             radioUI.SetActive(false);
         }
+    }
+    void QuestPicker()
+    {
+
+
     }
 }
