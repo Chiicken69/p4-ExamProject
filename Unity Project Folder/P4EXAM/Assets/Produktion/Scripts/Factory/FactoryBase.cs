@@ -10,9 +10,9 @@ enum FactoryState {Idle, Building, Processing, Crafting};
 
 
 
-public class FactoryBase : MonoBehaviour
+public class FactoryBase : MonoBehaviour, Ifactory
 {
-
+    public GameObject ReturnFactory() { return this.gameObject; }
 
 
     FactoryState state;
@@ -159,7 +159,7 @@ public class FactoryBase : MonoBehaviour
     {
         OutputInventory.Clear();   
     }
-
+    [ContextMenu("Create Output")]
     public void CreateOutput()
     {
         GameObject ObjectToAdd = _itemOutputType;
@@ -169,9 +169,10 @@ public class FactoryBase : MonoBehaviour
 
     public void AddItemToInventory(GameObject ObjectToAdd)
     {
-        if (ObjectToAdd = null)
+        if (ObjectToAdd == null)
         {
             print("Object to add was null");
+            return;
             
         } else if (CheckAgainstRecipe(ObjectToAdd))
         {
@@ -186,13 +187,13 @@ public class FactoryBase : MonoBehaviour
     /// </summary>
     /// <param name="gameObject"></param>
     /// <returns></returns>
-    private bool CheckAgainstRecipe(GameObject gameObject)
+    public bool CheckAgainstRecipe(GameObject gameObject)
     {
         
-        ItemBase.ItemType ObjItemType = gameObject.GetComponent<ItemBase.ItemType>();
+        ItemBase ObjItem = gameObject.GetComponent<ItemBase>();
         foreach (var item in _ingredientList)
         {
-            if (ObjItemType == item)
+            if (ObjItem.type == item)
             {
                 return true;
             }
@@ -207,10 +208,14 @@ public class FactoryBase : MonoBehaviour
     // other scripts call this to take items
     public GameObject TakeItemFromOutputInventory()
     {
+        if (OutputInventory.Count <= 0)
+        {
+            return null;
+        }
         int i = OutputInventory.Count;
 
-        GameObject TemporaryObject = OutputInventory[i];
-        OutputInventory.RemoveAt(i);
+        GameObject TemporaryObject = OutputInventory[i-1];
+        OutputInventory.RemoveAt(i-1);
         return TemporaryObject;
     }
 

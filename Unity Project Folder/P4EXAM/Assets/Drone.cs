@@ -29,8 +29,10 @@ public class Drone : MonoBehaviour
 
     private void Start()
     {
+        
         // Kick off the infinite patrol loop
         StartCoroutine(PatrolFlags());
+        StartCoroutine(ItemTransferLogic());
     }
     private IEnumerator PatrolFlags()
     {
@@ -121,41 +123,90 @@ public class Drone : MonoBehaviour
 
     }
 
-    private void TakeItem()
+
+    private IEnumerator ItemTransferLogic()
     {
-        if (!_carryingItem && _speed <= 0.2)
+        
+        while (true)
+        {
+            if (takeItem() == true)
+            {
+                yield return new WaitForSecondsRealtime(1f);
+            }
+            if (DepositItem() == true)
+            {
+                yield return new WaitForSecondsRealtime(1f);
+            }
+            yield return null;
+        }
+        
+    }
+
+    private bool takeItem()
+    {
+        if (!_carryingItem)
         {
             GameObject tempGB = FactoryManager.Instance.ReturnFactory(this.transform.position);
 
             if (tempGB == null)
             {
                 Debug.Log("yo dawg this shit null");
+                return false;
             }
             else
             {
-                tempGB.GetComponent<FactoryBase>().TakeItemFromOutputInventory();
+               _Item =  tempGB.GetComponent<FactoryBase>().TakeItemFromOutputInventory();
+                if (_Item != null)
+                {
+                    _carryingItem = true;
+                    return true;
+                }
+                
             }
 
         }
+        return false;
     }
 
-    private void DepositItem()
+    private bool DepositItem()
     {
-        if (_carryingItem && _speed <= 0.2)
+        if (_carryingItem)
         {
+            print("yo wtf");
             GameObject tempGB = FactoryManager.Instance.ReturnFactory(this.transform.position);
+          
 
             if (tempGB == null)
             {
-                Debug.Log("yo dawg this shit null");
+                Debug.Log("this is null. Deposit");
+                return false;
             }
-            else
+            else if (_Item != null)
             {
-                tempGB.GetComponent<FactoryBase>().TakeItemFromOutputInventory();
+                //tempGB.GetComponent<FactoryBase>().CheckAgainstRecipe(_Item)
+                tempGB.GetComponent<FactoryBase>().AddItemToInventory(_Item);
+                _carryingItem= false;
+                Debug.Log("Deposited item: " + _Item);
+                return true;
             }
 
         }
+        return false;
     }
+
+   /* private bool IsItemInRecipe(GameObject GB)
+    {
+        FactoryBase FB = GB.GetComponent<FactoryBase>();
+
+        ItemBase IB = _Item.GetComponent<ItemBase>();
+
+
+
+        if ()
+        {
+            
+        }
+    } */
 }
 
 
