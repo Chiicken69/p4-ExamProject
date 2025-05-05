@@ -18,33 +18,54 @@ public class Drone : MonoBehaviour
     [SerializeField] private bool _carryingItem;
     [SerializeField] private GameObject _Item;
 
-    //private bool moveObjectSmoothIsRunning;
-    //private bool _timeElapsed
-
     [SerializeField] private Sprite _sprite;
+
+    [Header("Motion Parameters")]
+    [SerializeField] float accel = 10f;   // units/sec²
+    [SerializeField] float maxSpeed = 100f;  // units/sec
+    [SerializeField] float stopThreshold = 0.01f; // how close is “at target”?
+
+
 
     private void Start()
     {
-       
+        // Kick off the infinite patrol loop
+        StartCoroutine(PatrolFlags());
     }
-
-    IEnumerator MoveDrone(Vector2 target)
+    private IEnumerator PatrolFlags()
     {
-        float accel = 10f;   // units/sec²
-        float maxSpeed = 100f;   // units/sec
-        float speed = 0f;   // current speed
-        const float stopThreshold = 0.01f;
+        int flagIndex = 0;
 
         while (true)
         {
-            float remaining = Vector2.Distance(transform.position, target);
-            if (remaining <= stopThreshold)
-                break;  // only stop when you’re actually at (or very near) the target
+            var flags = FlagManager.Instance._flagPoints;
+            if (flags.Count == 0)
+            {
+                // no flags yet → wait a frame and retry
+                yield return null;
+                continue;
+            }
 
-            // distance needed to brake to zero: d = v² / (2·a)
+            // wrap around if we’ve gone past the last flag
+            if (flagIndex >= flags.Count)
+                flagIndex = 0;
+
+            Vector2 target = flags[flagIndex];
+            yield return StartCoroutine(MoveDroneTo(target));
+
+            flagIndex++;
+        }
+    }
+    private IEnumerator MoveDroneTo(Vector2 target)
+    {
+        float speed = 0f;
+
+        while (Vector2.Distance(transform.position, target) > stopThreshold)
+        {
+            float remaining = Vector2.Distance(transform.position, target);
             float stoppingDist = (speed * speed) / (2f * accel);
 
-            // accelerate if you can still cruise, otherwise decelerate
+            // accelerate until we need to brake
             if (remaining > stoppingDist && speed < maxSpeed)
             {
                 speed += accel * Time.deltaTime;
@@ -52,11 +73,12 @@ public class Drone : MonoBehaviour
             }
             else
             {
-                speed -= accel * Time.deltaTime;       // decelerate by the same accel
+                // start decelerating
+                speed -= accel * Time.deltaTime;
                 speed = Mathf.Max(speed, 0f);
             }
 
-            // move towards the target at your computed speed
+            // Unity handles the “never overshoot” for us
             transform.position = Vector2.MoveTowards(
                 transform.position,
                 target,
@@ -68,11 +90,7 @@ public class Drone : MonoBehaviour
 
         // snap exactly
         transform.position = target;
-        droneState = DroneState.idle;
-        Debug.Log($"Drone arrived at {target}");
-       
     }
-
     private void Update()
     {
 
@@ -80,7 +98,7 @@ public class Drone : MonoBehaviour
         {
             case DroneState.idle:
                 Debug.Log("is idle");
-                StartMoveCommand();
+                
                 break;
 
             case DroneState.flying:
@@ -89,12 +107,12 @@ public class Drone : MonoBehaviour
             case DroneState.recharging:
                 //c
                 break;
-                case DroneState.Processing:
-                //d
+            case DroneState.Processing:
+            //d
             default:
                 droneState = DroneState.idle;
                 Debug.Log("is idle");
-                StartMoveCommand();
+               
                 break;
         }
 
@@ -103,58 +121,11 @@ public class Drone : MonoBehaviour
 
     }
 
-
-    public void AddMoveCommand()
-    {
-        MoveCommands.Enqueue(MoveDrone(CalcMoveCommand()));
-        print("Queue length: " + MoveCommands.Count);
-    }
-
-    private void StartMoveCommand()
-    {
-        if (MoveCommands.Count > 0)
-        {
-            IEnumerator temp = MoveCommands.Dequeue();
-            StartCoroutine(temp);
-           // MoveCommands.Enqueue(temp);
-            
-            droneState = DroneState.flying;
-        }
-
-    }
-
-    public void RemovMoveCommand()
-    {
-        MoveCommands.Dequeue();
-    }
-
-    
-
-    private Vector2 CalcMoveCommand()
-    {
-
-        if (flagIndex >= FlagManager.Instance._flagPoints.Count)
-        {
-            flagIndex = 0;
-        }
-
-        
-        print("flag index is: " + flagIndex);
-        print("Flagpoints is: " + FlagManager.Instance._flagPoints.Count);
-        
-
-        
-        Vector2 posB = FlagManager.Instance._flagPoints[flagIndex];
-        flagIndex++;
-        return posB;
-        
-    }
-
     private void TakeItem()
     {
         if (!_carryingItem && _speed <= 0.2)
         {
-          GameObject tempGB =  FactoryManager.Instance.ReturnFactory(this.transform.position);
+            GameObject tempGB = FactoryManager.Instance.ReturnFactory(this.transform.position);
 
             if (tempGB == null)
             {
@@ -185,8 +156,6 @@ public class Drone : MonoBehaviour
 
         }
     }
-
-
-
-
 }
+
+

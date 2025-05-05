@@ -31,7 +31,7 @@ public class DroneManager : MonoBehaviour
         {
 
 
-            drone.GetComponent<Drone>().AddMoveCommand();
+           // drone.GetComponent<Drone>().AddMoveCommand();
         }
     }
 
@@ -50,7 +50,7 @@ public class DroneManager : MonoBehaviour
     {
         foreach (var item in drones)
         {
-            item.GetComponent<Drone>().RemovMoveCommand();
+           // item.GetComponent<Drone>().RemovMoveCommand();
         }
     }
 

@@ -43,7 +43,7 @@ public class FlagManager : MonoBehaviour
     {
         if (_flagPoints.Count > _allowedFlagCount)
         {
-            DroneManager.Instance.RemoveMoveCommands();
+            //DroneManager.Instance.RemoveMoveCommands();
             _flagPoints.RemoveAt(0);
         }
     }
