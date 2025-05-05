@@ -247,6 +247,7 @@ public class BlueprintBook : MonoBehaviour
                     Destroy(buildingPreview);
 
                     GameObject buildingPlaced = Instantiate(building[TempBuildingID]);
+                    FactoryManager.Instance.Factories.Add(buildingPlaced);
 
                     buildingPlaced.transform.position = cellPos;
                     break;
