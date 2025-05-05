@@ -346,6 +346,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blueprintUI: {fileID: 758503793}
+  _placeingText: {fileID: 0}
+  _gridLayout: {fileID: 0}
   buildingButton: {fileID: 844222443}
   buildingPalette:
   - buildingID: 0
@@ -1200,6 +1202,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1221620318}
   m_CullTransparentMesh: 1
+--- !u!1 &1249719508
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1249719510}
+  - component: {fileID: 1249719509}
+  m_Layer: 0
+  m_Name: DroneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1249719509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249719508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26a525b8d485982409bcbe6ed132e558, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dronePrefab: {fileID: 0}
+  drones: []
+--- !u!4 &1249719510
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249719508}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.5766368, y: 3.0462651, z: 0.026154377}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1400637538
 GameObject:
   m_ObjectHideFlags: 0
@@ -1408,9 +1456,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77c69ad4a4a3c5d45855f1fc8db9c4f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _factoryGridPositions:
-  - {x: 0, y: 0, z: 0}
-  _factories: []
+  FactoryGridPositions: []
+  Factories: []
   _tilemap: {fileID: 1137430324}
 --- !u!4 &1906933843
 Transform:
@@ -1512,6 +1559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowMinigame: {fileID: 2061527058}
   minigameUI: {fileID: 1400637538}
+  radioUI: {fileID: 0}
 --- !u!114 &1977578891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1724,3 +1772,4 @@ SceneRoots:
   - {fileID: 1080560051}
   - {fileID: 1074971999}
   - {fileID: 1906933843}
+  - {fileID: 1249719510}

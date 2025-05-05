@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Object = UnityEngine.Object;
+
 
 public class FactoryManager : MonoBehaviour
 {
@@ -10,7 +12,8 @@ public class FactoryManager : MonoBehaviour
     public List<GameObject> Factories;
     
     [SerializeField] private Tilemap _tilemap;
-   
+    float timer = 5f;
+    
     
 
 
@@ -32,7 +35,23 @@ public class FactoryManager : MonoBehaviour
 
     private void Update()
     {
-       
+       timer -= Time.deltaTime;
+        if (timer <= 0)
+        {
+            tempName();
+            timer = 5f;
+        }
+    }
+
+    private void tempName()
+    {
+        MonoBehaviour[] Behaviours = Object.FindObjectsByType<FactoryBase>(FindObjectsSortMode.None);
+
+        foreach (var item in Behaviours)
+        {
+           
+            Factories.Add(item.gameObject);  
+        }
     }
 
     public void AddFactory(GameObject gb)

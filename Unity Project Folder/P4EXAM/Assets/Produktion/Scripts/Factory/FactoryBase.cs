@@ -10,9 +10,9 @@ enum FactoryState {Idle, Building, Processing, Crafting};
 
 
 
-public class FactoryBase : MonoBehaviour
+public class FactoryBase : MonoBehaviour, Ifactory
 {
-
+    public GameObject ReturnFactory() { return this.gameObject; }
 
 
     FactoryState state;

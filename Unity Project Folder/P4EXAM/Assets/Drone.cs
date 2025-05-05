@@ -31,6 +31,7 @@ public class Drone : MonoBehaviour
     {
         // Kick off the infinite patrol loop
         StartCoroutine(PatrolFlags());
+        StartCoroutine(ItemTransferLogic());
     }
     private IEnumerator PatrolFlags()
     {
@@ -121,25 +122,47 @@ public class Drone : MonoBehaviour
 
     }
 
-    private void TakeItem()
+
+    private IEnumerator ItemTransferLogic()
     {
-        if (!_carryingItem && _speed <= 0.2)
+        
+        while (true)
+        {
+            if (takeItem() == true)
+            {
+                yield return new WaitForSecondsRealtime(0.5f);
+            }
+            if (DepositItem() == true)
+            {
+                yield return new WaitForSecondsRealtime(0.5f);
+            }
+            yield return null;
+        }
+        
+    }
+
+    private bool takeItem()
+    {
+        if (!_carryingItem)
         {
             GameObject tempGB = FactoryManager.Instance.ReturnFactory(this.transform.position);
 
             if (tempGB == null)
             {
                 Debug.Log("yo dawg this shit null");
+                return false;
             }
             else
             {
                 tempGB.GetComponent<FactoryBase>().TakeItemFromOutputInventory();
+                return true;
             }
 
         }
+        return false;
     }
 
-    private void DepositItem()
+    private bool DepositItem()
     {
         if (_carryingItem && _speed <= 0.2)
         {
@@ -148,13 +171,16 @@ public class Drone : MonoBehaviour
             if (tempGB == null)
             {
                 Debug.Log("yo dawg this shit null");
+                return false;
             }
             else
             {
                 tempGB.GetComponent<FactoryBase>().TakeItemFromOutputInventory();
+                return true;
             }
 
         }
+        return false;
     }
 }
 
