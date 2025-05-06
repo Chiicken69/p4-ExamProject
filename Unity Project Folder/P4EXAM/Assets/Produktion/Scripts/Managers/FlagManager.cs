@@ -2,13 +2,14 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public enum mode { Normal, Flag, Blueprint }
 public class FlagManager : MonoBehaviour
 {
     [SerializeField] public int _allowedFlagCount;
     [SerializeField] public List<Vector2> _flagPoints;
-
+    public  bool _flagmode = false;
     public mode _mode;
 
     public static FlagManager Instance;
@@ -41,9 +42,15 @@ public class FlagManager : MonoBehaviour
 
     private void Update()
     {
-        SetFlags();
+       // SetFlags();
       
 
+    }
+
+    private void LateUpdate()
+    {
+        print(FlagManager.Instance._flagmode);
+        SetFlags();
     }
 
 
@@ -59,42 +66,68 @@ public class FlagManager : MonoBehaviour
 
     private void SetFlags()
     {
-        
-        MouseWorldPos = InputHandler.Instance.PassMousePosInWorld();
-        Debug.Log("MODE IS: " + _mode.ToString());
-        if (_mode == mode.Flag)
+       
+        if (Input.GetMouseButtonDown(0)
+            && _flagmode
+            && !EventSystem.current.IsPointerOverGameObject())
+
         {
+            MouseWorldPos = InputHandler.Instance.PassMousePosInWorld();
+            
+            Debug.Log("Placing flag at: " + MouseWorldPos);
+            _flagPoints.Add(MouseWorldPos);
+            CleanUpFlags();
+            
+        }
+
+
+        /*
+        MouseWorldPos = InputHandler.Instance.PassMousePosInWorld();
+        //Debug.Log("MODE IS: " + _mode.ToString());
+        
+        
             
             if (Input.GetMouseButtonDown(0))
             {
+                    
+
+                
+
+                if (_flagmode == true)
+                 {
                 _flagPoints.Add(MouseWorldPos);
                 CleanUpFlags();
                 DroneManager.Instance.UpdateDroneMoves();
-            }
+
+                 }
         }
         
-       
         
+       */
+
     }
 
 
     public void ChangeModeToFlagMode()
     {
-        Debug.Log("First " + _mode.ToString());
-        if (_mode == mode.Flag)
+
+        //_flagmode = !_flagmode;
+        FlagManager.Instance._flagmode = !FlagManager.Instance._flagmode;
+        Debug.Log("FlagMode is now: " + _flagmode);
+        if (!_flagmode)
         {
-            _mode = mode.Normal;
+            print("SIGMAAAA");
         }
-        else
+        if (_flagmode)
         {
-            _mode = mode.Flag;
+            print("NOT VERY SIGMAA");
         }
-        Debug.Log("last: "+_mode.ToString());
+
     }
 
 
 
-
+  
 
 
 
