@@ -80,6 +80,7 @@ public class ArrowMinigame : MonoBehaviour
     {
         CalculateArrows(false);
         minigameUI.SetActive(false);
+        currentRoundPlaying = false;
         playerMovement.enabled = true;
         playerZoom.enabled = true;
         Debug.Log("closed arrow ui");
