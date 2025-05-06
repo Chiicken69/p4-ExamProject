@@ -18,7 +18,7 @@ public class FlagManager : MonoBehaviour
     private void Awake()
     {
       
-        /*
+        
             if (Instance == null)
             {
                 Instance = this;
@@ -28,7 +28,7 @@ public class FlagManager : MonoBehaviour
                 DestroyImmediate(gameObject);
             }
            
-        */
+        
         
 
         _flagPoints = new List<Vector2>();
@@ -77,7 +77,7 @@ public class FlagManager : MonoBehaviour
             Debug.Log("Placing flag at: " + MouseWorldPos);
             _flagPoints.Add(MouseWorldPos);
             CleanUpFlags();
-            DroneManager.Instance.UpdateDroneMoves();
+            
         }
 
 
