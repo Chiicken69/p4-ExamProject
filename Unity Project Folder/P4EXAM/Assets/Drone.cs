@@ -1,51 +1,212 @@
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
+
+
+
+
+enum DroneState { idle, flying, recharging, Processing }
 
 public class Drone : MonoBehaviour
 {
+    private DroneState droneState;
+    private Queue<IEnumerator> MoveCommands = new Queue<IEnumerator>();
+    private int flagIndex;
+
     [SerializeField] private float _speed;
     [SerializeField] private bool _carryingItem;
-
-    //private bool moveObjectSmoothIsRunning;
-    //private bool _timeElapsed
+    [SerializeField] private GameObject _Item;
 
     [SerializeField] private Sprite _sprite;
 
+    [Header("Motion Parameters")]
+    [SerializeField] float accel = 10f;   // units/sec²
+    [SerializeField] float maxSpeed = 100f;  // units/sec
+    [SerializeField] float stopThreshold = 0.01f; // how close is “at target”?
+
+
+
     private void Start()
     {
-        StartCoroutine(MoveDrone(new Vector2(0, 0), new Vector2(5, 5)));
+        
+        // Kick off the infinite patrol loop
+        StartCoroutine(PatrolFlags());
+        StartCoroutine(ItemTransferLogic());
     }
-
-    IEnumerator  MoveDrone(Vector2 PositionA, Vector2 PositionB)
+    private IEnumerator PatrolFlags()
     {
-        Debug.Log("MoveDrone Routine Started");
-        bool _moveObjectSmoothIsRunning = true;
-        float _timeElapsed = 0f;
-        Vector3 pos = new Vector3();
-        float durationByDistance;
+        int flagIndex = 0;
 
-
-        durationByDistance = Vector2.Distance(PositionA, PositionB);
-        durationByDistance = durationByDistance / _speed;
-
-        while (_timeElapsed < durationByDistance)
+        while (true)
         {
-           // pos = Vector2.Lerp(PositionA, PositionB, _timeElapsed / durationByDistance);
-            pos.x = Mathf.SmoothStep(PositionA.x, PositionB.x, _timeElapsed / durationByDistance);
-            pos.y = Mathf.SmoothStep(PositionA.y, PositionB.y, _timeElapsed / durationByDistance);
-            print("CoroutinePOSITION: " + pos);
-            
-            this.transform.position = pos;
+            var flags = FlagManager.Instance._flagPoints;
+            if (flags.Count == 0)
+            {
+                // no flags yet → wait a frame and retry
+                yield return null;
+                continue;
+            }
 
-            _timeElapsed += Time.deltaTime;
+            // wrap around if we’ve gone past the last flag
+            if (flagIndex >= flags.Count)
+                flagIndex = 0;
+
+            Vector2 target = flags[flagIndex];
+            yield return StartCoroutine(MoveDroneTo(target));
+
+            flagIndex++;
+        }
+    }
+    private IEnumerator MoveDroneTo(Vector2 target)
+    {
+        float speed = 0f;
+
+        while (Vector2.Distance(transform.position, target) > stopThreshold)
+        {
+            float remaining = Vector2.Distance(transform.position, target);
+            float stoppingDist = (speed * speed) / (2f * accel);
+
+            // accelerate until we need to brake
+            if (remaining > stoppingDist && speed < maxSpeed)
+            {
+                speed += accel * Time.deltaTime;
+                speed = Mathf.Min(speed, maxSpeed);
+            }
+            else
+            {
+                // start decelerating
+                speed -= accel * Time.deltaTime;
+                speed = Mathf.Max(speed, 0f);
+            }
+
+            // Unity handles the “never overshoot” for us
+            transform.position = Vector2.MoveTowards(
+                transform.position,
+                target,
+                speed * Time.deltaTime
+            );
+
             yield return null;
-
-
         }
 
-       // coroutine = null;
-        Debug.Log("MoveObjRoutineSTOPPED");
+        // snap exactly
+        transform.position = target;
+    }
+    private void Update()
+    {
+
+        switch (droneState)
+        {
+            case DroneState.idle:
+                Debug.Log("is idle");
+                
+                break;
+
+            case DroneState.flying:
+                Debug.Log("is flying");
+                break;
+            case DroneState.recharging:
+                //c
+                break;
+            case DroneState.Processing:
+            //d
+            default:
+                droneState = DroneState.idle;
+                Debug.Log("is idle");
+               
+                break;
+        }
+
+
+
 
     }
+
+
+    private IEnumerator ItemTransferLogic()
+    {
+        
+        while (true)
+        {
+            if (takeItem() == true)
+            {
+                yield return new WaitForSecondsRealtime(1f);
+            }
+            if (DepositItem() == true)
+            {
+                yield return new WaitForSecondsRealtime(1f);
+            }
+            yield return null;
+        }
+        
+    }
+
+    private bool takeItem()
+    {
+        if (!_carryingItem)
+        {
+            GameObject tempGB = FactoryManager.Instance.ReturnFactory(this.transform.position);
+
+            if (tempGB == null)
+            {
+                Debug.Log("yo dawg this shit null");
+                return false;
+            }
+            else
+            {
+               _Item =  tempGB.GetComponent<FactoryBase>().TakeItemFromOutputInventory();
+                if (_Item != null)
+                {
+                    _carryingItem = true;
+                    return true;
+                }
+                
+            }
+
+        }
+        return false;
+    }
+
+    private bool DepositItem()
+    {
+        if (_carryingItem)
+        {
+            print("yo wtf");
+            GameObject tempGB = FactoryManager.Instance.ReturnFactory(this.transform.position);
+          
+
+            if (tempGB == null)
+            {
+                Debug.Log("this is null. Deposit");
+                return false;
+            }
+            else if (_Item != null)
+            {
+                //tempGB.GetComponent<FactoryBase>().CheckAgainstRecipe(_Item)
+                tempGB.GetComponent<FactoryBase>().AddItemToInventory(_Item);
+                _carryingItem= false;
+                Debug.Log("Deposited item: " + _Item);
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+   /* private bool IsItemInRecipe(GameObject GB)
+    {
+        FactoryBase FB = GB.GetComponent<FactoryBase>();
+
+        ItemBase IB = _Item.GetComponent<ItemBase>();
+
+
+
+        if ()
+        {
             
+        }
+    } */
 }
+
+
