@@ -12,7 +12,7 @@ public class Movement : MonoBehaviour
 
     [SerializeField] private float dashSpeed;
     // [SerializeField] private bool AllowRBchanges;
-
+     [SerializeField] private Animator animator;
 
 
 
@@ -32,6 +32,7 @@ public class Movement : MonoBehaviour
     private void Update()
     {
         GetMovementInfo();
+        Animate();
     }
 
     private void FixedUpdate()
@@ -51,22 +52,19 @@ public class Movement : MonoBehaviour
         rb.AddForce(_moveDir * movementSpeed);
 
     }
+private Vector2 _lastMoveDir = Vector2.down; // default to Down, can be anything
 
-    /*  private void ChangeRigidBodySettzings(bool ChangeRB)
-      {
-          if (!ChangeRB)
-          {
-              rb.
+private void Animate()
+{
+    bool isMoving = _moveDir.sqrMagnitude > 0.01f;
+    Debug.Log("IsMoving: " + isMoving);
 
-          }
+    if (isMoving)
+        _lastMoveDir = _moveDir.normalized;
 
-          if (!ChangeRB) return;
-
-          rb.gravityScale = 1;
-
-
-
-      } */
-
+    animator.SetFloat("MoveX", _lastMoveDir.x);
+    animator.SetFloat("MoveY", _lastMoveDir.y);
+    animator.SetBool("IsMoving", isMoving);
+}
 
 }
