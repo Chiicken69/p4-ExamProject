@@ -116,7 +116,7 @@ public class RadioScript : MonoBehaviour
     {
         if (timeInSeconds >= 1 && !triggeredTimes.Contains(1))
         {
-            EnqueueDialog("Turiel", "Hello, are you there? Ah good, i've been told to read you a few intrustions from my notebook. Hmm let's see, if u open your blueprint book by clicking on it, you should be able to scroll through it to see diffrent buildable objects, try building a factory! I reccommend zooming out before entering build mode. By the way if you just walk away from the radio it wont stop our dialog, whoevers on the radio will just... patiently wait for you to some back and press esc to close the ui, then it should check if theres anyone else thats trying to reach your frequency");
+            EnqueueDialog("Turiel", "Hello, are you there? Ah good, i've been told to read you a few intrustions from my notebook. Hmm let's see, if u open your blueprint book by clicking on it, you should be able to scroll through it to see diffrent buildable objects, try building a factory! I reccommend zooming out before entering build mode. By the way if you just walk away from the radio it wont stop our dialog, whoevers on the radio will just... patiently wait for you to some back and press *ESC* button to close the ui, ONLY THEN will the raido check if theres anyone else thats trying to reach your frequency");
             triggeredTimes.Add(1);
         }
 
