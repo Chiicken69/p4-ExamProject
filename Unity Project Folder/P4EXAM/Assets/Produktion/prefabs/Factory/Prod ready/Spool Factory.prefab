@@ -149,7 +149,7 @@ MonoBehaviour:
   _tempCraftingTime: 0
   speedIncreasePercentage: 0
   _craftingTime: 60
-  _secondsToDecreaseSpeed: 2
+  _secondsToDecreaseSpeed: 10
   _ingredientList: 02000000
   _ingredientAmountForCraft: 02000000
   _itemOutputType: {fileID: 3632619094670410106, guid: 0e6edc9f6b641cc4386df3c396e0160b, type: 3}
@@ -288,7 +288,7 @@ MonoBehaviour:
   - {fileID: 5221351111676797728, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
   - {fileID: -478314364676971690, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
   - {fileID: 3577973736208337898, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
-  frameRate: 10
+  frameRateMAX: 100
 --- !u!1 &1987547576189237144
 GameObject:
   m_ObjectHideFlags: 0

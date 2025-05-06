@@ -4,7 +4,9 @@ public class SpriteAnimator : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
     public Sprite[] animationFrames;
-    public float frameRate = 10f; // frames per second
+    private float frameRate = 10f; // frames per second
+
+        [SerializeField]private float frameRateMAX = 100f;
 
     private FactoryBase factoryBase;
 
@@ -23,8 +25,10 @@ public class SpriteAnimator : MonoBehaviour
 
         if (factoryBase.state == FactoryState.Crafting)
         {
-            float adjustedFrameRate = frameRate * (1f + factoryBase.speedIncreasePercentage / 100f);
+            float adjustedFrameRate = Mathf.Clamp(frameRate * (1f + factoryBase.speedIncreasePercentage / 100f),0,frameRateMAX);
             int frameIndex = (int)(Time.time * adjustedFrameRate) % animationFrames.Length;
+
+            Debug.Log(adjustedFrameRate);
             spriteRenderer.sprite = animationFrames[frameIndex];
 
         }
