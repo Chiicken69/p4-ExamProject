@@ -9,17 +9,23 @@ public class FlagManager : MonoBehaviour
     [SerializeField] public List<Vector2> _flagPoints;
 
     public static FlagManager Instance;
+    private bool Hasrun = false;
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            DestroyImmediate(gameObject);
-        }
+      
+        
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                DestroyImmediate(gameObject);
+            }
+           
+        
+        
 
         _flagPoints = new List<Vector2>();
     }
