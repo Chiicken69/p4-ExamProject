@@ -90,8 +90,10 @@ public class RadioScript : MonoBehaviour
 
         if (dialogData.Count > 0)
         {
+            if (!isInDialogMode) { 
             personWhoMessaged.text = currentDialog.person;
             DialogPersonText.text = currentDialog.person;
+            }
 
             unreadMessagesText.text = $"You have {dialogData.Count} unanswered call requests.";
             if (!listenerAdded)
@@ -125,7 +127,7 @@ public class RadioScript : MonoBehaviour
 
         if (timeInSeconds >= 4 && !triggeredTimes.Contains(3))
         {
-            EnqueueDialog("Turiel", "NOW, to my favorit part, try going up to one of your factories, and press the 'e' button. THEN u should see our pattent pending effeciency module, that plays like them video games. Press the arrow keys in the shown patteren as long as u do it correctly, it should boost your machines! Also u can close the ui with esc");
+            EnqueueDialog("Turiel", "NOW, to my favorite part, try going up to one of your factories, and press the 'e' button. THEN u should see our pattent pending effeciency module, that plays like them video games. Press the arrow keys in the shown patteren as long as u do it correctly, it should boost your machines! Also u can close the ui with esc");
             triggeredTimes.Add(3);
         }
         
@@ -141,7 +143,7 @@ public class RadioScript : MonoBehaviour
         }
         if (timeInSeconds >= 30 && !triggeredTimes.Contains(6))
         {
-            EnqueueDialog("Horatio", "Dammit Turiel, why are you hogging the radio before we even get the chance to explain their mission. *sigh* Alright listen up. This is Bloomridge HQ, your misson is to construct a 'Skyspindle' a flying windmill to capture wind currents from up high, It’ll be your first major energy source. From there, you’ll move to making the Helioplate solar arrays, and eventually... the Core Bioreactor, with each compleation of a major power source we will be able to provide more support through more recipies and blueprints. Remember: without power, the lifeseeds can’t germinate. No power, no future. Report back to me once the spindle is up. We’re rooting for you—literally");
+            EnqueueDialog("Horatio", "Dammit Turiel, why are you hogging the radio before we even get the chance to explain their mission. *sigh* Alright listen up. This is Bloomridge HQ, your misson is to construct a 'Skyspindle' a flying windmill to capture wind currents from up high, It’ll be your first major energy source. From there, you’ll move to making the Helioplate solar arrays, and eventually... the Core Bioreactor, with each compleation of a major power source we will be able to provide more support through more recipies and blueprints. Remember: without power, the lifeseeds can’t germinate. No power, no future. Report back to me once the spindle is up. We’re rooting for you, literally");
             triggeredTimes.Add(6);
         }
                 if (timeInSeconds >= 111 && !triggeredTimes.Contains(7))
@@ -208,7 +210,7 @@ public class RadioScript : MonoBehaviour
             dialog = dialog
         });
 
-        //Debug.Log($"Queued message from {person}: \"{dialog}\"");
+        Debug.Log($"Queued message from {person}: \"{dialog}\"");
     }
 
     void ShowDialog()

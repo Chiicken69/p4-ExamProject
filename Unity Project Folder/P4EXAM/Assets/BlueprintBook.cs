@@ -27,7 +27,7 @@ public class BlueprintBook : MonoBehaviour
     private Vector3 _mousePos;
     private bool _LeftMouseButton;
 
-  
+    [SerializeField] CameraZoom _cameraZoom;
 
     [SerializeField] GameObject buildingButton;
 
@@ -77,6 +77,10 @@ public class BlueprintBook : MonoBehaviour
         if (_enteredBuildingMode)
         {
             BuildingMode();
+            _cameraZoom.enabled = false;
+        }
+        else {
+            _cameraZoom.enabled = true;
         }
         //Debug.Log("no sprite at id " + buildingID);
 
