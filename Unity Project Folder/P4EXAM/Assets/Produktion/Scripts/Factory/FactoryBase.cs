@@ -7,7 +7,7 @@ using TMPro;
 
 
 
-enum FactoryState {Idle, Building, Processing, Crafting};
+public enum FactoryState {Idle, Building, Processing, Crafting};
 
 
 
@@ -20,7 +20,7 @@ public class FactoryBase : MonoBehaviour, Ifactory
     private TextMeshProUGUI _textMeshProUGUI;
 
 
-    FactoryState state;
+    public FactoryState state;
     private ItemBase.ItemType ListOfItems;
    [SerializeField] private SpriteRenderer _spriteRenderer;
 
@@ -40,7 +40,7 @@ public class FactoryBase : MonoBehaviour, Ifactory
 
     [Header("For looking at, dont change in editor")]
     [SerializeField] private float _tempCraftingTime;
-    [SerializeField] private float speedIncreasePercentage;
+    [SerializeField] public float speedIncreasePercentage;
 
     [Header("Internal mechanics")]
 
@@ -121,7 +121,7 @@ public class FactoryBase : MonoBehaviour, Ifactory
                 _currentSprite = processingSprite;
                 break;
             case FactoryState.Crafting:
-                _currentSprite = craftingSprite;
+                //_currentSprite = craftingSprite;
                 break;
             default:
                 _currentSprite = idleSprite;
