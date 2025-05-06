@@ -141,8 +141,8 @@ MonoBehaviour:
   InputInventory:
   - {fileID: 3632619094670410106, guid: 9c4acc03301030647b60f42fe547cbb7, type: 3}
   buildingSprite: {fileID: 21300000, guid: 95e19488c5a4a3746916f3cbc2cbf363, type: 3}
-  idleSprite: {fileID: 21300000, guid: b11da3b17d6c2b2459d2cd67df987c66, type: 3}
-  craftingSprite: {fileID: 21300000, guid: 7e5214b2dc5a9b64b9f976e285a5ae31, type: 3}
+  idleSprite: {fileID: 6865533330616674691, guid: 1111730ce93cb484c914c80efba71fc8, type: 3}
+  craftingSprite: {fileID: 21300000, guid: 1a80d083a0f5fa94d9a789e2318d3a3f, type: 2}
   processingSprite: {fileID: 0}
   _tempCraftingTime: 0
   speedIncreasePercentage: 0
