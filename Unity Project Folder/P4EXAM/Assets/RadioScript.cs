@@ -148,7 +148,7 @@ public class RadioScript : MonoBehaviour
         }
                 if (timeInSeconds >= 111 && !triggeredTimes.Contains(7))
         {
-            EnqueueDialog("Kidori", "Hey. It’s Kidori. I work in the botanial sector. Just doing the check-in rounds. You still wrestling with that spindle? Thought I saw some movement on the uplink, but maybe that was just the wind… or the squirrels again. Do you have squirrels out there? Anyway. No pressure. Just wanted to say the pollen drones are holding up back here. Mostly, One of them mistook my hair for a tulip again. You probably already clocked this, but if you get the windmill up high enough, it’ll catch steadier air. Not saying you didn’t think of that. Just… you know. Elevation’s your friend. Okay. alright i’ll stop hovering, bye-bye");
+            EnqueueDialog("Kidori", "Hey. It’s Kidori. I work in the botanial sector. Just doing the check-in rounds. You still wrestling with that spindle? Thought I saw some movement on the uplink, but maybe that was just the wind… or the squirrels again. Do you have squirrels out there? Anyway. No pressure. Just wanted to say the pollen drones are holding up back here. Mostly, One of them mistook my hair for a tulip again. You know... if you get the windmill up high enough, it’ll catch steadier air, meaning more energy. Not saying you didn’t think of that. Just… you know. Elevation’s your friend. Okay. alright i’ll stop hovering, bye-bye");
             triggeredTimes.Add(7);
         }
                 if (timeInSeconds >= 160 && !triggeredTimes.Contains(8))
