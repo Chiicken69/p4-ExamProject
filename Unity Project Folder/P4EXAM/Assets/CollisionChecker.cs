@@ -4,21 +4,30 @@ public class CollisionChecker : MonoBehaviour
 {
     public bool isOverlapping = false;
 
-    private void OnTriggerStay2D(Collider2D other)
+    private int overlapCount = 0;
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-       // Debug.Log("Trigger Enter with: " + other.name);
-        if ((other.CompareTag("Factory") || other.CompareTag("Player")) || other.CompareTag("Building"))
-        {
-            isOverlapping = true;
-        }
+        if (IsBlockingTag(other.tag))
+            overlapCount++;
+        UpdateOverlapState();
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        //Debug.Log("Trigger Exit with: " + other.name);
-        if (other.CompareTag("Factory") || other.CompareTag("Player"))
-        {
-            isOverlapping = false;
-        }
+        if (IsBlockingTag(other.tag))
+            overlapCount--;
+        UpdateOverlapState();
+    }
+
+    private void UpdateOverlapState()
+    {
+        isOverlapping = overlapCount > 0;
+    }
+
+    private bool IsBlockingTag(string tag)
+    {
+        return tag == "Factory" || tag == "Player" || tag == "Building";
     }
 }
+
