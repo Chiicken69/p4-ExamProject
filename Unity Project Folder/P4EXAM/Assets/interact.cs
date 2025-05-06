@@ -8,6 +8,7 @@ public class interact : MonoBehaviour
     private bool _interact;
 
     public ArrowMinigame arrowMinigame;
+    public RadioScript radioScript;
     [SerializeField] private GameObject minigameUI;
     [SerializeField] private GameObject radioUI;
     private FactoryBase currentFactory;
