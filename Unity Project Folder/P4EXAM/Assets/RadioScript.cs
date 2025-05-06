@@ -1,4 +1,5 @@
 
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -202,6 +203,16 @@ public class RadioScript : MonoBehaviour
 
     }
 
+    IEnumerator TypeText(string fullText, float delay = 0.03f)
+    {
+        dialogText.text = "";
+        foreach (char c in fullText)
+        {
+            dialogText.text += c;
+            yield return new WaitForSeconds(delay);
+        }
+    }
+
     void EnqueueDialog(string person, string dialog)
     {
         dialogData.Enqueue(new DialogEntry
@@ -217,7 +228,9 @@ public class RadioScript : MonoBehaviour
     {
         if (!isInDialogMode && currentDialog != null)
         {
-            dialogText.text = currentDialog.dialog;
+            StopAllCoroutines(); // Stop any previous typing
+            StartCoroutine(TypeText(currentDialog.dialog)); // Start typing effect
+
             dialogData.Dequeue();
             currentDialog = null;
             isInDialogMode = true;
@@ -230,4 +243,5 @@ public class RadioScript : MonoBehaviour
             buttonForMessages.SetActive(false);
         }
     }
+
 }
