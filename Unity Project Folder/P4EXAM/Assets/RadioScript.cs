@@ -208,7 +208,7 @@ public class RadioScript : MonoBehaviour
             dialog = dialog
         });
 
-        Debug.Log($"Queued message from {person}: \"{dialog}\"");
+        //Debug.Log($"Queued message from {person}: \"{dialog}\"");
     }
 
     void ShowDialog()
