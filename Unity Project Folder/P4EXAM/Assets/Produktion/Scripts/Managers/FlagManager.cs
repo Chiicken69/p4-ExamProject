@@ -9,7 +9,7 @@ public class FlagManager : MonoBehaviour
 {
     [SerializeField] public int _allowedFlagCount;
     [SerializeField] public List<Vector2> _flagPoints;
-    public static bool _flagmode = false;
+    public  bool _flagmode = false;
     public mode _mode;
 
     public static FlagManager Instance;
@@ -49,7 +49,7 @@ public class FlagManager : MonoBehaviour
 
     private void LateUpdate()
     {
-        print(_flagmode);
+        print(FlagManager.Instance._flagmode);
         SetFlags();
     }
 
@@ -111,7 +111,8 @@ public class FlagManager : MonoBehaviour
     public void ChangeModeToFlagMode()
     {
 
-        _flagmode = !_flagmode;
+        //_flagmode = !_flagmode;
+        FlagManager.Instance._flagmode = !FlagManager.Instance._flagmode;
         Debug.Log("FlagMode is now: " + _flagmode);
         if (!_flagmode)
         {
