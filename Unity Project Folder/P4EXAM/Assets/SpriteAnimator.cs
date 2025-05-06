@@ -22,7 +22,6 @@ public class SpriteAnimator : MonoBehaviour
     void Update()
     {
         if (animationFrames.Length == 0 || factoryBase == null) return;
-
         if (factoryBase.state == FactoryState.Crafting)
         {
             float adjustedFrameRate = Mathf.Clamp(frameRate * (1f + factoryBase.speedIncreasePercentage / 100f),0,frameRateMAX);

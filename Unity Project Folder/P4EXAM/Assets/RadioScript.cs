@@ -180,24 +180,24 @@ public class RadioScript : MonoBehaviour
         if (timeInSeconds >= 380 && !triggeredTimes.Contains(13))
         {
            EnqueueDialog("Turiel", "I’m not here to babysit, alright? …That being said, if you *do* fry the battery cores on your drones, call me before Horatio finds out.");
-            triggeredTimes.Add(14);
+            triggeredTimes.Add(13);
         }
         if (timeInSeconds >= 400 && !triggeredTimes.Contains(14))
         {
             EnqueueDialog("Kidori", "Quiet day here. Even the pollen drones are napping. Kind of makes me wish I was out there with you. Not that I’d be any help I’d probably just get distracted by weird plants.");
-            triggeredTimes.Add(13);
+            triggeredTimes.Add(14);
         }
                if (timeInSeconds >= 430 && !triggeredTimes.Contains(15))
         {
            EnqueueDialog("Turiel", "You know, back in my first deployment I spent two days trying to power a kiln with a water pump. Didn’t work, obviously. Point is we all start somewhere. You’re doing better than I did.");
-            triggeredTimes.Add(14);
+            triggeredTimes.Add(15);
         }
 
         if (timeInSeconds >= 460 && !triggeredTimes.Contains(16))
         {
             EnqueueDialog("Kidori", "Found a worm in my ration bar today. Named him Carl. Put him in the planter outside. I think he’s adjusting well. Anyway, hope your day's been less... wormy.");
 
-            triggeredTimes.Add(15);
+            triggeredTimes.Add(16);
         }
 
 
