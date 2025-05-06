@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class interact : MonoBehaviour
 {
@@ -11,7 +13,8 @@ public class interact : MonoBehaviour
     public RadioScript radioScript;
     [SerializeField] private GameObject minigameUI;
     [SerializeField] private GameObject radioUI;
-    private FactoryBase currentFactory;
+    private GameObject currentFactory;
+    private GameObject[] factoryTexts;
 
     private void Update()
     {
@@ -42,11 +45,23 @@ public class interact : MonoBehaviour
             playerInFactoryTrigger = true;
 
             // Attempt to get the FactoryBase component from the collided object
-            FactoryBase factory = other.gameObject.GetComponent<FactoryBase>();
+            GameObject factory = other.gameObject;
             if (factory != null)
             {
                 // Store the reference for later use
                 currentFactory = factory;
+                TextMeshProUGUI[] allTextMeshes = other.GetComponentsInChildren<TextMeshProUGUI>();
+
+                foreach (var tmp in allTextMeshes)
+                {
+                    if (tmp.gameObject.name == "PresssE")
+                    {
+                        tmp.enabled = true;
+                    }
+                }
+
+
+
             }
             else
             {
@@ -66,7 +81,20 @@ public class interact : MonoBehaviour
         {
             playerInFactoryTrigger = false;
             currentFactory = null;
-           // print("i have turned off");
+            // print("i have turned off");
+
+            TextMeshProUGUI[] allTextMeshes = other.GetComponentsInChildren<TextMeshProUGUI>();
+
+            foreach (var tmp in allTextMeshes)
+            {
+                if (tmp.gameObject.name == "PresssE")
+                {
+                    tmp.enabled = false;
+                }
+            }
+
+
+
         }
         if (other.gameObject.CompareTag("Radio"))
         {
