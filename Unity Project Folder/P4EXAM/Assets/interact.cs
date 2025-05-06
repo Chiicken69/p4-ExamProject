@@ -50,13 +50,13 @@ public class interact : MonoBehaviour
             {
                 // Store the reference for later use
                 currentFactory = factory;
-                TextMeshProUGUI[] allTextMeshes = other.GetComponentsInChildren<TextMeshProUGUI>();
+                Image[] allTextMeshes = other.GetComponentsInChildren<Image>();
 
-                foreach (var tmp in allTextMeshes)
+                foreach (var img in allTextMeshes)
                 {
-                    if (tmp.gameObject.name == "PresssE")
+                    if (img.gameObject.name == "PresssE")
                     {
-                        tmp.enabled = true;
+                        img.enabled = true;
                     }
                 }
 
@@ -83,13 +83,13 @@ public class interact : MonoBehaviour
             currentFactory = null;
             // print("i have turned off");
 
-            TextMeshProUGUI[] allTextMeshes = other.GetComponentsInChildren<TextMeshProUGUI>();
+            Image[] allTextMeshes = other.GetComponentsInChildren<Image>();
 
-            foreach (var tmp in allTextMeshes)
+            foreach (var img in allTextMeshes)
             {
-                if (tmp.gameObject.name == "PresssE")
+                if (img.gameObject.name == "PresssE")
                 {
-                    tmp.enabled = false;
+                    img.enabled = false;
                 }
             }
 
