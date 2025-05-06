@@ -28,7 +28,7 @@ public class SpriteAnimator : MonoBehaviour
             float adjustedFrameRate = Mathf.Clamp(frameRate * (1f + factoryBase.speedIncreasePercentage / 100f),0,frameRateMAX);
             int frameIndex = (int)(Time.time * adjustedFrameRate) % animationFrames.Length;
 
-            Debug.Log(adjustedFrameRate);
+            //Debug.Log(adjustedFrameRate);
             spriteRenderer.sprite = animationFrames[frameIndex];
 
         }
