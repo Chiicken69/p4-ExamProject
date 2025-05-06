@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6a2ef90e662bbae46aee243bf06381d6
+guid: f266181a198f04c40b208982a0f3542c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -254267079344088968
-    second: leftArrow_0
+      213: 8123798087807564455
+    second: BlueprintBook_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: leftArrow_0
+      name: BlueprintBook_0
       rect:
         serializedVersion: 2
-        x: 56
-        y: 205
-        width: 888
-        height: 604
+        x: 0
+        y: 0
+        width: 46
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8789e914079a87cf0800000000000000
-      internalID: -254267079344088968
+      spriteID: 7aa74c2b1578db070800000000000000
+      internalID: 8123798087807564455
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      leftArrow_0: -254267079344088968
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

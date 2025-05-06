@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 417e3239dddec30498921b5982dae986
+guid: ac20d0a8b5b52e246886d74baf7aa831
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7361498936159341154
-    second: downArrow_0
+      213: 1151128545019730971
+    second: ArrowMinigameArrows_0
+  - first:
+      213: -3909122195977203786
+    second: ArrowMinigameArrows_1
+  - first:
+      213: -1389210799973689006
+    second: ArrowMinigameArrows_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +57,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,13 +106,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: downArrow_0
+      name: ArrowMinigameArrows_0
       rect:
         serializedVersion: 2
-        x: 198
-        y: 62
-        width: 604
-        height: 888
+        x: 0
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +121,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 26a8130974c492660800000000000000
-      internalID: 7361498936159341154
+      spriteID: b1c96b01051a9ff00800000000000000
+      internalID: 1151128545019730971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrowMinigameArrows_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bf0f2df21200c9c0800000000000000
+      internalID: -3909122195977203786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrowMinigameArrows_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2599e65432888bce0800000000000000
+      internalID: -1389210799973689006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrowMinigameArrows_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9726b6cec1637a4697e8a8156b22f93
+      internalID: -53125540
       vertices: []
       indices: 
       edges: []
@@ -125,7 +197,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 749c43e302323354db36913340b4a0f0
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +207,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      downArrow_0: 7361498936159341154
+      ArrowMinigameArrows_0: 1151128545019730971
+      ArrowMinigameArrows_1: -3909122195977203786
+      ArrowMinigameArrows_2: -1389210799973689006
+      ArrowMinigameArrows_3: -53125540
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
