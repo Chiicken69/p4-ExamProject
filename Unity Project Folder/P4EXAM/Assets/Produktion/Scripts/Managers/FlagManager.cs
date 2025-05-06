@@ -3,23 +3,32 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum mode { Normal, Flag, Blueprint }
 public class FlagManager : MonoBehaviour
 {
     [SerializeField] public int _allowedFlagCount;
     [SerializeField] public List<Vector2> _flagPoints;
 
+    public mode _mode;
+
     public static FlagManager Instance;
+    private bool Hasrun = false;
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            DestroyImmediate(gameObject);
-        }
+      
+        
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                DestroyImmediate(gameObject);
+            }
+           
+        
+        
 
         _flagPoints = new List<Vector2>();
     }
@@ -50,23 +59,42 @@ public class FlagManager : MonoBehaviour
 
     private void SetFlags()
     {
+        
         MouseWorldPos = InputHandler.Instance.PassMousePosInWorld();
-
-        if (Input.GetMouseButtonDown(0))
+        Debug.Log("MODE IS: " + _mode.ToString());
+        if (_mode == mode.Flag)
         {
-            _flagPoints.Add(MouseWorldPos);
-            CleanUpFlags();
-            DroneManager.Instance.UpdateDroneMoves();
+            
+            if (Input.GetMouseButtonDown(0))
+            {
+                _flagPoints.Add(MouseWorldPos);
+                CleanUpFlags();
+                DroneManager.Instance.UpdateDroneMoves();
+            }
         }
+        
        
         
     }
 
-    
+
+    public void ChangeModeToFlagMode()
+    {
+        Debug.Log("First " + _mode.ToString());
+        if (_mode == mode.Flag)
+        {
+            _mode = mode.Normal;
+        }
+        else
+        {
+            _mode = mode.Flag;
+        }
+        Debug.Log("last: "+_mode.ToString());
+    }
 
 
 
-    
+
 
 
 

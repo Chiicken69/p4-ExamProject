@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEngine.UI;
+using TMPro;
 
 
 
@@ -13,6 +15,9 @@ enum FactoryState {Idle, Building, Processing, Crafting};
 public class FactoryBase : MonoBehaviour, Ifactory
 {
     public GameObject ReturnFactory() { return this.gameObject; }
+    private Slider _timerSlider;
+    private Canvas _canvas;
+    private TextMeshProUGUI _textMeshProUGUI;
 
 
     FactoryState state;
@@ -65,6 +70,9 @@ public class FactoryBase : MonoBehaviour, Ifactory
         state = FactoryState.Building;
         _tempCraftingTime = _craftingTime;
         internalTimer = _secondsToDecreaseSpeed;
+        _canvas = GetComponentInChildren<Canvas>();
+       _timerSlider = _canvas.GetComponentInChildren<Slider>();
+        _textMeshProUGUI = _canvas.GetComponentInChildren<TextMeshProUGUI>();
     }
 
     public void Update()
@@ -95,7 +103,7 @@ public class FactoryBase : MonoBehaviour, Ifactory
         }
         print(state);
         SwitchSprite(state);
-        
+        DisplayFactoryUI();
 
     }
 
@@ -343,12 +351,88 @@ public class FactoryBase : MonoBehaviour, Ifactory
             internalTimer = _secondsToDecreaseSpeed;
         }
     }
-  
+    public void DisplayFactoryUI()
+    {
+        DisplayTimer();
+        DisplayRecipeText();
+    }
 
+    public void DisplayTimer()
+    {
+        // intialize timer values
+        if (state == FactoryState.Building)
+        {
+            //innefecient as hell
+            int i = 0;
+            foreach (var item in _itemAmountToCraftFactory)
+            {
+                i += item;
+            }
+            float TotalItems = (float)i;
 
+            _timerSlider.maxValue = TotalItems;
+            print(TotalItems);
+            _timerSlider.minValue = 0;
 
+            float ItemsInFactory = InputInventory.Count;
+            _timerSlider.value = ItemsInFactory;
 
+        }
+        else
+        {
+              _timerSlider.maxValue = _craftingTime;
+            _timerSlider.minValue = 0;
 
+            _timerSlider.value = _tempCraftingTime;
+
+        }
+       
+        
+
+    }
+    private void DisplayRecipeText()
+    {
+        _textMeshProUGUI.text = GenerateRecipeText();
+    }
+
+    private string GenerateRecipeText()
+    {
+        string text ="";
+        if (state == FactoryState.Building)
+        {
+            for (global::System.Int32 i = 0; i < _itemListToCraftFactory.Count; i++)
+            {
+                text += _itemListToCraftFactory[i] +": " + CheckInputInventory(_itemListToCraftFactory[i]) +"/" + _itemAmountToCraftFactory[i] + "\n";
+                
+            }
+        }
+        else
+        {
+            for (global::System.Int32 i = 0; i < _ingredientList.Count; i++)
+            {
+                text += _ingredientList[i] + ": " + CheckInputInventory(_ingredientList[i]) + "/" + _ingredientAmountForCraft[i] + "\n";
+
+            }
+        }
+        return text;
+
+    }
+
+    private int CheckInputInventory(ItemBase.ItemType TypeToCheck)
+    {
+        int i = 0;
+        foreach (var item in InputInventory)
+        {
+            ItemBase itembase = item.GetComponent<ItemBase>();
+            
+            if (itembase.type == TypeToCheck)
+            {
+                i++;
+            }
+        }
+
+        return i;
+    }
 
 
 

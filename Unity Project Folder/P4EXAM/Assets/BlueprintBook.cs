@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class BlueprintBook : MonoBehaviour
 {
     [SerializeField] private GameObject blueprintUI;
+    [SerializeField] private float triggerScaler=3.2f;
 
     SpriteRenderer previewSR;
 
@@ -27,7 +28,7 @@ public class BlueprintBook : MonoBehaviour
     private Vector3 _mousePos;
     private bool _LeftMouseButton;
 
-  
+    [SerializeField] CameraZoom _cameraZoom;
 
     [SerializeField] GameObject buildingButton;
 
@@ -38,6 +39,9 @@ public class BlueprintBook : MonoBehaviour
     [SerializeField] private List<GameObject> building;
 
     Sprite _GhostPreview;
+
+    [SerializeField] private Sprite squareSprite; // assign your 1x1 square sprite in the Inspector
+
 
     [System.Serializable]
     public class BuildingData
@@ -77,6 +81,10 @@ public class BlueprintBook : MonoBehaviour
         if (_enteredBuildingMode)
         {
             BuildingMode();
+            _cameraZoom.enabled = false;
+        }
+        else {
+            _cameraZoom.enabled = true;
         }
         //Debug.Log("no sprite at id " + buildingID);
 
@@ -199,9 +207,19 @@ public class BlueprintBook : MonoBehaviour
                     buildingPreview = new GameObject("PreviewBuilding");
                     previewSR = buildingPreview.AddComponent<SpriteRenderer>();
                     previewSR.sprite = _GhostPreview;
+                    previewSR.sortingOrder = 1; // draw above the square
+
+                    // Trigger square visual
+                    GameObject triggerArea = new GameObject("TriggerAreaVisual");
+                    triggerArea.transform.SetParent(buildingPreview.transform);
+                    var areaSR = triggerArea.AddComponent<SpriteRenderer>();
+                    areaSR.sprite = squareSprite;
+                    areaSR.color = new Color(1f, 1f, 1f, 0.15f); // semi-transparent white
+                    areaSR.sortingOrder = 0; // draw behind preview
+                    triggerArea.transform.localScale = previewSR.sprite.bounds.size * triggerScaler;
 
                     var boxCollider = buildingPreview.AddComponent<BoxCollider2D>();
-                    boxCollider.size = previewSR.sprite.bounds.size;
+                    boxCollider.size = previewSR.sprite.bounds.size*triggerScaler;
                     buildingPreview.GetComponent<BoxCollider2D>().isTrigger = true;
 
 
@@ -223,11 +241,16 @@ public class BlueprintBook : MonoBehaviour
                 }
                 else
                 {
-                    //oppsie
-
                     buildingPreview.GetComponent<SpriteRenderer>().sprite = _GhostPreview;
                     buildingPreview.transform.position = cellPos;
                     _placeingText.text = "Placeing: " + building[TempBuildingID].name;
+
+                    var checker = buildingPreview.GetComponent<CollisionChecker>();
+                    if (checker != null && checker.isOverlapping)
+                        previewSR.color = new Color(1f, 0.3f, 0.3f, 0.5f); // RED
+                    else
+                        previewSR.color = new Color(1f, 1f, 1f, 0.5f);     // NORMAL
+
                 }
 
                 break;
@@ -259,7 +282,5 @@ public class BlueprintBook : MonoBehaviour
                     break;
                 }
         }
-        
-
     }
 }
