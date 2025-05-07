@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 603992a0af98bd8458ceb8f6abff54ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
   _spriteRenderer: {fileID: 0}
   OutputInventory: []
   InputInventory:
@@ -57,7 +58,7 @@ MonoBehaviour:
   _tempCraftingTime: 0
   speedIncreasePercentage: 0
   _craftingTime: 60
-  _secondsToDecreaseSpeed: 2
+  _secondsToDecreaseSpeed: 5
   _ingredientList: 02000000
   _ingredientAmountForCraft: 02000000
   _itemOutputType: {fileID: 6265168742392683810, guid: 23c7f7596e6e3cd44941deeffc09023c, type: 3}

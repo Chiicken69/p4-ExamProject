@@ -155,11 +155,11 @@ public class Drone : MonoBehaviour
         {
             if (takeItem() == true)
             {
-                yield return new WaitForSecondsRealtime(0.5f);
+                yield return new WaitForSecondsRealtime(1.5f);
             }
             if (DepositItem() == true)
             {
-                yield return new WaitForSecondsRealtime(0.5f);
+                yield return new WaitForSecondsRealtime(1.5f);
             }
             yield return null;
         }
