@@ -27,6 +27,18 @@ public class Drone : MonoBehaviour
     //[SerializeField] float maxSpeed = 100f;  // units/sec
     //[SerializeField] float stopThreshold = 0.01f; // how close is “at target”?
 
+private void Awake()
+{
+    SpriteRenderer[] allRenderers = GetComponentsInChildren<SpriteRenderer>(true);
+    foreach (var renderer in allRenderers)
+    {
+        if (renderer.gameObject != this.gameObject)
+        {
+            _imageSpriteRenderer = renderer;
+            break;
+        }
+    }
+}
 
     void Start()
     {
