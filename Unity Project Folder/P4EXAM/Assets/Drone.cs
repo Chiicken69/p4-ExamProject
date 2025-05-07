@@ -14,6 +14,8 @@ public class Drone : MonoBehaviour
     private Queue<IEnumerator> MoveCommands = new Queue<IEnumerator>();
     private int flagIndex;
 
+    [SerializeField] List<Sprite> ItemImages = new List<Sprite>();
+    private SpriteRenderer _imageSpriteRenderer;
     [SerializeField] private float _speed;
     [SerializeField] private bool _carryingItem;
     [SerializeField] private GameObject _Item;
@@ -26,7 +28,10 @@ public class Drone : MonoBehaviour
     [SerializeField] float stopThreshold = 0.01f; // how close is “at target”?
 
 
-
+    private void Awake()
+    {
+        _imageSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+    }
     private void Start()
     {
         
