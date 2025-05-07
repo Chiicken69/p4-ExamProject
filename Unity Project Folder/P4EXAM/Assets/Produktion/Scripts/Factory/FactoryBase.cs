@@ -243,8 +243,10 @@ public class FactoryBase : MonoBehaviour, Ifactory
 
             foreach (var item1 in InputInventory)
             {
-                ItemBase.ItemType CurrentItemType = item1.GetComponent<ItemBase.ItemType>();
-                if (CurrentItemType == item && k < amountNeeded)
+
+                ItemBase CurrentItem = item1.GetComponent<ItemBase>();
+                ItemBase.ItemType _itemtype =  CurrentItem.type;
+                if (_itemtype == item && k < amountNeeded)
                 {
                     InputInventory.Remove(item1);
                     k++;
@@ -253,7 +255,7 @@ public class FactoryBase : MonoBehaviour, Ifactory
 
           
         }
-        ClearInputInventory();
+       // ClearInputInventory();
         print("crafting started");
         state = FactoryState.Crafting;
         _tempCraftingTime = _craftingTime;
