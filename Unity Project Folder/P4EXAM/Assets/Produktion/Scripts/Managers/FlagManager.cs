@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class FlagManager : MonoBehaviour
 {
     public static FlagManager Instance;
-    public bool _flagMode = false;
+public static bool _flagMode = false;
 
     public Drone selectedDrone;
 
