@@ -155,7 +155,7 @@ public class RadioScript : MonoBehaviour
                 if (timeInSeconds >= 111 && !triggeredTimes.Contains(7))
         {   // This one is there no point to having tbh
             //EnqueueDialog("Kidori", "Hey. It’s Kidori, from the botanical sector. Just doing the check-in rounds. You still wrestling with that spindle? Thought I saw some movement on the uplink, but maybe that was just the wind… or the squirrels again. Do you have squirrels out there? \nAnyway. No pressure. Just wanted to say the pollen drones are holding up back here. Mostly, one of them mistook my hair for a tulip again. You know... if you get the windmill up high enough, it’ll catch steadier air, meaning more energy. Not saying you didn’t think of that. Just… you know. Elevation’s your friend. Okay. Alright, I’ll stop hovering, bye-bye.");
-            
+            EnqueueDialog("Kidori", "Hey. It’s Kidori, i work with the gardens back here in case you were curious\n Anyway thought i should check in on you, since you you've been out for a bit. Just wanted to say the pollen drones are holding up back here. Mostly, one of them mistook my hair for a tulip again. Hopefully yours are doing better, though i hope you'll come see them some time sometime, bye-bye for now tho.");
             //triggeredTimes.Add(7);
         }
                 if (timeInSeconds >= 160 && !triggeredTimes.Contains(8))
@@ -169,8 +169,9 @@ public class RadioScript : MonoBehaviour
             // The problem is that i didn't like kidoris other chat, so this is her first one which is a problem. 
             // I like this one, to remember that they are not alone and that they are doing fine, but im not sure what the relationsship between The player and Kidori should be.
             //EnqueueDialog("Kidori", "Me again. Just wanted to say you’re doing fine. Turiel might act like he's the whole manual wrapped in a beard, but even he needed four tries to launch his first spindle. And his caught fire. Twice. So… yeah. You’re already ahead. Just keep tweaking those blades and don’t let the creaks scare you off. Wind sings loud when it’s working right.");
-            EnqueueDialog("Kidori", "Hi, it's me Kidori, your smaller self! \nCan you hear me??!? \nJust wanted to join in on the fun and say you’re doing great. \nTuriel might act like he's the whole manual wrapped in a beard, but even he needed four tries to launch his first spindle. And his caught fire.... Twice. So... yeah. \nYou’re already ahead. Just keep tweaking those blades and don’t let the creaks scare you off. Wind sings loud when it’s working right.");
-            triggeredTimes.Add(9);
+            //EnqueueDialog("Kidori", "Hi, it's me Kidori, your smaller self! \nCan you hear me??!? \nJust wanted to join in on the fun and say you’re doing great. \nTuriel might act like he's the whole manual wrapped in a beard, but even he needed four tries to launch his first spindle. And his caught fire.... Twice. So... yeah. \nYou’re already ahead. Just keep tweaking those blades and don’t let the creaks scare you off. Wind sings loud when it’s working right.");
+            EnqueueDialog("Kidori", "Heyoo, it's me again. \nJust wanted to join in on the fun and say you’re doing great. \nTuriel might act like he's the whole manual wrapped in a beard, but even he needed four tries to launch his first spindle. And his caught fire.... Twice. So... yeah. \nYou’re already ahead. Just keep tweaking those blades and don’t let the creaks scare you off. Wind sings loud when it’s working right.");
+            triggeredTimes.Add(9); 
         }
         if (timeInSeconds >= 250 && !triggeredTimes.Contains(10))
         {   // Passive agressive.
