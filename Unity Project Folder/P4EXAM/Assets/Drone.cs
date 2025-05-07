@@ -10,6 +10,24 @@ public class Drone : MonoBehaviour
     public int maxFlagCount = 3;
     public float moveSpeed = 2f;
 
+    //private Queue<IEnumerator> MoveCommands = new Queue<IEnumerator>();
+    //private int flagIndex;
+
+   
+    
+    private SpriteRenderer _imageSpriteRenderer;
+   // [SerializeField] private float _speed;
+    [SerializeField] private bool _carryingItem;
+    [SerializeField] private GameObject _Item;
+
+    [SerializeField] private Sprite _sprite;
+
+  //  [Header("Motion Parameters")]
+    //[SerializeField] float accel = 10f;   // units/sec²
+    //[SerializeField] float maxSpeed = 100f;  // units/sec
+    //[SerializeField] float stopThreshold = 0.01f; // how close is “at target”?
+
+
     void Start()
     {
         StartCoroutine(PatrolFlags());
