@@ -1302,6 +1302,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3087296032200414800, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
     - target: {fileID: 4382868721072274007, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.4975
@@ -1342,11 +1346,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6277447712576289419, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6348610522869183776, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
       propertyPath: m_Name
       value: Drone
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8370212021869085386, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8370212021869085386, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8370212021869085386, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8370212021869085386, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.071
+      objectReference: {fileID: 0}
+    - target: {fileID: 8370212021869085386, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6982787532805486279, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1551,6 +1580,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1085309101745576303, guid: c7b2612eb6f4fdd4990b4127fe0c4bea, type: 3}
+      propertyPath: highlight
+      value: 
+      objectReference: {fileID: 2033175495}
     - target: {fileID: 1085309101745576303, guid: c7b2612eb6f4fdd4990b4127fe0c4bea, type: 3}
       propertyPath: FlagPrefab
       value: 
@@ -80115,6 +80148,11 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 5.0998034, y: 4.806716}
   m_EdgeRadius: 0
+--- !u!1 &2033175495 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6277447712576289419, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
+  m_PrefabInstance: {fileID: 1134119200}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2061527055
 GameObject:
   m_ObjectHideFlags: 0

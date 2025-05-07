@@ -8,7 +8,7 @@ public class Drone : MonoBehaviour
     public List<GameObject> flagObjects = new List<GameObject>();
     public GameObject flagPrefab;
     public int maxFlagCount = 3;
-    public float moveSpeed = 2f;
+    //public float moveSpeed = 2f;
 
     //private Queue<IEnumerator> MoveCommands = new Queue<IEnumerator>();
     //private int flagIndex;
@@ -66,7 +66,8 @@ private void Awake()
                 Vector2 targetPos = flagPoints[i];
                 while (Vector2.Distance(transform.position, targetPos) > 0.1f)
                 {
-                    transform.position = Vector2.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
+                        
+                    yield return StartCoroutine(MoveDroneTo(targetPos));
                     yield return null;
                 }
 
@@ -76,6 +77,8 @@ private void Awake()
             yield return null;
         }
     }
+    
+
 private IEnumerator MoveDroneTo(Vector2 target)
     {
         float speed = 0f;

@@ -10,6 +10,9 @@ public static bool _flagMode = false;
 
     public Drone selectedDrone;
 
+    public GameObject highlight;
+
+
     [SerializeField] Button FlagMangButton;
     Color PassiveColor = new Color(255, 255, 255, 1f);
     Color ToggledColor = new Color(255, 255, 255, 0.75f);
@@ -17,6 +20,16 @@ public static bool _flagMode = false;
     private void Awake()
     {
         Instance = this;
+
+        // Find the highlight child if not assigned
+        if (highlight == null)
+        {
+            highlight = transform.Find("Highlight")?.gameObject;
+        }
+
+        if (highlight != null)
+            highlight.SetActive(false); // Start disabled
+
     }
 
     void Update()
@@ -40,35 +53,60 @@ public static bool _flagMode = false;
             }
         }
 
+  if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+    {
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+        if (_flagMode && selectedDrone != null)
         {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-            if (_flagMode && selectedDrone != null)
-            {
-                PlaceFlag(mousePos);
-            }
-            else
-            {
-                TrySelectDrone(mousePos);
-            }
+            PlaceFlag(mousePos);
         }
+        else
+        {
+            TrySelectDrone(mousePos);
+        }
+    }
+    else if (Input.GetMouseButtonDown(1) && !EventSystem.current.IsPointerOverGameObject())
+    {
+        // Deselect drone and turn off its highlight
+        if (selectedDrone != null)
+        {
+            Transform highlight = selectedDrone.transform.Find("Highlight");
+            if (highlight != null)
+                highlight.gameObject.SetActive(false);
+
+            selectedDrone = null;
+        }
+    }
     }
 
     void TrySelectDrone(Vector2 mousePos)
+{
+    RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+    if (hit.collider != null)
     {
-        RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
-        if (hit.collider != null)
+        Drone drone = hit.collider.GetComponent<Drone>();
+        if (drone != null)
         {
-            Drone drone = hit.collider.GetComponent<Drone>();
-            if (drone != null)
+            // Deselect previous
+            if (selectedDrone != null)
             {
-                selectedDrone = drone;
-                Debug.Log("Selected drone: " + drone.name);
+                Transform prevHighlight = selectedDrone.transform.Find("Highlight");
+                if (prevHighlight != null)
+                    prevHighlight.gameObject.SetActive(false);
             }
+
+            // Select new
+            selectedDrone = drone;
+
+            Transform newHighlight = selectedDrone.transform.Find("Highlight");
+            if (newHighlight != null)
+                newHighlight.gameObject.SetActive(true);
+
+            Debug.Log("Selected drone: " + drone.name);
         }
     }
+}
 
     void PlaceFlag(Vector2 pos)
     {
