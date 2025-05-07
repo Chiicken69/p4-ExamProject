@@ -31,7 +31,7 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
-        GetMovementInfo();
+        GetMovementInfo();      
         Animate();
     }
 
@@ -49,7 +49,7 @@ public class Movement : MonoBehaviour
 
     private void MovePlayer()
     {
-        rb.AddForce(_moveDir * movementSpeed);
+        rb.AddForce(_moveDir.normalized * movementSpeed);
 
     }
 private Vector2 _lastMoveDir = Vector2.down; // default to Down, can be anything
