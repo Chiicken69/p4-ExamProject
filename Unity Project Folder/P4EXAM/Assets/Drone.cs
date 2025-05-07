@@ -27,6 +27,11 @@ public class Drone : MonoBehaviour
     //[SerializeField] float maxSpeed = 100f;  // units/sec
     //[SerializeField] float stopThreshold = 0.01f; // how close is “at target”?
 
+    [Header("Motion Parameters")]
+    [SerializeField] float accel = 10f;   // units/sec²
+    [SerializeField] float maxSpeed = 100f;  // units/sec
+    [SerializeField] float stopThreshold = 0.01f; // how close is “at target”?
+    
 private void Awake()
 {
     SpriteRenderer[] allRenderers = GetComponentsInChildren<SpriteRenderer>(true);
@@ -71,7 +76,41 @@ private void Awake()
             yield return null;
         }
     }
+private IEnumerator MoveDroneTo(Vector2 target)
+    {
+        float speed = 0f;
 
+        while (Vector2.Distance(transform.position, target) > stopThreshold)
+        {
+            float remaining = Vector2.Distance(transform.position, target);
+            float stoppingDist = (speed * speed) / (2f * accel);
+
+            // accelerate until we need to brake
+            if (remaining > stoppingDist && speed < maxSpeed)
+            {
+                speed += accel * Time.deltaTime;
+                speed = Mathf.Min(speed, maxSpeed);
+            }
+            else
+            {
+                // start decelerating
+                speed -= accel * Time.deltaTime;
+                speed = Mathf.Max(speed, 0f);
+            }
+
+            // Unity handles the “never overshoot” for us
+            transform.position = Vector2.MoveTowards(
+                transform.position,
+                target,
+                speed * Time.deltaTime
+            );
+
+            yield return null;
+        }
+
+        // snap exactly
+        transform.position = target;
+    }
       private void Update()
     {
         if (_carryingItem)
