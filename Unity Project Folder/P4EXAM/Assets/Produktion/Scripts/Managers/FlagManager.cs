@@ -11,100 +11,195 @@ using UnityEngine.UIElements;
 public enum mode { Normal, Flag, Blueprint }
 public class FlagManager : MonoBehaviour
 {
-    [SerializeField] private int _allowedFlagCount;
-    [SerializeField] public GameObject FlagPrefab;
-    public static FlagManager Instance;
+    [SerializeField] public int _allowedFlagCount;
     [SerializeField] public List<Vector2> _flagPoints;
+    [SerializeField] public GameObject FlagPrefab;
     [SerializeField] public List<GameObject> FlagObjects;
-    public static bool _flagmode = false;
+    public  static bool _flagmode = false;
     public mode _mode;
 
-[SerializeField] DroneManager droneManager;
-
-    private Dictionary<Drone, List<Vector2>> droneFlags = new Dictionary<Drone, List<Vector2>>();  // To store flags for each drone
+    public static FlagManager Instance;
+    private bool Hasrun = false;
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            DestroyImmediate(gameObject);
-        }
+      
+        
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                DestroyImmediate(gameObject);
+            }
+           
+        
+        
+
+        _flagPoints = new List<Vector2>();
     }
+
+    private Vector3 MouseWorldPos;
+
+   
+
+
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-{
-    // Convert mouse position to world coordinates
-    Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+       // SetFlags();
+      
 
-    // Iterate through all the drones
-    foreach (GameObject drone in droneManager.drones) // assuming `allDrones` is a list or array of all drone instances
+    }
+
+    private void LateUpdate()
     {
-        Drone addflagtodrone = drone.GetComponent<Drone>();
-        // Calculate the distance between the mouse position and the drone
-        float distance = Vector2.Distance(mousePos, drone.transform.position);
+        print(_flagmode);
+        SetFlags();
+    }
 
-        // Define a click radius (e.g., 0.5f for a small area around the drone)
-        float clickRadius = 0.5f;
 
-        // If the mouse is within the click radius of the drone
-        if (distance <= clickRadius)
+
+    private void CleanUpFlags()
+    {
+        if (_flagPoints.Count > _allowedFlagCount)
         {
-            // Add flag for the clicked drone
-            AddFlagForDrone(addflagtodrone, mousePos);
-            break; // Exit loop after finding the first matching drone
+            //DroneManager.Instance.RemoveMoveCommands();
+            _flagPoints.RemoveAt(0);
         }
     }
+
+    private void SetFlags()
+    {
+       
+        if (Input.GetMouseButtonDown(0)
+            && _flagmode
+            && !EventSystem.current.IsPointerOverGameObject())
+
+        {
+            MouseWorldPos = InputHandler.Instance.PassMousePosInWorld();
+            
+            Debug.Log("Placing flag at: " + MouseWorldPos);
+            _flagPoints.Add(MouseWorldPos);
+
+            CleanUpFlags();
+            DisplayFlags();
+            
+        }
+
+
+        /*
+        MouseWorldPos = InputHandler.Instance.PassMousePosInWorld();
+        //Debug.Log("MODE IS: " + _mode.ToString());
+        
+        
+            
+            if (Input.GetMouseButtonDown(0))
+            {
+                    
+
+                
+
+                if (_flagmode == true)
+                 {
+                _flagPoints.Add(MouseWorldPos);
+                CleanUpFlags();
+                DroneManager.Instance.UpdateDroneMoves();
+
+                 }
+        }
+        
+        
+       */
+
+    }
+
+
+    public void ChangeModeToFlagMode()
+    {
+
+        //_flagmode = !_flagmode;
+        _flagmode = !_flagmode;
+        Debug.Log("FlagMode is now: " + _flagmode);
+        if (!_flagmode)
+        {
+            print("SIGMAAAA");
+           //ChangeButtonlook(Color.gray);
+        }
+        if (_flagmode)
+        {
+            print("NOT VERY SIGMAA");
+           // ChangeButtonlook(Color.red);
+        }
+
+    }
+
+    public void ChangeButtonlook()
+    {
+        GameObject FlagMangButton = GameObject.FindGameObjectWithTag("FlagMangButton");
+        Color PassiveColor = new Color(255, 255, 255, 1f);
+        Color ToggledColor = new Color(255, 255, 255, 0.75f);
+
+        if (!_flagmode)
+        {
+            print("SIGMAAAA");
+            FlagMangButton.GetComponent<UnityEngine.UI.Image>().color = PassiveColor ;
+            //ChangeButtonlook(Color.gray);
+        }
+        if (_flagmode)
+        {
+            print("NOT VERY SIGMAA");
+            FlagMangButton.GetComponent<UnityEngine.UI.Image>().color = ToggledColor;
+           // ChangeButtonlook(Color.red);
+        }
+    }
+
+    public void DisplayFlags()
+    {
+        // 1) Instantiate any new flags we need
+        foreach (var pt in _flagPoints)
+        {
+            // only add if we don’t already have one at exactly that position
+            bool alreadyExists = FlagObjects.Any(obj =>
+                (Vector2)obj.transform.position == pt
+            );
+            if (!alreadyExists)
+                FlagObjects.Add(Instantiate(FlagPrefab, pt, Quaternion.identity));
+        }
+
+        // 2) Collect indices of flag‑objects to remove
+        var toRemove = new List<int>();
+        for (int i = 0; i < FlagObjects.Count; i++)
+        {
+            Vector2 pos = FlagObjects[i].transform.position;
+            // if this position is no longer in _flagPoints, mark it
+            if (!_flagPoints.Contains(pos))
+                toRemove.Add(i);
+        }
+
+        // 3) Destroy & remove them, iterating indices backwards
+        for (int ri = toRemove.Count - 1; ri >= 0; ri--)
+        {
+            int idx = toRemove[ri];
+            Destroy(FlagObjects[idx]);        // schedule GameObject destruction
+            FlagObjects.RemoveAt(idx);        // remove from our list
+        }
+
+    }
+
+
+
+  
+
+
+
+
+
+
+
+
+
 }
 
-    }
 
-    // Adds a flag for a specific drone
-    public void AddFlagForDrone(Drone drone, Vector2 flagPosition)
-    {
-        if (!droneFlags.ContainsKey(drone))
-        {
-            droneFlags[drone] = new List<Vector2>();
-        }
-
-        // Only add a new flag if it's not exceeding the allowed count
-        if (droneFlags[drone].Count < _allowedFlagCount)
-        {
-            droneFlags[drone].Add(flagPosition);
-            DisplayFlagsForDrone(drone);
-        }
-    }
-
-    // Displays flags for a specific drone
-    public void DisplayFlagsForDrone(Drone drone)
-    {
-        if (!droneFlags.ContainsKey(drone)) return;
-
-        // Clear existing flags
-        foreach (Transform child in drone.transform)
-        {
-            Destroy(child.gameObject);
-        }
-
-        // Instantiate flags
-        foreach (var flagPos in droneFlags[drone])
-        {
-            Instantiate(FlagPrefab, flagPos, Quaternion.identity, drone.transform);
-        }
-    }
-
-    // Gets flags assigned to a specific drone
-    public List<Vector2> GetFlagsForDrone(Drone drone)
-    {
-        if (droneFlags.ContainsKey(drone))
-        {
-            return droneFlags[drone];
-        }
-        return new List<Vector2>();
-    }
-}
