@@ -1,15 +1,21 @@
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public enum mode { Normal, Flag, Blueprint }
 public class FlagManager : MonoBehaviour
 {
     [SerializeField] public int _allowedFlagCount;
     [SerializeField] public List<Vector2> _flagPoints;
-    public  bool _flagmode = false;
+    [SerializeField] public GameObject FlagPrefab;
+    [SerializeField] public List<GameObject> FlagObjects;
+    public  static bool _flagmode = false;
     public mode _mode;
 
     public static FlagManager Instance;
@@ -49,7 +55,7 @@ public class FlagManager : MonoBehaviour
 
     private void LateUpdate()
     {
-        print(FlagManager.Instance._flagmode);
+        print(_flagmode);
         SetFlags();
     }
 
@@ -76,7 +82,9 @@ public class FlagManager : MonoBehaviour
             
             Debug.Log("Placing flag at: " + MouseWorldPos);
             _flagPoints.Add(MouseWorldPos);
+
             CleanUpFlags();
+            DisplayFlags();
             
         }
 
@@ -112,15 +120,70 @@ public class FlagManager : MonoBehaviour
     {
 
         //_flagmode = !_flagmode;
-        FlagManager.Instance._flagmode = !FlagManager.Instance._flagmode;
+        _flagmode = !_flagmode;
         Debug.Log("FlagMode is now: " + _flagmode);
         if (!_flagmode)
         {
             print("SIGMAAAA");
+           //ChangeButtonlook(Color.gray);
         }
         if (_flagmode)
         {
             print("NOT VERY SIGMAA");
+           // ChangeButtonlook(Color.red);
+        }
+
+    }
+
+    public void ChangeButtonlook()
+    {
+        GameObject FlagMangButton = GameObject.FindGameObjectWithTag("FlagMangButton");
+        Color PassiveColor = new Color(255, 255, 255, 1f);
+        Color ToggledColor = new Color(255, 255, 255, 0.75f);
+
+        if (!_flagmode)
+        {
+            print("SIGMAAAA");
+            FlagMangButton.GetComponent<UnityEngine.UI.Image>().color = PassiveColor ;
+            //ChangeButtonlook(Color.gray);
+        }
+        if (_flagmode)
+        {
+            print("NOT VERY SIGMAA");
+            FlagMangButton.GetComponent<UnityEngine.UI.Image>().color = ToggledColor;
+           // ChangeButtonlook(Color.red);
+        }
+    }
+
+    public void DisplayFlags()
+    {
+        // 1) Instantiate any new flags we need
+        foreach (var pt in _flagPoints)
+        {
+            // only add if we don’t already have one at exactly that position
+            bool alreadyExists = FlagObjects.Any(obj =>
+                (Vector2)obj.transform.position == pt
+            );
+            if (!alreadyExists)
+                FlagObjects.Add(Instantiate(FlagPrefab, pt, Quaternion.identity));
+        }
+
+        // 2) Collect indices of flag‑objects to remove
+        var toRemove = new List<int>();
+        for (int i = 0; i < FlagObjects.Count; i++)
+        {
+            Vector2 pos = FlagObjects[i].transform.position;
+            // if this position is no longer in _flagPoints, mark it
+            if (!_flagPoints.Contains(pos))
+                toRemove.Add(i);
+        }
+
+        // 3) Destroy & remove them, iterating indices backwards
+        for (int ri = toRemove.Count - 1; ri >= 0; ri--)
+        {
+            int idx = toRemove[ri];
+            Destroy(FlagObjects[idx]);        // schedule GameObject destruction
+            FlagObjects.RemoveAt(idx);        // remove from our list
         }
 
     }
