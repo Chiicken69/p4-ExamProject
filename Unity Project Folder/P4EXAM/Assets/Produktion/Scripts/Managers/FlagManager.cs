@@ -1,13 +1,18 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class FlagManager : MonoBehaviour
 {
     public static FlagManager Instance;
-    public bool flagMode = false;
+    public bool _flagMode = false;
 
     public Drone selectedDrone;
+
+    [SerializeField] Button FlagMangButton;
+    Color PassiveColor = new Color(255, 255, 255, 1f);
+    Color ToggledColor = new Color(255, 255, 255, 0.75f);
 
     private void Awake()
     {
@@ -18,15 +23,29 @@ public class FlagManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            flagMode = !flagMode;
-            Debug.Log("Flag mode: " + flagMode);
+            _flagMode = !_flagMode;
+            Debug.Log("FlagMode is now: " + _flagMode);
+
+            if (!_flagMode)
+            {
+                print("SIGMAAAA");
+                //ChangeButtonlook(Color.gray);
+                FlagMangButton.GetComponent<UnityEngine.UI.Image>().color = PassiveColor ;
+            }
+            else
+            {
+                print("NOT VERY SIGMAA");
+                FlagMangButton.GetComponent<UnityEngine.UI.Image>().color = ToggledColor;
+                // ChangeButtonlook(Color.red);
+            }
         }
+
 
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            if (flagMode && selectedDrone != null)
+            if (_flagMode && selectedDrone != null)
             {
                 PlaceFlag(mousePos);
             }
@@ -68,4 +87,30 @@ public class FlagManager : MonoBehaviour
         flagObjs.Add(flag);
         Debug.Log("Placed flag at: " + pos);
     }
+
+       public void ChangeModeToFlagMode()
+    {
+
+        //_flagmode = !_flagmode;
+        _flagMode = !_flagMode;
+        Debug.Log("FlagMode is now: " + _flagMode);
+    }
+
+    public void ChangeButtonlook()
+    {
+        GameObject FlagMangButton = GameObject.FindGameObjectWithTag("FlagMangButton");
+        if (!_flagMode)
+        {
+            print("SIGMAAAA");
+            FlagMangButton.GetComponent<UnityEngine.UI.Image>().color = PassiveColor ;
+            //ChangeButtonlook(Color.gray);
+        }
+        if (_flagMode)
+        {
+            print("NOT VERY SIGMAA");
+            FlagMangButton.GetComponent<UnityEngine.UI.Image>().color = ToggledColor;
+           // ChangeButtonlook(Color.red);
+        }
+    }
+
 }

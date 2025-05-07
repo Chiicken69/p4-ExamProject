@@ -630,6 +630,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 475506943}
+--- !u!114 &582539961 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7724080226559653979, guid: bab0e2a59c3c3f14d8ef51cd83d720c0, type: 3}
+  m_PrefabInstance: {fileID: 6501834370978050074}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &611562321
 GameObject:
   m_ObjectHideFlags: 0
@@ -1641,6 +1652,10 @@ PrefabInstance:
       propertyPath: DroneManager
       value: 
       objectReference: {fileID: 1611985076}
+    - target: {fileID: 1085309101745576303, guid: c7b2612eb6f4fdd4990b4127fe0c4bea, type: 3}
+      propertyPath: FlagMangButton
+      value: 
+      objectReference: {fileID: 582539961}
     - target: {fileID: 1203463921788649630, guid: c7b2612eb6f4fdd4990b4127fe0c4bea, type: 3}
       propertyPath: m_Name
       value: FlagManager
