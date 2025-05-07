@@ -120,25 +120,25 @@ public class RadioScript : MonoBehaviour
     {
         if (timeInSeconds >= 1 && !triggeredTimes.Contains(1))
         {
-            EnqueueDialog("Turiel", "Hello, are you there? Ah good, i've been told to read you a few intrustions from my notebook. Hmm let's see, if u open your blueprint book by clicking on it, you should be able to scroll through it to see diffrent buildable objects, try building a factory! I reccommend zooming out before entering build mode. By the way if you just walk away from the radio it wont stop our dialog, whoevers on the radio will just... patiently wait for you to some back and press *ESC* button to close the ui, ONLY THEN will the raido check if theres anyone else thats trying to reach your frequency");
+            EnqueueDialog("Turiel", "Hello, are you there? Ah good, I've been told to read you a few instructions from my notebook. Hmm let's see, if you open your blueprint book by clicking on it, you should be able to scroll through it to see different buildable objects. Try building a factory! I recommend zooming out before entering build mode. By the way, if you just walk away from the radio, it won't stop our dialogue; whoever's on the radio will just... patiently wait for you to come back and press the *ESC* button to close the UI. ONLY THEN will the radio check if there's anyone else that's trying to reach your frequency.");
             triggeredTimes.Add(1);
         }
 
         if (timeInSeconds >= 3 && !triggeredTimes.Contains(2))
         {
-            EnqueueDialog("Turiel", "Next up try using your drones, you should be able to activate flag manageing mode by clicking on the other button. You will be able to move drones between " + FlagManager.Instance._allowedFlagCount + " diffrent locations, by making them pass over building like factorys, they should be able to take the output and move them around into another building to craft items. For example transfering copper into a wire factory, it shoooould make wires for you to make spools and uhhh you know stuff with");
+            EnqueueDialog("Turiel", "Next up, try using your drones. You should be able to activate flag managing mode by clicking on the other button. You will be able to move drones between " + FlagManager.Instance._allowedFlagCount + " different locations, by making them pass over buildings like factories, they should be able to take the output and move it around into another building to craft items. For example, transferring copper into a wire factory shoooould make wires for you to make spools and, uhhh, you know, stuff with.");
             triggeredTimes.Add(2);
         }
 
         if (timeInSeconds >= 4 && !triggeredTimes.Contains(3))
         {
-            EnqueueDialog("Turiel", "NOW, to my favorite part, try going up to one of your factories, and press the 'e' button. THEN u should see our pattent pending effeciency module, that plays like them video games. Press the arrow keys in the shown patteren as long as u do it correctly, it should boost your machines! Also u can close the ui with esc");
+            EnqueueDialog("Turiel", "NOW, to my favorite part, try going up to one of your factories and press the 'e' button. THEN you should see our patent pending efficiency module that plays like those video games. Press the arrow keys in the shown pattern; as long as you do it correctly, it should boost your machines! Also, you can close the UI with Esc.");
             triggeredTimes.Add(3);
         }
         
         if (timeInSeconds >= 4 && !triggeredTimes.Contains(4))
         {
-            EnqueueDialog("Turiel", "By the way if you ever get tired of seeing once of your placed building try holding right click next to them for 3 seconds. They will hopefully start glowing red and get outta your sights");
+            EnqueueDialog("Turiel", "By the way, if you ever get tired of seeing one of your placed buildings, try holding right-click next to them for 3 seconds. They will hopefully start glowing red and get out of your sight.");
             triggeredTimes.Add(4);
         }
         if (timeInSeconds >= 5 && !triggeredTimes.Contains(5))
@@ -148,12 +148,12 @@ public class RadioScript : MonoBehaviour
         }
         if (timeInSeconds >= 30 && !triggeredTimes.Contains(6))
         {
-            EnqueueDialog("Horatio", "Dammit Turiel, why are you hogging the radio before we even get the chance to explain their mission. *sigh* Alright listen up. This is Bloomridge HQ, your misson is to construct a 'Skyspindle' a flying windmill to capture wind currents from up high, It’ll be your first major energy source. From there, you’ll move to making the Helioplate solar arrays, and eventually... the Core Bioreactor, with each compleation of a major power source we will be able to provide more support through more recipies and blueprints. Remember: without power, the lifeseeds can’t germinate. No power, no future. Report back to me once the spindle is up. We’re rooting for you, literally");
+            EnqueueDialog("Horatio", "Dammit Turiel, why are you hogging the radio before we even get the chance to explain their mission? *sigh* Alright, listen up. This is Bloomridge HQ; your mission is to construct a 'Skyspindle,' a flying windmill to capture wind currents from up high. It’ll be your first major energy source. From there, you’ll move to making the Helioplate solar arrays, and eventually... the Core Bioreactor, with each completion of a major power source we will be able to provide more support through more recipes and blueprints. Remember: without power, the lifeseeds can’t germinate. No power, no future. Report back to me once the spindle is up. We’re rooting for you, literally.");
             triggeredTimes.Add(6);
         }
                 if (timeInSeconds >= 111 && !triggeredTimes.Contains(7))
         {
-            EnqueueDialog("Kidori", "Hey. It’s Kidori. I work in the botanial sector. Just doing the check-in rounds. You still wrestling with that spindle? Thought I saw some movement on the uplink, but maybe that was just the wind… or the squirrels again. Do you have squirrels out there? Anyway. No pressure. Just wanted to say the pollen drones are holding up back here. Mostly, One of them mistook my hair for a tulip again. You know... if you get the windmill up high enough, it’ll catch steadier air, meaning more energy. Not saying you didn’t think of that. Just… you know. Elevation’s your friend. Okay. alright i’ll stop hovering, bye-bye");
+            EnqueueDialog("Kidori", "Hey. It’s Kidori, from the botanical sector. Just doing the check-in rounds. You still wrestling with that spindle? Thought I saw some movement on the uplink, but maybe that was just the wind… or the squirrels again. Do you have squirrels out there? Anyway. No pressure. Just wanted to say the pollen drones are holding up back here. Mostly, one of them mistook my hair for a tulip again. You know... if you get the windmill up high enough, it’ll catch steadier air, meaning more energy. Not saying you didn’t think of that. Just… you know. Elevation’s your friend. Okay. Alright, I’ll stop hovering, bye-bye.");
             triggeredTimes.Add(7);
         }
                 if (timeInSeconds >= 160 && !triggeredTimes.Contains(8))
