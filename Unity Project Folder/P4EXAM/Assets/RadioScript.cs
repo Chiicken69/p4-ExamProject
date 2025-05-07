@@ -27,6 +27,8 @@ public class RadioScript : MonoBehaviour
   private Queue<DialogEntry> dialogData = new Queue<DialogEntry>();
     private HashSet<int> triggeredTimes = new HashSet<int>();
 
+    [SerializeField] private GameObject speachBoble;
+
     [System.Serializable]
     public class DialogEntry
     {
@@ -91,6 +93,7 @@ public class RadioScript : MonoBehaviour
 
         if (dialogData.Count > 0)
         {
+            speachBoble.SetActive(true);
             if (!isInDialogMode) { 
             personWhoMessaged.text = currentDialog.person;
             DialogPersonText.text = currentDialog.person;
@@ -106,6 +109,7 @@ public class RadioScript : MonoBehaviour
         else
         {
             unreadMessagesText.text = "You have 0 unanswered call requests.";
+            speachBoble.SetActive(false);
             messageButton.onClick.RemoveAllListeners();
             listenerAdded = false;
             personWhoMessaged.text = "No one";

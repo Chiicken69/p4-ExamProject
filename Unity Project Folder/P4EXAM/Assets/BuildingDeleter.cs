@@ -19,14 +19,15 @@ public class BuildingDeleter : MonoBehaviour
 
     private void Update()
     {
-        GetKeyInfo();
+            GetKeyInfo();
 
-        if (inFactory && onFactory)
-        {
-            CheckIfBoolsTrue();
-        }
+            if (inFactory && onFactory)
+            {
+                CheckIfBoolsTrue();
+            }
 
-        HandleColorLerp();
+            HandleColorLerp();
+        
     }
 
     private void GetKeyInfo()

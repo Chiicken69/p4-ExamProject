@@ -71,7 +71,16 @@ public class interact : MonoBehaviour
 
         }else if (other.gameObject.CompareTag("Radio"))
         {
-            playerInRadioTrigger = true;  
+            playerInRadioTrigger = true;
+            SpriteRenderer[] allTextMeshes = other.GetComponentsInChildren<SpriteRenderer>();
+
+            foreach (var obj in allTextMeshes)
+            {
+                if (obj.gameObject.name == "PresssE")
+                {
+                    obj.enabled = true;
+                }
+            }
         }
     }
     void OnTriggerExit2D(Collider2D other)
@@ -100,6 +109,16 @@ public class interact : MonoBehaviour
         {
             playerInRadioTrigger = false;
             radioUI.SetActive(false);
+
+            SpriteRenderer[] allSR = other.GetComponentsInChildren<SpriteRenderer>();
+
+            foreach (var SR in allSR)
+            {
+                if (SR.gameObject.name == "PresssE")
+                {
+                    SR.enabled = false;
+                }
+            }
         }
 
         }
