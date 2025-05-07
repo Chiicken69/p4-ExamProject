@@ -29,7 +29,8 @@ public class DroneManager : MonoBehaviour
 
     private void Update() // curently for testing
     {
-        if (InputHandler.Instance.PassInputBoolValue(3))
+        //InputHandler.Instance.PassInputBoolValue(3)
+        if (Input.GetKeyDown(KeyCode.O))
         {
             drones.Add(Instantiate(dronePrefab));
            

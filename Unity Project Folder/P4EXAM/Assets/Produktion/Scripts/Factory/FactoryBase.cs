@@ -79,7 +79,7 @@ public class FactoryBase : MonoBehaviour, Ifactory
     {
         DecreaseCraftingSpeed();
         // temporary testing code
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             IncreaseCraftingSpeed();
         }
@@ -358,7 +358,7 @@ public class FactoryBase : MonoBehaviour, Ifactory
         // _tempCraftingTime /= _CraftingBoosterValue;
         if (state != FactoryState.Building)
         {
-            speedIncreasePercentage += 100;
+            speedIncreasePercentage += 400;
         }
 
         
