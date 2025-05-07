@@ -234,7 +234,25 @@ public class FactoryBase : MonoBehaviour, Ifactory
 
     IEnumerator Craft()
     {
+        int i = 0;
+        int k = 0;
         //not done
+        foreach (var item in _ingredientList)
+        {
+            int amountNeeded = _ingredientAmountForCraft[i];
+
+            foreach (var item1 in InputInventory)
+            {
+                ItemBase.ItemType CurrentItemType = item1.GetComponent<ItemBase.ItemType>();
+                if (CurrentItemType == item && k < amountNeeded)
+                {
+                    InputInventory.Remove(item1);
+                    k++;
+                }
+            }
+
+          
+        }
         ClearInputInventory();
         print("crafting started");
         state = FactoryState.Crafting;
