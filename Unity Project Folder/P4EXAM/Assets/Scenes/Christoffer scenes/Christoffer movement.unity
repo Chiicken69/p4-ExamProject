@@ -1670,7 +1670,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1220344456}
   - component: {fileID: 1220344457}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PresssE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1735,7 +1735,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 1c464a50a2a994d499676b044ae0da31, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.6392157}
   m_FlipX: 0
@@ -80236,6 +80236,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4324931852958685862, guid: 799c88489f36ab944bb0ee77781f96cf, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324931852958685862, guid: 799c88489f36ab944bb0ee77781f96cf, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
@@ -80267,6 +80271,10 @@ PrefabInstance:
       propertyPath: dialogPersonThatMessagedGameObject
       value: 
       objectReference: {fileID: 270844549}
+    - target: {fileID: 8763991649563113517, guid: 799c88489f36ab944bb0ee77781f96cf, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8763991649563113517, guid: 799c88489f36ab944bb0ee77781f96cf, type: 3}
       propertyPath: m_IsActive
       value: 0
