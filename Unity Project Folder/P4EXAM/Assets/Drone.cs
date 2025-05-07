@@ -40,4 +40,113 @@ public class Drone : MonoBehaviour
             yield return null;
         }
     }
+
+      private void Update()
+    {
+        if (_carryingItem)
+        {
+            _sprite = _Item.GetComponent<ItemBase>().Sprite;
+            _imageSpriteRenderer.sprite = _sprite;
+        }
+        else _imageSpriteRenderer.sprite = null;
+    }
+
+
+    private IEnumerator ItemTransferLogic()
+    {
+        
+        while (true)
+        {
+            if (takeItem() == true)
+            {
+                yield return new WaitForSecondsRealtime(1.5f);
+            }
+            if (DepositItem() == true)
+            {
+                yield return new WaitForSecondsRealtime(1.5f);
+            }
+            yield return null;
+        }
+        
+    }
+
+    private bool takeItem()
+    {
+        if (!_carryingItem)
+        {
+            GameObject tempGB = FactoryManager.Instance.ReturnFactory(this.transform.position);
+
+            if (tempGB == null)
+            {
+                Debug.Log("yo dawg this shit null");
+                return false;
+            }
+            else
+            {
+               _Item =  tempGB.GetComponent<FactoryBase>().TakeItemFromOutputInventory();
+                if (_Item != null)
+                {
+                    ChangeCarryingState();
+                    return true;
+                }
+                
+            }
+
+        }
+        return false;
+    }
+
+    private bool DepositItem()
+    {
+        if (_carryingItem)
+        {
+            print("yo wtf");
+            GameObject tempGB = FactoryManager.Instance.ReturnFactory(this.transform.position);
+          
+
+            if (tempGB == null)
+            {
+                Debug.Log("this is null. Deposit");
+                return false;
+            }
+            else if (_Item != null)
+            {
+                //tempGB.GetComponent<FactoryBase>().CheckAgainstRecipe(_Item)
+                tempGB.GetComponent<FactoryBase>().AddItemToInventory(_Item);
+               
+                _Item = null;
+                ChangeCarryingState();
+                Debug.Log("Deposited item: " + _Item);
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+   /* private bool IsItemInRecipe(GameObject GB)
+    {
+        FactoryBase FB = GB.GetComponent<FactoryBase>();
+
+        ItemBase IB = _Item.GetComponent<ItemBase>();
+
+
+
+        if ()
+        {
+            
+        }
+    } */
+
+    private void ChangeCarryingState()
+    {
+        if (_Item != null)
+        {
+            _carryingItem = true;
+        }
+        else
+        {
+            _carryingItem= false;
+        }
+    }
 }
