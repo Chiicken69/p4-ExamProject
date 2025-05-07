@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5acaac1d4dd8d28449a41210a3e4e198
+guid: ec913fbcf1a97e84192c331d8fed6f20
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1347683991892707863
-    second: DroneConcept1_0
+      213: -2227017139420733248
+    second: MetalPartsConcept1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,11 +100,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DroneConcept1_0
+      name: MetalPartsConcept1_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 16
+        y: 0
         width: 16
         height: 16
       alignment: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9e531c9bc801c4de0800000000000000
-      internalID: -1347683991892707863
+      spriteID: 0c0ee1006bb0811e0800000000000000
+      internalID: -2227017139420733248
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 643519a94a108804680ffd54c62f78e4
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      DroneConcept1_0: -1347683991892707863
+      MetalPartsConcept1_0: -2227017139420733248
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

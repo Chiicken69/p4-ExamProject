@@ -171,7 +171,7 @@ public class FactoryBase : MonoBehaviour, Ifactory
     public void CreateOutput()
     {
         GameObject ObjectToAdd = _itemOutputType;
-        ObjectToAdd.AddComponent<ItemBase>();
+        //ObjectToAdd.AddComponent<ItemBase>();
         OutputInventory.Add(ObjectToAdd); 
     }
 

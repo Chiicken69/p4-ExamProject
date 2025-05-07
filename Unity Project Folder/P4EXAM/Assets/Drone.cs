@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ItemBase;
 using static UnityEngine.GraphicsBuffer;
 
 
@@ -14,7 +15,8 @@ public class Drone : MonoBehaviour
     private Queue<IEnumerator> MoveCommands = new Queue<IEnumerator>();
     private int flagIndex;
 
-    [SerializeField] List<Sprite> ItemImages = new List<Sprite>();
+   
+    
     private SpriteRenderer _imageSpriteRenderer;
     [SerializeField] private float _speed;
     [SerializeField] private bool _carryingItem;
@@ -30,7 +32,17 @@ public class Drone : MonoBehaviour
 
     private void Awake()
     {
-        _imageSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        SpriteRenderer[] allRenderers = GetComponentsInChildren<SpriteRenderer>(true);
+
+        foreach (var renderer in allRenderers)
+        {
+            if (renderer.gameObject != this.gameObject) // Exclude self
+            {
+                _imageSpriteRenderer = renderer;
+                break;
+            }
+        }
+
     }
     private void Start()
     {
@@ -100,7 +112,12 @@ public class Drone : MonoBehaviour
     }
     private void Update()
     {
-        
+        if (_carryingItem)
+        {
+            _sprite = _Item.GetComponent<ItemBase>().Sprite;
+            _imageSpriteRenderer.sprite = _sprite;
+        }
+        else _imageSpriteRenderer.sprite = null;
 
         switch (droneState)
         {
