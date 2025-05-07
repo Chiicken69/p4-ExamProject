@@ -80428,6 +80428,10 @@ PrefabInstance:
       value: Blueprint book
       objectReference: {fileID: 0}
     - target: {fileID: 5166466225491792141, guid: 8f57708d2adefb54581cb0ea62ca66f1, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 8123798087807564455, guid: f266181a198f04c40b208982a0f3542c, type: 3}
+    - target: {fileID: 5166466225491792141, guid: 8f57708d2adefb54581cb0ea62ca66f1, type: 3}
       propertyPath: m_Maskable
       value: 1
       objectReference: {fileID: 0}
