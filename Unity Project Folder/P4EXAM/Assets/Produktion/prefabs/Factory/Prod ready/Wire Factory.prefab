@@ -287,7 +287,7 @@ MonoBehaviour:
   - {fileID: 5221351111676797728, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
   - {fileID: -478314364676971690, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
   - {fileID: 3577973736208337898, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
-  frameRateMAX: 100
+  frameRateMAX: 60
 --- !u!1 &1987547576189237144
 GameObject:
   m_ObjectHideFlags: 0

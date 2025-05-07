@@ -422,6 +422,8 @@ GameObject:
   - component: {fileID: 2876600626324099347}
   - component: {fileID: -277066816300102297}
   - component: {fileID: -5088212699955772711}
+  - component: {fileID: 7133408380265686222}
+  - component: {fileID: -4551009386873187309}
   m_Layer: 0
   m_Name: Spool
   m_TagString: Untagged
@@ -7076,6 +7078,38 @@ MonoBehaviour:
   itemDescription: 
   Sprite: {fileID: 0}
 --- !u!114 &-5088212699955772711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3632619094670410106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b42a1e72177b641b58f02774e1e388, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  itemName: 
+  itemDescription: 
+  Sprite: {fileID: 0}
+--- !u!114 &7133408380265686222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3632619094670410106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b42a1e72177b641b58f02774e1e388, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  itemName: 
+  itemDescription: 
+  Sprite: {fileID: 0}
+--- !u!114 &-4551009386873187309
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
