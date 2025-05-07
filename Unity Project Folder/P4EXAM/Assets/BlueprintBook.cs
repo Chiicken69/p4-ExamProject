@@ -189,7 +189,7 @@ public class BlueprintBook : MonoBehaviour
         }
         else if(_GhostPreview == null) { 
             Destroy(buildingPreview);
-            _placeingText.text = "Placing: Nothing";
+            _placeingText.text = "Scroll with MMB";
         }
         if (_LeftMouseButton == true) 
             {
