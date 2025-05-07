@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using NUnit.Framework.Internal;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -6,6 +7,9 @@ using UnityEngine.UI;
 public class FlagManager : MonoBehaviour
 {
     public static FlagManager Instance;
+    
+    [SerializeField] Image _blueprintBook;
+    [SerializeField] Text _flagModeText;
 public static bool _flagMode = false;
 
     public Drone selectedDrone;
@@ -34,6 +38,22 @@ public static bool _flagMode = false;
 
     void Update()
     {
+
+            if (_flagMode)
+            {
+                _blueprintBook.enabled =false;
+                _flagModeText.text = "LMB to select a drone";
+                if(selectedDrone != null)
+                {
+                _flagModeText.text = "LMB to move, RMB to deselect";
+                }
+            }
+            else
+            {
+                _blueprintBook.enabled =true;
+                _flagModeText.text = "";
+            }
+
         if (Input.GetKeyDown(KeyCode.F))
         {
             _flagMode = !_flagMode;
@@ -43,12 +63,12 @@ public static bool _flagMode = false;
             {
                 print("SIGMAAAA");
                 //ChangeButtonlook(Color.gray);
-                FlagMangButton.GetComponent<UnityEngine.UI.Image>().color = PassiveColor ;
+                FlagMangButton.GetComponent<Image>().color = PassiveColor ;
             }
             else
             {
                 print("NOT VERY SIGMAA");
-                FlagMangButton.GetComponent<UnityEngine.UI.Image>().color = ToggledColor;
+                FlagMangButton.GetComponent<Image>().color = ToggledColor;
                 // ChangeButtonlook(Color.red);
             }
         }
@@ -140,13 +160,13 @@ public static bool _flagMode = false;
         if (!_flagMode)
         {
             print("SIGMAAAA");
-            FlagMangButton.GetComponent<UnityEngine.UI.Image>().color = PassiveColor ;
+            FlagMangButton.GetComponent<Image>().color = PassiveColor ;
             //ChangeButtonlook(Color.gray);
         }
         if (_flagMode)
         {
             print("NOT VERY SIGMAA");
-            FlagMangButton.GetComponent<UnityEngine.UI.Image>().color = ToggledColor;
+            FlagMangButton.GetComponent<Image>().color = ToggledColor;
            // ChangeButtonlook(Color.red);
         }
     }

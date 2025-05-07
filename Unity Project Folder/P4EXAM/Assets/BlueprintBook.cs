@@ -42,6 +42,7 @@ public class BlueprintBook : MonoBehaviour
 
     [SerializeField] private Sprite squareSprite; // assign your 1x1 square sprite in the Inspector
 
+    [SerializeField] GameObject Flagmanager;
 
     [System.Serializable]
     public class BuildingData
@@ -75,6 +76,7 @@ public class BlueprintBook : MonoBehaviour
     void Update()
     {
 
+
         GetKeyInfo();
         Openui();
 
@@ -82,9 +84,11 @@ public class BlueprintBook : MonoBehaviour
         {
             BuildingMode();
             _cameraZoom.enabled = false;
+            Flagmanager.SetActive(false);
         }
         else {
             _cameraZoom.enabled = true;
+            Flagmanager.SetActive(true);
         }
         //Debug.Log("no sprite at id " + buildingID);
 
