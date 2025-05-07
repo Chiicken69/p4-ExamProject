@@ -95,6 +95,7 @@ public class Drone : MonoBehaviour
     }
     private void Update()
     {
+        
 
         switch (droneState)
         {
@@ -120,6 +121,7 @@ public class Drone : MonoBehaviour
 
 
 
+       
 
     }
 
@@ -131,11 +133,11 @@ public class Drone : MonoBehaviour
         {
             if (takeItem() == true)
             {
-                yield return new WaitForSecondsRealtime(1f);
+                yield return new WaitForSecondsRealtime(0.5f);
             }
             if (DepositItem() == true)
             {
-                yield return new WaitForSecondsRealtime(1f);
+                yield return new WaitForSecondsRealtime(0.5f);
             }
             yield return null;
         }
@@ -158,7 +160,7 @@ public class Drone : MonoBehaviour
                _Item =  tempGB.GetComponent<FactoryBase>().TakeItemFromOutputInventory();
                 if (_Item != null)
                 {
-                    _carryingItem = true;
+                    ChangeCarryingState();
                     return true;
                 }
                 
@@ -185,7 +187,9 @@ public class Drone : MonoBehaviour
             {
                 //tempGB.GetComponent<FactoryBase>().CheckAgainstRecipe(_Item)
                 tempGB.GetComponent<FactoryBase>().AddItemToInventory(_Item);
-                _carryingItem= false;
+               
+                _Item = null;
+                ChangeCarryingState();
                 Debug.Log("Deposited item: " + _Item);
                 return true;
             }
@@ -207,6 +211,18 @@ public class Drone : MonoBehaviour
             
         }
     } */
+
+    private void ChangeCarryingState()
+    {
+        if (_Item != null)
+        {
+            _carryingItem = true;
+        }
+        else
+        {
+            _carryingItem= false;
+        }
+    }
 }
 
 

@@ -10,7 +10,7 @@ public class FactoryManager : MonoBehaviour
 {
     public List<Vector3Int> FactoryGridPositions;
     public List<GameObject> Factories;
-    
+    [SerializeField] private float DroneDistanceThreshold;
     [SerializeField] private Tilemap _tilemap;
     float timer = 5f;
     
@@ -45,6 +45,7 @@ public class FactoryManager : MonoBehaviour
 
     private void tempName()
     {
+        /*
         MonoBehaviour[] Behaviours = Object.FindObjectsByType<FactoryBase>(FindObjectsSortMode.None);
 
         foreach (var item in Behaviours)
@@ -52,6 +53,7 @@ public class FactoryManager : MonoBehaviour
            
             Factories.Add(item.gameObject);  
         }
+        */
     }
 
     public void AddFactory(GameObject gb)
@@ -84,10 +86,9 @@ public class FactoryManager : MonoBehaviour
         {
             Vector3Int factoryPosition = ConvertToGrid(Factory.transform.position);
 
-          //  Debug.Log("Factory position is: " + factoryPosition);
-            if (DronePos == factoryPosition)
+            if (Vector2.Distance(DronePos, new Vector2(factoryPosition.x, factoryPosition.y)) <= DroneDistanceThreshold)
             {
-            //    Debug.Log("Drone is at factory position");
+                Debug.Log("SIGMAAAAAAAAA");
                 return i;
             }
             i++;

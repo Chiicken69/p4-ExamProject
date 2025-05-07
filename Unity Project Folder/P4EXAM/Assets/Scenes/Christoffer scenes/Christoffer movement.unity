@@ -761,6 +761,10 @@ PrefabInstance:
       propertyPath: _tilemap
       value: 
       objectReference: {fileID: 1137430324}
+    - target: {fileID: 2203214509998366714, guid: 5fd53be0e5dacc6479ad79ac0da0c1e6, type: 3}
+      propertyPath: DroneDistanceThreshold
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5989073336516627070, guid: 5fd53be0e5dacc6479ad79ac0da0c1e6, type: 3}
       propertyPath: m_Name
       value: FactoryManager

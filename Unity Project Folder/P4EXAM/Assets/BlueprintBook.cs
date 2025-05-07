@@ -272,7 +272,7 @@ public class BlueprintBook : MonoBehaviour
                     GameObject buildingPlaced = Instantiate(building[TempBuildingID]);
 
                     buildingPlaced.transform.position = cellPos;
-                   // FactoryManager.Instance.Factories.Add(buildingPlaced);
+                    FactoryManager.Instance.Factories.Add(buildingPlaced);
                     break;
                 }
                 else
