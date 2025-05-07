@@ -232,7 +232,7 @@ public class BlueprintBook : MonoBehaviour
                     var checker = buildingPreview.AddComponent<CollisionChecker>();
 
                     //checks if building id is for the factory check the scipt under player to see all id's
-                    if (TempBuildingID <= 2)
+                    if (TempBuildingID >= 0)
                     { Scaleforsprite = 3; }
                     else { Scaleforsprite = 1; }
 

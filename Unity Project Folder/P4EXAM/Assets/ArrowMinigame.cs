@@ -54,7 +54,7 @@ public class ArrowMinigame : MonoBehaviour
 
     }
 
-    public void Checkstate(FactoryBase currentFactory)
+    public void Checkstate(GameObject currentFactory)
     {
     
         if (_closeUI == true && minigameUI.activeInHierarchy)
@@ -63,7 +63,7 @@ public class ArrowMinigame : MonoBehaviour
         }
         if (currentRoundPlaying == true)
         {
-            RunRound(currentFactory);
+            RunRound(currentFactory.GetComponent<FactoryBase>());
         }
     }
 

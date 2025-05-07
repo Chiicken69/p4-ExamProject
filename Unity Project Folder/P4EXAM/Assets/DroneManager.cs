@@ -25,22 +25,14 @@ public class DroneManager : MonoBehaviour
 
     [SerializeField] List<GameObject> drones;
 
-    public void UpdateDroneMoves()
-    {
-        foreach (var drone in drones)
-        {
-
-
-           // drone.GetComponent<Drone>().AddMoveCommand();
-        }
-    }
+   
 
     private void Update() // curently for testing
     {
         if (InputHandler.Instance.PassInputBoolValue(3))
         {
             drones.Add(Instantiate(dronePrefab));
-            UpdateDroneMoves();
+           
             
             
         }

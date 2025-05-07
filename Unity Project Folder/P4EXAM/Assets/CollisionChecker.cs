@@ -27,7 +27,7 @@ public class CollisionChecker : MonoBehaviour
 
     private bool IsBlockingTag(string tag)
     {
-        return tag == "Factory" || tag == "Player" || tag == "Building";
+        return tag == "Factory" || tag == "Player" || tag == "Building" || tag == "Radio";
     }
 }
 
