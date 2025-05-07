@@ -31,6 +31,7 @@ public class Drone : MonoBehaviour
     void Start()
     {
         StartCoroutine(PatrolFlags());
+        StartCoroutine(ItemTransferLogic());
     }
 
     IEnumerator PatrolFlags()
