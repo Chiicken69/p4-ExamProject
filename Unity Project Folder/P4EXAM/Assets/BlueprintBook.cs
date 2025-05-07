@@ -185,7 +185,7 @@ public class BlueprintBook : MonoBehaviour
         }
         else if(_GhostPreview == null) { 
             Destroy(buildingPreview);
-            _placeingText.text = "Placeing: Nothing";
+            _placeingText.text = "Placing: Nothing";
         }
         if (_LeftMouseButton == true) 
             {
@@ -243,7 +243,7 @@ public class BlueprintBook : MonoBehaviour
                 {
                     buildingPreview.GetComponent<SpriteRenderer>().sprite = _GhostPreview;
                     buildingPreview.transform.position = cellPos;
-                    _placeingText.text = "Placeing: " + building[TempBuildingID].name;
+                    _placeingText.text = "Placing: " + building[TempBuildingID].name;
 
                     var checker = buildingPreview.GetComponent<CollisionChecker>();
                     if (checker != null && checker.isOverlapping)
