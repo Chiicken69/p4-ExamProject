@@ -156,7 +156,7 @@ public class RadioScript : MonoBehaviour
         {   // This one is there no point to having tbh
             //EnqueueDialog("Kidori", "Hey. It’s Kidori, from the botanical sector. Just doing the check-in rounds. You still wrestling with that spindle? Thought I saw some movement on the uplink, but maybe that was just the wind… or the squirrels again. Do you have squirrels out there? \nAnyway. No pressure. Just wanted to say the pollen drones are holding up back here. Mostly, one of them mistook my hair for a tulip again. You know... if you get the windmill up high enough, it’ll catch steadier air, meaning more energy. Not saying you didn’t think of that. Just… you know. Elevation’s your friend. Okay. Alright, I’ll stop hovering, bye-bye.");
             EnqueueDialog("Kidori", "Hey. It’s Kidori, i work with the gardens back here in case you were curious\n Anyway thought i should check in on you, since you you've been out for a bit. Just wanted to say the pollen drones are holding up back here. Mostly, one of them mistook my hair for a tulip again. Hopefully yours are doing better, though i hope you'll come see them some time sometime, bye-bye for now tho.");
-            //triggeredTimes.Add(7);
+            triggeredTimes.Add(7);
         }
                 if (timeInSeconds >= 160 && !triggeredTimes.Contains(8))
         {   // Seems passive aggressive. Not sure if I like it.
@@ -189,25 +189,26 @@ public class RadioScript : MonoBehaviour
             //EnqueueDialog("Kidori", "You’re not just sitting there staring dramatically into the wind again, are you? I mean, if you are, that’s fine. Very poetic. Very mysterious. Ten out of ten.");
             //triggeredTimes.Add(12);
         }
-        if (timeInSeconds >= 380 && !triggeredTimes.Contains(13))
+        if (timeInSeconds >= 450 && !triggeredTimes.Contains(13))
         {
             // I think i like the though behind it, but not alle of the content.
             // But im not sure what we want there instead. 
            EnqueueDialog("Turiel", "I’m not here to babysit, alright? …That being said, if you *do* fry the battery cores on your drones, call me before Horatio finds out.");
             triggeredTimes.Add(13);
         }
-        if (timeInSeconds >= 400 && !triggeredTimes.Contains(14))
+        if (timeInSeconds >= 500 && !triggeredTimes.Contains(14))
         {   // This one is nice. If we get to introdduce Kidori.
             EnqueueDialog("Kidori", "Quiet day here. Even the pollen drones are napping. Kind of makes me wish I was out there with you. Not that I’d be any help I’d probably just get distracted by weird plants.");
             triggeredTimes.Add(14);
         }
-               if (timeInSeconds >= 430 && !triggeredTimes.Contains(15))
-        {   // done like this one. Its kinda agressive.
+               if (timeInSeconds >= 600 && !triggeredTimes.Contains(15))
+        {   // done like this one. Its kinda agressive. 
+            //how it is agressive its supposed to be him trying be relateable
            //EnqueueDialog("Turiel", "You know, back in my first deployment I spent two days trying to power a kiln with a water pump. Didn’t work, obviously. Point is we all start somewhere. You’re doing better than I did.");
             //triggeredTimes.Add(15);
         }
 
-        if (timeInSeconds >= 460 && !triggeredTimes.Contains(16))
+        if (timeInSeconds >= 890 && !triggeredTimes.Contains(16))
         {   // I like this one. 
             EnqueueDialog("Kidori", "Found a worm in my ration bar today. \nNamed him Carl... \nI put him in the planter outside, and it appears he’s adjusting well. \nAnyway, hope your day's been less... wormy.");
 
