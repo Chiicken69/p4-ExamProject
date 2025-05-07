@@ -14,6 +14,12 @@ public class FlagManager : MonoBehaviour
     [SerializeField] private int _allowedFlagCount;
     [SerializeField] public GameObject FlagPrefab;
     public static FlagManager Instance;
+    [SerializeField] public List<Vector2> _flagPoints;
+    [SerializeField] public List<GameObject> FlagObjects;
+    public static bool _flagmode = false;
+    public mode _mode;
+
+[SerializeField] DroneManager droneManager;
 
     private Dictionary<Drone, List<Vector2>> droneFlags = new Dictionary<Drone, List<Vector2>>();  // To store flags for each drone
 
@@ -32,21 +38,30 @@ public class FlagManager : MonoBehaviour
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
-        {
-            // Raycast to detect the clicked drone
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+{
+    // Convert mouse position to world coordinates
+    Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            if (hit.collider != null)
-            {
-                Drone clickedDrone = hit.collider.GetComponent<Drone>();
-                if (clickedDrone != null)
-                {
-                    // Add flag for the clicked drone
-                    AddFlagForDrone(clickedDrone, mousePos);
-                }
-            }
+    // Iterate through all the drones
+    foreach (GameObject drone in droneManager.drones) // assuming `allDrones` is a list or array of all drone instances
+    {
+        Drone addflagtodrone = drone.GetComponent<Drone>();
+        // Calculate the distance between the mouse position and the drone
+        float distance = Vector2.Distance(mousePos, drone.transform.position);
+
+        // Define a click radius (e.g., 0.5f for a small area around the drone)
+        float clickRadius = 0.5f;
+
+        // If the mouse is within the click radius of the drone
+        if (distance <= clickRadius)
+        {
+            // Add flag for the clicked drone
+            AddFlagForDrone(addflagtodrone, mousePos);
+            break; // Exit loop after finding the first matching drone
         }
+    }
+}
+
     }
 
     // Adds a flag for a specific drone
@@ -93,6 +108,3 @@ public class FlagManager : MonoBehaviour
         return new List<Vector2>();
     }
 }
-
-
-

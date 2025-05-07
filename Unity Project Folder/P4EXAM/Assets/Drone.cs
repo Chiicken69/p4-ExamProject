@@ -29,6 +29,10 @@ public class Drone : MonoBehaviour
     [SerializeField] float maxSpeed = 100f;  // units/sec
     [SerializeField] float stopThreshold = 0.01f; // how close is “at target”?
 
+
+
+    private List<Vector2> assignedFlags = new List<Vector2>();  // Stores flags for each drone
+
     private void Start()
     {
         StartCoroutine(PatrolFlags());

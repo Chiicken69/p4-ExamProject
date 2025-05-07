@@ -23,7 +23,7 @@ public class DroneManager : MonoBehaviour
         }
     }
 
-    [SerializeField] List<GameObject> drones;
+     [SerializeField] public List<GameObject> drones;
 
    
 
