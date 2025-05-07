@@ -29,43 +29,23 @@ public class Drone : MonoBehaviour
     [SerializeField] float maxSpeed = 100f;  // units/sec
     [SerializeField] float stopThreshold = 0.01f; // how close is “at target”?
 
-
-    private void Awake()
-    {
-        SpriteRenderer[] allRenderers = GetComponentsInChildren<SpriteRenderer>(true);
-
-        foreach (var renderer in allRenderers)
-        {
-            if (renderer.gameObject != this.gameObject) // Exclude self
-            {
-                _imageSpriteRenderer = renderer;
-                break;
-            }
-        }
-
-    }
     private void Start()
     {
-        
-        // Kick off the infinite patrol loop
         StartCoroutine(PatrolFlags());
-        StartCoroutine(ItemTransferLogic());
     }
+
     private IEnumerator PatrolFlags()
     {
-        int flagIndex = 0;
-
         while (true)
         {
-            var flags = FlagManager.Instance._flagPoints;
+            List<Vector2> flags = FlagManager.Instance.GetFlagsForDrone(this);
             if (flags.Count == 0)
             {
-                // no flags yet → wait a frame and retry
                 yield return null;
                 continue;
             }
 
-            // wrap around if we’ve gone past the last flag
+            // Wrap around if we've gone past the last flag
             if (flagIndex >= flags.Count)
                 flagIndex = 0;
 
@@ -75,76 +55,34 @@ public class Drone : MonoBehaviour
             flagIndex++;
         }
     }
+
     private IEnumerator MoveDroneTo(Vector2 target)
     {
         float speed = 0f;
+        float stopThreshold = 0.01f;
 
         while (Vector2.Distance(transform.position, target) > stopThreshold)
         {
             float remaining = Vector2.Distance(transform.position, target);
-            float stoppingDist = (speed * speed) / (2f * accel);
+            float stoppingDist = (speed * speed) / (2f * 10f);  // 10f is accel here
 
-            // accelerate until we need to brake
-            if (remaining > stoppingDist && speed < maxSpeed)
+            if (remaining > stoppingDist && speed < 100f)
             {
-                speed += accel * Time.deltaTime;
-                speed = Mathf.Min(speed, maxSpeed);
+                speed += 10f * Time.deltaTime;
+                speed = Mathf.Min(speed, 100f);
             }
             else
             {
-                // start decelerating
-                speed -= accel * Time.deltaTime;
+                speed -= 10f * Time.deltaTime;
                 speed = Mathf.Max(speed, 0f);
             }
 
-            // Unity handles the “never overshoot” for us
-            transform.position = Vector2.MoveTowards(
-                transform.position,
-                target,
-                speed * Time.deltaTime
-            );
-
+            transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
             yield return null;
         }
 
-        // snap exactly
+        // Snap exactly
         transform.position = target;
-    }
-    private void Update()
-    {
-        if (_carryingItem)
-        {
-            _sprite = _Item.GetComponent<ItemBase>().Sprite;
-            _imageSpriteRenderer.sprite = _sprite;
-        }
-        else _imageSpriteRenderer.sprite = null;
-
-        switch (droneState)
-        {
-            case DroneState.idle:
-                Debug.Log("is idle");
-                
-                break;
-
-            case DroneState.flying:
-                Debug.Log("is flying");
-                break;
-            case DroneState.recharging:
-                //c
-                break;
-            case DroneState.Processing:
-            //d
-            default:
-                droneState = DroneState.idle;
-                Debug.Log("is idle");
-               
-                break;
-        }
-
-
-
-       
-
     }
 
 

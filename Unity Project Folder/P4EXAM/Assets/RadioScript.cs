@@ -126,7 +126,7 @@ public class RadioScript : MonoBehaviour
 
         if (timeInSeconds >= 3 && !triggeredTimes.Contains(2))
         {
-            EnqueueDialog("Turiel", "Next up, try using your drones. You should be able to activate flag managing mode by clicking on the other button. You will be able to move drones between " + FlagManager.Instance._allowedFlagCount + " different locations, by making them pass over buildings like factories, they should be able to take the output and move it around into another building to craft items. For example, transferring copper into a wire factory shoooould make wires for you to make spools and, uhhh, you know, stuff with.");
+            EnqueueDialog("Turiel", "Next up, try using your drones. You should be able to activate flag managing mode by clicking on the other button. You will be able to move drones between " + " different locations, by making them pass over buildings like factories, they should be able to take the output and move it around into another building to craft items. For example, transferring copper into a wire factory shoooould make wires for you to make spools and, uhhh, you know, stuff with.");
             triggeredTimes.Add(2);
         }
 
