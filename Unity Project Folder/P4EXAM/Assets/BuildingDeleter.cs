@@ -11,7 +11,7 @@ public class BuildingDeleter : MonoBehaviour
 
     private float rightClickStartTime = 0f;
     private bool isRightClickHeld = false;
-    private bool hasTriggered = false;
+    public bool hasTriggered = false;
 
     private SpriteRenderer currentRenderer = null;
     private Color originalColor;

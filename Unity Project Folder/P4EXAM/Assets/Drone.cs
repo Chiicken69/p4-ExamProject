@@ -17,7 +17,7 @@ public class Drone : MonoBehaviour
     
     private SpriteRenderer _imageSpriteRenderer;
    // [SerializeField] private float _speed;
-    [SerializeField] private bool _carryingItem;
+    [SerializeField] public bool _carryingItem;
     [SerializeField] private GameObject _Item;
 
     [SerializeField] private Sprite _sprite;

@@ -16,7 +16,7 @@ public class ArrowMinigame : MonoBehaviour
     [SerializeField] private List<Sprite> spriteList;
 
     List<GameObject> cloneArrowList = new List<GameObject>();
-    List<DirectionName> directionList = new List<DirectionName>();
+    public List<DirectionName> directionList = new List<DirectionName>();
 
     //private bool _interact;
     private bool _closeUI;
@@ -30,10 +30,10 @@ public class ArrowMinigame : MonoBehaviour
 
     int direction;
     string result;
-    private enum DirectionName { Up, Left, Right, Down, None }
+    public enum DirectionName { Up, Left, Right, Down, None }
 
     private int _arrowAmount = 5;
-    private int currentArrowIndex = 0;
+    public int currentArrowIndex = 0;
 
 
 

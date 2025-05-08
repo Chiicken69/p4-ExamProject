@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -18,6 +19,10 @@ public class FlagManager : MonoBehaviour
     [SerializeField] Button FlagMangButton;
     Color PassiveColor = new Color(255, 255, 255, 1f);
     Color ToggledColor = new Color(255, 255, 255, 0.75f);
+
+    List<GameObject> droneList = new List<GameObject>();
+
+    GameObject tempFlag;
 
     private void Awake()
     {
@@ -40,23 +45,38 @@ public class FlagManager : MonoBehaviour
         ChangeToFlagModeKeybind();
         MouseClickDetection();
         _mousePos = InputHandler.Instance.PassMousePosInWorld();
+
+        CheckFlagsOnSelcDrone();
+
+        if (_flagMode == false)
+        {
+            unhighlight();
+        }
+
     }
 
     void MouseClickDetection()
     {
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
-            if (_flagMode && selectedDrone != null)
+            bool clickedDrone = TrySelectDrone(_mousePos);
+
+            // If we didn't click a drone AND in flag mode AND a drone is selected
+            if (!clickedDrone && _flagMode && selectedDrone != null)
             {
                 PlaceFlag(_mousePos);
-            }
-            else
-            {
-                TrySelectDrone(_mousePos);
             }
         }
         else if (Input.GetMouseButtonDown(1) && !EventSystem.current.IsPointerOverGameObject())
         {
+            unhighlight();
+        }
+    }
+
+
+    void unhighlight()
+    {
+   
             // Deselect drone and turn off its highlight
             if (selectedDrone != null)
             {
@@ -66,11 +86,11 @@ public class FlagManager : MonoBehaviour
 
                 selectedDrone = null;
             }
-        }
+        
     }
 
 
-    void TrySelectDrone(Vector2 mousePos)
+    bool TrySelectDrone(Vector2 mousePos)
     {
         RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
         if (hit.collider != null)
@@ -78,6 +98,13 @@ public class FlagManager : MonoBehaviour
             Drone drone = hit.collider.GetComponent<Drone>();
             if (drone != null)
             {
+                if (selectedDrone == drone)
+                {
+                    // Toggle off if clicking the same drone
+                    unhighlight();
+                    return true;
+                }
+
                 // Deselect previous
                 if (selectedDrone != null)
                 {
@@ -88,14 +115,16 @@ public class FlagManager : MonoBehaviour
 
                 // Select new
                 selectedDrone = drone;
-
                 Transform newHighlight = selectedDrone.transform.Find("Highlight");
                 if (newHighlight != null)
                     newHighlight.gameObject.SetActive(true);
 
                 Debug.Log("Selected drone: " + drone.name);
+                return true;
             }
         }
+
+        return false; // No drone was clicked
     }
 
     void PlaceFlag(Vector2 pos)
@@ -116,11 +145,33 @@ public class FlagManager : MonoBehaviour
         Debug.Log("Placed flag at: " + pos);
     }
 
+    void CheckFlagsOnSelcDrone()
+    {
+        var drones = DroneManager.Instance.drones;
+
+        foreach (var droneObj in drones)
+        {
+            Drone droneScript = droneObj.GetComponent<Drone>();
+            bool isSelected = (droneScript == selectedDrone);
+            ForEachFlagSprite(isSelected, droneScript.flagObjects);
+        }
+    }
+
+
+    void ForEachFlagSprite(bool state, List<GameObject> Flags)
+    {
+        foreach (GameObject flag in Flags)
+        {
+            flag.GetComponent<SpriteRenderer>().enabled = state;
+        }
+    }
+
     public void ChangeModeToFlagMode()
     {
 
         //_flagmode = !_flagmode;
         _flagMode = !_flagMode;
+  
         Debug.Log("FlagMode is now: " + _flagMode);
     }
 
@@ -157,7 +208,7 @@ public class FlagManager : MonoBehaviour
             _flagModeText.text = "LMB to select a drone";
             if (selectedDrone != null)
             {
-                _flagModeText.text = "LMB to move, RMB to deselect";
+                _flagModeText.text = "LMB to move, LMB or RMB on drone deselect";
             }
         }
         else
