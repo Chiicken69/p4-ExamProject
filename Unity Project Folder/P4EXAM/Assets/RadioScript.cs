@@ -96,6 +96,7 @@ public class RadioScript : MonoBehaviour
     {
         if (_closeUI && radioUI.activeInHierarchy)
         {
+            AudioManager.Instance.PlaySFX("ButtonClick");
             radioUI.SetActive(false);
             isInDialogMode = false;
         }
