@@ -1488,26 +1488,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 49068800639931144, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
-      propertyPath: m_Size.x
-      value: 1.5134654
-      objectReference: {fileID: 0}
-    - target: {fileID: 49068800639931144, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
-      propertyPath: m_Size.y
-      value: 1.560848
-      objectReference: {fileID: 0}
-    - target: {fileID: 49068800639931144, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.071909666
-      objectReference: {fileID: 0}
-    - target: {fileID: 49068800639931144, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.040274978
-      objectReference: {fileID: 0}
-    - target: {fileID: 1904625159174637542, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4382868721072274007, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.4975
@@ -1551,6 +1531,14 @@ PrefabInstance:
     - target: {fileID: 6348610522869183776, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
       propertyPath: m_Name
       value: Drone
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254338968371548945, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8739067973061338486, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
