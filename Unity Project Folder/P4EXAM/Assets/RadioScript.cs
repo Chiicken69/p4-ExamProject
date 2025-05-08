@@ -146,7 +146,7 @@ public class RadioScript : MonoBehaviour
             EnqueueDialog("Turiel", "Hello, are you there?\nAh good. I've been told to read you a few instructions from my notebook.\nHmm let's see..... \nIf you open your blueprint book by clicking on it, you should be able to scroll through it to see different buildable objects. Try building a factory! I recommend zooming out before entering build mode.\nBy the way, if you just walk away from the radio, it won't stop our dialogue; whoever's on the radio will just... patiently wait for you to come back and press the *ESC* button to close the UI. ONLY THEN will the radio check if there's anyone else that's trying to reach your frequency.");
             triggeredTimes.Add(1);
         }
-        if (!factoryBuildTutorielDone )
+        if (!factoryBuildTutorielDone)
         {
             if (factoryManager.Factories.Count > 0)
             {
@@ -204,38 +204,41 @@ public class RadioScript : MonoBehaviour
         {
             if (buildingDeleter.hasTriggered == true)
             {
-                dronesTutorielDone = true;
+                deleteingTutorielDone = true;
+                tutorielDone = true;
             }
         }
         else if (!triggeredTimes.Contains(94)) //just useing 9 as the id for the tutoriel dialog
         {
             Dequeue();
             triggeredTimes.Add(94);
+
         }
         if (!triggeredTimes.Contains(5))
         {
             EnqueueDialog("Turiel", "Aaand that should be everything. \nHave fun, \nTuriel out!"); //add Turiel dialog to remind player to save when that feature is added
             triggeredTimes.Add(5);
         }
-        if (!triggeredTimes.Contains(6))
-        {
-            //EnqueueDialog("Horatio", "Dammit Turiel, why are you hogging the radio before we even get the chance to explain them whats going on? \n*sigh* If you forgot mission is to construct a 'Skyspindle,' a flying windmill to capture wind currents from up high. It’ll be your first major energy source. From there, you’ll move to making the Helioplate solar arrays, and eventually... the Core Bioreactor, with each completion of a major power source we will be able to provide more support through more recipes and blueprints. Remember: without power, the lifeseeds can’t germinate. No power, no future. Report back to me once the spindle is up. We’re rooting for you, literally.");
-            EnqueueDialog("Horatio", "Dammit Turiel, why are you hogging the radio before we even get the chance to explain them whats going on? \n*sigh* \nIf you forgot, your job is to construct a 'Skyspindle,' a flying windmill to capture wind currents from up high. It’ll be your first major energy source, but more on that later.");
-            triggeredTimes.Add(6);
-        }
-
     }
 
     void DialogController()
     {
-        TutorielController();
-        if (!tutorielDone)
-        {
-            StarttimeInSeconds = Mathf.FloorToInt(Time.time);
-        }
-        if (tutorielDone)
+
+            if (!tutorielDone)
+            {
+                TutorielController();
+                StarttimeInSeconds = Mathf.FloorToInt(Time.time);
+            }
+            if (tutorielDone)
         {
             timeInSeconds = Mathf.FloorToInt(Time.time) - StarttimeInSeconds;
+
+            if (!triggeredTimes.Contains(6))
+            {
+                //EnqueueDialog("Horatio", "Dammit Turiel, why are you hogging the radio before we even get the chance to explain them whats going on? \n*sigh* If you forgot mission is to construct a 'Skyspindle,' a flying windmill to capture wind currents from up high. It’ll be your first major energy source. From there, you’ll move to making the Helioplate solar arrays, and eventually... the Core Bioreactor, with each completion of a major power source we will be able to provide more support through more recipes and blueprints. Remember: without power, the lifeseeds can’t germinate. No power, no future. Report back to me once the spindle is up. We’re rooting for you, literally.");
+                EnqueueDialog("Horatio", "Dammit Turiel, why are you hogging the radio before we even get the chance to explain them whats going on? \n*sigh* \nIf you forgot, your job is to construct a 'Skyspindle,' a flying windmill to capture wind currents from up high. It’ll be your first major energy source, but more on that later.");
+                triggeredTimes.Add(6);
+            }
 
             if (timeInSeconds >= 261 && !triggeredTimes.Contains(7))
             {   // This one is there no point to having tbh
