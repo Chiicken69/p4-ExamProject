@@ -12,6 +12,7 @@ public class BuildingDeleter : MonoBehaviour
     private float rightClickStartTime = 0f;
     private bool isRightClickHeld = false;
     public bool hasTriggered = false;
+    public bool deleterTutorielDone = false;
 
     private SpriteRenderer currentRenderer = null;
     private Color originalColor;
@@ -108,6 +109,7 @@ public class BuildingDeleter : MonoBehaviour
                 {
                     hasTriggered = true;
                     Destroy(hit.gameObject);
+                    deleterTutorielDone = true;
                     currentRenderer = null; // clear after destroy
                 }
             }

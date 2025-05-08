@@ -158,66 +158,78 @@ public class RadioScript : MonoBehaviour
             Dequeue();
             triggeredTimes.Add(91);
         }
-        if (!triggeredTimes.Contains(2))
+        if (triggeredTimes.Contains(91))
         {
-            EnqueueDialog("Turiel", "NOW, to my favorite part! \nTry going up to the copper farm, or one of your factories and press the 'e' button. \nTHEN you should see our patent pending efficiency module that plays like those video games. Press the arrow keys in the shown pattern; as long as you do it correctly, it should boost your machines!");
-            triggeredTimes.Add(2);
-        }
-        if (!minigameTutorielDone)
-        {
-            if (arrowMinigame.currentArrowIndex >= arrowMinigame.directionList.Count)
+            if (!triggeredTimes.Contains(2))
             {
-                minigameTutorielDone = true;
+                EnqueueDialog("Turiel", "NOW, to my favorite part! \nTry going up to the copper farm, or one of your factories and press the 'e' button. \nTHEN you should see our patent pending efficiency module that plays like those video games. Press the arrow keys in the shown pattern; as long as you do it correctly, it should boost your machines!");
+                triggeredTimes.Add(2);
             }
-        }
-        else if (!triggeredTimes.Contains(92)) //just useing 9 as the id for the tutoriel dialog
-        {
-            Dequeue();
-            triggeredTimes.Add(92);
-        }
-
-        if (!triggeredTimes.Contains(3))
-        {
-            EnqueueDialog("Turiel", "Next up, try using your drones. \nYou should be able to activate flag managing mode by clicking on the other button. \nYou will be able to move drones between " + drone.maxFlagCount + " different locations, by making them pass over buildings like factories. \nThey should be able to take the output and move it around into another building to craft items. \nFor example, transferring copper into a wire factory shoooould make wires for you to make spools and other parts");
-            triggeredTimes.Add(3);
-        }
-        if (!dronesTutorielDone)
-        {
-            if (drone.maxFlagCount > 0 && drone._carryingItem)
+            if (!minigameTutorielDone)
             {
-                dronesTutorielDone = true;
+                if (arrowMinigame.currentArrowIndex >= arrowMinigame.directionList.Count)
+                {
+                    minigameTutorielDone = true;
+                }
             }
-        }
-        else if (!triggeredTimes.Contains(93)) //just useing 9 as the id for the tutoriel dialog
-        {
-            Dequeue();
-            triggeredTimes.Add(93);
-        }
-
-
-        if (!triggeredTimes.Contains(4))
-        {
-            EnqueueDialog("Turiel", "By the way, if you ever get tired of seeing one of your placed buildings, try holding right-click while standing next to them for 3 seconds. They will hopefully start glowing red and get out of your sight.");
-            triggeredTimes.Add(4);
-        }
-        if (!deleteingTutorielDone)
-        {
-            if (buildingDeleter.hasTriggered == true)
+            else if (!triggeredTimes.Contains(92)) //just useing 9 as the id for the tutoriel dialog
             {
-                deleteingTutorielDone = true;
-                tutorielDone = true;
+                Dequeue();
+                triggeredTimes.Add(92);
             }
-        }
-        else if (!triggeredTimes.Contains(94)) //just useing 9 as the id for the tutoriel dialog
-        {
-            Dequeue();
-            triggeredTimes.Add(94);
 
-        }
-        if (!triggeredTimes.Contains(5))
-        {
-            EnqueueDialog("Turiel", "Aaand that should be everything. \nHave fun, \nTuriel out!"); //add Turiel dialog to remind player to save when that feature is added
-            triggeredTimes.Add(5);
+            if (triggeredTimes.Contains(92))
+            {
+                if (!triggeredTimes.Contains(3))
+                {
+                    EnqueueDialog("Turiel", "Next up, try using your drones. \nYou should be able to activate flag managing mode by clicking on the other button. \nYou will be able to move drones between " + drone.maxFlagCount + " different locations, by making them pass over buildings like factories. \nThey should be able to take the output and move it around into another building to craft items. \nFor example, transferring copper into a wire factory shoooould make wires for you to make spools and other parts");
+                    triggeredTimes.Add(3);
+                }
+                if (!dronesTutorielDone)
+                {
+                    if (drone.maxFlagCount > 0 && drone._carryingItem)
+                    {
+                        dronesTutorielDone = true;
+                    }
+                }
+                else if (!triggeredTimes.Contains(93)) //just useing 9 as the id for the tutoriel dialog
+                {
+                    Dequeue();
+                    triggeredTimes.Add(93);
+                }
+                if (triggeredTimes.Contains(93))
+                {
+                    if (!triggeredTimes.Contains(4))
+                    {
+                        EnqueueDialog("Turiel", "By the way, if you ever get tired of seeing one of your placed buildings, try holding right-click while standing next to them for 3 seconds. They will hopefully start glowing red and get out of your sight.");
+                        triggeredTimes.Add(4);
+                    }
+                    if (!deleteingTutorielDone)
+                    {
+                        if (buildingDeleter.deleterTutorielDone == true)
+                        {
+
+                            tutorielDone = true;
+                        }
+                    }
+                    else if (!triggeredTimes.Contains(94)) //just useing 9 as the id for the tutoriel dialog
+                    {
+                        Dequeue();
+                        Dequeue();
+                        triggeredTimes.Add(94);
+                        deleteingTutorielDone = true;
+
+                    }
+                    if (triggeredTimes.Contains(94))
+                    {
+                        if (!triggeredTimes.Contains(5))
+                        {
+                            EnqueueDialog("Turiel", "Aaand that should be everything. \nHave fun, \nTuriel out!"); //add Turiel dialog to remind player to save when that feature is added
+                            triggeredTimes.Add(5);
+                        }
+                    }
+                }
+            }
         }
     }
 
