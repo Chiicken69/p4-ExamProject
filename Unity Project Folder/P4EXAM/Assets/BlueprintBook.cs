@@ -51,6 +51,8 @@ public class BlueprintBook : MonoBehaviour
         public Sprite buildingSprite;
     }
 
+    private bool _closeUI;
+
     float _scroll;
     private float _minScoll = 0;
     private float _maxScoll;
@@ -78,6 +80,7 @@ public class BlueprintBook : MonoBehaviour
 
 
         GetKeyInfo();
+
         Openui();
 
         if (_enteredBuildingMode)
@@ -92,7 +95,7 @@ public class BlueprintBook : MonoBehaviour
         }
         //Debug.Log("no sprite at id " + buildingID);
 
-
+        CloseUI();
 
 
 
@@ -104,7 +107,7 @@ public class BlueprintBook : MonoBehaviour
             
         _mousePos = InputHandler.Instance.PassMousePosInWorld();
         _LeftMouseButton = InputHandler.Instance.PassInputBoolValue(8);
-
+        _closeUI = InputHandler.Instance.PassInputBoolValue(2);
         _scroll = InputHandler.Instance.PassInputFloatValue();
 
 
@@ -150,6 +153,22 @@ public class BlueprintBook : MonoBehaviour
         }
     
     }
+     private void CloseUI()
+     {
+
+        if (_closeUI)
+        {
+           _enteredBuildingMode = false;
+           if (buildingPreview != null)
+           {
+           Destroy(buildingPreview);
+           }
+           _placeingText.text = "";
+        }
+
+
+    }
+
     public void PlaceBuilding()
     {
  

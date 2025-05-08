@@ -1,16 +1,14 @@
-﻿using System.Collections.Generic;
-using NUnit.Framework.Internal;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class FlagManager : MonoBehaviour
 {
     public static FlagManager Instance;
-    
+
     [SerializeField] Image _blueprintBook;
     [SerializeField] Text _flagModeText;
-public static bool _flagMode = false;
+    public static bool _flagMode = false;
 
     public Drone selectedDrone;
 
@@ -38,95 +36,68 @@ public static bool _flagMode = false;
 
     void Update()
     {
+        CheckModeForText();
+        ChangeToFlagModeKeybind();
+        MouseClickDetection();
+    }
 
-            if (_flagMode)
+    void MouseClickDetection()
+    {
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+        {
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            if (_flagMode && selectedDrone != null)
             {
-                _blueprintBook.enabled =false;
-                _flagModeText.text = "LMB to select a drone";
-                if(selectedDrone != null)
-                {
-                _flagModeText.text = "LMB to move, RMB to deselect";
-                }
+                PlaceFlag(mousePos);
             }
             else
             {
-                _blueprintBook.enabled =true;
-                _flagModeText.text = "";
-            }
-
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            _flagMode = !_flagMode;
-            Debug.Log("FlagMode is now: " + _flagMode);
-
-            if (!_flagMode)
-            {
-                print("SIGMAAAA");
-                //ChangeButtonlook(Color.gray);
-                FlagMangButton.GetComponent<Image>().color = PassiveColor ;
-            }
-            else
-            {
-                print("NOT VERY SIGMAA");
-                FlagMangButton.GetComponent<Image>().color = ToggledColor;
-                // ChangeButtonlook(Color.red);
+                TrySelectDrone(mousePos);
             }
         }
-
-  if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
-    {
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        if (_flagMode && selectedDrone != null)
+        else if (Input.GetMouseButtonDown(1) && !EventSystem.current.IsPointerOverGameObject())
         {
-            PlaceFlag(mousePos);
-        }
-        else
-        {
-            TrySelectDrone(mousePos);
-        }
-    }
-    else if (Input.GetMouseButtonDown(1) && !EventSystem.current.IsPointerOverGameObject())
-    {
-        // Deselect drone and turn off its highlight
-        if (selectedDrone != null)
-        {
-            Transform highlight = selectedDrone.transform.Find("Highlight");
-            if (highlight != null)
-                highlight.gameObject.SetActive(false);
-
-            selectedDrone = null;
-        }
-    }
-    }
-
-    void TrySelectDrone(Vector2 mousePos)
-{
-    RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
-    if (hit.collider != null)
-    {
-        Drone drone = hit.collider.GetComponent<Drone>();
-        if (drone != null)
-        {
-            // Deselect previous
+            // Deselect drone and turn off its highlight
             if (selectedDrone != null)
             {
-                Transform prevHighlight = selectedDrone.transform.Find("Highlight");
-                if (prevHighlight != null)
-                    prevHighlight.gameObject.SetActive(false);
+                Transform highlight = selectedDrone.transform.Find("Highlight");
+                if (highlight != null)
+                    highlight.gameObject.SetActive(false);
+
+                selectedDrone = null;
             }
-
-            // Select new
-            selectedDrone = drone;
-
-            Transform newHighlight = selectedDrone.transform.Find("Highlight");
-            if (newHighlight != null)
-                newHighlight.gameObject.SetActive(true);
-
-            Debug.Log("Selected drone: " + drone.name);
         }
     }
-}
+
+
+    void TrySelectDrone(Vector2 mousePos)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+        if (hit.collider != null)
+        {
+            Drone drone = hit.collider.GetComponent<Drone>();
+            if (drone != null)
+            {
+                // Deselect previous
+                if (selectedDrone != null)
+                {
+                    Transform prevHighlight = selectedDrone.transform.Find("Highlight");
+                    if (prevHighlight != null)
+                        prevHighlight.gameObject.SetActive(false);
+                }
+
+                // Select new
+                selectedDrone = drone;
+
+                Transform newHighlight = selectedDrone.transform.Find("Highlight");
+                if (newHighlight != null)
+                    newHighlight.gameObject.SetActive(true);
+
+                Debug.Log("Selected drone: " + drone.name);
+            }
+        }
+    }
 
     void PlaceFlag(Vector2 pos)
     {
@@ -146,12 +117,20 @@ public static bool _flagMode = false;
         Debug.Log("Placed flag at: " + pos);
     }
 
-       public void ChangeModeToFlagMode()
+    public void ChangeModeToFlagMode()
     {
 
         //_flagmode = !_flagmode;
         _flagMode = !_flagMode;
         Debug.Log("FlagMode is now: " + _flagMode);
+    }
+
+    private void ChangeToFlagModeKeybind(){
+    if (Input.GetKeyDown(KeyCode.F))
+        {
+            ChangeModeToFlagMode();
+            ChangeButtonlook();
+        }
     }
 
     public void ChangeButtonlook()
@@ -160,15 +139,34 @@ public static bool _flagMode = false;
         if (!_flagMode)
         {
             print("SIGMAAAA");
-            FlagMangButton.GetComponent<Image>().color = PassiveColor ;
+            FlagMangButton.GetComponent<Image>().color = PassiveColor;
             //ChangeButtonlook(Color.gray);
         }
         if (_flagMode)
         {
             print("NOT VERY SIGMAA");
             FlagMangButton.GetComponent<Image>().color = ToggledColor;
-           // ChangeButtonlook(Color.red);
+            // ChangeButtonlook(Color.red);
         }
+    }
+
+    void CheckModeForText()
+    {
+        if (_flagMode)
+        {
+            _blueprintBook.enabled = false;
+            _flagModeText.text = "LMB to select a drone";
+            if (selectedDrone != null)
+            {
+                _flagModeText.text = "LMB to move, RMB to deselect";
+            }
+        }
+        else
+        {
+            _blueprintBook.enabled = true;
+            _flagModeText.text = "";
+        }
+
     }
 
 }
