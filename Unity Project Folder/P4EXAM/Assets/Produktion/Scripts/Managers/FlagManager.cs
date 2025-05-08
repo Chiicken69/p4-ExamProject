@@ -53,8 +53,16 @@ public class FlagManager : MonoBehaviour
             unhighlight();
         }
 
-    }
 
+
+        // Check for the key press and reset _lastFactoryAccessed when the key is pressed.
+        if (Input.GetKeyDown(KeyCode.R))  // Change 'R' to any key you want
+        {
+            selectedDrone._lastFactoryAccessed = null;
+            Debug.Log("Last Factory Accessed has been reset.");
+        }
+
+    }
     void MouseClickDetection()
     {
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
@@ -145,6 +153,8 @@ public class FlagManager : MonoBehaviour
         Debug.Log("Placed flag at: " + pos);
     }
 
+
+
     void CheckFlagsOnSelcDrone()
     {
         var drones = DroneManager.Instance.drones;
@@ -205,10 +215,10 @@ public class FlagManager : MonoBehaviour
         if (_flagMode)
         {
             _blueprintBook.enabled = false;
-            _flagModeText.text = "LMB to select a drone";
+            _flagModeText.text = "LMB to select a drone,\nLMB or RMB on drone deselect";
             if (selectedDrone != null)
             {
-                _flagModeText.text = "LMB to move, LMB or RMB on drone deselect";
+                _flagModeText.text = "LMB to move,\nR to reset drone intake/output factory";
             }
         }
         else
