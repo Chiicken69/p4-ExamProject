@@ -142,8 +142,8 @@ MonoBehaviour:
   OutputInventory: []
   InputInventory: []
   buildingSprite: {fileID: 21300000, guid: 95e19488c5a4a3746916f3cbc2cbf363, type: 3}
-  idleSprite: {fileID: 2925954814019165330, guid: b471a588f7fef6c4487672e51402a7ca, type: 3}
-  craftingSprite: {fileID: 2925954814019165330, guid: b471a588f7fef6c4487672e51402a7ca, type: 3}
+  idleSprite: {fileID: 21300000, guid: c0f105449dbc2c1449d1b15827b06b22, type: 2}
+  craftingSprite: {fileID: 21300000, guid: c0f105449dbc2c1449d1b15827b06b22, type: 2}
   processingSprite: {fileID: 0}
   _tempCraftingTime: 0
   speedIncreasePercentage: 0
@@ -559,8 +559,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00082254, y: 14.888}
-  m_SizeDelta: {x: 116.67, y: 29.777}
+  m_AnchoredPosition: {x: -0.00082254, y: 32.9}
+  m_SizeDelta: {x: 116.67, y: 65.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &360603058047497934
 CanvasRenderer:
@@ -617,7 +617,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12.4
+  m_fontSize: 17.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -625,7 +625,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 10.26
   m_wordSpacing: 0

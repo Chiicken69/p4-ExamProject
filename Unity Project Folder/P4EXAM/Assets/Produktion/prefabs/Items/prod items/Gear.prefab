@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b42a1e72177b641b58f02774e1e388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
+  type: 4
   itemName: Wire Item
   itemDescription: This is Wire
   Sprite: {fileID: -5255134781094344050, guid: 7c4147d26669a5a49beb5de35879d6a3, type: 3}
