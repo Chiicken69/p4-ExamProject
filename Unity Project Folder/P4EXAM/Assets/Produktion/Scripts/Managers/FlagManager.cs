@@ -13,7 +13,7 @@ public class FlagManager : MonoBehaviour
     public Drone selectedDrone;
 
     public GameObject highlight;
-
+    private Vector2 _mousePos;
 
     [SerializeField] Button FlagMangButton;
     Color PassiveColor = new Color(255, 255, 255, 1f);
@@ -39,21 +39,20 @@ public class FlagManager : MonoBehaviour
         CheckModeForText();
         ChangeToFlagModeKeybind();
         MouseClickDetection();
+        _mousePos = InputHandler.Instance.PassMousePosInWorld();
     }
 
     void MouseClickDetection()
     {
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
             if (_flagMode && selectedDrone != null)
             {
-                PlaceFlag(mousePos);
+                PlaceFlag(_mousePos);
             }
             else
             {
-                TrySelectDrone(mousePos);
+                TrySelectDrone(_mousePos);
             }
         }
         else if (Input.GetMouseButtonDown(1) && !EventSystem.current.IsPointerOverGameObject())

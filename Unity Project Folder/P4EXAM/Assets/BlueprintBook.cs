@@ -86,11 +86,17 @@ public class BlueprintBook : MonoBehaviour
         if (_enteredBuildingMode)
         {
             BuildingMode();
+            if(_cameraZoom.enabled != false)
+            { 
             _cameraZoom.enabled = false;
+            }
             Flagmanager.SetActive(false);
         }
         else {
-            _cameraZoom.enabled = true;
+            if (_cameraZoom.enabled == false)
+            {
+                _cameraZoom.enabled = true;
+            }
             Flagmanager.SetActive(true);
         }
         //Debug.Log("no sprite at id " + buildingID);

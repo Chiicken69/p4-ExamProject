@@ -1001,7 +1001,7 @@ PrefabInstance:
     - target: {fileID: 4611918848262644118, guid: fefe7d706540b3a44aabffb9933757b1, type: 3}
       propertyPath: dronePrefab
       value: 
-      objectReference: {fileID: 1134119201}
+      objectReference: {fileID: 0}
     - target: {fileID: 8462695544010343961, guid: fefe7d706540b3a44aabffb9933757b1, type: 3}
       propertyPath: m_Name
       value: DroneManager
@@ -1464,6 +1464,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 49068800639931144, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
+      propertyPath: m_Size.x
+      value: 1.480298
+      objectReference: {fileID: 0}
+    - target: {fileID: 49068800639931144, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
+      propertyPath: m_Size.y
+      value: 1.480298
+      objectReference: {fileID: 0}
+    - target: {fileID: 49068800639931144, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.06480217
+      objectReference: {fileID: 0}
     - target: {fileID: 4382868721072274007, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.4975
@@ -1513,11 +1525,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
---- !u!1 &1134119201 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6348610522869183776, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
+--- !u!114 &1134119203 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8644601190767458832, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
   m_PrefabInstance: {fileID: 1134119200}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 738aa80c22625024fb22eac8f6c17e6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1137430321
 GameObject:
   m_ObjectHideFlags: 0
@@ -80679,7 +80697,7 @@ PrefabInstance:
     - target: {fileID: 7948117458934699618, guid: 799c88489f36ab944bb0ee77781f96cf, type: 3}
       propertyPath: drone
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1134119203}
     - target: {fileID: 7948117458934699618, guid: 799c88489f36ab944bb0ee77781f96cf, type: 3}
       propertyPath: radioUI
       value: 
