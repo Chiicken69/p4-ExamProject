@@ -1,0 +1,336 @@
+fileFormatVersion: 2
+guid: b471a588f7fef6c4487672e51402a7ca
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8371019140385695755
+    second: GroundTiles_0
+  - first:
+      213: 2925954814019165330
+    second: GroundTiles_1
+  - first:
+      213: 4649709173367252304
+    second: GroundTiles_2
+  - first:
+      213: -6272188282642272357
+    second: GroundTiles_3
+  - first:
+      213: 6988028765074096110
+    second: GroundTiles_4
+  - first:
+      213: 6983431751080370506
+    second: GroundTiles_5
+  - first:
+      213: 4930281995492453304
+    second: GroundTiles_6
+  - first:
+      213: 1230877979070368599
+    second: GroundTiles_7
+  - first:
+      213: -6652277832207214932
+    second: GroundTiles_8
+  - first:
+      213: 8685005563216762181
+    second: GroundTiles_9
+  - first:
+      213: 7415153120446582508
+    second: GroundTiles_10
+  - first:
+      213: 1399064803029251860
+    second: GroundTiles_11
+  - first:
+      213: 7714861430389134398
+    second: GroundTiles_12
+  - first:
+      213: 1803682630379414355
+    second: GroundTiles_13
+  - first:
+      213: 762397417296963716
+    second: GroundTiles_14
+  - first:
+      213: -1870896774056241089
+    second: GroundTiles_15
+  - first:
+      213: -3633618875977919555
+    second: GroundTiles_16
+  - first:
+      213: 6717008563013857355
+    second: GroundTiles_17
+  - first:
+      213: -2531438727120384984
+    second: GroundTiles_18
+  - first:
+      213: -9221851253791841457
+    second: GroundTiles_19
+  - first:
+      213: 3668597540895053313
+    second: GroundTiles_20
+  - first:
+      213: -1450305061571187571
+    second: GroundTiles_21
+  - first:
+      213: 6617666870513580956
+    second: GroundTiles_22
+  - first:
+      213: 4679118286074965397
+    second: GroundTiles_23
+  - first:
+      213: -2389531033332244406
+    second: GroundTiles_24
+  - first:
+      213: 2507676640048648699
+    second: GroundTiles_25
+  - first:
+      213: -6927748193163709657
+    second: GroundTiles_26
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 48
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: GroundTiles_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b086fae7e85db2470800000000000000
+      internalID: 8371019140385695755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GroundTiles_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 96
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29cd476a6641b9820800000000000000
+      internalID: 2925954814019165330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GroundTiles_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0552e63abd5178040800000000000000
+      internalID: 4649709173367252304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GroundTiles_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 48
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9f6db80df5b4f8a0800000000000000
+      internalID: -6272188282642272357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GroundTiles_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eeff37e33277af060800000000000000
+      internalID: 6988028765074096110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GroundTiles_5
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4164548d222ae060800000000000000
+      internalID: 6983431751080370506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: b662eee4adba078478766c718d8269fd
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      GroundTiles_0: 8371019140385695755
+      GroundTiles_1: 2925954814019165330
+      GroundTiles_2: 4649709173367252304
+      GroundTiles_3: -6272188282642272357
+      GroundTiles_4: 6988028765074096110
+      GroundTiles_5: 6983431751080370506
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

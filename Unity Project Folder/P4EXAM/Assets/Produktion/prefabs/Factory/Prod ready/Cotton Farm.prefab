@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: -7230496551092666868}
   - component: {fileID: 3287102130107736732}
   m_Layer: 0
-  m_Name: Copper Farm
+  m_Name: Cotton Farm
   m_TagString: Factory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -140,21 +140,20 @@ MonoBehaviour:
   state: 0
   _spriteRenderer: {fileID: 0}
   OutputInventory: []
-  InputInventory:
-  - {fileID: 3632619094670410106, guid: 9c4acc03301030647b60f42fe547cbb7, type: 3}
+  InputInventory: []
   buildingSprite: {fileID: 21300000, guid: 95e19488c5a4a3746916f3cbc2cbf363, type: 3}
-  idleSprite: {fileID: 6983431751080370506, guid: b471a588f7fef6c4487672e51402a7ca, type: 3}
-  craftingSprite: {fileID: 21300000, guid: 870758e7d87cecd4eac70a2da466d39e, type: 3}
+  idleSprite: {fileID: 2925954814019165330, guid: b471a588f7fef6c4487672e51402a7ca, type: 3}
+  craftingSprite: {fileID: 2925954814019165330, guid: b471a588f7fef6c4487672e51402a7ca, type: 3}
   processingSprite: {fileID: 0}
   _tempCraftingTime: 0
   speedIncreasePercentage: 0
   _craftingTime: 60
   _secondsToDecreaseSpeed: 5
   _ingredientList: 
-  _ingredientAmountForCraft: 02000000
-  _itemOutputType: {fileID: 3632619094670410106, guid: 45ec9bb8753f389459c0cc9d4a0ee5f1, type: 3}
+  _ingredientAmountForCraft: 
+  _itemOutputType: {fileID: 3632619094670410106, guid: 44020249e214c7c4aa68ea7dfe2fd2d2, type: 3}
   _itemListToCraftFactory: 
-  _itemAmountToCraftFactory: 02000000
+  _itemAmountToCraftFactory: 
 --- !u!61 &6791683756638734249
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -270,7 +269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: -7230496551092666868}
   animationFrames:
-  - {fileID: 6983431751080370506, guid: b471a588f7fef6c4487672e51402a7ca, type: 3}
+  - {fileID: -6272188282642272357, guid: b471a588f7fef6c4487672e51402a7ca, type: 3}
   frameRateMAX: 100
 --- !u!1 &1987547576189237144
 GameObject:

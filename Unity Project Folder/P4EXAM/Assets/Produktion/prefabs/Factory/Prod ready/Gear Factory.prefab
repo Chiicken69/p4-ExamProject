@@ -152,8 +152,8 @@ MonoBehaviour:
   _ingredientList: 06000000
   _ingredientAmountForCraft: 02000000
   _itemOutputType: {fileID: 3632619094670410106, guid: a833695987e4c73448fb902bd9c9f24c, type: 3}
-  _itemListToCraftFactory: 0c000000
-  _itemAmountToCraftFactory: 02000000
+  _itemListToCraftFactory: 0c00000003000000
+  _itemAmountToCraftFactory: 0200000001000000
 --- !u!61 &6791683756638734249
 BoxCollider2D:
   m_ObjectHideFlags: 0

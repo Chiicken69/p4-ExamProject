@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: -7230496551092666868}
   - component: {fileID: 3287102130107736732}
   m_Layer: 0
-  m_Name: Copper Farm
+  m_Name: Metal Parts Factory
   m_TagString: Factory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -140,20 +140,19 @@ MonoBehaviour:
   state: 0
   _spriteRenderer: {fileID: 0}
   OutputInventory: []
-  InputInventory:
-  - {fileID: 3632619094670410106, guid: 9c4acc03301030647b60f42fe547cbb7, type: 3}
+  InputInventory: []
   buildingSprite: {fileID: 21300000, guid: 95e19488c5a4a3746916f3cbc2cbf363, type: 3}
-  idleSprite: {fileID: 6983431751080370506, guid: b471a588f7fef6c4487672e51402a7ca, type: 3}
-  craftingSprite: {fileID: 21300000, guid: 870758e7d87cecd4eac70a2da466d39e, type: 3}
+  idleSprite: {fileID: 21300000, guid: 1111730ce93cb484c914c80efba71fc8, type: 3}
+  craftingSprite: {fileID: 21300000, guid: 1a80d083a0f5fa94d9a789e2318d3a3f, type: 2}
   processingSprite: {fileID: 0}
   _tempCraftingTime: 0
   speedIncreasePercentage: 0
   _craftingTime: 60
   _secondsToDecreaseSpeed: 5
-  _ingredientList: 
+  _ingredientList: 0c000000
   _ingredientAmountForCraft: 02000000
-  _itemOutputType: {fileID: 3632619094670410106, guid: 45ec9bb8753f389459c0cc9d4a0ee5f1, type: 3}
-  _itemListToCraftFactory: 
+  _itemOutputType: {fileID: 3632619094670410106, guid: 6b93c111690c6214bb58c70335644178, type: 3}
+  _itemListToCraftFactory: 0c000000
   _itemAmountToCraftFactory: 02000000
 --- !u!61 &6791683756638734249
 BoxCollider2D:
@@ -189,17 +188,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.14703411}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 0.7059318}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!212 &-7230496551092666868
 SpriteRenderer:
@@ -270,8 +269,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: -7230496551092666868}
   animationFrames:
-  - {fileID: 6983431751080370506, guid: b471a588f7fef6c4487672e51402a7ca, type: 3}
-  frameRateMAX: 100
+  - {fileID: 2675684807479774891, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
+  - {fileID: 7607394538394783668, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
+  - {fileID: -4756912914724569911, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
+  - {fileID: -7509214573506927569, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
+  - {fileID: 4187887258951695544, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
+  - {fileID: -2451358757374640964, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
+  - {fileID: 4748738748921114175, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
+  - {fileID: 844434216895765772, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
+  - {fileID: -3840083983616128128, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
+  - {fileID: -8360061755516059835, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
+  - {fileID: 5830307135970800363, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
+  - {fileID: -2850191601446660978, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
+  - {fileID: 8508749523465967630, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
+  - {fileID: -4865981453275321652, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
+  - {fileID: 4275185715449667522, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
+  - {fileID: 5221351111676797728, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
+  - {fileID: -478314364676971690, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
+  - {fileID: 3577973736208337898, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
+  frameRateMAX: 60
 --- !u!1 &1987547576189237144
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,7 +401,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.535}
+  m_AnchoredPosition: {x: 0, y: 0.8}
   m_SizeDelta: {x: 116.6667, y: 59.5529}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &6072610794764886469
@@ -485,7 +501,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -122}
+  m_AnchoredPosition: {x: 0, y: -139.3}
   m_SizeDelta: {x: 42.881, y: 44.826}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5926558536118359532
@@ -618,7 +634,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12.4
+  m_fontSize: 13.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -628,7 +644,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
-  m_characterSpacing: 10.26
+  m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
