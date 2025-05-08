@@ -79,7 +79,7 @@ public class FactoryBase : MonoBehaviour, Ifactory
     {
         DecreaseCraftingSpeed();
         // temporary testing code
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             IncreaseCraftingSpeed();
         }
@@ -171,7 +171,7 @@ public class FactoryBase : MonoBehaviour, Ifactory
     public void CreateOutput()
     {
         GameObject ObjectToAdd = _itemOutputType;
-        ObjectToAdd.AddComponent<ItemBase>();
+        //ObjectToAdd.AddComponent<ItemBase>();
         OutputInventory.Add(ObjectToAdd); 
     }
 
@@ -234,8 +234,34 @@ public class FactoryBase : MonoBehaviour, Ifactory
 
     IEnumerator Craft()
     {
-        //not done
-        ClearInputInventory();
+        // for each ingredient type...
+        for (int i = 0; i < _ingredientList.Count; i++)
+        {
+            var neededType = _ingredientList[i];
+            var amountNeeded = _ingredientAmountForCraft[i];
+            int k = 0;
+
+            // collect matching GameObjects to destroy
+            var toRemove = new List<GameObject>();
+
+            foreach (var go in InputInventory)
+            {
+                if (k >= amountNeeded)
+                    break;
+
+                var currentItem = go.GetComponent<ItemBase>();
+                if (currentItem.type == neededType)
+                {
+                    toRemove.Add(go);
+                    k++;
+                }
+            }
+
+            // now actually remove them
+            foreach (var go in toRemove)
+                InputInventory.Remove(go);
+        }
+        // ClearInputInventory();
         print("crafting started");
         state = FactoryState.Crafting;
         _tempCraftingTime = _craftingTime;
@@ -332,7 +358,7 @@ public class FactoryBase : MonoBehaviour, Ifactory
         // _tempCraftingTime /= _CraftingBoosterValue;
         if (state != FactoryState.Building)
         {
-            speedIncreasePercentage += 100;
+            speedIncreasePercentage += 400;
         }
 
         

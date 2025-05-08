@@ -7,6 +7,8 @@ TagManager:
   - Factory
   - Building
   - Radio
+  - Drone
+  - FlagMangButton
   layers:
   - Default
   - TransparentFX
@@ -14,7 +16,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Fuck
   - 
   - 
   - 

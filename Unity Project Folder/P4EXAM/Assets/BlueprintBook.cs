@@ -42,6 +42,7 @@ public class BlueprintBook : MonoBehaviour
 
     [SerializeField] private Sprite squareSprite; // assign your 1x1 square sprite in the Inspector
 
+    [SerializeField] GameObject Flagmanager;
 
     [System.Serializable]
     public class BuildingData
@@ -49,6 +50,8 @@ public class BlueprintBook : MonoBehaviour
         public int buildingID;
         public Sprite buildingSprite;
     }
+
+    private bool _closeUI;
 
     float _scroll;
     private float _minScoll = 0;
@@ -75,20 +78,24 @@ public class BlueprintBook : MonoBehaviour
     void Update()
     {
 
+
         GetKeyInfo();
+
         Openui();
 
         if (_enteredBuildingMode)
         {
             BuildingMode();
             _cameraZoom.enabled = false;
+            Flagmanager.SetActive(false);
         }
         else {
             _cameraZoom.enabled = true;
+            Flagmanager.SetActive(true);
         }
         //Debug.Log("no sprite at id " + buildingID);
 
-
+        CloseUI();
 
 
 
@@ -100,7 +107,7 @@ public class BlueprintBook : MonoBehaviour
             
         _mousePos = InputHandler.Instance.PassMousePosInWorld();
         _LeftMouseButton = InputHandler.Instance.PassInputBoolValue(8);
-
+        _closeUI = InputHandler.Instance.PassInputBoolValue(2);
         _scroll = InputHandler.Instance.PassInputFloatValue();
 
 
@@ -146,6 +153,22 @@ public class BlueprintBook : MonoBehaviour
         }
     
     }
+     private void CloseUI()
+     {
+
+        if (_closeUI)
+        {
+           _enteredBuildingMode = false;
+           if (buildingPreview != null)
+           {
+           Destroy(buildingPreview);
+           }
+           _placeingText.text = "";
+        }
+
+
+    }
+
     public void PlaceBuilding()
     {
  
@@ -185,7 +208,7 @@ public class BlueprintBook : MonoBehaviour
         }
         else if(_GhostPreview == null) { 
             Destroy(buildingPreview);
-            _placeingText.text = "Placeing: Nothing";
+            _placeingText.text = "Scroll with MMB";
         }
         if (_LeftMouseButton == true) 
             {
@@ -243,7 +266,7 @@ public class BlueprintBook : MonoBehaviour
                 {
                     buildingPreview.GetComponent<SpriteRenderer>().sprite = _GhostPreview;
                     buildingPreview.transform.position = cellPos;
-                    _placeingText.text = "Placeing: " + building[TempBuildingID].name;
+                    _placeingText.text = "Placing: " + building[TempBuildingID].name;
 
                     var checker = buildingPreview.GetComponent<CollisionChecker>();
                     if (checker != null && checker.isOverlapping)

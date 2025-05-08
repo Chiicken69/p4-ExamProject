@@ -23,13 +23,14 @@ public class DroneManager : MonoBehaviour
         }
     }
 
-    [SerializeField] List<GameObject> drones;
+     [SerializeField] public List<GameObject> drones;
 
    
 
     private void Update() // curently for testing
     {
-        if (InputHandler.Instance.PassInputBoolValue(3))
+        //InputHandler.Instance.PassInputBoolValue(3)
+        if (Input.GetKeyDown(KeyCode.O))
         {
             drones.Add(Instantiate(dronePrefab));
            

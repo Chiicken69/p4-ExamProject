@@ -1,64 +1,85 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
-
-
-
-
-enum DroneState { idle, flying, recharging, Processing }
 
 public class Drone : MonoBehaviour
 {
-    private DroneState droneState;
-    private Queue<IEnumerator> MoveCommands = new Queue<IEnumerator>();
-    private int flagIndex;
+    public List<Vector2> flagPoints = new List<Vector2>();
+    public List<GameObject> flagObjects = new List<GameObject>();
+    public GameObject flagPrefab;
+    public int maxFlagCount = 3;
+    //public float moveSpeed = 2f;
 
-    [SerializeField] private float _speed;
+    //private Queue<IEnumerator> MoveCommands = new Queue<IEnumerator>();
+    //private int flagIndex;
+
+   
+    
+    private SpriteRenderer _imageSpriteRenderer;
+   // [SerializeField] private float _speed;
     [SerializeField] private bool _carryingItem;
     [SerializeField] private GameObject _Item;
 
     [SerializeField] private Sprite _sprite;
 
+  //  [Header("Motion Parameters")]
+    //[SerializeField] float accel = 10f;   // units/sec²
+    //[SerializeField] float maxSpeed = 100f;  // units/sec
+    //[SerializeField] float stopThreshold = 0.01f; // how close is “at target”?
+
     [Header("Motion Parameters")]
     [SerializeField] float accel = 10f;   // units/sec²
     [SerializeField] float maxSpeed = 100f;  // units/sec
     [SerializeField] float stopThreshold = 0.01f; // how close is “at target”?
-
-
-
-    private void Start()
+    
+private void Awake()
+{
+    SpriteRenderer[] allRenderers = GetComponentsInChildren<SpriteRenderer>(true);
+    foreach (var renderer in allRenderers)
     {
-        
-        // Kick off the infinite patrol loop
+        if (renderer.gameObject != this.gameObject)
+        {
+            _imageSpriteRenderer = renderer;
+            break;
+        }
+    }
+}
+
+    void Start()
+    {
         StartCoroutine(PatrolFlags());
         StartCoroutine(ItemTransferLogic());
     }
-    private IEnumerator PatrolFlags()
-    {
-        int flagIndex = 0;
 
+    IEnumerator PatrolFlags()
+    {
         while (true)
         {
-            var flags = FlagManager.Instance._flagPoints;
-            if (flags.Count == 0)
+            if (flagPoints.Count == 0)
             {
-                // no flags yet → wait a frame and retry
                 yield return null;
                 continue;
             }
 
-            // wrap around if we’ve gone past the last flag
-            if (flagIndex >= flags.Count)
-                flagIndex = 0;
+            for (int i = 0; i < flagPoints.Count; i++)
+            {
+                Vector2 targetPos = flagPoints[i];
+                while (Vector2.Distance(transform.position, targetPos) > 0.1f)
+                {
+                        
+                    yield return StartCoroutine(MoveDroneTo(targetPos));
+                    yield return null;
+                }
 
-            Vector2 target = flags[flagIndex];
-            yield return StartCoroutine(MoveDroneTo(target));
+                yield return new WaitForSeconds(0.5f);
+            }
 
-            flagIndex++;
+            yield return null;
         }
     }
-    private IEnumerator MoveDroneTo(Vector2 target)
+    
+
+private IEnumerator MoveDroneTo(Vector2 target)
     {
         float speed = 0f;
 
@@ -93,34 +114,14 @@ public class Drone : MonoBehaviour
         // snap exactly
         transform.position = target;
     }
-    private void Update()
+      private void Update()
     {
-
-        switch (droneState)
+        if (_carryingItem)
         {
-            case DroneState.idle:
-                Debug.Log("is idle");
-                
-                break;
-
-            case DroneState.flying:
-                Debug.Log("is flying");
-                break;
-            case DroneState.recharging:
-                //c
-                break;
-            case DroneState.Processing:
-            //d
-            default:
-                droneState = DroneState.idle;
-                Debug.Log("is idle");
-               
-                break;
+            _sprite = _Item.GetComponent<ItemBase>().Sprite;
+            _imageSpriteRenderer.sprite = _sprite;
         }
-
-
-
-
+        else _imageSpriteRenderer.sprite = null;
     }
 
 
@@ -131,11 +132,11 @@ public class Drone : MonoBehaviour
         {
             if (takeItem() == true)
             {
-                yield return new WaitForSecondsRealtime(1f);
+                yield return new WaitForSecondsRealtime(1.5f);
             }
             if (DepositItem() == true)
             {
-                yield return new WaitForSecondsRealtime(1f);
+                yield return new WaitForSecondsRealtime(1.5f);
             }
             yield return null;
         }
@@ -158,7 +159,7 @@ public class Drone : MonoBehaviour
                _Item =  tempGB.GetComponent<FactoryBase>().TakeItemFromOutputInventory();
                 if (_Item != null)
                 {
-                    _carryingItem = true;
+                    ChangeCarryingState();
                     return true;
                 }
                 
@@ -185,7 +186,9 @@ public class Drone : MonoBehaviour
             {
                 //tempGB.GetComponent<FactoryBase>().CheckAgainstRecipe(_Item)
                 tempGB.GetComponent<FactoryBase>().AddItemToInventory(_Item);
-                _carryingItem= false;
+               
+                _Item = null;
+                ChangeCarryingState();
                 Debug.Log("Deposited item: " + _Item);
                 return true;
             }
@@ -207,6 +210,16 @@ public class Drone : MonoBehaviour
             
         }
     } */
+
+    private void ChangeCarryingState()
+    {
+        if (_Item != null)
+        {
+            _carryingItem = true;
+        }
+        else
+        {
+            _carryingItem= false;
+        }
+    }
 }
-
-
