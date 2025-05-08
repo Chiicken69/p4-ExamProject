@@ -116,6 +116,7 @@ private IEnumerator MoveDroneTo(Vector2 target)
     }
       private void Update()
     {
+        Debug.Log("Carrying: " + _Item.ToString());
         if (_carryingItem)
         {
             _sprite = _Item.GetComponent<ItemBase>().Sprite;
@@ -194,6 +195,7 @@ private IEnumerator MoveDroneTo(Vector2 target)
             }
 
         }
+      
         return false;
     }
 
