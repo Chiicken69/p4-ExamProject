@@ -214,7 +214,7 @@ public class BlueprintBook : MonoBehaviour
         }
         else if(_GhostPreview == null) { 
             Destroy(buildingPreview);
-            _placeingText.text = "Scroll with MMB";
+            _placeingText.text = "Esc to close\nScroll with mouse to see blueprints";
         }
         if (_LeftMouseButton == true) 
             {
