@@ -692,7 +692,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 566712503}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14edb8caa44042248baceafee0800ab6, type: 3}
   m_Name: 
@@ -853,6 +853,10 @@ PrefabInstance:
       propertyPath: _tilemap
       value: 
       objectReference: {fileID: 1137430324}
+    - target: {fileID: 2203214509998366714, guid: 5fd53be0e5dacc6479ad79ac0da0c1e6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2203214509998366714, guid: 5fd53be0e5dacc6479ad79ac0da0c1e6, type: 3}
       propertyPath: DroneDistanceThreshold
       value: 2
@@ -1514,17 +1518,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6348610522869183776, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
   m_PrefabInstance: {fileID: 1134119200}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1134119202 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8644601190767458832, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
-  m_PrefabInstance: {fileID: 1134119200}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1134119201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 738aa80c22625024fb22eac8f6c17e6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1137430321
 GameObject:
   m_ObjectHideFlags: 0
@@ -80686,7 +80679,7 @@ PrefabInstance:
     - target: {fileID: 7948117458934699618, guid: 799c88489f36ab944bb0ee77781f96cf, type: 3}
       propertyPath: drone
       value: 
-      objectReference: {fileID: 1134119202}
+      objectReference: {fileID: 0}
     - target: {fileID: 7948117458934699618, guid: 799c88489f36ab944bb0ee77781f96cf, type: 3}
       propertyPath: radioUI
       value: 
@@ -80727,6 +80720,10 @@ PrefabInstance:
     - target: {fileID: 3039955769465680500, guid: 32c0a7e78cb5da74ab57dba11b377d69, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4939456333823155215, guid: 32c0a7e78cb5da74ab57dba11b377d69, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4939456333823155215, guid: 32c0a7e78cb5da74ab57dba11b377d69, type: 3}
       propertyPath: Flagmanager
