@@ -32,6 +32,7 @@ public class interact : MonoBehaviour
         }
         if ((playerInRadioTrigger && _interact) && !radioUI.activeInHierarchy) 
         {
+            AudioManager.Instance.PlaySFX("ButtonClick");
             radioUI.SetActive(true);
         } 
     }

@@ -37,7 +37,7 @@ public class ArrowMinigame : MonoBehaviour
 
 
 
-
+    
     private void Update()
     {
         GetKeyInfo();
@@ -176,6 +176,7 @@ public class ArrowMinigame : MonoBehaviour
                 Debug.Log("Correct input for arrow " + currentArrowIndex);
            
                 Destroy(cloneArrowList[currentArrowIndex]);
+                AudioManager.Instance.PlaySFXArrayAt("ArrowMinigameSounds", currentArrowIndex);
                 currentArrowIndex++;
             }
             else
