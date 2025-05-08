@@ -12,9 +12,9 @@ public class Drone : MonoBehaviour
 
     //private Queue<IEnumerator> MoveCommands = new Queue<IEnumerator>();
     //private int flagIndex;
+    private GameObject _lastFactoryAccessed = null;
 
-   
-    
+
     private SpriteRenderer _imageSpriteRenderer;
    // [SerializeField] private float _speed;
     [SerializeField] private bool _carryingItem;
@@ -132,11 +132,11 @@ private IEnumerator MoveDroneTo(Vector2 target)
         {
             if (takeItem() == true)
             {
-                yield return new WaitForSecondsRealtime(1.5f);
+                yield return new WaitForSecondsRealtime(0.1f);
             }
             if (DepositItem() == true)
             {
-                yield return new WaitForSecondsRealtime(1.5f);
+                yield return new WaitForSecondsRealtime(0.1f);
             }
             yield return null;
         }
@@ -149,7 +149,7 @@ private IEnumerator MoveDroneTo(Vector2 target)
         {
             GameObject tempGB = FactoryManager.Instance.ReturnFactory(this.transform.position);
 
-            if (tempGB == null)
+            if (tempGB == null && !IsSameFactory(tempGB))
             {
                 Debug.Log("yo dawg this shit null");
                 return false;
@@ -157,7 +157,7 @@ private IEnumerator MoveDroneTo(Vector2 target)
             else
             {
                _Item =  tempGB.GetComponent<FactoryBase>().TakeItemFromOutputInventory();
-                if (_Item != null)
+                if (_Item != null && !IsSameFactory(tempGB))
                 {
                     ChangeCarryingState();
                     return true;
@@ -177,12 +177,12 @@ private IEnumerator MoveDroneTo(Vector2 target)
             GameObject tempGB = FactoryManager.Instance.ReturnFactory(this.transform.position);
           
 
-            if (tempGB == null)
+            if (tempGB == null && !IsSameFactory(tempGB))
             {
                 Debug.Log("this is null. Deposit");
                 return false;
             }
-            else if (_Item != null)
+            else if (_Item != null && !IsSameFactory(tempGB))
             {
                 //tempGB.GetComponent<FactoryBase>().CheckAgainstRecipe(_Item)
                 tempGB.GetComponent<FactoryBase>().AddItemToInventory(_Item);
@@ -222,4 +222,25 @@ private IEnumerator MoveDroneTo(Vector2 target)
             _carryingItem= false;
         }
     }
+
+
+    /// <summary>
+    /// Returns true if the factory under the drone is the same as the last one it
+    /// accessed; returns false if it’s a new (different) factory, and records it.
+    /// </summary>
+    private bool IsSameFactory(GameObject Factory)
+    {
+        // no factory under us? just say “not same” but don't clear the cache
+        if (Factory == null)
+            return false;
+
+        // same factory as last time?
+        if (Factory == _lastFactoryAccessed)
+            return true;
+
+        // a new factory—remember it, and say “not same”
+        _lastFactoryAccessed = Factory;
+        return false;
+    }
+
 }
