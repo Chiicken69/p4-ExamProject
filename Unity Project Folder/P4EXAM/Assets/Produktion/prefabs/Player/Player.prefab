@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1505406011436574004}
   - component: {fileID: 4939456333823155215}
   - component: {fileID: 7218683973840144445}
+  - component: {fileID: 4863429315295962013}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -121,7 +122,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 5
+  m_LinearDamping: 15
   m_AngularDamping: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -194,14 +195,18 @@ MonoBehaviour:
   - buildingID: 0
     buildingSprite: {fileID: 21300000, guid: d3289b039998b524a9bcdd83283b92eb, type: 2}
   - buildingID: 1
-    buildingSprite: {fileID: 21300000, guid: 3cb0e3d9d762667429c6a663e77ffdeb, type: 2}
+    buildingSprite: {fileID: 21300000, guid: 870758e7d87cecd4eac70a2da466d39e, type: 3}
   - buildingID: 2
-    buildingSprite: {fileID: 21300000, guid: 1a80d083a0f5fa94d9a789e2318d3a3f, type: 2}
+    buildingSprite: {fileID: 21300000, guid: 1111730ce93cb484c914c80efba71fc8, type: 3}
+  - buildingID: 3
+    buildingSprite: {fileID: 21300000, guid: 1111730ce93cb484c914c80efba71fc8, type: 3}
   building:
   - {fileID: 122399579427468651, guid: 4e956ab606495f745be4dac20f485d80, type: 3}
-  - {fileID: 1883427552500268258, guid: 529c469e03a4d5c4293cfc10967b4e1c, type: 3}
+  - {fileID: 1883427552500268258, guid: b205a54c8e8bc87449dd6550dace0aea, type: 3}
   - {fileID: 1883427552500268258, guid: c3d468cf28203644ead081873b005cbd, type: 3}
+  - {fileID: 1883427552500268258, guid: 03c5d49122196294d838e54efe36364b, type: 3}
   squareSprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  Flagmanager: {fileID: 0}
 --- !u!95 &7218683973840144445
 Animator:
   serializedVersion: 7
@@ -224,6 +229,103 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!82 &4863429315295962013
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3039955769465680500}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &4031224080974289086
 GameObject:
   m_ObjectHideFlags: 0
