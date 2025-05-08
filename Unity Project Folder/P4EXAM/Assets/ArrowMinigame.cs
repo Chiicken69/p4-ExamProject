@@ -25,6 +25,8 @@ public class ArrowMinigame : MonoBehaviour
     private bool DownArrow;
     private bool LeftArrow;
 
+    public bool minigameTutorielDone = false;
+
     private bool currentRoundPlaying = false;
     private Sprite arrowImage;
 
@@ -159,6 +161,7 @@ public class ArrowMinigame : MonoBehaviour
             Debug.Log("All inputs correct! Round finished.");
             currentFactory.IncreaseCraftingSpeed();
             currentFactory = null;
+            minigameTutorielDone = true;
             currentRoundPlaying = false;
             cloneArrowList.Clear();
             directionList.Clear();

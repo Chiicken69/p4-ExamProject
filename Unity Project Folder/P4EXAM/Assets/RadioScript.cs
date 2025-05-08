@@ -185,7 +185,7 @@ public class RadioScript : MonoBehaviour
         // Check if the minigame tutorial is done
         if (!minigameTutorielDone)
         {
-            if (arrowMinigame.currentArrowIndex >= arrowMinigame.directionList.Count)
+            if (arrowMinigame.minigameTutorielDone)
             {
                 minigameTutorielDone = true;
             }
@@ -247,7 +247,6 @@ public class RadioScript : MonoBehaviour
             if (buildingDeleter.deleterTutorielDone == true)
             {
                 deleteingTutorielDone = true;
-                tutorielDone = true;
             }
             return;
         }
@@ -257,6 +256,7 @@ public class RadioScript : MonoBehaviour
         {
             Dequeue();
             triggeredTimes.Add(94);
+            tutorielDone = true;
             return;
         }
 
