@@ -139,6 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   _spriteRenderer: {fileID: 0}
+  DroneObjReference: {fileID: 6348610522869183776, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
   OutputInventory: []
   InputInventory: []
   buildingSprite: {fileID: 21300000, guid: 95e19488c5a4a3746916f3cbc2cbf363, type: 3}
