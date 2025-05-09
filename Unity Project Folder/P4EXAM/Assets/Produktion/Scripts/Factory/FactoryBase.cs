@@ -23,6 +23,7 @@ public class FactoryBase : MonoBehaviour, Ifactory
     public FactoryState state;
     private ItemBase.ItemType ListOfItems;
    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private GameObject DroneObjReference;
 
     [Header("Inventory sneak peek")]
     [SerializeField] List<GameObject> OutputInventory;
@@ -176,6 +177,13 @@ public class FactoryBase : MonoBehaviour, Ifactory
     {
         GameObject ObjectToAdd = _itemOutputType;
         //ObjectToAdd.AddComponent<ItemBase>();
+        
+
+        if (_itemOutputType == DroneObjReference )
+        {
+            Debug.LogWarning("drone obj is in here!!!");
+            DroneManager.Instance.SpawnDrone(this.gameObject);
+        }
         OutputInventory.Add(ObjectToAdd); 
     }
 
