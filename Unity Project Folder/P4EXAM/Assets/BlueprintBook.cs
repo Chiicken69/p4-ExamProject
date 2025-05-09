@@ -86,11 +86,17 @@ public class BlueprintBook : MonoBehaviour
         if (_enteredBuildingMode)
         {
             BuildingMode();
+            if(_cameraZoom.enabled != false)
+            { 
             _cameraZoom.enabled = false;
+            }
             Flagmanager.SetActive(false);
         }
         else {
-            _cameraZoom.enabled = true;
+            if (_cameraZoom.enabled == false)
+            {
+                _cameraZoom.enabled = true;
+            }
             Flagmanager.SetActive(true);
         }
         //Debug.Log("no sprite at id " + buildingID);
@@ -208,7 +214,7 @@ public class BlueprintBook : MonoBehaviour
         }
         else if(_GhostPreview == null) { 
             Destroy(buildingPreview);
-            _placeingText.text = "Scroll with MMB";
+            _placeingText.text = "Esc to close\nScroll with mouse to see blueprints";
         }
         if (_LeftMouseButton == true) 
             {

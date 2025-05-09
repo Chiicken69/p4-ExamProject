@@ -142,7 +142,7 @@ MonoBehaviour:
   OutputInventory: []
   InputInventory: []
   buildingSprite: {fileID: 21300000, guid: 95e19488c5a4a3746916f3cbc2cbf363, type: 3}
-  idleSprite: {fileID: 21300000, guid: 1111730ce93cb484c914c80efba71fc8, type: 3}
+  idleSprite: {fileID: -7228665348929097928, guid: 65f26c9176bb1294983d15c0f1b907bf, type: 3}
   craftingSprite: {fileID: 21300000, guid: 1a80d083a0f5fa94d9a789e2318d3a3f, type: 2}
   processingSprite: {fileID: 0}
   _tempCraftingTime: 0
@@ -269,24 +269,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: -7230496551092666868}
   animationFrames:
-  - {fileID: 2675684807479774891, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
-  - {fileID: 7607394538394783668, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
-  - {fileID: -4756912914724569911, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
-  - {fileID: -7509214573506927569, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
-  - {fileID: 4187887258951695544, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
-  - {fileID: -2451358757374640964, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
-  - {fileID: 4748738748921114175, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
-  - {fileID: 844434216895765772, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
-  - {fileID: -3840083983616128128, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
-  - {fileID: -8360061755516059835, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
-  - {fileID: 5830307135970800363, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
-  - {fileID: -2850191601446660978, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
-  - {fileID: 8508749523465967630, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
-  - {fileID: -4865981453275321652, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
-  - {fileID: 4275185715449667522, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
-  - {fileID: 5221351111676797728, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
-  - {fileID: -478314364676971690, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
-  - {fileID: 3577973736208337898, guid: 5c5698a026bde6f4f84d2af245c108fd, type: 3}
+  - {fileID: -7228665348929097928, guid: 65f26c9176bb1294983d15c0f1b907bf, type: 3}
+  - {fileID: 5207229118096536697, guid: 65f26c9176bb1294983d15c0f1b907bf, type: 3}
+  - {fileID: 4985066491468824944, guid: 65f26c9176bb1294983d15c0f1b907bf, type: 3}
+  - {fileID: 8744338853872263676, guid: 65f26c9176bb1294983d15c0f1b907bf, type: 3}
+  - {fileID: -5622193508188670778, guid: 65f26c9176bb1294983d15c0f1b907bf, type: 3}
+  - {fileID: 3824496624038573674, guid: 65f26c9176bb1294983d15c0f1b907bf, type: 3}
+  - {fileID: 854017115860331934, guid: 65f26c9176bb1294983d15c0f1b907bf, type: 3}
+  - {fileID: 9079483985812477982, guid: 65f26c9176bb1294983d15c0f1b907bf, type: 3}
   frameRateMAX: 60
 --- !u!1 &1987547576189237144
 GameObject:
@@ -576,8 +566,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00082254, y: 14.888}
-  m_SizeDelta: {x: 116.67, y: 29.777}
+  m_AnchoredPosition: {x: -0.00082254, y: 32.9}
+  m_SizeDelta: {x: 116.67, y: 65.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &360603058047497934
 CanvasRenderer:
@@ -634,7 +624,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13.65
+  m_fontSize: 20.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -642,7 +632,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
