@@ -63,6 +63,11 @@ MonoBehaviour:
     - {fileID: 8300000, guid: ebef71a4b9ea54f4aa43cf6b01680122, type: 3}
     - {fileID: 8300000, guid: 9f69f78da4855ec46b40a287b2eda7d0, type: 3}
     - {fileID: 8300000, guid: 4a85509a9a3704e4fb3487cb68ea25fa, type: 3}
+  - name: ButtonClicks
+    clip:
+    - {fileID: 8300000, guid: d7b7e49b9c54c794c98ff1d16732f0b5, type: 3}
+    - {fileID: 8300000, guid: 883dc17b0b318c144a770b1cc356c7cc, type: 3}
+    - {fileID: 8300000, guid: cb5ec873f8512514fbf2b34c90377a50, type: 3}
   musicSource: {fileID: 8987206984190863639}
   sfxSource: {fileID: 0}
 --- !u!82 &8987206984190863639
