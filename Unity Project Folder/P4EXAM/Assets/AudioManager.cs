@@ -1,16 +1,121 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 
 public class AudioManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static AudioManager Instance;
+    public Sound[] musicSounds, sfxSounds;
+    public SoundArray[] sfxSoundArray;
+    public AudioSource musicSource, sfxSource;
+
+    private void Awake()
     {
-        
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// Plays music with the corresponding string name
+    /// </summary>
+    /// <param name="name"></param>
+    public void PlayMusic(string name)
     {
-        
+        Sound sound = Array.Find(musicSounds, x => x.name == name);
+
+        if (sound == null)
+        {
+            Debug.Log("Sound not found or is null");
+        }
+        else
+        {
+            musicSource.clip = sound.clip;
+            musicSource.Play();
+        }
     }
+
+    /// <summary>
+    /// Plays Sound effect with corresponding string name
+    /// </summary>
+    /// <param name="name"></param>
+    public void PlaySFX(string name)
+    {
+        Sound sound = Array.Find(sfxSounds, x => x.name == name);
+
+        if (sound == null)
+        {
+            Debug.Log("Sound not found or is null");
+        }
+        else
+        {
+            sfxSource.PlayOneShot(sound.clip);
+        }
+    }
+    /// <summary>
+    /// Plays a random sound from an array of sounds with corresponding array name
+    /// </summary>
+    /// <param name="name"></param>
+    public void PlaySFXArrayRandom(string name)
+    {
+        SoundArray soundArray = Array.Find(sfxSoundArray, x => x.name == name);
+
+        if (soundArray == null)
+        {
+            Debug.Log("Sound not found or is null");
+        }
+        else
+        {
+            int i;
+            i = Random.Range(0, soundArray.clip.Length);
+
+            sfxSource.PlayOneShot(soundArray.clip[i]);
+        }
+    }
+
+    public void PlaySFXArrayAt(string name, int index)
+    {
+        SoundArray soundArray = Array.Find(sfxSoundArray, x => x.name == name);
+
+        if (soundArray == null)
+        {
+            Debug.Log("Sound not found or is null");
+        }
+        else
+        {
+            sfxSource.PlayOneShot(soundArray.clip[index]);
+        }
+    }
+
+
+
+    /* 
+     public void PlaySFXVariance(string name, float variance)
+     {
+         Sound sound = Array.Find(sfxSounds, x => x.name == name);
+
+         if (sound == null)
+         {
+             Debug.Log("Sound not found or is null");
+         }
+         else
+         {
+             float _pitchVariance = Random.Range(-variance, variance);
+             sfxSource.pitch = _pitchVariance;
+              sfxSource.PlayOneShot(sound.clip);
+         }
+     }
+
+     */
+
+
+
 }
