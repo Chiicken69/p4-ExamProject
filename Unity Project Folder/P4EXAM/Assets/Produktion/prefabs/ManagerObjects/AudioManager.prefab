@@ -45,7 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9e02f65597a2404392af180307a0833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicSounds: []
+  musicSounds:
+  - name: Polyrytme
+    clip: {fileID: 8300000, guid: 8649b0a7a8a8ab549bb1b78e895d493b, type: 3}
+  - name: Harpeskifter
+    clip: {fileID: 8300000, guid: eb8695e562ceaea4ea1ccd3a3232add9, type: 3}
+  - name: Tredjemuligsang
+    clip: {fileID: 8300000, guid: c36e546014dac8447a679f939b889085, type: 3}
   sfxSounds:
   - name: ButtonClick
     clip: {fileID: 8300000, guid: cfe99db9029c5494c9c776df296d479b, type: 3}
