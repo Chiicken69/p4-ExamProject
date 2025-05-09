@@ -147,7 +147,7 @@ public class RadioScript : MonoBehaviour
         {
             EnqueueDialog("Turiel",
                 "Hello, are you there?\nAh good. I've been told to read you a few instructions from my notebook.\nHmm let's see..... \n" +
-                "If you open your blueprint book by clicking on it, you should be able to scroll through it to see different buildable objects. Try building a factory! I recommend zooming out before entering build mode.\n" +
+                "If you open your blueprint book by clicking on it, you should be able to scroll through it to see different buildable objects. Try building a wire factory! I recommend zooming out before entering build mode.\n" +
                 "By the way, if you just walk away from the radio, it won't stop our dialogue; whoever's on the radio will just... patiently wait for you to come back and press the *ESC* button to close the UI. " +
                 "ONLY THEN will the radio check if there's anyone else that's trying to reach your frequency.");
             triggeredTimes.Add(1);
@@ -379,6 +379,7 @@ public class RadioScript : MonoBehaviour
     {
         if (!isInDialogMode && currentDialog != null)
         {
+            AudioManager.Instance.PlaySFX("ButtonClick");
             StopAllCoroutines(); // Stop any previous typing
             StartCoroutine(TypeText(currentDialog.dialog)); // Start typing effect
 
