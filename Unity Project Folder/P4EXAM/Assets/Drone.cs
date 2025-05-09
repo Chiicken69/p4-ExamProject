@@ -152,6 +152,7 @@ public class Drone : MonoBehaviour
     private void Update()
     {
 
+
         Debug.Log("aaaa im tracking ejg tracker den" + hasPatrolled + "ím" + isRunning);
         //if (!hasPatrolled && !isRunning)
         {
@@ -159,6 +160,7 @@ public class Drone : MonoBehaviour
             Debug.Log("IM NOT LYING");
             PatrolThenStartItemTransfer();
         }
+        
 
         if (_carryingItem)
         {
@@ -200,26 +202,26 @@ public class Drone : MonoBehaviour
             isRunning = false;
             return;
         }
+ 
+            if (visitedFactoriesInOrder.Count == 2)
+            {
+                hasPatrolled = true;
+                isRunning = false;
+                _factoriesToUse = visitedFactoriesInOrder;  // [A, B]
+                ItemTransferLogicForFactories(false);
 
+            }
+            else if (visitedFactoriesInOrder.Count == 3)
+            {
+                hasPatrolled = true;
+                isRunning = false;
+                _factoriesToUse = new List<GameObject> { visitedFactoriesInOrder[0], visitedFactoriesInOrder[2] };  // [A, C]
+                _middleFactory = visitedFactoriesInOrder[1];  // optional, for skipping logic
+                _lastFactory = visitedFactoriesInOrder[1];  // optional, for skipping logic
+                ItemTransferLogicForFactories(true);
 
-        if (visitedFactoriesInOrder.Count == 2)
-        {
-            hasPatrolled = true;
-            isRunning = false;
-            _factoriesToUse = visitedFactoriesInOrder;  // [A, B]
-            ItemTransferLogicForFactories(false);
-
-        }
-        else if (visitedFactoriesInOrder.Count == 3)
-        {
-            hasPatrolled = true;
-            isRunning = false;
-            _factoriesToUse = new List<GameObject> { visitedFactoriesInOrder[0], visitedFactoriesInOrder[2] };  // [A, C]
-            _middleFactory = visitedFactoriesInOrder[1];  // optional, for skipping logic
-            _lastFactory = visitedFactoriesInOrder[1];  // optional, for skipping logic
-            ItemTransferLogicForFactories(true);
-
-        }
+            }
+        
     }
 
 
@@ -263,7 +265,7 @@ public class Drone : MonoBehaviour
         {
             GameObject tempGB = FactoryManager.Instance.ReturnFactory(this.transform.position);
 
-            if (!_factoriesToUse.Contains(tempGB) && (tempGB == null || IsSameFactory(tempGB)) && !(HasOver2Factorys == true && tempGB == _middleFactory) || IsDroneIdle())
+            if (_factoriesToUse.Contains(tempGB) == false || (tempGB == null || IsSameFactory(tempGB)) && !(HasOver2Factorys == true && tempGB == _middleFactory) || IsDroneIdle())
             {
                 return false;
             }
@@ -288,7 +290,7 @@ public class Drone : MonoBehaviour
         {
             GameObject tempGB = FactoryManager.Instance.ReturnFactory(this.transform.position);
 
-            if ((tempGB == null || IsSameFactory(tempGB)) && !_factoriesToUse.Contains(tempGB))
+            if ((tempGB == null || IsSameFactory(tempGB)) || !_factoriesToUse.Contains(tempGB))
             {
                 return false;
             }
