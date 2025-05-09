@@ -23,6 +23,7 @@ public class interact : MonoBehaviour
         if ((playerInFactoryTrigger == true && _interact == true) && !minigameUI.activeInHierarchy)
         {
             //print("WHAT THE FUCK");
+            AudioManager.Instance.PlaySFXArrayRandom("ButtonClicks");
             arrowMinigame.StartMinigame();
             
         }
