@@ -88,7 +88,7 @@ public class Drone : MonoBehaviour
                 {
                     Debug.Log($"Factory found at {targetPos}: {factory.name}");
 
-                    if (!visitedFactoriesInOrder.Contains(factory))
+                    if (!visitedFactoriesInOrder.Contains(factory) && visitedFactoriesInOrder.Count < 3)
                     {
                         visitedFactoriesInOrder.Add(factory);
                         Debug.Log($"Added {factory.name} to visitedFactoriesInOrder");
@@ -155,7 +155,6 @@ public class Drone : MonoBehaviour
         //if (!hasPatrolled && !isRunning)
         {
 
-            Debug.Log("IM NOT LYING");
             PatrolThenStartItemTransfer();
         }
         
