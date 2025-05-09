@@ -110,11 +110,13 @@ public class AudioManager : MonoBehaviour
             if (whichSong == 0)
             {
                 PlayMusic("Polyrytme");
+                AudioManager.Instance.GetComponent<AudioSource>().volume = 0.08f;
                 yield return new WaitForSeconds(polyrytmePlaytime);
             } 
             else if (whichSong == 1)
             {
                 PlayMusic("Harpeskifter");
+                AudioManager.Instance.GetComponent<AudioSource>().volume = 0.04f;
                 yield return new WaitForSeconds(harpeskifterPlaytime);
             }
         }

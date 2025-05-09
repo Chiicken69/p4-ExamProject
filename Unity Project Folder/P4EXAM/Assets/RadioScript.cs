@@ -155,16 +155,17 @@ public class RadioScript : MonoBehaviour
         }
 
         // Factory tutorial: Check if factories are built
+        
         if (!factoryBuildTutorielDone)
         {
-            if (factoryManager.Factories.Count > 0)
+            if (factoryManager.Factories.Count > 2)
             {
                 factoryBuildTutorielDone = true;
             }
             return;
         }
-
-        // Skip to the next part when the factory tutorial is done
+        
+        // Skip to the next part when the minigame tutorial is done
         if (!triggeredTimes.Contains(91))
         {
             Dequeue();
@@ -172,13 +173,44 @@ public class RadioScript : MonoBehaviour
             return;
         }
 
-        // Dialog for Turiel about the efficiency module
+
+        // Dialog for Turiel about using drones
         if (!triggeredTimes.Contains(2))
+        {
+            EnqueueDialog("Turiel",
+                "Next up, try using your drones. \nYou should be able to activate flag managing mode by clicking on the other button. \n" +
+                $"You will be able to move drones between {drone.maxFlagCount} different locations, by making them pass over buildings like factories.Though you have to remember to select the drone.\n" +
+                "They should be able to take the output and move it around into another building to craft items. \n" +
+                "For example, transferring copper into a wire factory should make wires for you to make spools and other parts.");
+            triggeredTimes.Add(2);
+            return;
+        }
+
+        // Check if drone tutorial is done
+        if (!dronesTutorielDone)
+        {
+            if (drone.maxFlagCount > 0 && drone._carryingItem)
+            {
+                dronesTutorielDone = true;
+            }
+            return;
+        }
+
+        // Skip to the next part when the factory tutorial is done
+        if (!triggeredTimes.Contains(92))
+        {
+            Dequeue();
+            triggeredTimes.Add(92);
+            return;
+        }
+
+        // Dialog for Turiel about the efficiency module
+        if (!triggeredTimes.Contains(3))
         {
             EnqueueDialog("Turiel",
                 "NOW, to my favorite part! \nTry going up to the copper farm, or one of your factories and press the 'e' button. \n" +
                 "THEN you should see our patent-pending efficiency module that plays like those video games. Press the arrow keys in the shown pattern; as long as you do it correctly, it should boost your machines!");
-            triggeredTimes.Add(2);
+            triggeredTimes.Add(3);
             return;
         }
 
@@ -192,36 +224,7 @@ public class RadioScript : MonoBehaviour
             return;
         }
 
-        // Skip to the next part when the minigame tutorial is done
-        if (!triggeredTimes.Contains(92))
-        {
-            Dequeue();
-            triggeredTimes.Add(92);
-            return;
-        }
-
-
-        // Dialog for Turiel about using drones
-        if (!triggeredTimes.Contains(3))
-        {
-            EnqueueDialog("Turiel",
-                "Next up, try using your drones. \nYou should be able to activate flag managing mode by clicking on the other button. \n" +
-                $"You will be able to move drones between {drone.maxFlagCount} different locations, by making them pass over buildings like factories. \n" +
-                "They should be able to take the output and move it around into another building to craft items. \n" +
-                "For example, transferring copper into a wire factory should make wires for you to make spools and other parts.");
-            triggeredTimes.Add(3);
-            return;
-        }
-
-        // Check if drone tutorial is done
-        if (!dronesTutorielDone)
-        {
-            if (drone.maxFlagCount > 0 && drone._carryingItem)
-            {
-                dronesTutorielDone = true;
-            }
-            return;
-        }
+        
 
         // Skip to the next part when drone tutorial is done
         if (!triggeredTimes.Contains(93))
