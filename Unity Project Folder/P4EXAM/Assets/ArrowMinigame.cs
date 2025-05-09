@@ -1,7 +1,6 @@
 
 using System.Collections.Generic;
-
-
+using TMPro;
 using UnityEngine;
 using Image = UnityEngine.UI.Image;
 
@@ -9,6 +8,7 @@ public class ArrowMinigame : MonoBehaviour
 {
     [SerializeField] private GameObject minigameUI;
     [SerializeField] private GameObject arrow;
+    [SerializeField] private TextMeshProUGUI factoryMultText;
 
     [SerializeField] private Transform Parent;
     [SerializeField] private Movement playerMovement;
@@ -157,6 +157,7 @@ public class ArrowMinigame : MonoBehaviour
 
     private void RunRound(FactoryBase currentFactory)
     {
+        factoryMultText.text = currentFactory.GetComponent<FactoryBase>().speedIncreasePercentage.ToString();
         if (currentArrowIndex >= directionList.Count)
         {
             Debug.Log("All inputs correct! Round finished.");
