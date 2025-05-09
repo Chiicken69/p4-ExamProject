@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 3
   itemName: Metal Parts Item
-  itemDescription: This is Metal parts
+  itemDescription: This is Metal Parts
   Sprite: {fileID: -2227017139420733248, guid: ec913fbcf1a97e84192c331d8fed6f20, type: 3}
 --- !u!212 &1784684658563574652
 SpriteRenderer:
