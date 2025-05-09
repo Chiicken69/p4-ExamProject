@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class SpriteAnimator : MonoBehaviour
@@ -7,10 +8,16 @@ public class SpriteAnimator : MonoBehaviour
     private float frameRate = 10f; // frames per second
 
         [SerializeField]private float frameRateMAX = 100f;
+   
 
     private FactoryBase factoryBase;
 
     void Awake()
+    {
+        
+    }
+
+    private void Start()
     {
         factoryBase = GetComponent<FactoryBase>();
         if (spriteRenderer == null)
@@ -21,6 +28,7 @@ public class SpriteAnimator : MonoBehaviour
 
     void Update()
     {
+        
         if (animationFrames.Length == 0 || factoryBase == null) return;
         if (factoryBase.state == FactoryState.Crafting)
         {
