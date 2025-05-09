@@ -154,7 +154,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.9384832}
   m_AnchorMax: {x: 0.123878516, y: 1}
-  m_AnchoredPosition: {x: -0.4000244, y: 0.3999939}
+  m_AnchoredPosition: {x: -0.40014648, y: 0.4000244}
   m_SizeDelta: {x: -0.3149414, y: -1.0297279}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &39407051
@@ -1435,7 +1435,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.049520835, y: 0.15411744}
   m_AnchorMax: {x: 0.44372922, y: 0.25135234}
-  m_AnchoredPosition: {x: 0.089904785, y: 0.774292}
+  m_AnchoredPosition: {x: 0.08984375, y: 0.774292}
   m_SizeDelta: {x: -0.5600004, y: -0.9630003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1110227229
@@ -1488,6 +1488,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1904625159174637542, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1904625159174637542, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4382868721072274007, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.4975
@@ -3742,7 +3750,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.049520835, y: 0.156}
   m_AnchorMax: {x: 0.44425005, y: 0.25135234}
-  m_AnchoredPosition: {x: -0.59399414, y: -0.6000366}
+  m_AnchoredPosition: {x: -0.59399414, y: -0.60009766}
   m_SizeDelta: {x: -1.9120998, y: 0.28820038}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1161830810
