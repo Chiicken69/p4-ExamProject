@@ -147,7 +147,7 @@ public class RadioScript : MonoBehaviour
         {
             EnqueueDialog("Turiel",
                 "Hello, are you there?\nAh good. I've been told to read you a few instructions from my notebook.\nHmm let's see..... \n" +
-                "If you open your blueprint book by clicking on it, you should be able to scroll through it to see different buildable objects. Try building a factory! I recommend zooming out before entering build mode.\n" +
+                "If you open your blueprint book by clicking on it, you should be able to scroll through it to see different buildable objects. Try building a wire factory! I recommend zooming out before entering build mode.\n" +
                 "By the way, if you just walk away from the radio, it won't stop our dialogue; whoever's on the radio will just... patiently wait for you to come back and press the *ESC* button to close the UI. " +
                 "ONLY THEN will the radio check if there's anyone else that's trying to reach your frequency.");
             triggeredTimes.Add(1);
@@ -171,36 +171,6 @@ public class RadioScript : MonoBehaviour
             triggeredTimes.Add(91);
             return;
         }
-
-        // Dialog for Turiel about the efficiency module
-        if (!triggeredTimes.Contains(2))
-        {
-            EnqueueDialog("Turiel",
-                "NOW, to my favorite part! \nTry going up to the copper farm, or one of your factories and press the 'e' button. \n" +
-                "THEN you should see our patent-pending efficiency module that plays like those video games. Press the arrow keys in the shown pattern; as long as you do it correctly, it should boost your machines!");
-            triggeredTimes.Add(2);
-            return;
-        }
-
-        // Check if the minigame tutorial is done
-        if (!minigameTutorielDone)
-        {
-            if (arrowMinigame.minigameTutorielDone)
-            {
-                minigameTutorielDone = true;
-            }
-            return;
-        }
-
-        // Skip to the next part when the minigame tutorial is done
-        if (!triggeredTimes.Contains(92))
-        {
-            Dequeue();
-            triggeredTimes.Add(92);
-            return;
-        }
-
-
         // Dialog for Turiel about using drones
         if (!triggeredTimes.Contains(3))
         {
@@ -230,7 +200,33 @@ public class RadioScript : MonoBehaviour
             triggeredTimes.Add(93);
             return;
         }
+        // Dialog for Turiel about the efficiency module
+        if (!triggeredTimes.Contains(2))
+        {
+            EnqueueDialog("Turiel",
+                "NOW, to my favorite part! \nTry going up to the copper farm, or one of your factories and press the 'e' button. \n" +
+                "THEN you should see our patent-pending efficiency module that plays like those video games. Press the arrow keys in the shown pattern; as long as you do it correctly, it should boost your machines!");
+            triggeredTimes.Add(2);
+            return;
+        }
 
+        // Check if the minigame tutorial is done
+        if (!minigameTutorielDone)
+        {
+            if (arrowMinigame.minigameTutorielDone)
+            {
+                minigameTutorielDone = true;
+            }
+            return;
+        }
+
+        // Skip to the next part when the minigame tutorial is done
+        if (!triggeredTimes.Contains(92))
+        {
+            Dequeue();
+            triggeredTimes.Add(92);
+            return;
+        }
         // Dialog for Turiel about deleting buildings
         if (!triggeredTimes.Contains(4))
         {
@@ -256,7 +252,6 @@ public class RadioScript : MonoBehaviour
         {
             Dequeue();
             triggeredTimes.Add(94);
-            tutorielDone = true;
             return;
         }
 
@@ -265,6 +260,7 @@ public class RadioScript : MonoBehaviour
         {
             EnqueueDialog("Turiel", "Aaand that should be everything. \nHave fun, \nTuriel out!");
             triggeredTimes.Add(5);
+            tutorielDone = true;
             return;
         }
     }
