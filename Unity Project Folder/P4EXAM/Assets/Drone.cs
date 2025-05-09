@@ -66,7 +66,6 @@ public class Drone : MonoBehaviour
                 Vector2 targetPos = flagPoints[i];
                 while (Vector2.Distance(transform.position, targetPos) > 0.1f)
                 {
-
                     yield return StartCoroutine(MoveDroneTo(targetPos));
                     yield return null;
                 }
