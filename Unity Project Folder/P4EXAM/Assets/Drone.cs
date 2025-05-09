@@ -35,7 +35,12 @@ public class Drone : MonoBehaviour
 
     private List<GameObject> _factoriesToUse;
     private GameObject _middleFactory; // used only in 3-factory logic
+<<<<<<< Updated upstream
     [SerializeField] List<GameObject> visitedFactoriesInOrder = new List<GameObject>();
+=======
+    private GameObject _lastFactory;
+    [SerializeField] public List<GameObject> visitedFactoriesInOrder = new List<GameObject>();
+>>>>>>> Stashed changes
 
 
     bool hasPatrolled = false;
@@ -65,10 +70,13 @@ public class Drone : MonoBehaviour
         //StartCoroutine(ItemTransferLogic());
     }
 
-    IEnumerator PatrolFlags()
+IEnumerator PatrolFlags()
+{
+    while (true)
     {
-        while (true)
+        if (flagPoints.Count <= 1) // 🚫 Ignore if only 0 or 1 flags
         {
+<<<<<<< Updated upstream
             if (flagPoints.Count == 0)
             {
                 yield return null;
@@ -105,9 +113,48 @@ public class Drone : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
             }
 
+=======
+            visitedFactoriesInOrder.Clear(); // Optionally clear visited factories
+>>>>>>> Stashed changes
             yield return null;
+            continue;
         }
+
+        for (int i = 0; i < flagPoints.Count; i++)
+        {
+            Vector2 targetPos = flagPoints[i];
+            while (Vector2.Distance(transform.position, targetPos) > 0.1f)
+            {
+                yield return StartCoroutine(MoveDroneTo(targetPos));
+                yield return null;
+            }
+
+            // ✅ Check for factory only if enough flags
+            GameObject factory = FactoryManager.Instance.ReturnFactory(transform.position);
+            if (factory != null)
+            {
+                Debug.Log($"Factory found at {targetPos}: {factory.name}");
+
+                if (!visitedFactoriesInOrder.Contains(factory) && visitedFactoriesInOrder.Count < 3)
+                {
+                    visitedFactoriesInOrder.Add(factory);
+                    Debug.Log($"Added {factory.name} to visitedFactoriesInOrder");
+                }
+            }
+            else
+            {
+                Debug.Log($"No factory found at {targetPos}");
+                if (visitedFactoriesInOrder.Count != 2)
+                    visitedFactoriesInOrder.Clear();
+            }
+
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        yield return null;
     }
+}
+
 
 
 

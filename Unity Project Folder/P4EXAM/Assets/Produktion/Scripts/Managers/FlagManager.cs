@@ -136,12 +136,24 @@ public class FlagManager : MonoBehaviour
         var flags = drone.flagPoints;
         var flagObjs = drone.flagObjects;
 
+
         flags.Add(pos);
         if (flags.Count > drone.maxFlagCount)
         {
+<<<<<<< Updated upstream
             flags.RemoveAt(0);
             Destroy(flagObjs[0]);
             flagObjs.RemoveAt(0);
+=======
+            foreach (GameObject flagObj in flagObjs)
+            {
+                Destroy(flagObj);
+            }
+            flagObjs.Clear();
+            flags.Clear();
+            drone.visitedFactoriesInOrder.Clear();
+            flags.Add(pos);
+>>>>>>> Stashed changes
         }
 
         GameObject flag = Instantiate(drone.flagPrefab, pos, Quaternion.identity);
