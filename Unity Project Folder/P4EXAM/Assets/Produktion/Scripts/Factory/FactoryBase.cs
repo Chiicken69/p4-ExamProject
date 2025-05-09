@@ -121,13 +121,14 @@ public class FactoryBase : MonoBehaviour, Ifactory
                 _currentSprite = processingSprite;
                 break;
             case FactoryState.Crafting:
-                //_currentSprite = craftingSprite;
+                _currentSprite = craftingSprite;
                 break;
             default:
                 _currentSprite = idleSprite;
                 break;
         }
         _spriteRenderer.sprite = _currentSprite;
+        Debug.Log(_currentSprite.ToString());
     }
 
 
@@ -160,7 +161,10 @@ public class FactoryBase : MonoBehaviour, Ifactory
 
     public void InitializeFactory()
     {
+
+        FactoryManager.Instance.AddFactory(this.gameObject);
         state = FactoryState.Building;
+        
     }
 
     public void ClearOutputInventory()
