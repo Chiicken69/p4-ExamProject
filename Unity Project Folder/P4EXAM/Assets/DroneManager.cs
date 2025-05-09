@@ -31,8 +31,12 @@ public class DroneManager : MonoBehaviour
     {
         //InputHandler.Instance.PassInputBoolValue(3)
         if (Input.GetKeyDown(KeyCode.O))
-        {
-            drones.Add(Instantiate(dronePrefab));
+        { 
+        GameObject drone = Instantiate(dronePrefab);
+            drone.GetComponent<Drone>().flagPoints.Clear();
+            drone.GetComponent<Drone>().flagObjects.Clear();
+            drones.Add(drone);
+           
            
             
             

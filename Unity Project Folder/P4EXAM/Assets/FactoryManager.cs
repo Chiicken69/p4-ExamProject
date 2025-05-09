@@ -66,14 +66,14 @@ public class FactoryManager : MonoBehaviour
 
     public GameObject ReturnFactory(Vector3 DronePos)
     {
-       
-        if (CheckNearFactory(DronePos) != -1)
-        {
 
-            
-            return Factories[CheckNearFactory(DronePos)]; 
+        int factoryIndex = CheckNearFactory(DronePos);
+        if (factoryIndex != -1)
+        {
+            return Factories[factoryIndex];
         }
-        return null;    
+
+        return null;
     }
 
     private int CheckNearFactory(Vector3 DronePos)

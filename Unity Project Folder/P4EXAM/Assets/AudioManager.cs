@@ -2,7 +2,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
+using System.Collections;
 
 public class AudioManager : MonoBehaviour
 {
@@ -10,6 +10,11 @@ public class AudioManager : MonoBehaviour
     public Sound[] musicSounds, sfxSounds;
     public SoundArray[] sfxSoundArray;
     public AudioSource musicSource, sfxSource;
+
+    private void Start()
+    {
+        StartCoroutine(playMusic());
+    }
 
     private void Awake()
     {
@@ -95,7 +100,26 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    IEnumerator playMusic(){
+        while (true)
+        {
+            int polyrytmePlaytime = 229;
+            int harpeskifterPlaytime = 245;
 
+            int whichSong = Random.Range(0, 2);
+            if (whichSong == 0)
+            {
+                PlayMusic("Polyrytme");
+                yield return new WaitForSeconds(polyrytmePlaytime);
+            } 
+            else if (whichSong == 1)
+            {
+                PlayMusic("Harpeskifter");
+                yield return new WaitForSeconds(harpeskifterPlaytime);
+            }
+        }
+    }
+    
 
     /* 
      public void PlaySFXVariance(string name, float variance)
