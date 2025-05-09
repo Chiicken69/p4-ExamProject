@@ -982,7 +982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: 908b4602b39e69f4bbde6d34ef979abb, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 5835123e5ec8cdf4181f12e45bf004fe, type: 2}
   isGlobal: 1
   blendDistance: 0
   weight: 1
@@ -86953,6 +86953,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4939456333823155215, guid: 32c0a7e78cb5da74ab57dba11b377d69, type: 3}
+      propertyPath: _volume
+      value: 
+      objectReference: {fileID: 505750314}
+    - target: {fileID: 4939456333823155215, guid: 32c0a7e78cb5da74ab57dba11b377d69, type: 3}
       propertyPath: Flagmanager
       value: 
       objectReference: {fileID: 463758603}
@@ -87230,18 +87234,6 @@ PrefabInstance:
       value: 44.2269
       objectReference: {fileID: 0}
     - target: {fileID: 619124818925339353, guid: 8f57708d2adefb54581cb0ea62ca66f1, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.8137528
-      objectReference: {fileID: 0}
-    - target: {fileID: 619124818925339353, guid: 8f57708d2adefb54581cb0ea62ca66f1, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.8137528
-      objectReference: {fileID: 0}
-    - target: {fileID: 619124818925339353, guid: 8f57708d2adefb54581cb0ea62ca66f1, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.8137528
-      objectReference: {fileID: 0}
-    - target: {fileID: 619124818925339353, guid: 8f57708d2adefb54581cb0ea62ca66f1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -87289,29 +87281,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1025758786306217748, guid: 8f57708d2adefb54581cb0ea62ca66f1, type: 3}
-      propertyPath: m_CullTransparentMesh
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1068192527460948356, guid: 8f57708d2adefb54581cb0ea62ca66f1, type: 3}
       propertyPath: m_Name
       value: Blueprint book
-      objectReference: {fileID: 0}
-    - target: {fileID: 5166466225491792141, guid: 8f57708d2adefb54581cb0ea62ca66f1, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f266181a198f04c40b208982a0f3542c, type: 3}
-    - target: {fileID: 5166466225491792141, guid: 8f57708d2adefb54581cb0ea62ca66f1, type: 3}
-      propertyPath: m_Maskable
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5166466225491792141, guid: 8f57708d2adefb54581cb0ea62ca66f1, type: 3}
-      propertyPath: m_RaycastTarget
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5166466225491792141, guid: 8f57708d2adefb54581cb0ea62ca66f1, type: 3}
-      propertyPath: m_PreserveAspect
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
