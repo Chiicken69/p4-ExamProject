@@ -105,9 +105,8 @@ public class AudioManager : MonoBehaviour
         {
             int polyrytmePlaytime = 229;
             int harpeskifterPlaytime = 245;
-            int Tredjemuligsang = 96;
 
-            int whichSong = Random.Range(0, 3);
+            int whichSong = Random.Range(0, 2);
             if (whichSong == 0)
             {
                 PlayMusic("Polyrytme");
@@ -117,11 +116,6 @@ public class AudioManager : MonoBehaviour
             {
                 PlayMusic("Harpeskifter");
                 yield return new WaitForSeconds(harpeskifterPlaytime);
-            }
-            else if (whichSong == 2)
-            {
-                PlayMusic("Tredjemuligsang");
-                yield return new WaitForSeconds(Tredjemuligsang);
             }
         }
     }
