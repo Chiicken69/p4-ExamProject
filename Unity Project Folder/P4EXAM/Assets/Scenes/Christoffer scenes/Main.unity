@@ -87259,27 +87259,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 619124818925339353, guid: 8f57708d2adefb54581cb0ea62ca66f1, type: 3}
       propertyPath: m_AnchoredPosition.x
-<<<<<<< HEAD
       value: -152.9
       objectReference: {fileID: 0}
     - target: {fileID: 619124818925339353, guid: 8f57708d2adefb54581cb0ea62ca66f1, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 13.700012
-=======
-<<<<<<< Updated upstream
-      value: -152.90002
-      objectReference: {fileID: 0}
-    - target: {fileID: 619124818925339353, guid: 8f57708d2adefb54581cb0ea62ca66f1, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 13.699951
-=======
-      value: -152.8999
-      objectReference: {fileID: 0}
-    - target: {fileID: 619124818925339353, guid: 8f57708d2adefb54581cb0ea62ca66f1, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 13.700073
->>>>>>> Stashed changes
->>>>>>> Christoffer(depecated)
       objectReference: {fileID: 0}
     - target: {fileID: 619124818925339353, guid: 8f57708d2adefb54581cb0ea62ca66f1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -87453,27 +87437,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1076660570426880625, guid: bab0e2a59c3c3f14d8ef51cd83d720c0, type: 3}
       propertyPath: m_AnchoredPosition.x
-<<<<<<< HEAD
       value: -152.90033
       objectReference: {fileID: 0}
     - target: {fileID: 1076660570426880625, guid: bab0e2a59c3c3f14d8ef51cd83d720c0, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 12.860657
-=======
-<<<<<<< Updated upstream
-      value: -152.90039
-      objectReference: {fileID: 0}
-    - target: {fileID: 1076660570426880625, guid: bab0e2a59c3c3f14d8ef51cd83d720c0, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 12.86084
-=======
-      value: -152.90027
-      objectReference: {fileID: 0}
-    - target: {fileID: 1076660570426880625, guid: bab0e2a59c3c3f14d8ef51cd83d720c0, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 12.860596
->>>>>>> Stashed changes
->>>>>>> Christoffer(depecated)
       objectReference: {fileID: 0}
     - target: {fileID: 1076660570426880625, guid: bab0e2a59c3c3f14d8ef51cd83d720c0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
