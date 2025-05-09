@@ -83,7 +83,6 @@ public class Drone : MonoBehaviour
                     yield return null;
                 }
 
-                // ✅ NEW: Check factory at the arrived flag position
                 GameObject factory = FactoryManager.Instance.ReturnFactory(transform.position);
                 if (factory != null)
                 {
