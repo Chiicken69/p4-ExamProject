@@ -86816,21 +86816,9 @@ PrefabInstance:
       propertyPath: musicSounds.Array.size
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 3957326023816848894, guid: 37b404c8c0411be4887f3f561c320d11, type: 3}
-      propertyPath: musicSounds.Array.data[0].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 8649b0a7a8a8ab549bb1b78e895d493b, type: 3}
-    - target: {fileID: 3957326023816848894, guid: 37b404c8c0411be4887f3f561c320d11, type: 3}
-      propertyPath: musicSounds.Array.data[0].name
-      value: Polyrytme
-      objectReference: {fileID: 0}
-    - target: {fileID: 3957326023816848894, guid: 37b404c8c0411be4887f3f561c320d11, type: 3}
-      propertyPath: musicSounds.Array.data[1].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: eb8695e562ceaea4ea1ccd3a3232add9, type: 3}
-    - target: {fileID: 3957326023816848894, guid: 37b404c8c0411be4887f3f561c320d11, type: 3}
-      propertyPath: musicSounds.Array.data[1].name
-      value: Harpeskifter
+    - target: {fileID: 8987206984190863639, guid: 37b404c8c0411be4887f3f561c320d11, type: 3}
+      propertyPath: m_Volume
+      value: 0.07
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
