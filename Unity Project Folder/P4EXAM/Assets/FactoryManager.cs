@@ -62,7 +62,6 @@ public class FactoryManager : MonoBehaviour
         //_factoryGridPositions.Add(ConvertToGrid(gb.transform.position));
 
     }
-    [ContextMenu("pluh")]
 
     public GameObject ReturnFactory(Vector3 DronePos)
     {

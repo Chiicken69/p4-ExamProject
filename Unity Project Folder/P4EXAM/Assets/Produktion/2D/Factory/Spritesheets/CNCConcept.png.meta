@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: ba87cb4369916bf40b993bd49e703d27
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6874665538592152921
+    second: CNCConcept_0
+  - first:
+      213: -8747859828149823015
+    second: CNCConcept_1
+  - first:
+      213: 8620359038290383916
+    second: CNCConcept_2
+  - first:
+      213: -9151860904506583047
+    second: CNCConcept_3
+  - first:
+      213: 1833885591928213772
+    second: CNCConcept_4
+  - first:
+      213: 5135121376946900483
+    second: CNCConcept_5
+  - first:
+      213: 5496225593457504514
+    second: CNCConcept_6
+  - first:
+      213: 6479489957357255386
+    second: CNCConcept_7
+  - first:
+      213: 2494468640274864460
+    second: CNCConcept_8
+  - first:
+      213: 105881539025747716
+    second: CNCConcept_9
+  - first:
+      213: -6933573222317793008
+    second: CNCConcept_10
+  - first:
+      213: -27158973688583055
+    second: CNCConcept_11
+  - first:
+      213: -4821361759142747860
+    second: CNCConcept_12
+  - first:
+      213: 6820521681142403222
+    second: CNCConcept_13
+  - first:
+      213: -7917905265604192390
+    second: CNCConcept_14
+  - first:
+      213: 2781052754360174144
+    second: CNCConcept_15
+  - first:
+      213: 6731426998926014893
+    second: CNCConcept_16
+  - first:
+      213: 6931432815328475063
+    second: CNCConcept_17
+  - first:
+      213: 1049216531236349522
+    second: CNCConcept_18
+  - first:
+      213: -9111266484886782547
+    second: CNCConcept_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 48
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CNCConcept_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 147
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a2689ebd184890a0800000000000000
+      internalID: -6874665538592152921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CNCConcept_1
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 147
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d9583e95db599680800000000000000
+      internalID: -8747859828149823015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CNCConcept_2
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 147
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2450a96fdaa1a770800000000000000
+      internalID: 8620359038290383916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CNCConcept_3
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 147
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f79919fefe0ef080800000000000000
+      internalID: -9151860904506583047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CNCConcept_4
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 147
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c019691ca35437910800000000000000
+      internalID: 1833885591928213772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CNCConcept_5
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 99
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30e4f6f6fad934740800000000000000
+      internalID: 5135121376946900483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CNCConcept_6
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 99
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 201f1779e04864c40800000000000000
+      internalID: 5496225593457504514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CNCConcept_7
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 99
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ada7df159c5cbe950800000000000000
+      internalID: 6479489957357255386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CNCConcept_8
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 99
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c495fe613022e9220800000000000000
+      internalID: 2494468640274864460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CNCConcept_9
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 99
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40fb6e1e2ba287100800000000000000
+      internalID: 105881539025747716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CNCConcept_10
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 51
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0116693d3eff6cf90800000000000000
+      internalID: -6933573222317793008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CNCConcept_11
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 51
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17ce3dcae038f9ff0800000000000000
+      internalID: -27158973688583055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CNCConcept_12
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 51
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c21e4a45605171db0800000000000000
+      internalID: -4821361759142747860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CNCConcept_13
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 51
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 690d753155c57ae50800000000000000
+      internalID: 6820521681142403222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CNCConcept_14
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 51
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a77977e9c13fd1290800000000000000
+      internalID: -7917905265604192390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CNCConcept_15
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 3
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0468245deb8489620800000000000000
+      internalID: 2781052754360174144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CNCConcept_16
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 3
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da9757ed035da6d50800000000000000
+      internalID: 6731426998926014893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CNCConcept_17
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 3
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b7b326db65613060800000000000000
+      internalID: 6931432815328475063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CNCConcept_18
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 3
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2566fcc40e09f8e00800000000000000
+      internalID: 1049216531236349522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CNCConcept_19
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 3
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dadb662d7674e8180800000000000000
+      internalID: -9111266484886782547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      CNCConcept_0: -6874665538592152921
+      CNCConcept_1: -8747859828149823015
+      CNCConcept_10: -6933573222317793008
+      CNCConcept_11: -27158973688583055
+      CNCConcept_12: -4821361759142747860
+      CNCConcept_13: 6820521681142403222
+      CNCConcept_14: -7917905265604192390
+      CNCConcept_15: 2781052754360174144
+      CNCConcept_16: 6731426998926014893
+      CNCConcept_17: 6931432815328475063
+      CNCConcept_18: 1049216531236349522
+      CNCConcept_19: -9111266484886782547
+      CNCConcept_2: 8620359038290383916
+      CNCConcept_3: -9151860904506583047
+      CNCConcept_4: 1833885591928213772
+      CNCConcept_5: 5135121376946900483
+      CNCConcept_6: 5496225593457504514
+      CNCConcept_7: 6479489957357255386
+      CNCConcept_8: 2494468640274864460
+      CNCConcept_9: 105881539025747716
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

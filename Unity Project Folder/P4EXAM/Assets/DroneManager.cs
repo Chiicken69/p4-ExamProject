@@ -51,6 +51,16 @@ public class DroneManager : MonoBehaviour
         }
     }
 
+    public void SpawnDrone(GameObject gb)
+    {
+        float randNum = Random.Range(0, 0.5f);
+
+        GameObject drone = Instantiate(dronePrefab, gb.transform.position + new Vector3(2 + randNum, 2 + randNum, 0), Quaternion.identity);
+        drone.GetComponent<Drone>().flagPoints.Clear();
+        drone.GetComponent<Drone>().flagObjects.Clear();
+        drones.Add(drone);
+    }
+
 
 
 
