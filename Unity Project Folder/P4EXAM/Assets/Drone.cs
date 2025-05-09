@@ -35,7 +35,7 @@ public class Drone : MonoBehaviour
     private GameObject _middleFactory; // used only in 3-factory logic
     private GameObject _lastFactory;
     [SerializeField] List<GameObject> visitedFactoriesInOrder = new List<GameObject>();
-    [SerializeField] HashSet<GameObject> visitedSet = new HashSet<GameObject>();
+
 
     bool hasPatrolled = false;
     bool isRunning = false;
@@ -91,7 +91,6 @@ public class Drone : MonoBehaviour
                     if (!visitedFactoriesInOrder.Contains(factory))
                     {
                         visitedFactoriesInOrder.Add(factory);
-                        visitedSet.Add(factory);
                         Debug.Log($"Added {factory.name} to visitedFactoriesInOrder");
                     }
                 }
@@ -100,7 +99,6 @@ public class Drone : MonoBehaviour
                     Debug.Log($"No factory found at {targetPos}");
                     if (visitedFactoriesInOrder.Count != 2)
                         visitedFactoriesInOrder.Clear();
-                    visitedSet.Clear();
                 }
 
                 yield return new WaitForSeconds(0.5f);
@@ -239,7 +237,7 @@ public class Drone : MonoBehaviour
     private void ItemTransferLogicForFactories(bool HasOver2Factorys)
     {
         timeRemaining -= Time.deltaTime;
-        if (timeRemaining < 0f)
+        if (timeRemaining > 0f)
         {
             Debug.Log("Time running!");
             if (!_carryingItem)
@@ -256,7 +254,7 @@ public class Drone : MonoBehaviour
         else
         {
             Debug.Log("Time's up!");
-            timeRemaining = 0f;
+            timeRemaining = 0.1f;
         }
     }
     private bool takeItem(bool HasOver2Factorys)
