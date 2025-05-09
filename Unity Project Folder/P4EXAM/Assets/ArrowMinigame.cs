@@ -62,6 +62,7 @@ public class ArrowMinigame : MonoBehaviour
         if (_closeUI == true && minigameUI.activeInHierarchy)
         {
             StopMinigame();
+            AudioManager.Instance.PlaySFXArrayRandom("ButtonClicks");
         }
         if (currentRoundPlaying == true)
         {
