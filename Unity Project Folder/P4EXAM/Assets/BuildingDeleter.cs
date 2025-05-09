@@ -18,6 +18,8 @@ public class BuildingDeleter : MonoBehaviour
     private Color originalColor;
     private float colorLerpSpeed = 0.5f;
 
+    [SerializeField] FactoryManager _factoryManager;
+
     private void Update()
     {
             GetKeyInfo();
@@ -108,6 +110,7 @@ public class BuildingDeleter : MonoBehaviour
                 if (heldDuration >= 3f && inFactory && onFactory)
                 {
                     hasTriggered = true;
+                    _factoryManager.Factories.Remove(hit.gameObject);
                     Destroy(hit.gameObject);
                     deleterTutorielDone = true;
                     currentRenderer = null; // clear after destroy

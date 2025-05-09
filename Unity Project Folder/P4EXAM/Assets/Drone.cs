@@ -14,7 +14,6 @@ public class Drone : MonoBehaviour
     //private int flagIndex;
     public GameObject _lastFactoryAccessed = null;
 
-
     private SpriteRenderer _imageSpriteRenderer;
     // [SerializeField] private float _speed;
     [SerializeField] public bool _carryingItem;
@@ -32,6 +31,17 @@ public class Drone : MonoBehaviour
     [SerializeField] float maxSpeed = 100f;  // units/sec
     [SerializeField] float stopThreshold = 0.01f; // how close is “at target”?
 
+    private List<GameObject> _factoriesToUse;
+    private GameObject _middleFactory; // used only in 3-factory logic
+    private GameObject _lastFactory;
+    [SerializeField] List<GameObject> visitedFactoriesInOrder = new List<GameObject>();
+    [SerializeField] HashSet<GameObject> visitedSet = new HashSet<GameObject>();
+
+    bool hasPatrolled = false;
+    bool isRunning = false;
+
+    [SerializeField] private float timeRemaining = 0.1f; // 10-second timer
+
     private void Awake()
     {
         SpriteRenderer[] allRenderers = GetComponentsInChildren<SpriteRenderer>(true);
@@ -47,8 +57,11 @@ public class Drone : MonoBehaviour
 
     void Start()
     {
+
+
         StartCoroutine(PatrolFlags());
-        StartCoroutine(ItemTransferLogic());
+
+        //StartCoroutine(ItemTransferLogic());
     }
 
     IEnumerator PatrolFlags()
@@ -66,9 +79,28 @@ public class Drone : MonoBehaviour
                 Vector2 targetPos = flagPoints[i];
                 while (Vector2.Distance(transform.position, targetPos) > 0.1f)
                 {
-
                     yield return StartCoroutine(MoveDroneTo(targetPos));
                     yield return null;
+                }
+
+                GameObject factory = FactoryManager.Instance.ReturnFactory(transform.position);
+                if (factory != null)
+                {
+                    Debug.Log($"Factory found at {targetPos}: {factory.name}");
+
+                    if (!visitedFactoriesInOrder.Contains(factory))
+                    {
+                        visitedFactoriesInOrder.Add(factory);
+                        visitedSet.Add(factory);
+                        Debug.Log($"Added {factory.name} to visitedFactoriesInOrder");
+                    }
+                }
+                else
+                {
+                    Debug.Log($"No factory found at {targetPos}");
+                    if (visitedFactoriesInOrder.Count != 2)
+                        visitedFactoriesInOrder.Clear();
+                    visitedSet.Clear();
                 }
 
                 yield return new WaitForSeconds(0.5f);
@@ -77,6 +109,7 @@ public class Drone : MonoBehaviour
             yield return null;
         }
     }
+
 
 
     private IEnumerator MoveDroneTo(Vector2 target)
@@ -114,8 +147,19 @@ public class Drone : MonoBehaviour
         // snap exactly
         transform.position = target;
     }
+
+
     private void Update()
     {
+
+        Debug.Log("aaaa im tracking ejg tracker den" + hasPatrolled + "ím" + isRunning);
+        //if (!hasPatrolled && !isRunning)
+        {
+
+            Debug.Log("IM NOT LYING");
+            PatrolThenStartItemTransfer();
+        }
+
         if (_carryingItem)
         {
             _sprite = _Item.GetComponent<ItemBase>().Sprite;
@@ -141,42 +185,85 @@ public class Drone : MonoBehaviour
         // Drone is idle if it's not at the last accessed factory and not near any factory
         if (nearbyFactory == null || nearbyFactory != _lastFactoryAccessed)
         {
+            hasPatrolled = false;
             return true;
         }
 
         return false;
     }
+    private void PatrolThenStartItemTransfer()
+    {
+        isRunning = true;
+
+        if (flagPoints.Count == 0 || visitedFactoriesInOrder.Count < 2)
+        {
+            isRunning = false;
+            return;
+        }
+
+
+        if (visitedFactoriesInOrder.Count == 2)
+        {
+            hasPatrolled = true;
+            isRunning = false;
+            _factoriesToUse = visitedFactoriesInOrder;  // [A, B]
+            ItemTransferLogicForFactories(false);
+
+        }
+        else if (visitedFactoriesInOrder.Count == 3)
+        {
+            hasPatrolled = true;
+            isRunning = false;
+            _factoriesToUse = new List<GameObject> { visitedFactoriesInOrder[0], visitedFactoriesInOrder[2] };  // [A, C]
+            _middleFactory = visitedFactoriesInOrder[1];  // optional, for skipping logic
+            _lastFactory = visitedFactoriesInOrder[1];  // optional, for skipping logic
+            ItemTransferLogicForFactories(true);
+
+        }
+    }
+
+
+
+
+
+
 
     private void ResetFactoryAccess()
     {
         // Reset the last factory accessed when the drone is idle and no longer at a factory
         _lastFactoryAccessed = null;
     }
-    private IEnumerator ItemTransferLogic()
+
+    private void ItemTransferLogicForFactories(bool HasOver2Factorys)
     {
-
-        while (true)
+        timeRemaining -= Time.deltaTime;
+        if (timeRemaining < 0f)
         {
-            if (takeItem() == true)
+            Debug.Log("Time running!");
+            if (!_carryingItem)
             {
-                yield return new WaitForSecondsRealtime(0.1f);
+                Debug.Log("FUCKING TAKE IT");
+      
+                takeItem(HasOver2Factorys);
             }
-            if (DepositItem() == true)
+            else
             {
-                yield return new WaitForSecondsRealtime(0.1f);
+                DepositItem(HasOver2Factorys);
             }
-            yield return null;
         }
-
+        else
+        {
+            Debug.Log("Time's up!");
+            timeRemaining = 0f;
+        }
     }
-
-    private bool takeItem()
+    private bool takeItem(bool HasOver2Factorys)
     {
         if (!_carryingItem)
         {
             GameObject tempGB = FactoryManager.Instance.ReturnFactory(this.transform.position);
 
-            if (tempGB == null || IsSameFactory(tempGB))
+            if (!_factoriesToUse.Contains(tempGB) && (tempGB == null || IsSameFactory(tempGB)) && !(HasOver2Factorys == true && tempGB == _middleFactory) || IsDroneIdle())
             {
                 return false;
             }
@@ -189,18 +276,19 @@ public class Drone : MonoBehaviour
                 ChangeCarryingState();
                 return true;
             }
+
         }
         return false;
     }
 
 
-    private bool DepositItem()
+    private bool DepositItem(bool HasOver2Factorys)
     {
         if (_carryingItem)
         {
             GameObject tempGB = FactoryManager.Instance.ReturnFactory(this.transform.position);
 
-            if (tempGB == null || IsSameFactory(tempGB))
+            if ((tempGB == null || IsSameFactory(tempGB)) && !_factoriesToUse.Contains(tempGB))
             {
                 return false;
             }
@@ -208,7 +296,9 @@ public class Drone : MonoBehaviour
             tempGB.GetComponent<FactoryBase>().AddItemToInventory(_Item);
             _Item = null;
             ChangeCarryingState();
+
             _lastFactoryAccessed = tempGB;  // update here
+
             return true;
         }
         return false;

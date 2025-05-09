@@ -181,7 +181,8 @@ public class RadioScript : MonoBehaviour
                 "Next up, try using your drones. \nYou should be able to activate flag managing mode by clicking on the other button. \n" +
                 $"You will be able to move drones between {drone.maxFlagCount} different locations, by making them pass over buildings like factories.Though you have to remember to select the drone.\n" +
                 "They should be able to take the output and move it around into another building to craft items. \n" +
-                "For example, transferring copper into a wire factory should make wires for you to make spools and other parts.");
+                "For example, transferring copper into a wire factory should make wires for you to make spools and other parts.\n"+
+                "If you're wondering where you'll get your resources, just look for the orange tulips that make copper and the white tree that make iron.");
             triggeredTimes.Add(2);
             return;
         }
@@ -233,7 +234,33 @@ public class RadioScript : MonoBehaviour
             triggeredTimes.Add(93);
             return;
         }
+        // Dialog for Turiel about the efficiency module
+        if (!triggeredTimes.Contains(2))
+        {
+            EnqueueDialog("Turiel",
+                "NOW, to my favorite part! \nTry going up to the copper farm, or one of your factories and press the 'e' button. \n" +
+                "THEN you should see our patent-pending efficiency module that plays like those video games. Press the arrow keys in the shown pattern; as long as you do it correctly, it should boost your machines!");
+            triggeredTimes.Add(2);
+            return;
+        }
 
+        // Check if the minigame tutorial is done
+        if (!minigameTutorielDone)
+        {
+            if (arrowMinigame.minigameTutorielDone)
+            {
+                minigameTutorielDone = true;
+            }
+            return;
+        }
+
+        // Skip to the next part when the minigame tutorial is done
+        if (!triggeredTimes.Contains(92))
+        {
+            Dequeue();
+            triggeredTimes.Add(92);
+            return;
+        }
         // Dialog for Turiel about deleting buildings
         if (!triggeredTimes.Contains(4))
         {
@@ -259,7 +286,6 @@ public class RadioScript : MonoBehaviour
         {
             Dequeue();
             triggeredTimes.Add(94);
-            tutorielDone = true;
             return;
         }
 
@@ -268,6 +294,7 @@ public class RadioScript : MonoBehaviour
         {
             EnqueueDialog("Turiel", "Aaand that should be everything. \nHave fun, \nTuriel out!");
             triggeredTimes.Add(5);
+            tutorielDone = true;
             return;
         }
     }
