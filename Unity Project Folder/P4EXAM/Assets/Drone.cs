@@ -33,7 +33,6 @@ public class Drone : MonoBehaviour
 
     private List<GameObject> _factoriesToUse;
     private GameObject _middleFactory; // used only in 3-factory logic
-    private GameObject _lastFactory;
     [SerializeField] List<GameObject> visitedFactoriesInOrder = new List<GameObject>();
 
 
@@ -214,7 +213,6 @@ public class Drone : MonoBehaviour
                 isRunning = false;
                 _factoriesToUse = new List<GameObject> { visitedFactoriesInOrder[0], visitedFactoriesInOrder[2] };  // [A, C]
                 _middleFactory = visitedFactoriesInOrder[1];  // optional, for skipping logic
-                _lastFactory = visitedFactoriesInOrder[1];  // optional, for skipping logic
                 ItemTransferLogicForFactories(true);
 
             }
