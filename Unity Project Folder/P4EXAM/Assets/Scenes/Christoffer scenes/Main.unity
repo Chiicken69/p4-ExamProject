@@ -4418,6 +4418,22 @@ PrefabInstance:
       propertyPath: _blueprintBook
       value: 
       objectReference: {fileID: 1572495443}
+    - target: {fileID: 1085309101745576303, guid: c7b2612eb6f4fdd4990b4127fe0c4bea, type: 3}
+      propertyPath: flagSprites.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1085309101745576303, guid: c7b2612eb6f4fdd4990b4127fe0c4bea, type: 3}
+      propertyPath: 'flagSprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: -435298653278286956, guid: 9765dcb3fcfe50d46b76bc2ba4b278c8, type: 3}
+    - target: {fileID: 1085309101745576303, guid: c7b2612eb6f4fdd4990b4127fe0c4bea, type: 3}
+      propertyPath: 'flagSprites.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11838139, guid: 9765dcb3fcfe50d46b76bc2ba4b278c8, type: 3}
+    - target: {fileID: 1085309101745576303, guid: c7b2612eb6f4fdd4990b4127fe0c4bea, type: 3}
+      propertyPath: 'flagSprites.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1272203787, guid: 9765dcb3fcfe50d46b76bc2ba4b278c8, type: 3}
     - target: {fileID: 1203463921788649630, guid: c7b2612eb6f4fdd4990b4127fe0c4bea, type: 3}
       propertyPath: m_Name
       value: FlagManager

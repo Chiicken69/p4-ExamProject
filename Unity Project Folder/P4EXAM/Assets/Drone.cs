@@ -30,13 +30,12 @@ public class Drone : MonoBehaviour
     [SerializeField] float accel = 10f;   // units/sec²
     [SerializeField] float maxSpeed = 100f;  // units/sec
     [SerializeField] float stopThreshold = 0.01f; // how close is “at target”?
-    float speed = 0f;
+    public float speed = 0f;
 
     private List<GameObject> _factoriesToUse;
     private GameObject _middleFactory; // used only in 3-factory logic
     private GameObject _lastFactory;
     [SerializeField] public List<GameObject> visitedFactoriesInOrder = new List<GameObject>();
-
 
     bool hasPatrolled = false;
     bool isRunning = false;
@@ -65,7 +64,7 @@ public class Drone : MonoBehaviour
         //StartCoroutine(ItemTransferLogic());
     }
 
- IEnumerator PatrolFlags()
+ public IEnumerator PatrolFlags()
 {
     while (true)
     {
@@ -114,7 +113,7 @@ public class Drone : MonoBehaviour
 
 
 
-    private IEnumerator MoveDroneTo(Vector2 target)
+    public IEnumerator MoveDroneTo(Vector2 target)
     {
        
 

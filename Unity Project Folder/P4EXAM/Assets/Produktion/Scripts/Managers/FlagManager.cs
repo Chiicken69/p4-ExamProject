@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class FlagManager : MonoBehaviour
 {
     public static FlagManager Instance;
-
     [SerializeField] Image _blueprintBook;
     [SerializeField] Text _flagModeText;
     public static bool _flagMode = false;
@@ -19,6 +18,11 @@ public class FlagManager : MonoBehaviour
     [SerializeField] Button FlagMangButton;
     Color PassiveColor = new Color(255, 255, 255, 1f);
     Color ToggledColor = new Color(255, 255, 255, 0.75f);
+
+    Coroutine moveRoutine;
+
+public Sprite[] flagSprites; // Drag your "1", "2", "3" sprites into this in the Inspector
+
 
     GameObject tempFlag;
 
@@ -84,7 +88,6 @@ public class FlagManager : MonoBehaviour
         
         selectedDrones.Clear();  // Clear the selection list
     }
-
     bool TrySelectDrone(Vector2 mousePos)
     {
         RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
@@ -139,17 +142,36 @@ public class FlagManager : MonoBehaviour
            flags.Add(pos);
         if (flags.Count > drone.maxFlagCount)
         {
-                  foreach (GameObject flagObj in flagObjs)
+
+
+
+            foreach (GameObject flagObj in flagObjs)
             {
                 Destroy(flagObj);
             }
             flagObjs.Clear();
             flags.Clear();
             flags.Add(pos);
+            drone.StopAllCoroutines();
+            drone.StartCoroutine(drone.PatrolFlags());
+            drone.speed = 0;
+
+
+
+
         }
 
         GameObject flag = Instantiate(drone.flagPrefab, pos, Quaternion.identity);
         flagObjs.Add(flag);
+        Debug.Log("Placed flag at: " + pos);
+
+        // Set different sprite based on order
+        int spriteIndex = flags.Count - 1;
+        if (spriteIndex < flagSprites.Length)
+        {
+            flag.GetComponent<SpriteRenderer>().sprite = flagSprites[spriteIndex];
+        }
+
         Debug.Log("Placed flag at: " + pos);
     }
 
