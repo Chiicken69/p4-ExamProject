@@ -118,13 +118,13 @@ private IEnumerator MoveDroneTo(Vector2 target)
 {
     if (_carryingItem)
     {
-        _sprite = _Item.GetComponent<ItemBase>().Sprite;
-        _imageSpriteRenderer.sprite = _sprite;
-    }
-    else
-    {
-        _imageSpriteRenderer.sprite = null;
-
+        Debug.Log("Carrying: " + _Item.ToString());
+        if (_carryingItem)
+        {
+            _sprite = _Item.GetComponent<ItemBase>().Sprite;
+            _imageSpriteRenderer.sprite = _sprite;
+        }
+        else _imageSpriteRenderer.sprite = null;
     }
 
  if (!_carryingItem && IsDroneIdle())
