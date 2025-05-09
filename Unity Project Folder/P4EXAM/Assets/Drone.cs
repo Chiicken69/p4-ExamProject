@@ -83,6 +83,7 @@ public class Drone : MonoBehaviour
                     yield return null;
                 }
 
+
                 GameObject factory = FactoryManager.Instance.ReturnFactory(transform.position);
                 if (factory != null)
                 {
@@ -263,7 +264,9 @@ public class Drone : MonoBehaviour
         {
             GameObject tempGB = FactoryManager.Instance.ReturnFactory(this.transform.position);
 
-            if (!_factoriesToUse.Contains(tempGB) && (tempGB == null || IsSameFactory(tempGB)) && !(HasOver2Factorys == true && tempGB == _middleFactory) || IsDroneIdle())
+
+
+            if ((tempGB == null || IsSameFactory(tempGB)) && !(HasOver2Factorys == true && tempGB == _middleFactory) || IsDroneIdle())
             {
                 return false;
             }
@@ -288,7 +291,7 @@ public class Drone : MonoBehaviour
         {
             GameObject tempGB = FactoryManager.Instance.ReturnFactory(this.transform.position);
 
-            if ((tempGB == null || IsSameFactory(tempGB)) && !_factoriesToUse.Contains(tempGB))
+            if (tempGB == null || IsSameFactory(tempGB))
             {
                 return false;
             }
