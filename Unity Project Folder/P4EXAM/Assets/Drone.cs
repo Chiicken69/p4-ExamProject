@@ -132,6 +132,7 @@ private IEnumerator MoveDroneTo(Vector2 target)
         ResetFactoryAccess();
     }
 }
+
 private bool IsDroneIdle()
 {
     // Check if there is no nearby factory, or if the drone is far from its last accessed factory
@@ -168,7 +169,7 @@ private void ResetFactoryAccess()
         }
         
     }
-
+    
 private bool takeItem()
 {
     if (!_carryingItem)
