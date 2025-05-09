@@ -233,7 +233,33 @@ public class RadioScript : MonoBehaviour
             triggeredTimes.Add(93);
             return;
         }
+        // Dialog for Turiel about the efficiency module
+        if (!triggeredTimes.Contains(2))
+        {
+            EnqueueDialog("Turiel",
+                "NOW, to my favorite part! \nTry going up to the copper farm, or one of your factories and press the 'e' button. \n" +
+                "THEN you should see our patent-pending efficiency module that plays like those video games. Press the arrow keys in the shown pattern; as long as you do it correctly, it should boost your machines!");
+            triggeredTimes.Add(2);
+            return;
+        }
 
+        // Check if the minigame tutorial is done
+        if (!minigameTutorielDone)
+        {
+            if (arrowMinigame.minigameTutorielDone)
+            {
+                minigameTutorielDone = true;
+            }
+            return;
+        }
+
+        // Skip to the next part when the minigame tutorial is done
+        if (!triggeredTimes.Contains(92))
+        {
+            Dequeue();
+            triggeredTimes.Add(92);
+            return;
+        }
         // Dialog for Turiel about deleting buildings
         if (!triggeredTimes.Contains(4))
         {
@@ -259,7 +285,6 @@ public class RadioScript : MonoBehaviour
         {
             Dequeue();
             triggeredTimes.Add(94);
-            tutorielDone = true;
             return;
         }
 
@@ -268,6 +293,7 @@ public class RadioScript : MonoBehaviour
         {
             EnqueueDialog("Turiel", "Aaand that should be everything. \nHave fun, \nTuriel out!");
             triggeredTimes.Add(5);
+            tutorielDone = true;
             return;
         }
     }
