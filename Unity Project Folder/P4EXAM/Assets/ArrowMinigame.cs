@@ -157,7 +157,7 @@ public class ArrowMinigame : MonoBehaviour
 
     private void RunRound(FactoryBase currentFactory)
     {
-        factoryMultText.text = currentFactory.GetComponent<FactoryBase>().speedIncreasePercentage.ToString();
+        factoryMultText.text = "Current speed bonus: " + currentFactory.GetComponent<FactoryBase>().speedIncreasePercentage.ToString() + "%";
         if (currentArrowIndex >= directionList.Count)
         {
             Debug.Log("All inputs correct! Round finished.");
