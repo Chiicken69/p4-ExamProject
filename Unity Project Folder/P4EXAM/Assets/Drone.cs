@@ -30,6 +30,8 @@ public class Drone : MonoBehaviour
     [SerializeField] float accel = 10f;   // units/sec²
     [SerializeField] float maxSpeed = 100f;  // units/sec
     [SerializeField] float stopThreshold = 0.01f; // how close is “at target”?
+    
+    private float speed = 0f;
 
     private List<GameObject> _factoriesToUse;
     private GameObject _middleFactory; // used only in 3-factory logic
@@ -111,7 +113,7 @@ public class Drone : MonoBehaviour
 
     private IEnumerator MoveDroneTo(Vector2 target)
     {
-        float speed = 0f;
+       
 
         while (Vector2.Distance(transform.position, target) > stopThreshold)
         {
@@ -234,12 +236,12 @@ public class Drone : MonoBehaviour
     private void ItemTransferLogicForFactories(bool HasOver2Factorys)
     {
         timeRemaining -= Time.deltaTime;
-        if (timeRemaining > 0f)
+        if (timeRemaining > 0f && speed <= 1.5f )
         {
             Debug.Log("Time running!");
             if (!_carryingItem)
             {
-                Debug.Log("FUCKING TAKE IT");
+                Debug.LogWarning("FUCKING TAKE IT");
       
                 takeItem(HasOver2Factorys);
             }
