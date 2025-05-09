@@ -181,7 +181,8 @@ public class RadioScript : MonoBehaviour
                 "Next up, try using your drones. \nYou should be able to activate flag managing mode by clicking on the other button. \n" +
                 $"You will be able to move drones between {drone.maxFlagCount} different locations, by making them pass over buildings like factories.Though you have to remember to select the drone.\n" +
                 "They should be able to take the output and move it around into another building to craft items. \n" +
-                "For example, transferring copper into a wire factory should make wires for you to make spools and other parts.");
+                "For example, transferring copper into a wire factory should make wires for you to make spools and other parts.\n"+
+                "If you're wondering where you'll get your resources, just look for the orange tulips that make copper and the white tree that make iron.");
             triggeredTimes.Add(2);
             return;
         }
