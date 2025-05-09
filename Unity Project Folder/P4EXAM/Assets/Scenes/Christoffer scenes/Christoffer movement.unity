@@ -86813,41 +86813,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 618714191}
     - target: {fileID: 3957326023816848894, guid: 37b404c8c0411be4887f3f561c320d11, type: 3}
-      propertyPath: sfxSounds.Array.size
-      value: 1
+      propertyPath: musicSounds.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3957326023816848894, guid: 37b404c8c0411be4887f3f561c320d11, type: 3}
-      propertyPath: sfxSounds.Array.data[0].clip
+      propertyPath: musicSounds.Array.data[0].clip
       value: 
-      objectReference: {fileID: 8300000, guid: cfe99db9029c5494c9c776df296d479b, type: 3}
+      objectReference: {fileID: 8300000, guid: 8649b0a7a8a8ab549bb1b78e895d493b, type: 3}
     - target: {fileID: 3957326023816848894, guid: 37b404c8c0411be4887f3f561c320d11, type: 3}
-      propertyPath: sfxSounds.Array.data[0].name
-      value: ButtonClick
+      propertyPath: musicSounds.Array.data[0].name
+      value: Polyrytme
       objectReference: {fileID: 0}
     - target: {fileID: 3957326023816848894, guid: 37b404c8c0411be4887f3f561c320d11, type: 3}
-      propertyPath: sfxSoundArray.Array.data[0].clip.Array.size
-      value: 5
+      propertyPath: musicSounds.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: eb8695e562ceaea4ea1ccd3a3232add9, type: 3}
+    - target: {fileID: 3957326023816848894, guid: 37b404c8c0411be4887f3f561c320d11, type: 3}
+      propertyPath: musicSounds.Array.data[1].name
+      value: Harpeskifter
       objectReference: {fileID: 0}
-    - target: {fileID: 3957326023816848894, guid: 37b404c8c0411be4887f3f561c320d11, type: 3}
-      propertyPath: 'sfxSoundArray.Array.data[0].clip.Array.data[0]'
-      value: 
-      objectReference: {fileID: 8300000, guid: dfc1842c8855fce46ae004885fddc8de, type: 3}
-    - target: {fileID: 3957326023816848894, guid: 37b404c8c0411be4887f3f561c320d11, type: 3}
-      propertyPath: 'sfxSoundArray.Array.data[0].clip.Array.data[1]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 4a18b238b38eede4d883fe3949cf71e6, type: 3}
-    - target: {fileID: 3957326023816848894, guid: 37b404c8c0411be4887f3f561c320d11, type: 3}
-      propertyPath: 'sfxSoundArray.Array.data[0].clip.Array.data[2]'
-      value: 
-      objectReference: {fileID: 8300000, guid: ebef71a4b9ea54f4aa43cf6b01680122, type: 3}
-    - target: {fileID: 3957326023816848894, guid: 37b404c8c0411be4887f3f561c320d11, type: 3}
-      propertyPath: 'sfxSoundArray.Array.data[0].clip.Array.data[3]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 9f69f78da4855ec46b40a287b2eda7d0, type: 3}
-    - target: {fileID: 3957326023816848894, guid: 37b404c8c0411be4887f3f561c320d11, type: 3}
-      propertyPath: 'sfxSoundArray.Array.data[0].clip.Array.data[4]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 4a85509a9a3704e4fb3487cb68ea25fa, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
