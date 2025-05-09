@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1151128545019730971, guid: ac20d0a8b5b52e246886d74baf7aa831, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &6277447712576289419
@@ -310,7 +310,7 @@ MonoBehaviour:
   flagPoints: []
   flagObjects: []
   flagPrefab: {fileID: 4393590394280782606, guid: 0977054740dbf31488305e07e15849cc, type: 3}
-  maxFlagCount: 3
+  maxFlagCount: 2
   _lastFactoryAccessed: {fileID: 0}
   _carryingItem: 0
   _Item: {fileID: 0}
@@ -318,6 +318,8 @@ MonoBehaviour:
   accel: 10
   maxSpeed: 100
   stopThreshold: 0.01
+  visitedFactoriesInOrder: []
+  timeRemaining: 0.1
 --- !u!61 &49068800639931144
 BoxCollider2D:
   m_ObjectHideFlags: 0

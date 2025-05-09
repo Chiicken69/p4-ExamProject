@@ -218,7 +218,7 @@ public class Drone : MonoBehaviour
             isRunning = false;
             _factoriesToUse = new List<GameObject> { visitedFactoriesInOrder[0], visitedFactoriesInOrder[2] };  // [A, C]
             _middleFactory = visitedFactoriesInOrder[1];  // optional, for skipping logic
-            _lastFactory = visitedFactoriesInOrder[1];  // optional, for skipping logic
+            _lastFactory = visitedFactoriesInOrder[2];  // optional, for skipping logic
             ItemTransferLogicForFactories(true);
 
         }
@@ -269,6 +269,10 @@ public class Drone : MonoBehaviour
 
             if ((tempGB == null || IsSameFactory(tempGB)) && !(HasOver2Factorys == true && tempGB == _middleFactory) || IsDroneIdle())
             {
+                return false;
+            }
+            if(tempGB == _lastFactory ){
+                _lastFactoryAccessed = tempGB; 
                 return false;
             }
 
