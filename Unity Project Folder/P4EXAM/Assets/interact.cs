@@ -22,6 +22,7 @@ public class interact : MonoBehaviour
         _interact = InputHandler.Instance.PassInputBoolValue(1);
         if ((playerInFactoryTrigger == true && _interact == true) && !minigameUI.activeInHierarchy)
         {
+            //mreowwwwwww
             //print("WHAT THE FUCK");
             AudioManager.Instance.PlaySFXArrayRandom("ButtonClicks");
             arrowMinigame.StartMinigame();
