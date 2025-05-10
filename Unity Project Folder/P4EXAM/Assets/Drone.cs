@@ -90,11 +90,18 @@ public class Drone : MonoBehaviour
                 {
                     Debug.Log($"Factory found at {targetPos}: {factory.name}");
 
-                    if (!visitedFactoriesInOrder.Contains(factory) && visitedFactoriesInOrder.Count < 3)
+                    if (!visitedFactoriesInOrder.Contains(factory) && visitedFactoriesInOrder.Count < 2)
                     {
                         visitedFactoriesInOrder.Add(factory);
                         visitedSet.Add(factory);
                         Debug.Log($"Added {factory.name} to visitedFactoriesInOrder");
+                    } else{
+                            foreach (var visedfactory in visitedFactoriesInOrder)
+                        {
+                           if(factory != visitedFactoriesInOrder.Contains(visedfactory)){
+                            visitedFactoriesInOrder.Remove(visedfactory);
+                           }
+                        }
                     }
                 }
                 else
