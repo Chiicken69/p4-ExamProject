@@ -21,13 +21,12 @@ public class FactoryBase : MonoBehaviour, Ifactory
 
 
     public FactoryState state;
-    private ItemBase.ItemType ListOfItems;
-   [SerializeField] private SpriteRenderer _spriteRenderer;
-    [SerializeField] private GameObject DroneObjReference;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private GameObject droneObjReference;
 
     [Header("Inventory sneak peek")]
-    [SerializeField] List<GameObject> OutputInventory;
-   [SerializeField] List<GameObject> InputInventory;
+    [SerializeField] private List<GameObject> outputInventory;
+   [SerializeField] private List<GameObject> inputInventory;
 
     [Header("Sprites for states")]
 
@@ -67,7 +66,7 @@ public class FactoryBase : MonoBehaviour, Ifactory
 
     private void Awake()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         state = FactoryState.Building;
         _tempCraftingTime = _craftingTime;
         internalTimer = _secondsToDecreaseSpeed;
@@ -128,7 +127,7 @@ public class FactoryBase : MonoBehaviour, Ifactory
                 _currentSprite = idleSprite;
                 break;
         }
-        _spriteRenderer.sprite = _currentSprite;
+        spriteRenderer.sprite = _currentSprite;
         Debug.Log(_currentSprite.ToString());
     }
 
@@ -145,10 +144,10 @@ public class FactoryBase : MonoBehaviour, Ifactory
         while (true)
         {
             
-            if (ItemsFilled(_itemListToCraftFactory, InputInventory, _itemAmountToCraftFactory))
+            if (ItemsFilled(_itemListToCraftFactory, inputInventory, _itemAmountToCraftFactory))
             {
                 
-                ClearInputInventory();
+                ClearinputInventory();
                 state = FactoryState.Idle;
                 StopCoroutine(BuildFactory());
                 break;
@@ -170,7 +169,7 @@ public class FactoryBase : MonoBehaviour, Ifactory
 
     public void ClearOutputInventory()
     {
-        OutputInventory.Clear();   
+        outputInventory.Clear();   
     }
     [ContextMenu("Create Output")]
     public void CreateOutput()
@@ -179,12 +178,12 @@ public class FactoryBase : MonoBehaviour, Ifactory
         //ObjectToAdd.AddComponent<ItemBase>();
         
 
-        if (_itemOutputType == DroneObjReference )
+        if (_itemOutputType == droneObjReference )
         {
             Debug.LogWarning("drone obj is in here!!!");
             DroneManager.Instance.SpawnDrone(this.gameObject);
         }
-        OutputInventory.Add(ObjectToAdd); 
+        outputInventory.Add(ObjectToAdd); 
     }
 
     public void AddItemToInventory(GameObject ObjectToAdd)
@@ -200,7 +199,7 @@ public class FactoryBase : MonoBehaviour, Ifactory
         }
 
 
-        InputInventory.Add(ObjectToAdd);
+        inputInventory.Add(ObjectToAdd);
     }
     /// <summary>
     /// Returns true if item is in recipe, returns false if not
@@ -228,20 +227,20 @@ public class FactoryBase : MonoBehaviour, Ifactory
     // other scripts call this to take items
     public GameObject TakeItemFromOutputInventory()
     {
-        if (OutputInventory.Count <= 0)
+        if (outputInventory.Count <= 0)
         {
             return null;
         }
-        int i = OutputInventory.Count;
+        int i = outputInventory.Count;
 
-        GameObject TemporaryObject = OutputInventory[i-1];
-        OutputInventory.RemoveAt(i-1);
+        GameObject TemporaryObject = outputInventory[i-1];
+        outputInventory.RemoveAt(i-1);
         return TemporaryObject;
     }
 
-    public void ClearInputInventory()
+    public void ClearinputInventory()
     {
-        InputInventory.Clear();
+        inputInventory.Clear();
     }
 
     IEnumerator Craft()
@@ -256,7 +255,7 @@ public class FactoryBase : MonoBehaviour, Ifactory
             // collect matching GameObjects to destroy
             var toRemove = new List<GameObject>();
 
-            foreach (var go in InputInventory)
+            foreach (var go in inputInventory)
             {
                 if (k >= amountNeeded)
                     break;
@@ -271,9 +270,9 @@ public class FactoryBase : MonoBehaviour, Ifactory
 
             // now actually remove them
             foreach (var go in toRemove)
-                InputInventory.Remove(go);
+                inputInventory.Remove(go);
         }
-        // ClearInputInventory();
+        // ClearinputInventory();
         print("crafting started");
         state = FactoryState.Crafting;
         _tempCraftingTime = _craftingTime;
@@ -318,7 +317,7 @@ public class FactoryBase : MonoBehaviour, Ifactory
         if (_readyToCraft)
         {
             print("test");
-            if (ItemsFilled(_ingredientList, InputInventory, _ingredientAmountForCraft))
+            if (ItemsFilled(_ingredientList, inputInventory, _ingredientAmountForCraft))
             {
                 print("Check is true!");
                 StartCoroutine(Craft());
@@ -412,7 +411,7 @@ public class FactoryBase : MonoBehaviour, Ifactory
             print(TotalItems);
             _timerSlider.minValue = 0;
 
-            float ItemsInFactory = InputInventory.Count;
+            float ItemsInFactory = inputInventory.Count;
             _timerSlider.value = ItemsInFactory;
 
         }
@@ -440,7 +439,7 @@ public class FactoryBase : MonoBehaviour, Ifactory
         {
             for (global::System.Int32 i = 0; i < _itemListToCraftFactory.Count; i++)
             {
-                text += _itemListToCraftFactory[i] +": " + CheckInputInventory(_itemListToCraftFactory[i]) +"/" + _itemAmountToCraftFactory[i] + "\n";
+                text += _itemListToCraftFactory[i] +": " + CheckinputInventory(_itemListToCraftFactory[i]) +"/" + _itemAmountToCraftFactory[i] + "\n";
                 
             }
         }
@@ -448,7 +447,7 @@ public class FactoryBase : MonoBehaviour, Ifactory
         {
             for (global::System.Int32 i = 0; i < _ingredientList.Count; i++)
             {
-                text += _ingredientList[i] + ": " + CheckInputInventory(_ingredientList[i]) + "/" + _ingredientAmountForCraft[i] + "\n";
+                text += _ingredientList[i] + ": " + CheckinputInventory(_ingredientList[i]) + "/" + _ingredientAmountForCraft[i] + "\n";
 
             }
         }
@@ -456,10 +455,10 @@ public class FactoryBase : MonoBehaviour, Ifactory
 
     }
 
-    private int CheckInputInventory(ItemBase.ItemType TypeToCheck)
+    private int CheckinputInventory(ItemBase.ItemType TypeToCheck)
     {
         int i = 0;
-        foreach (var item in InputInventory)
+        foreach (var item in inputInventory)
         {
             ItemBase itembase = item.GetComponent<ItemBase>();
             
