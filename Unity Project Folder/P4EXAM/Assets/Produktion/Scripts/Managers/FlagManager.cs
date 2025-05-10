@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -7,6 +6,7 @@ using UnityEngine.UI;
 public class FlagManager : MonoBehaviour
 {
     public static FlagManager Instance;
+
     [SerializeField] Image _blueprintBook;
     [SerializeField] Text _flagModeText;
     public static bool _flagMode = false;
@@ -19,11 +19,6 @@ public class FlagManager : MonoBehaviour
     [SerializeField] Button FlagMangButton;
     Color PassiveColor = new Color(255, 255, 255, 1f);
     Color ToggledColor = new Color(255, 255, 255, 0.75f);
-
-    Coroutine moveRoutine;
-
-public Sprite[] flagSprites; // Drag your "1", "2", "3" sprites into this in the Inspector
-
 
     GameObject tempFlag;
 
@@ -46,11 +41,9 @@ public Sprite[] flagSprites; // Drag your "1", "2", "3" sprites into this in the
         CheckModeForText();
         ChangeToFlagModeKeybind();
         MouseClickDetection();
-        
         _mousePos = InputHandler.Instance.PassMousePosInWorld();
 
         CheckFlagsOnSelcDrone();
-            HandleFlagAmmountChange(); // <- Add this line
 
         if (_flagMode == false)
         {
@@ -70,7 +63,6 @@ public Sprite[] flagSprites; // Drag your "1", "2", "3" sprites into this in the
                 foreach (var drone in selectedDrones)
                 {
                     PlaceFlag(_mousePos, drone);
-
                 }
             }
         }
@@ -92,6 +84,7 @@ public Sprite[] flagSprites; // Drag your "1", "2", "3" sprites into this in the
         
         selectedDrones.Clear();  // Clear the selection list
     }
+
     bool TrySelectDrone(Vector2 mousePos)
     {
         RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
@@ -143,82 +136,22 @@ public Sprite[] flagSprites; // Drag your "1", "2", "3" sprites into this in the
         var flags = drone.flagPoints;
         var flagObjs = drone.flagObjects;
 
-
-
-           flags.Add(pos);
+        flags.Add(pos);
         if (flags.Count > drone.maxFlagCount)
         {
-            deleteLists();
-            flags.Add(pos);
-            drone.speed = 0;
-
-
-
+            foreach (GameObject flagObj in flagObjs)
+            {
+                Destroy(flagObj);
+            }
+            flagObjs.Clear();
+            flags.Clear();
 
         }
 
         GameObject flag = Instantiate(drone.flagPrefab, pos, Quaternion.identity);
         flagObjs.Add(flag);
         Debug.Log("Placed flag at: " + pos);
-
-        // Set different sprite based on order
-        int spriteIndex = flags.Count - 1;
-        if (spriteIndex < flagSprites.Length)
-        {
-            flag.GetComponent<SpriteRenderer>().sprite = flagSprites[spriteIndex];
-        }
-
-        Debug.Log("Placed flag at: " + pos);
     }
-
-
-
- void HandleFlagAmmountChange()
-{
-    if (_flagMode && selectedDrones.Count > 0)
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            foreach (var drone in selectedDrones)
-            {
-                deleteLists();
-                drone.maxFlagCount = 2;
-                Debug.Log("Set flag count to 2 for: " + drone.name);
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            foreach (var drone in selectedDrones)
-            {
-                deleteLists();
-                drone.maxFlagCount = 3;
-                Debug.Log("Set flag count to 3 for: " + drone.name);
-            }
-        }
-    }
-}
-
-
- private void deleteLists()
-{
-    foreach (var drone in selectedDrones)
-    {
-        foreach (GameObject flagObj in drone.flagObjects)
-        {
-            Destroy(flagObj);
-        }
-
-        drone.flagObjects.Clear();
-        drone.flagPoints.Clear();
-
-        drone.StopAllCoroutines();
-        drone.StartCoroutine(drone.PatrolFlags());
-        drone.speed = 0;
-    }
-}
-
-
-
 
     void CheckFlagsOnSelcDrone()
     {
@@ -276,7 +209,7 @@ public Sprite[] flagSprites; // Drag your "1", "2", "3" sprites into this in the
             _flagModeText.text = "LMB to select drones,\nhold leftShift to select multiple";
             if (selectedDrones.Count > 0)
             {
-                _flagModeText.text = "LMB to move,\nLMB or RMB on drones deselect\npress 2 or 3 to select flag amount";
+                _flagModeText.text = "LMB to move,\nLMB or RMB on drones deselect";
             }
         }
         else
