@@ -89,20 +89,33 @@ public class Drone : MonoBehaviour
                 {
                     Debug.Log($"Factory found at {targetPos}: {factory.name}");
 
-<<<<<<< Updated upstream
-                    if (!visitedFactoriesInOrder.Contains(factory) && visitedFactoriesInOrder.Count < 3)
-=======
                     // Add new factory if not already visited
                     if (!visitedFactoriesInOrder.Contains(factory) && visitedFactoriesInOrder.Count < 2)
->>>>>>> Stashed changes
                     {
                         visitedFactoriesInOrder.Add(factory);
                         visitedSet.Add(factory);
                         Debug.Log($"Added {factory.name} to visitedFactoriesInOrder");
                     }
 
-                    // 🧹 Remove any factories that aren't the current one
-                    visitedFactoriesInOrder.RemoveAll(f => f == null || f != factory);
+                    // Remove factories no longer located at any flag position
+                    visitedFactoriesInOrder.RemoveAll(f =>
+                    {
+                        if (f == null) return true;
+
+                        bool stillValid = false;
+                        foreach (var point in flagPoints)
+                        {
+                            GameObject match = FactoryManager.Instance.ReturnFactory(point);
+                            if (match == f)
+                            {
+                                stillValid = true;
+                                break;
+                            }
+                        }
+
+                        return !stillValid;
+                    });
+
                 }
                 else
                 {
