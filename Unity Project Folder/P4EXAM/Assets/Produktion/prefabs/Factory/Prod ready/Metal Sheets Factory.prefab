@@ -143,7 +143,7 @@ MonoBehaviour:
   OutputInventory: []
   InputInventory: []
   buildingSprite: {fileID: 21300000, guid: 95e19488c5a4a3746916f3cbc2cbf363, type: 3}
-  idleSprite: {fileID: 21300000, guid: 1111730ce93cb484c914c80efba71fc8, type: 3}
+  idleSprite: {fileID: -5562376226675247559, guid: 3866b80d734d5f74884444160af3e59b, type: 3}
   craftingSprite: {fileID: 21300000, guid: 1a80d083a0f5fa94d9a789e2318d3a3f, type: 2}
   processingSprite: {fileID: 0}
   _tempCraftingTime: 0
