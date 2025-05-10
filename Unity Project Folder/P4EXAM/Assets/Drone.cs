@@ -84,18 +84,25 @@ public class Drone : MonoBehaviour
                     yield return null;
                 }
 
-                // ✅ NEW: Check factory at the arrived flag position
                 GameObject factory = FactoryManager.Instance.ReturnFactory(transform.position);
                 if (factory != null)
                 {
                     Debug.Log($"Factory found at {targetPos}: {factory.name}");
 
+<<<<<<< Updated upstream
                     if (!visitedFactoriesInOrder.Contains(factory) && visitedFactoriesInOrder.Count < 3)
+=======
+                    // Add new factory if not already visited
+                    if (!visitedFactoriesInOrder.Contains(factory) && visitedFactoriesInOrder.Count < 2)
+>>>>>>> Stashed changes
                     {
                         visitedFactoriesInOrder.Add(factory);
                         visitedSet.Add(factory);
                         Debug.Log($"Added {factory.name} to visitedFactoriesInOrder");
                     }
+
+                    // 🧹 Remove any factories that aren't the current one
+                    visitedFactoriesInOrder.RemoveAll(f => f == null || f != factory);
                 }
                 else
                 {
