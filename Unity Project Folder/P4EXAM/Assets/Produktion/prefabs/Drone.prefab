@@ -310,7 +310,7 @@ MonoBehaviour:
   flagPoints: []
   flagObjects: []
   flagPrefab: {fileID: 4393590394280782606, guid: 0977054740dbf31488305e07e15849cc, type: 3}
-  maxFlagCount: 3
+  maxFlagCount: 2
   _lastFactoryAccessed: {fileID: 0}
   _carryingItem: 0
   _Item: {fileID: 0}
@@ -318,6 +318,7 @@ MonoBehaviour:
   accel: 10
   maxSpeed: 100
   stopThreshold: 0.01
+  speed: 0
   visitedFactoriesInOrder: []
   timeRemaining: 0.1
 --- !u!61 &49068800639931144
