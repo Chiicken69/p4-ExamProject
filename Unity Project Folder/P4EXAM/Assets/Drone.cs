@@ -32,7 +32,7 @@ public class Drone : MonoBehaviour
     [SerializeField] float stopThreshold = 0.01f; // how close is “at target”?
     public float speed = 0f;
 
-    private List<GameObject> _factoriesToUse;
+
     private GameObject _middleFactory; // used only in 3-factory logic
     private GameObject _lastFactory;
     [SerializeField] public List<GameObject> visitedFactoriesInOrder = new List<GameObject>();
@@ -70,7 +70,7 @@ public class Drone : MonoBehaviour
 {
     while (true)
     {
-        if (flagPoints.Count <= 1) // 🚫 Ignore if only 0 or 1 flags
+        if (flagPoints.Count <= 1) // Ignore if only 0 or 1 flags
         {
             visitedFactoriesInOrder.Clear(); // Optionally clear visited factories
             yield return null;
@@ -226,7 +226,7 @@ public class Drone : MonoBehaviour
         {
             hasPatrolled = true;
             isRunning = false;
-            _factoriesToUse = visitedFactoriesInOrder;  // [A, B]
+            _middleFactory = visitedFactoriesInOrder[1]; 
             ItemTransferLogicForFactories(false);
 
         }
@@ -234,7 +234,6 @@ public class Drone : MonoBehaviour
         {
             hasPatrolled = true;
             isRunning = false;
-            _factoriesToUse = new List<GameObject> { visitedFactoriesInOrder[0], visitedFactoriesInOrder[2] };  // [A, C]
             _middleFactory = visitedFactoriesInOrder[1];  // optional, for skipping logic
             _lastFactory = visitedFactoriesInOrder[2];  // optional, for skipping logic
             ItemTransferLogicForFactories(true);
@@ -289,7 +288,7 @@ public class Drone : MonoBehaviour
             {
                 return false;
             }
-            if(tempGB == _lastFactory ){
+            if(tempGB == _lastFactory || (HasOver2Factorys == false && tempGB == _middleFactory)){
                 _lastFactoryAccessed = tempGB; 
                 return false;
             }
