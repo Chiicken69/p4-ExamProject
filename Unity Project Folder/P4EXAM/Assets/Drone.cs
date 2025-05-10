@@ -84,18 +84,45 @@ public class Drone : MonoBehaviour
                     yield return null;
                 }
 
-                // ✅ NEW: Check factory at the arrived flag position
                 GameObject factory = FactoryManager.Instance.ReturnFactory(transform.position);
                 if (factory != null)
                 {
                     Debug.Log($"Factory found at {targetPos}: {factory.name}");
 
-                    if (!visitedFactoriesInOrder.Contains(factory) && visitedFactoriesInOrder.Count < 3)
+                    // Add new factory if not already visited
+                    if (!visitedFactoriesInOrder.Contains(factory) && visitedFactoriesInOrder.Count < 2)
                     {
                         visitedFactoriesInOrder.Add(factory);
                         visitedSet.Add(factory);
                         Debug.Log($"Added {factory.name} to visitedFactoriesInOrder");
+                    } else{
+                            foreach (var visedfactory in visitedFactoriesInOrder)
+                        {
+                           if(factory != visitedFactoriesInOrder.Contains(visedfactory)){
+                            visitedFactoriesInOrder.Remove(visedfactory);
+                           }
+                        }
                     }
+
+                    // Remove factories no longer located at any flag position
+                    visitedFactoriesInOrder.RemoveAll(f =>
+                    {
+                        if (f == null) return true;
+
+                        bool stillValid = false;
+                        foreach (var point in flagPoints)
+                        {
+                            GameObject match = FactoryManager.Instance.ReturnFactory(point);
+                            if (match == f)
+                            {
+                                stillValid = true;
+                                break;
+                            }
+                        }
+
+                        return !stillValid;
+                    });
+
                 }
                 else
                 {

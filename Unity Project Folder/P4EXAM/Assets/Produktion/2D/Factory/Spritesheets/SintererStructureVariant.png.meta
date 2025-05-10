@@ -1,0 +1,585 @@
+fileFormatVersion: 2
+guid: e76b36df93f4a76458d199cb3ddeaec2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -189539793462181999
+    second: SintererStructureVariant_0
+  - first:
+      213: 7419936774221914924
+    second: SintererStructureVariant_1
+  - first:
+      213: -1185761182146535586
+    second: SintererStructureVariant_2
+  - first:
+      213: -1120256166043918973
+    second: SintererStructureVariant_3
+  - first:
+      213: 5713519213751782009
+    second: SintererStructureVariant_4
+  - first:
+      213: 6895207075191369616
+    second: SintererStructureVariant_5
+  - first:
+      213: -2145602226348161888
+    second: SintererStructureVariant_6
+  - first:
+      213: 7456180843679491513
+    second: SintererStructureVariant_7
+  - first:
+      213: -615864541029237971
+    second: SintererStructureVariant_8
+  - first:
+      213: -5201994960763810539
+    second: SintererStructureVariant_9
+  - first:
+      213: 2358418613570953601
+    second: SintererStructureVariant_10
+  - first:
+      213: -3335831564596331768
+    second: SintererStructureVariant_11
+  - first:
+      213: -318040214255328296
+    second: SintererStructureVariant_12
+  - first:
+      213: 2447719801867252656
+    second: SintererStructureVariant_13
+  - first:
+      213: -7265762891861400129
+    second: SintererStructureVariant_14
+  - first:
+      213: -6465784430603472206
+    second: SintererStructureVariant_15
+  - first:
+      213: 4311294333960688665
+    second: SintererStructureVariant_16
+  - first:
+      213: 5826318386189449481
+    second: SintererStructureVariant_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 48
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SintererStructureVariant_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 145
+        width: 46
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19fb2e3ef8e9e5df0800000000000000
+      internalID: -189539793462181999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SintererStructureVariant_1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 97
+        width: 46
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c23ea530f29e8f660800000000000000
+      internalID: 7419936774221914924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SintererStructureVariant_2
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 145
+        width: 46
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5f55bdbc745b8fe0800000000000000
+      internalID: -1185761182146535586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SintererStructureVariant_3
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 97
+        width: 46
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38dd28dc3fc0470f0800000000000000
+      internalID: -1120256166043918973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SintererStructureVariant_4
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 145
+        width: 46
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97a4b01147f7a4f40800000000000000
+      internalID: 5713519213751782009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SintererStructureVariant_5
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 97
+        width: 46
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09faa817d42b0bf50800000000000000
+      internalID: 6895207075191369616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SintererStructureVariant_6
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 145
+        width: 46
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a40b3d942a4932e0800000000000000
+      internalID: -2145602226348161888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SintererStructureVariant_7
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 97
+        width: 46
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b5a69809fca97760800000000000000
+      internalID: 7456180843679491513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SintererStructureVariant_8
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 145
+        width: 46
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2b713286720477f0800000000000000
+      internalID: -615864541029237971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SintererStructureVariant_9
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 97
+        width: 46
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51d0d40052dcec7b0800000000000000
+      internalID: -5201994960763810539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SintererStructureVariant_10
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 49
+        width: 46
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 181e09dcb39cab020800000000000000
+      internalID: 2358418613570953601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SintererStructureVariant_11
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 46
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80b33b1bddeb4b1d0800000000000000
+      internalID: -3335831564596331768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SintererStructureVariant_12
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 49
+        width: 46
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d3a5053c18169bf0800000000000000
+      internalID: -318040214255328296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SintererStructureVariant_13
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 1
+        width: 46
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b3bcf3f03c08f120800000000000000
+      internalID: 2447719801867252656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SintererStructureVariant_14
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 49
+        width: 46
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb5e2604523da2b90800000000000000
+      internalID: -7265762891861400129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SintererStructureVariant_15
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 1
+        width: 46
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b2f0ab415be446a0800000000000000
+      internalID: -6465784430603472206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SintererStructureVariant_16
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 49
+        width: 46
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91491e1ca5bc4db30800000000000000
+      internalID: 4311294333960688665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SintererStructureVariant_17
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 49
+        width: 46
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 909362df3bd3bd050800000000000000
+      internalID: 5826318386189449481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SintererStructureVariant_0: -189539793462181999
+      SintererStructureVariant_1: 7419936774221914924
+      SintererStructureVariant_10: 2358418613570953601
+      SintererStructureVariant_11: -3335831564596331768
+      SintererStructureVariant_12: -318040214255328296
+      SintererStructureVariant_13: 2447719801867252656
+      SintererStructureVariant_14: -7265762891861400129
+      SintererStructureVariant_15: -6465784430603472206
+      SintererStructureVariant_16: 4311294333960688665
+      SintererStructureVariant_17: 5826318386189449481
+      SintererStructureVariant_2: -1185761182146535586
+      SintererStructureVariant_3: -1120256166043918973
+      SintererStructureVariant_4: 5713519213751782009
+      SintererStructureVariant_5: 6895207075191369616
+      SintererStructureVariant_6: -2145602226348161888
+      SintererStructureVariant_7: 7456180843679491513
+      SintererStructureVariant_8: -615864541029237971
+      SintererStructureVariant_9: -5201994960763810539
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

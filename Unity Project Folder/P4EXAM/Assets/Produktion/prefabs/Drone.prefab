@@ -310,12 +310,12 @@ MonoBehaviour:
   flagPoints: []
   flagObjects: []
   flagPrefab: {fileID: 4393590394280782606, guid: 0977054740dbf31488305e07e15849cc, type: 3}
-  maxFlagCount: 3
+  maxFlagCount: 2
   _lastFactoryAccessed: {fileID: 0}
   _carryingItem: 0
   _Item: {fileID: 0}
   _sprite: {fileID: 3294924491041038190, guid: b424a63a700ca2242b79fd3766a10602, type: 3}
-  accel: 10
+  accel: 16
   maxSpeed: 100
   stopThreshold: 0.01
   visitedFactoriesInOrder: []
