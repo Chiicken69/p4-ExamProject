@@ -55,6 +55,8 @@ public class Drone : MonoBehaviour
         }
     }
 
+ 
+
     void Start()
     {
 
@@ -152,7 +154,6 @@ public class Drone : MonoBehaviour
 
     private void Update()
     {
-
         Debug.Log("aaaa im tracking ejg tracker den" + hasPatrolled + "ím" + isRunning);
         //if (!hasPatrolled && !isRunning)
         {
