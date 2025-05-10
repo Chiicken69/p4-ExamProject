@@ -30,13 +30,12 @@ public class Drone : MonoBehaviour
     [SerializeField] float accel = 10f;   // units/sec²
     [SerializeField] float maxSpeed = 100f;  // units/sec
     [SerializeField] float stopThreshold = 0.01f; // how close is “at target”?
-    float speed = 0f;
+    public float speed = 0f;
 
     private List<GameObject> _factoriesToUse;
     private GameObject _middleFactory; // used only in 3-factory logic
     private GameObject _lastFactory;
-    [SerializeField] List<GameObject> visitedFactoriesInOrder = new List<GameObject>();
-    [SerializeField] HashSet<GameObject> visitedSet = new HashSet<GameObject>();
+    [SerializeField] public List<GameObject> visitedFactoriesInOrder = new List<GameObject>();
 
     bool hasPatrolled = false;
     bool isRunning = false;
@@ -56,6 +55,8 @@ public class Drone : MonoBehaviour
         }
     }
 
+ 
+
     void Start()
     {
 
@@ -65,56 +66,55 @@ public class Drone : MonoBehaviour
         //StartCoroutine(ItemTransferLogic());
     }
 
-    IEnumerator PatrolFlags()
+ public IEnumerator PatrolFlags()
+{
+    while (true)
     {
-        while (true)
+        if (flagPoints.Count <= 1) // 🚫 Ignore if only 0 or 1 flags
         {
-            if (flagPoints.Count == 0)
-            {
-                yield return null;
-                continue;
-            }
-
-            for (int i = 0; i < flagPoints.Count; i++)
-            {
-                Vector2 targetPos = flagPoints[i];
-                while (Vector2.Distance(transform.position, targetPos) > 0.1f)
-                {
-                    yield return StartCoroutine(MoveDroneTo(targetPos));
-                    yield return null;
-                }
-
-                // ✅ NEW: Check factory at the arrived flag position
-                GameObject factory = FactoryManager.Instance.ReturnFactory(transform.position);
-                if (factory != null)
-                {
-                    Debug.Log($"Factory found at {targetPos}: {factory.name}");
-
-                    if (!visitedFactoriesInOrder.Contains(factory) && visitedFactoriesInOrder.Count < 3)
-                    {
-                        visitedFactoriesInOrder.Add(factory);
-                        visitedSet.Add(factory);
-                        Debug.Log($"Added {factory.name} to visitedFactoriesInOrder");
-                    }
-                }
-                else
-                {
-                    Debug.Log($"No factory found at {targetPos}");
-                    if (visitedFactoriesInOrder.Count != 2)
-                        visitedFactoriesInOrder.Clear();
-                    visitedSet.Clear();
-                }
-
-                yield return new WaitForSeconds(0.5f);
-            }
-
+            visitedFactoriesInOrder.Clear(); // Optionally clear visited factories
             yield return null;
+            continue;
         }
+
+        for (int i = 0; i < flagPoints.Count; i++)
+        {
+            Vector2 targetPos = flagPoints[i];
+            while (Vector2.Distance(transform.position, targetPos) > 0.1f)
+            {
+                yield return StartCoroutine(MoveDroneTo(targetPos));
+                yield return null;
+            }
+
+            GameObject factory = FactoryManager.Instance.ReturnFactory(transform.position);
+            if (factory != null)
+            {
+                Debug.Log($"Factory found at {targetPos}: {factory.name}");
+
+                if (!visitedFactoriesInOrder.Contains(factory) && visitedFactoriesInOrder.Count < 3)
+                {
+                    visitedFactoriesInOrder.Add(factory);
+                    Debug.Log($"Added {factory.name} to visitedFactoriesInOrder");
+                }
+            }
+            else
+            {
+                Debug.Log($"No factory found at {targetPos}");
+                //if (visitedFactoriesInOrder.Count != 2)
+                  //  visitedFactoriesInOrder.Clear();
+            }
+
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        yield return null;
     }
+}
 
 
 
-    private IEnumerator MoveDroneTo(Vector2 target)
+
+    public IEnumerator MoveDroneTo(Vector2 target)
     {
        
 
@@ -153,7 +153,6 @@ public class Drone : MonoBehaviour
 
     private void Update()
     {
-
         Debug.Log("aaaa im tracking ejg tracker den" + hasPatrolled + "ím" + isRunning);
         //if (!hasPatrolled && !isRunning)
         {
@@ -172,8 +171,8 @@ public class Drone : MonoBehaviour
             _imageSpriteRenderer.sprite = null;
 
         }
-
-        if (!_carryingItem && IsDroneIdle())
+        
+        if ((!_carryingItem && IsDroneIdle())&& visitedFactoriesInOrder.Count !=2)
         {
             ResetFactoryAccess();
         }
