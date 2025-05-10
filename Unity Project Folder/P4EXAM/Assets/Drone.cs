@@ -97,15 +97,15 @@ public class Drone : MonoBehaviour
                     Debug.Log($"Added {factory.name} to visitedFactoriesInOrder");
                     }
                     // Remove factories no longer located at any flag position
-                    visitedFactoriesInOrder.RemoveAll(f =>
+                    visitedFactoriesInOrder.RemoveAll(factories =>
                     {
-                        if (f == null) return true;
+                        if (factories == null) return true;
 
                         bool stillValid = false;
                         foreach (var point in flagPoints)
                         {
                             GameObject match = FactoryManager.Instance.ReturnFactory(point);
-                            if (match == f)
+                            if (match == factories)
                             {
                                 stillValid = true;
                                 break;

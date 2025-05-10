@@ -20,12 +20,7 @@ public class FlagManager : MonoBehaviour
     Color PassiveColor = new Color(255, 255, 255, 1f);
     Color ToggledColor = new Color(255, 255, 255, 0.75f);
 
-    Coroutine moveRoutine;
-
 public Sprite[] flagSprites; // Drag your "1", "2", "3" sprites into this in the Inspector
-
-
-    GameObject tempFlag;
 
     private void Awake()
     {
@@ -62,7 +57,7 @@ public Sprite[] flagSprites; // Drag your "1", "2", "3" sprites into this in the
     {
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())  // Left-click detection
         {
-            bool clickedDrone = TrySelectDrone(_mousePos);
+            bool clickedDrone = TrySelectDrone(_mousePos); //returns true if drone is clicked, also adds clicked drones to selected drones list
 
             if (!clickedDrone && _flagMode && selectedDrones.Count > 0)  // If no drone clicked and flag mode is active
             {
