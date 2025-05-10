@@ -95,10 +95,29 @@ public class Drone : MonoBehaviour
                 {
                     visitedFactoriesInOrder.Add(factory);
                     Debug.Log($"Added {factory.name} to visitedFactoriesInOrder");
+                    }
+                    // Remove factories no longer located at any flag position
+                    visitedFactoriesInOrder.RemoveAll(f =>
+                    {
+                        if (f == null) return true;
+
+                        bool stillValid = false;
+                        foreach (var point in flagPoints)
+                        {
+                            GameObject match = FactoryManager.Instance.ReturnFactory(point);
+                            if (match == f)
+                            {
+                                stillValid = true;
+                                break;
+                            }
+                        }
+
+                        return !stillValid;
+                    });
+
                 }
-            }
-            else
-            {
+                else
+                {
                 Debug.Log($"No factory found at {targetPos}");
                 //if (visitedFactoriesInOrder.Count != 2)
                   //  visitedFactoriesInOrder.Clear();
