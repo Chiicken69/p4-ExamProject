@@ -86,7 +86,6 @@ public class Drone : MonoBehaviour
                 yield return null;
             }
 
-            // ✅ Check for factory only if enough flags
             GameObject factory = FactoryManager.Instance.ReturnFactory(transform.position);
             if (factory != null)
             {
@@ -101,8 +100,8 @@ public class Drone : MonoBehaviour
             else
             {
                 Debug.Log($"No factory found at {targetPos}");
-                if (visitedFactoriesInOrder.Count != 2)
-                    visitedFactoriesInOrder.Clear();
+                //if (visitedFactoriesInOrder.Count != 2)
+                  //  visitedFactoriesInOrder.Clear();
             }
 
             yield return new WaitForSeconds(0.5f);
@@ -172,8 +171,8 @@ public class Drone : MonoBehaviour
             _imageSpriteRenderer.sprite = null;
 
         }
-
-        if (!_carryingItem && IsDroneIdle())
+        
+        if ((!_carryingItem && IsDroneIdle())&& visitedFactoriesInOrder.Count !=2)
         {
             ResetFactoryAccess();
         }
