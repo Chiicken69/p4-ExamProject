@@ -151,7 +151,7 @@ MonoBehaviour:
   _craftingTime: 60
   _secondsToDecreaseSpeed: 5
   _ingredientList: 0c000000
-  _ingredientAmountForCraft: 02000000
+  _ingredientAmountForCraft: 01000000
   _itemOutputType: {fileID: 3632619094670410106, guid: 6b93c111690c6214bb58c70335644178, type: 3}
   _itemListToCraftFactory: 0c000000
   _itemAmountToCraftFactory: 02000000

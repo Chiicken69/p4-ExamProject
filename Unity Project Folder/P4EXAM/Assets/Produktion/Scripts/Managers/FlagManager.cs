@@ -20,7 +20,7 @@ public class FlagManager : MonoBehaviour
     Color PassiveColor = new Color(255, 255, 255, 1f);
     Color ToggledColor = new Color(255, 255, 255, 0.75f);
 
-public Sprite[] flagSprites; // Drag your "1", "2", "3" sprites into this in the Inspector
+public Sprite[] flagSprites; 
 
     private void Awake()
     {
@@ -45,31 +45,33 @@ public Sprite[] flagSprites; // Drag your "1", "2", "3" sprites into this in the
         _mousePos = InputHandler.Instance.PassMousePosInWorld();
 
         CheckFlagsOnSelcDrone();
-            HandleFlagAmmountChange(); // <- Add this line
+        HandleFlagAmmountChange(); 
 
-        if (_flagMode == false)
-        {
-            unhighlight();
-        }
+
     }
 
     void MouseClickDetection()
     {
-        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())  // Left-click detection
+        if (_flagMode != false)
         {
-            bool clickedDrone = TrySelectDrone(_mousePos); //returns true if drone is clicked, also adds clicked drones to selected drones list
-
-            if (!clickedDrone && _flagMode && selectedDrones.Count > 0)  // If no drone clicked and flag mode is active
+            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())  // Left-click detection
             {
-                // If drones are selected, place flag
-                foreach (var drone in selectedDrones)
+                if (!TrySelectDrone(_mousePos) && selectedDrones.Count > 0)  // If no drone clicked and flag mode is active
                 {
-                    PlaceFlag(_mousePos, drone);
+                    // If drones are selected, place flag
+                    foreach (var drone in selectedDrones)
+                    {
+                        PlaceFlag(_mousePos, drone);
 
+                    }
                 }
             }
+            else if (Input.GetMouseButtonDown(1) && !EventSystem.current.IsPointerOverGameObject())  // Right-click to deselect
+            {
+                unhighlight();
+            }
         }
-        else if (Input.GetMouseButtonDown(1) && !EventSystem.current.IsPointerOverGameObject())  // Right-click to deselect
+        else
         {
             unhighlight();
         }
@@ -156,7 +158,7 @@ public Sprite[] flagSprites; // Drag your "1", "2", "3" sprites into this in the
         flagObjs.Add(flag);
         Debug.Log("Placed flag at: " + pos);
 
-        // Set different sprite based on order
+        // Sets different sprite based on order
         int spriteIndex = flags.Count - 1;
         if (spriteIndex < flagSprites.Length)
         {
