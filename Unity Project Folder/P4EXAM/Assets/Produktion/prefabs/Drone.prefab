@@ -310,7 +310,7 @@ MonoBehaviour:
   flagPoints: []
   flagObjects: []
   flagPrefab: {fileID: 4393590394280782606, guid: 0977054740dbf31488305e07e15849cc, type: 3}
-  maxFlagCount: 2
+  maxFlagCount: 3
   _lastFactoryAccessed: {fileID: 0}
   _carryingItem: 0
   _Item: {fileID: 0}
