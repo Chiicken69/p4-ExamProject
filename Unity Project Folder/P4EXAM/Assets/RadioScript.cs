@@ -339,42 +339,42 @@ public class RadioScript : MonoBehaviour
                 EnqueueDialog("Kidori", "Heyoo, it's me again. \nJust wanted to join in on the fun and say you’re doing great. \nTuriel might act like he's the whole manual wrapped in a beard, but even he needed four tries to launch his first spindle. And his caught fire.... Twice. So... yeah. \nYou’re already ahead. Just keep tweaking those blades and don’t let the creaks scare you off. Wind sings loud when it’s working right.");
                 triggeredTimes.Add(9);
             }
-            if (timeInSeconds >= 300 && !triggeredTimes.Contains(10))
+            if (timeInSeconds >= 400 && !triggeredTimes.Contains(10))
             {   // Passive agressive.
                 //EnqueueDialog("Turiel", "Okay, I’ll admit it. I’m just a bit bored here at HQ. It's not like I have much to do between paperwork and... more paperwork. Thought I'd give you another friendly nudge. You’re doing great, but hey—don't make me check the logs again. Come on, give me something to report back to the team. I’ll feel better. Trust me.");
                 //triggeredTimes.Add(10);
             }
-            if (timeInSeconds >= 400 && !triggeredTimes.Contains(11))
+            if (timeInSeconds >= 540 && !triggeredTimes.Contains(11))
             {
                 // Agressive
                 //EnqueueDialog("Horatio", "Progress report pending on that Skyspindle. You haven’t gone silent, have you? I know the terrain’s rough and the equipment’s… temperamental, but we chose you for a reason. Get that windmill operational and keep us in the loop. HQ doesn’t like flying blind.");
                 //triggeredTimes.Add(11);
             }
-            if (timeInSeconds >= 520 && !triggeredTimes.Contains(12))
+            if (timeInSeconds >= 720 && !triggeredTimes.Contains(12))
             {   // Passive agressive
                 //EnqueueDialog("Kidori", "You’re not just sitting there staring dramatically into the wind again, are you? I mean, if you are, that’s fine. Very poetic. Very mysterious. Ten out of ten.");
                 //triggeredTimes.Add(12);
             }
-            if (timeInSeconds >= 550 && !triggeredTimes.Contains(13))
+            if (timeInSeconds >= 950 && !triggeredTimes.Contains(13))
             {
                 // I think i like the though behind it, but not alle of the content.
                 // But im not sure what we want there instead. 
                 EnqueueDialog("Turiel", "I’m not here to babysit, alright? …That being said, if you *do* fry the battery cores on your drones, call me before Horatio finds out.");
                 triggeredTimes.Add(13);
             }
-            if (timeInSeconds >= 700 && !triggeredTimes.Contains(14))
+            if (timeInSeconds >= 1400 && !triggeredTimes.Contains(14))
             {   // This one is nice. If we get to introdduce Kidori.
                 EnqueueDialog("Kidori", "Quiet day here. Even the pollen drones are napping. Kind of makes me wish I was out there with you. Not that I’d be any help I’d probably just get distracted by weird plants.");
                 triggeredTimes.Add(14);
             }
-            if (timeInSeconds >= 800 && !triggeredTimes.Contains(15))
+            if (timeInSeconds >= 1700 && !triggeredTimes.Contains(15))
             {   // done like this one. Its kinda agressive. 
                 //how it is agressive its supposed to be him trying be relateable
                 //EnqueueDialog("Turiel", "You know, back in my first deployment I spent two days trying to power a kiln with a water pump. Didn’t work, obviously. Point is we all start somewhere. You’re doing better than I did.");
                 //triggeredTimes.Add(15);
             }
 
-            if (timeInSeconds >= 840 && !triggeredTimes.Contains(16))
+            if (timeInSeconds >= 1840 && !triggeredTimes.Contains(16))
             {   // I like this one. 
                 EnqueueDialog("Kidori", "Found a worm in my ration bar today. \nNamed him Carl... \nI put him in the planter outside, and it appears he’s adjusting well. \nAnyway, hope your day's been less... wormy.");
 
