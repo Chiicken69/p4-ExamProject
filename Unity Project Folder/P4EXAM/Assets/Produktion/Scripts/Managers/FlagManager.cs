@@ -135,37 +135,26 @@ public Sprite[] flagSprites;
         return false;  // No drone was clicked
     }
 
-    void PlaceFlag(Vector2 pos, Drone drone)
+    void PlaceFlag(Vector2 mousePos, Drone drone)
     {
         var flags = drone.flagPoints;
         var flagObjs = drone.flagObjects;
-
-
-
-           flags.Add(pos);
+           flags.Add(mousePos);
         if (flags.Count > drone.maxFlagCount)
         {
             deleteLists();
-            flags.Add(pos);
+            flags.Add(mousePos);
             drone.speed = 0;
-
-
-
-
         }
-
-        GameObject flag = Instantiate(drone.flagPrefab, pos, Quaternion.identity);
+        GameObject flag = Instantiate(drone.flagPrefab, mousePos, Quaternion.identity);
         flagObjs.Add(flag);
-        Debug.Log("Placed flag at: " + pos);
-
         // Sets different sprite based on order
         int spriteIndex = flags.Count - 1;
         if (spriteIndex < flagSprites.Length)
         {
             flag.GetComponent<SpriteRenderer>().sprite = flagSprites[spriteIndex];
         }
-
-        Debug.Log("Placed flag at: " + pos);
+        Debug.Log("Placed flag at: " + mousePos);
     }
 
 

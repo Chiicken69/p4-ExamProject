@@ -72,7 +72,7 @@ public class Drone : MonoBehaviour
     {
         if (flagPoints.Count <= 1) // Ignore if only 0 or 1 flags
         {
-            visitedFactoriesInOrder.Clear(); // Optionally clear visited factories
+            visitedFactoriesInOrder.Clear(); // clear visited factories
             yield return null;
             continue;
         }
@@ -85,8 +85,17 @@ public class Drone : MonoBehaviour
                 yield return StartCoroutine(MoveDroneTo(targetPos));
                 yield return null;
             }
+            //track current factories drone is useing and deletes factories from list no longer in use
+            TrackVisitedFactorys(targetPos); 
+            yield return new WaitForSeconds(0.5f);
+        }
+        yield return null;
+    }
+}
 
-            GameObject factory = FactoryManager.Instance.ReturnFactory(transform.position);
+void TrackVisitedFactorys(Vector2 targetPos)
+{
+    GameObject factory = FactoryManager.Instance.ReturnFactory(transform.position);
             if (factory != null)
             {
                 Debug.Log($"Factory found at {targetPos}: {factory.name}");
@@ -111,26 +120,14 @@ public class Drone : MonoBehaviour
                                 break;
                             }
                         }
-
                         return !stillValid;
                     });
-
                 }
                 else
                 {
                 Debug.Log($"No factory found at {targetPos}");
-                //if (visitedFactoriesInOrder.Count != 2)
-                  //  visitedFactoriesInOrder.Clear();
             }
-
-            yield return new WaitForSeconds(0.5f);
-        }
-
-        yield return null;
-    }
 }
-
-
 
 
     public IEnumerator MoveDroneTo(Vector2 target)
@@ -255,25 +252,16 @@ public class Drone : MonoBehaviour
 
     private void ItemTransferLogicForFactories(bool HasOver2Factorys)
     {
-        timeRemaining -= Time.deltaTime;
         if (speed <= 3f)
         {
-            Debug.Log("Time running!");
             if (!_carryingItem)
             {
-                Debug.Log("FUCKING TAKE IT");
-      
                 takeItem(HasOver2Factorys);
             }
             else
             {
                 DepositItem(HasOver2Factorys);
             }
-        }
-        else
-        {
-            Debug.Log("Time's up!");
-            timeRemaining = 0f;
         }
     }
     private bool takeItem(bool HasOver2Factorys)
@@ -291,7 +279,7 @@ public class Drone : MonoBehaviour
             if(tempGB == _lastFactory || (HasOver2Factorys == false && tempGB == _middleFactory)){
                 _lastFactoryAccessed = tempGB; 
                 return false;
-            }
+            }   
 
             _Item = tempGB.GetComponent<FactoryBase>().TakeItemFromOutputInventory();
 
