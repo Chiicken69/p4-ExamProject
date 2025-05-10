@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 
@@ -14,6 +16,7 @@ public class BlueprintBook : MonoBehaviour
     SpriteRenderer previewSR;
 
     [SerializeField] private Text _placeingText;
+    [SerializeField] private Volume _volume;
 
     private bool _enteredBuildingMode = false;
     private bool listenerAdded = false;
@@ -78,7 +81,7 @@ public class BlueprintBook : MonoBehaviour
     void Update()
     {
 
-
+        
         GetKeyInfo();
 
         Openui();
@@ -100,7 +103,7 @@ public class BlueprintBook : MonoBehaviour
             Flagmanager.SetActive(true);
         }
         //Debug.Log("no sprite at id " + buildingID);
-
+        CameraBPEffect();
         CloseUI();
 
 
@@ -222,6 +225,25 @@ public class BlueprintBook : MonoBehaviour
           
             }
         
+    }
+
+    private void CameraBPEffect()
+    {
+        if (_enteredBuildingMode)
+        {
+            Debug.LogWarning("entering build mode..");
+            
+            _volume.GetComponent<WhiteBalance>().temperature = new ClampedFloatParameter(-20, -100, 100);
+            _volume.GetComponent<LensDistortion>().intensity = new ClampedFloatParameter(100, 1, 1);
+          
+            
+            
+            
+        }
+        else
+        {
+            _volume.GetComponent<WhiteBalance>().temperature = new ClampedFloatParameter(12.5f, -100, 100);
+        }
     }
 
     void PlaceSpriteAtCell(Vector3 cellPos, bool preview)
