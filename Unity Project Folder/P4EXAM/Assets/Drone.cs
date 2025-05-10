@@ -301,13 +301,17 @@ public class Drone : MonoBehaviour
                 return false;
             }
 
-            tempGB.GetComponent<FactoryBase>().AddItemToInventory(_Item);
-            _Item = null;
-            ChangeCarryingState();
+            if (tempGB.GetComponent<FactoryBase>().AddItemToInventory(_Item))
+            {
+                _Item = null;
+                ChangeCarryingState();
 
-            _lastFactoryAccessed = tempGB;  // update here
+                _lastFactoryAccessed = tempGB;  // update here
 
-            return true;
+                return true;
+            }
+           
+            
         }
         return false;
     }
