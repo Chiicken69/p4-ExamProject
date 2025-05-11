@@ -93,50 +93,36 @@ public class ArrowMinigame : MonoBehaviour
     {
         if (gameState == true)
         {
-
-            if (gameState == true)
+            float value;
+            for (int i = 1; i <= _arrowAmount; i++) //_arrowAmount = 5
             {
-                float value;
-                for (int i = 1; i <= _arrowAmount; i++)
-                {
-                    GameObject cloneArrow;
-                    float min = 0f;
-                    float max = _arrowAmount * 100 - 100;
+                GameObject cloneArrow;
+                float min = 0f;
+                float max = _arrowAmount * 100 - 100;
 
-                    value = i * 100 - 100; // Simulate a value in range [0, 400]
+                value = i * 100 - 100; // Simulate a value in range [0, 400]
 
-                    // Normalize and map into UI space range (-500 to +500)
-                    float normalized = Mathf.InverseLerp(min, max, value);
-                    float mappedX = Mathf.Lerp(-400, 400, normalized);
+                // Normalize and map into UI space range (-400 to +400)
+                float normalized = Mathf.InverseLerp(min, max, value);
+                float mappedX = Mathf.Lerp(-400, 400, normalized);
 
+                DirectionName directionEnum = (DirectionName)UnityEngine.Random.Range(0, 4);
+                arrowImage = spriteList[(int)directionEnum];
+                arrow.SetActive(true);
+                arrow.GetComponent<Image>().sprite = arrowImage;
+                cloneArrow = Instantiate(arrow);
 
-                    DirectionName directionEnum = (DirectionName)UnityEngine.Random.Range(0, 4);
-                    arrowImage = spriteList[(int)directionEnum];
+                cloneArrow.name = "Arrow_" + directionEnum.ToString(); // Name for debug
+                cloneArrow.transform.SetParent(Parent, false);
 
-
-
-                    arrow.SetActive(true);
-
-                    arrow.GetComponent<Image>().sprite = arrowImage;
-                    cloneArrow = Instantiate(arrow);
-                    // cloneArrow.transform.localScale += new Vector3(2, 2, 2);
-
-                    cloneArrow.name = "Arrow_" + directionEnum.ToString(); // Name for debug
-
-                    cloneArrow.transform.SetParent(Parent, false);
-
-                    // Set UI position properly using RectTransform
-                    RectTransform rt = cloneArrow.GetComponent<RectTransform>();
-                    rt.anchoredPosition = new Vector2(mappedX, 0f); // or set a Y offset if needed
-
-
-                    cloneArrowList.Add(cloneArrow);
-                    directionList.Add(directionEnum);
-
-                }
+                // Set UI position properly using RectTransform
+                RectTransform rt = cloneArrow.GetComponent<RectTransform>();
+                rt.anchoredPosition = new Vector2(mappedX, 0f); // or set a Y offset if needed
+                cloneArrowList.Add(cloneArrow);
+                directionList.Add(directionEnum);
             }
-            currentRoundPlaying = true;
         }
+        currentRoundPlaying = true;
         arrow.SetActive(false);
         if (gameState == false)
         {
@@ -151,7 +137,6 @@ public class ArrowMinigame : MonoBehaviour
             cloneArrowList.Clear();
             directionList.Clear();
             currentArrowIndex = 0;
-
         }
     }
 
@@ -188,8 +173,12 @@ public class ArrowMinigame : MonoBehaviour
             {
                 Debug.Log("Incorrect input for arrow " + currentArrowIndex);
                 // Optional: feedback or penalty
+                CalculateArrows(false);
+                currentFactory = null;
                 currentRoundPlaying = false;
-                StopMinigame();
+                AudioManager.Instance.PlaySFXArrayAt("ArrowMinigameSounds", currentArrowIndex);
+                CalculateArrows(true);
+                //StopMinigame();
             }
         }
 
