@@ -99,34 +99,32 @@ public class ArrowMinigame : MonoBehaviour
                 GameObject cloneArrow;
                 float min = 0f;
                 float max = _arrowAmount * 100 - 100;
-
                 value = i * 100 - 100; // Simulate a value in range [0, 400]
 
                 // Normalize and map into UI space range (-400 to +400)
                 float normalized = Mathf.InverseLerp(min, max, value);
                 float mappedX = Mathf.Lerp(-400, 400, normalized);
 
-                DirectionName directionEnum = (DirectionName)UnityEngine.Random.Range(0, 4);
+                DirectionName directionEnum = (DirectionName)Random.Range(0, 4);
                 arrowImage = spriteList[(int)directionEnum];
                 arrow.SetActive(true);
                 arrow.GetComponent<Image>().sprite = arrowImage;
                 cloneArrow = Instantiate(arrow);
 
-                cloneArrow.name = "Arrow_" + directionEnum.ToString(); // Name for debug
+                cloneArrow.name = "Arrow_" + directionEnum.ToString(); // Named for debuging
                 cloneArrow.transform.SetParent(Parent, false);
 
-                // Set UI position properly using RectTransform
+                // Set UI position properly
                 RectTransform rt = cloneArrow.GetComponent<RectTransform>();
-                rt.anchoredPosition = new Vector2(mappedX, 0f); // or set a Y offset if needed
+                rt.anchoredPosition = new Vector2(mappedX, 0f); 
                 cloneArrowList.Add(cloneArrow);
                 directionList.Add(directionEnum);
             }
+            currentRoundPlaying = true;
         }
-        currentRoundPlaying = true;
         arrow.SetActive(false);
-        if (gameState == false)
+        if (gameState == false) //if 
         {
-
             foreach (GameObject cloneArrow in cloneArrowList)
             {
                 if (cloneArrow != null)
@@ -147,7 +145,6 @@ public class ArrowMinigame : MonoBehaviour
         {
             Debug.Log("All inputs correct! Round finished.");
             currentFactory.IncreaseCraftingSpeed();
-            currentFactory = null;
             minigameTutorielDone = true;
             currentRoundPlaying = false;
             cloneArrowList.Clear();
@@ -164,7 +161,6 @@ public class ArrowMinigame : MonoBehaviour
             if (inputDirection == directionList[currentArrowIndex])
             {
                 Debug.Log("Correct input for arrow " + currentArrowIndex);
-           
                 Destroy(cloneArrowList[currentArrowIndex]);
                 AudioManager.Instance.PlaySFXArrayAt("ArrowMinigameSounds", currentArrowIndex);
                 currentArrowIndex++;
@@ -172,16 +168,13 @@ public class ArrowMinigame : MonoBehaviour
             else
             {
                 Debug.Log("Incorrect input for arrow " + currentArrowIndex);
-                // Optional: feedback or penalty
                 CalculateArrows(false);
-                currentFactory = null;
                 currentRoundPlaying = false;
                 AudioManager.Instance.PlaySFXArrayAt("ArrowMinigameSounds", currentArrowIndex);
                 CalculateArrows(true);
-                //StopMinigame();
+
             }
         }
-
     }
 
 

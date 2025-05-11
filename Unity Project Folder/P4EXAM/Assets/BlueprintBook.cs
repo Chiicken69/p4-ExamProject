@@ -103,8 +103,9 @@ public class BlueprintBook : MonoBehaviour
             Flagmanager.SetActive(true);
         }
         //Debug.Log("no sprite at id " + buildingID);
-        CameraBPEffect();
         CloseUI();
+        CameraBPEffect();
+
 
 
 

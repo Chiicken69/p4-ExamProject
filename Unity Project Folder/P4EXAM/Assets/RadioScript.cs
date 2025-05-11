@@ -29,6 +29,11 @@ public class RadioScript : MonoBehaviour
     [SerializeField] private GameObject radioUI;
     //name,Dialog
   private Queue<DialogEntry> dialogData = new Queue<DialogEntry>();
+    public class DialogEntry
+    {
+        public string person;
+        public string dialog;
+    }
     private HashSet<int> triggeredTimes = new HashSet<int>();
 
     [SerializeField] private GameObject speachBoble;
@@ -46,12 +51,7 @@ public class RadioScript : MonoBehaviour
     bool minigameTutorielDone = false;
     bool deleteingTutorielDone = false;
 
-    [System.Serializable]
-    public class DialogEntry
-    {
-        public string person;
-        public string dialog;
-    }
+  
 
     private DialogEntry currentDialog;
     private Button messageButton;

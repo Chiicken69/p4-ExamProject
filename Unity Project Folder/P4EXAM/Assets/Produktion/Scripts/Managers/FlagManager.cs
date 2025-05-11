@@ -214,17 +214,13 @@ public Sprite[] flagSprites;
         {
             Drone droneScript = droneObj.GetComponent<Drone>();
             bool isSelected = selectedDrones.Contains(droneScript);
-            ForEachFlagSprite(isSelected, droneScript.flagObjects);
+            foreach (GameObject flag in droneScript.flagObjects)
+            {
+                flag.GetComponent<SpriteRenderer>().enabled = isSelected;
+            }
         }
     }
 
-    void ForEachFlagSprite(bool state, List<GameObject> Flags)
-    {
-        foreach (GameObject flag in Flags)
-        {
-            flag.GetComponent<SpriteRenderer>().enabled = state;
-        }
-    }
 
     public void ChangeModeToFlagMode()
     {
