@@ -40,8 +40,6 @@ public class Drone : MonoBehaviour
     bool hasPatrolled = false;
     bool isRunning = false;
 
-    [SerializeField] private float timeRemaining = 0.1f; // 10-second timer
-
     private void Awake()
     {
         SpriteRenderer[] allRenderers = GetComponentsInChildren<SpriteRenderer>(true);
@@ -59,8 +57,6 @@ public class Drone : MonoBehaviour
 
     void Start()
     {
-
-
         StartCoroutine(PatrolFlags());
 
         //StartCoroutine(ItemTransferLogic());
@@ -73,7 +69,7 @@ public class Drone : MonoBehaviour
         if (flagPoints.Count <= 1) // Ignore if only 0 or 1 flags
         {
             visitedFactoriesInOrder.Clear(); // clear visited factories
-            yield return null;
+            yield return null;  
             continue;
         }
 
@@ -169,7 +165,7 @@ void TrackVisitedFactorys(Vector2 targetPos)
 
     private void Update()
     {
-        Debug.Log("aaaa im tracking ejg tracker den" + hasPatrolled + "ím" + isRunning);
+        Debug.Log("aaaa im tracking ejg tracker den " + hasPatrolled + " ím " + isRunning);
         //if (!hasPatrolled && !isRunning)
         {
 

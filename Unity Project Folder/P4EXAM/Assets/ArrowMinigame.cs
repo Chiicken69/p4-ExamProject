@@ -1,7 +1,9 @@
 
 using System.Collections.Generic;
 using TMPro;
+using TMPro.Examples;
 using UnityEngine;
+using UnityEngine.UI;
 using Image = UnityEngine.UI.Image;
 
 public class ArrowMinigame : MonoBehaviour
@@ -9,6 +11,8 @@ public class ArrowMinigame : MonoBehaviour
     [SerializeField] private GameObject minigameUI;
     [SerializeField] private GameObject arrow;
     [SerializeField] private TextMeshProUGUI factoryMultText;
+
+    [SerializeField] private TextMeshProUGUI FactoryName;
 
     [SerializeField] private Transform Parent;
     [SerializeField] private Movement playerMovement;
@@ -66,6 +70,7 @@ public class ArrowMinigame : MonoBehaviour
         }
         if (currentRoundPlaying == true)
         {
+            FactoryName.text = currentFactory.name;
             RunRound(currentFactory.GetComponent<FactoryBase>());
         }
     }
