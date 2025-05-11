@@ -30,8 +30,8 @@ public class ArrowMinigame : MonoBehaviour
     private bool currentRoundPlaying = false;
     private Sprite arrowImage;
 
-    int direction;
-    string result;
+//    int direction;
+  //  string result;
     public enum DirectionName { Up, Left, Right, Down, None }
 
     private int _arrowAmount = 5;
