@@ -148,13 +148,13 @@ MonoBehaviour:
   processingSprite: {fileID: 0}
   _tempCraftingTime: 0
   speedIncreasePercentage: 0
-  _craftingTime: 60
-  _secondsToDecreaseSpeed: 5
-  _ingredientList: 050000000600000008000000
-  _ingredientAmountForCraft: 080000001100000001000000
+  _craftingTime: 25
+  _secondsToDecreaseSpeed: 2
+  _ingredientList: 050000000600000009000000
+  _ingredientAmountForCraft: 020000000200000001000000
   _itemOutputType: {fileID: 6348610522869183776, guid: 8d3cdf56bd5820240a95cffae701baad, type: 3}
   _itemListToCraftFactory: 0c000000030000000900000005000000
-  _itemAmountToCraftFactory: 02000000050000000100000003000000
+  _itemAmountToCraftFactory: 02000000020000000100000001000000
 --- !u!61 &6791683756638734249
 BoxCollider2D:
   m_ObjectHideFlags: 0

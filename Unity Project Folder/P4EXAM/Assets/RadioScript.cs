@@ -29,6 +29,11 @@ public class RadioScript : MonoBehaviour
     [SerializeField] private GameObject radioUI;
     //name,Dialog
   private Queue<DialogEntry> dialogData = new Queue<DialogEntry>();
+    public class DialogEntry
+    {
+        public string person;
+        public string dialog;
+    }
     private HashSet<int> triggeredTimes = new HashSet<int>();
 
     [SerializeField] private GameObject speachBoble;
@@ -46,12 +51,7 @@ public class RadioScript : MonoBehaviour
     bool minigameTutorielDone = false;
     bool deleteingTutorielDone = false;
 
-    [System.Serializable]
-    public class DialogEntry
-    {
-        public string person;
-        public string dialog;
-    }
+  
 
     private DialogEntry currentDialog;
     private Button messageButton;
@@ -158,7 +158,7 @@ public class RadioScript : MonoBehaviour
         
         if (!factoryBuildTutorielDone)
         {
-            if (factoryManager.Factories.Count > 2)
+            if (factoryManager.Factories.Count > 3)
             {
                 factoryBuildTutorielDone = true;
             }
@@ -266,7 +266,7 @@ public class RadioScript : MonoBehaviour
         {
             EnqueueDialog("Turiel",
                 "By the way, if you ever get tired of seeing one of your placed buildings, try holding right-click while standing next to them for 3 seconds. " +
-                "They will hopefully start glowing red and get out of your sight.");
+                "They will hopefully start glowing red and get out of your sight. try it on the old factory building");
             triggeredTimes.Add(4);
             return;
         }
@@ -386,9 +386,11 @@ public class RadioScript : MonoBehaviour
 
     IEnumerator TypeText(string fullText, float delay = 0.03f)
     {
+        
         dialogText.text = "";
         foreach (char c in fullText)
         {
+            
             dialogText.text += c;
             yield return new WaitForSeconds(delay);
         }

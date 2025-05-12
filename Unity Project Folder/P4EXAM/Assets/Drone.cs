@@ -40,8 +40,6 @@ public class Drone : MonoBehaviour
     bool hasPatrolled = false;
     bool isRunning = false;
 
-    [SerializeField] private float timeRemaining = 0.1f; // 10-second timer
-
     private void Awake()
     {
         SpriteRenderer[] allRenderers = GetComponentsInChildren<SpriteRenderer>(true);
@@ -59,8 +57,6 @@ public class Drone : MonoBehaviour
 
     void Start()
     {
-
-
         StartCoroutine(PatrolFlags());
 
         //StartCoroutine(ItemTransferLogic());
@@ -72,8 +68,8 @@ public class Drone : MonoBehaviour
     {
         if (flagPoints.Count <= 1) // Ignore if only 0 or 1 flags
         {
-            visitedFactoriesInOrder.Clear(); // Optionally clear visited factories
-            yield return null;
+            visitedFactoriesInOrder.Clear(); // clear visited factories
+            yield return null;  
             continue;
         }
 
@@ -85,8 +81,17 @@ public class Drone : MonoBehaviour
                 yield return StartCoroutine(MoveDroneTo(targetPos));
                 yield return null;
             }
+            //track current factories drone is useing and deletes factories from list no longer in use
+            TrackVisitedFactorys(targetPos); 
+            yield return new WaitForSeconds(0.5f);
+        }
+        yield return null;
+    }
+}
 
-            GameObject factory = FactoryManager.Instance.ReturnFactory(transform.position);
+void TrackVisitedFactorys(Vector2 targetPos)
+{
+    GameObject factory = FactoryManager.Instance.ReturnFactory(transform.position);
             if (factory != null)
             {
                 Debug.Log($"Factory found at {targetPos}: {factory.name}");
@@ -111,26 +116,14 @@ public class Drone : MonoBehaviour
                                 break;
                             }
                         }
-
                         return !stillValid;
                     });
-
                 }
                 else
                 {
                 Debug.Log($"No factory found at {targetPos}");
-                //if (visitedFactoriesInOrder.Count != 2)
-                  //  visitedFactoriesInOrder.Clear();
             }
-
-            yield return new WaitForSeconds(0.5f);
-        }
-
-        yield return null;
-    }
 }
-
-
 
 
     public IEnumerator MoveDroneTo(Vector2 target)
@@ -173,7 +166,7 @@ public class Drone : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log("aaaa im tracking ejg tracker den" + hasPatrolled + "ím" + isRunning);
+        Debug.Log("aaaa im tracking ejg tracker den " + hasPatrolled + " ím " + isRunning);
         //if (!hasPatrolled && !isRunning)
         {
 
@@ -256,25 +249,16 @@ public class Drone : MonoBehaviour
 
     private void ItemTransferLogicForFactories(bool HasOver2Factorys)
     {
-        timeRemaining -= Time.deltaTime;
         if (speed <= 3f)
         {
-            Debug.Log("Time running!");
             if (!_carryingItem)
             {
-                Debug.Log("FUCKING TAKE IT");
-      
                 takeItem(HasOver2Factorys);
             }
             else
             {
                 DepositItem(HasOver2Factorys);
             }
-        }
-        else
-        {
-            Debug.Log("Time's up!");
-            timeRemaining = 0f;
         }
     }
     private bool takeItem(bool HasOver2Factorys)
@@ -292,7 +276,7 @@ public class Drone : MonoBehaviour
             if(tempGB == _lastFactory){
                 _lastFactoryAccessed = tempGB;
                 return false;
-            }
+            }   
 
             _Item = tempGB.GetComponent<FactoryBase>().TakeItemFromOutputInventory();
 
@@ -319,13 +303,16 @@ public class Drone : MonoBehaviour
                 return false;
             }
 
-            tempGB.GetComponent<FactoryBase>().AddItemToInventory(_Item);
-            _Item = null;
-            ChangeCarryingState();
+            tempGB.GetComponent<FactoryBase>().AddItemToInventory(_Item)
 
-            _lastFactoryAccessed = tempGB;  // update here
+                _Item = null;
+                ChangeCarryingState();
 
-            return true;
+                _lastFactoryAccessed = tempGB;  // update here
+
+                return true;
+           
+            
         }
         return false;
     }

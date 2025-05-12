@@ -46,7 +46,6 @@ public class interact : MonoBehaviour
         if (other.gameObject.CompareTag("Factory"))
         {
             playerInFactoryTrigger = true;
-
             // Attempt to get the FactoryBase component from the collided object
             GameObject factory = other.gameObject;
             if (factory != null)
@@ -54,7 +53,6 @@ public class interact : MonoBehaviour
                 // Store the reference for later use
                 currentFactory = factory;
                 Image[] allTextMeshes = other.GetComponentsInChildren<Image>();
-
                 foreach (var img in allTextMeshes)
                 {
                     if (img.gameObject.name == "PresssE")
@@ -62,9 +60,6 @@ public class interact : MonoBehaviour
                         img.enabled = true;
                     }
                 }
-
-
-
             }
             else
             {
