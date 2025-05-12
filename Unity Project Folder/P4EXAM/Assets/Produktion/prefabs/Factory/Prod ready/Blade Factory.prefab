@@ -148,9 +148,9 @@ MonoBehaviour:
   processingSprite: {fileID: 0}
   _tempCraftingTime: 0
   speedIncreasePercentage: 0
-  _craftingTime: 60
-  _secondsToDecreaseSpeed: 5
-  _ingredientList: 050000000600000005000000
+  _craftingTime: 25
+  _secondsToDecreaseSpeed: 2
+  _ingredientList: 050000000600000003000000
   _ingredientAmountForCraft: 020000000200000002000000
   _itemOutputType: {fileID: 3632619094670410106, guid: 2330f2995deda6a47905932d0858c34b, type: 3}
   _itemListToCraftFactory: 0c00000003000000

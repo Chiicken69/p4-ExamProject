@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -6,7 +7,6 @@ using UnityEngine.UI;
 public class FlagManager : MonoBehaviour
 {
     public static FlagManager Instance;
-
     [SerializeField] Image _blueprintBook;
     [SerializeField] Text _flagModeText;
     public static bool _flagMode = false;
@@ -20,7 +20,7 @@ public class FlagManager : MonoBehaviour
     Color PassiveColor = new Color(255, 255, 255, 1f);
     Color ToggledColor = new Color(255, 255, 255, 0.75f);
 
-    GameObject tempFlag;
+public Sprite[] flagSprites; 
 
     private void Awake()
     {
@@ -41,32 +41,37 @@ public class FlagManager : MonoBehaviour
         CheckModeForText();
         ChangeToFlagModeKeybind();
         MouseClickDetection();
+        
         _mousePos = InputHandler.Instance.PassMousePosInWorld();
 
         CheckFlagsOnSelcDrone();
+        HandleFlagAmmountChange(); 
 
-        if (_flagMode == false)
-        {
-            unhighlight();
-        }
+
     }
 
     void MouseClickDetection()
     {
-        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())  // Left-click detection
+        if (_flagMode != false)
         {
-            bool clickedDrone = TrySelectDrone(_mousePos);
-
-            if (!clickedDrone && _flagMode && selectedDrones.Count > 0)  // If no drone clicked and flag mode is active
+            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())  // Left-click detection
             {
-                // If drones are selected, place flag
-                foreach (var drone in selectedDrones)
+                if (!TrySelectDrone(_mousePos) && selectedDrones.Count > 0)  // If no drone clicked and flag mode is active
                 {
-                    PlaceFlag(_mousePos, drone);
+                    // If drones are selected, place flag
+                    foreach (var drone in selectedDrones)
+                    {
+                        PlaceFlag(_mousePos, drone);
+
+                    }
                 }
             }
+            else if (Input.GetMouseButtonDown(1) && !EventSystem.current.IsPointerOverGameObject())  // Right-click to deselect
+            {
+                unhighlight();
+            }
         }
-        else if (Input.GetMouseButtonDown(1) && !EventSystem.current.IsPointerOverGameObject())  // Right-click to deselect
+        else
         {
             unhighlight();
         }
@@ -84,7 +89,6 @@ public class FlagManager : MonoBehaviour
         
         selectedDrones.Clear();  // Clear the selection list
     }
-
     bool TrySelectDrone(Vector2 mousePos)
     {
         RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
@@ -93,6 +97,7 @@ public class FlagManager : MonoBehaviour
             Drone drone = hit.collider.GetComponent<Drone>();
             if (drone != null)
             {
+                AudioManager.Instance.PlaySFX("DroneSelectSound");
                 // If Shift is held, add/remove the drone from the selected list
                 if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
                 {
@@ -131,23 +136,76 @@ public class FlagManager : MonoBehaviour
         return false;  // No drone was clicked
     }
 
-    void PlaceFlag(Vector2 pos, Drone drone)
+    void PlaceFlag(Vector2 mousePos, Drone drone)
     {
         var flags = drone.flagPoints;
         var flagObjs = drone.flagObjects;
-
-        flags.Add(pos);
+           flags.Add(mousePos);
         if (flags.Count > drone.maxFlagCount)
         {
-            flags.RemoveAt(0);
-            Destroy(flagObjs[0]);
-            flagObjs.RemoveAt(0);
+            deleteLists();
+            flags.Add(mousePos);
+            drone.speed = 0;
+        }
+        GameObject flag = Instantiate(drone.flagPrefab, mousePos, Quaternion.identity);
+        flagObjs.Add(flag);
+        // Sets different sprite based on order
+        int spriteIndex = flags.Count - 1;
+        if (spriteIndex < flagSprites.Length)
+        {
+            flag.GetComponent<SpriteRenderer>().sprite = flagSprites[spriteIndex];
+        }
+        Debug.Log("Placed flag at: " + mousePos);
+    }
+
+
+
+ void HandleFlagAmmountChange()
+{
+    if (_flagMode && selectedDrones.Count > 0)
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            foreach (var drone in selectedDrones)
+            {
+                deleteLists();
+                drone.maxFlagCount = 2;
+                Debug.Log("Set flag count to 2 for: " + drone.name);
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            foreach (var drone in selectedDrones)
+            {
+                deleteLists();
+                drone.maxFlagCount = 3;
+                Debug.Log("Set flag count to 3 for: " + drone.name);
+            }
+        }
+    }
+}
+
+
+ private void deleteLists()
+{
+    foreach (var drone in selectedDrones)
+    {
+        foreach (GameObject flagObj in drone.flagObjects)
+        {
+            Destroy(flagObj);
         }
 
-        GameObject flag = Instantiate(drone.flagPrefab, pos, Quaternion.identity);
-        flagObjs.Add(flag);
-        Debug.Log("Placed flag at: " + pos);
+        drone.flagObjects.Clear();
+        drone.flagPoints.Clear();
+
+        drone.StopAllCoroutines();
+        drone.StartCoroutine(drone.PatrolFlags());
+        drone.speed = 0;
     }
+}
+
+
+
 
     void CheckFlagsOnSelcDrone()
     {
@@ -157,20 +215,17 @@ public class FlagManager : MonoBehaviour
         {
             Drone droneScript = droneObj.GetComponent<Drone>();
             bool isSelected = selectedDrones.Contains(droneScript);
-            ForEachFlagSprite(isSelected, droneScript.flagObjects);
+            foreach (GameObject flag in droneScript.flagObjects)
+            {
+                flag.GetComponent<SpriteRenderer>().enabled = isSelected;
+            }
         }
     }
 
-    void ForEachFlagSprite(bool state, List<GameObject> Flags)
-    {
-        foreach (GameObject flag in Flags)
-        {
-            flag.GetComponent<SpriteRenderer>().enabled = state;
-        }
-    }
 
     public void ChangeModeToFlagMode()
     {
+        AudioManager.Instance.PlaySFX("ButtonClick");
         _flagMode = !_flagMode;
         Debug.Log("FlagMode is now: " + _flagMode);
     }
@@ -205,7 +260,7 @@ public class FlagManager : MonoBehaviour
             _flagModeText.text = "LMB to select drones,\nhold leftShift to select multiple";
             if (selectedDrones.Count > 0)
             {
-                _flagModeText.text = "LMB to move,\nLMB or RMB on drones deselect";
+                _flagModeText.text = "LMB to move,\nLMB or RMB on drones deselect\npress 2 or 3 to select flag amount";
             }
         }
         else

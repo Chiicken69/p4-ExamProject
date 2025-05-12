@@ -176,9 +176,6 @@ public class FactoryBase : MonoBehaviour, Ifactory
     public void CreateOutput()
     {
         GameObject ObjectToAdd = _itemOutputType;
-        //ObjectToAdd.AddComponent<ItemBase>();
-        
-
         if (_itemOutputType == DroneObjReference )
         {
             Debug.LogWarning("drone obj is in here!!!");
@@ -187,20 +184,22 @@ public class FactoryBase : MonoBehaviour, Ifactory
         OutputInventory.Add(ObjectToAdd); 
     }
 
-    public void AddItemToInventory(GameObject ObjectToAdd)
+    public bool AddItemToInventory(GameObject ObjectToAdd)
     {
         if (ObjectToAdd == null)
         {
             print("Object to add was null");
-            return;
+            return false;
             
-        } else if (CheckAgainstRecipe(ObjectToAdd))
+        } 
+        if (CheckAgainstRecipe(ObjectToAdd))
         {
             print("GAYYYYYYY");
+            InputInventory.Add(ObjectToAdd);
+            return true;
         }
 
-
-        InputInventory.Add(ObjectToAdd);
+        return false;
     }
     /// <summary>
     /// Returns true if item is in recipe, returns false if not
@@ -209,7 +208,6 @@ public class FactoryBase : MonoBehaviour, Ifactory
     /// <returns></returns>
     public bool CheckAgainstRecipe(GameObject gameObject)
     {
-        
         ItemBase ObjItem = gameObject.GetComponent<ItemBase>();
         foreach (var item in _ingredientList)
         {
@@ -217,11 +215,8 @@ public class FactoryBase : MonoBehaviour, Ifactory
             {
                 return true;
             }
-
-
         }
         return false;
-
     }
 
 
@@ -252,15 +247,12 @@ public class FactoryBase : MonoBehaviour, Ifactory
             var neededType = _ingredientList[i];
             var amountNeeded = _ingredientAmountForCraft[i];
             int k = 0;
-
             // collect matching GameObjects to destroy
             var toRemove = new List<GameObject>();
-
             foreach (var go in InputInventory)
             {
                 if (k >= amountNeeded)
                     break;
-
                 var currentItem = go.GetComponent<ItemBase>();
                 if (currentItem.type == neededType)
                 {
@@ -268,7 +260,6 @@ public class FactoryBase : MonoBehaviour, Ifactory
                     k++;
                 }
             }
-
             // now actually remove them
             foreach (var go in toRemove)
                 InputInventory.Remove(go);
@@ -280,17 +271,7 @@ public class FactoryBase : MonoBehaviour, Ifactory
 
         while (_tempCraftingTime >= 0)
         {
-
-
-
             _tempCraftingTime -= Time.deltaTime * (1f + (speedIncreasePercentage / 100f));
-
-
-
-
-
-
-
             yield return null;
 
             if (_tempCraftingTime <= 0)
@@ -301,20 +282,11 @@ public class FactoryBase : MonoBehaviour, Ifactory
                 StopCoroutine(Craft());
                 //break;
             }
-
         }
-
-
-
-
-
-
     }
 
     public void CheckForCraftingPossible()
-    { // not done
-
-        
+    { 
         if (_readyToCraft)
         {
             print("test");
@@ -354,8 +326,8 @@ public class FactoryBase : MonoBehaviour, Ifactory
         {
             return true;
           
-        } else
-        // state = FactoryState.Idle;
+        } 
+     
          return false;
 
     }
@@ -365,9 +337,6 @@ public class FactoryBase : MonoBehaviour, Ifactory
     /// </summary>
     public void IncreaseCraftingSpeed()
     {
-        //works but needs to be adjusted later for actual gameplay, 
-        // _CraftingBoosterValue++;
-        // _tempCraftingTime /= _CraftingBoosterValue;
         if (state != FactoryState.Building)
         {
             speedIncreasePercentage += 400;
@@ -414,13 +383,11 @@ public class FactoryBase : MonoBehaviour, Ifactory
 
             float ItemsInFactory = InputInventory.Count;
             _timerSlider.value = ItemsInFactory;
-
         }
         else
         {
               _timerSlider.maxValue = _craftingTime;
             _timerSlider.minValue = 0;
-
             _timerSlider.value = _tempCraftingTime;
 
         }
@@ -441,7 +408,6 @@ public class FactoryBase : MonoBehaviour, Ifactory
             for (global::System.Int32 i = 0; i < _itemListToCraftFactory.Count; i++)
             {
                 text += _itemListToCraftFactory[i] +": " + CheckInputInventory(_itemListToCraftFactory[i]) +"/" + _itemAmountToCraftFactory[i] + "\n";
-                
             }
         }
         else
@@ -449,7 +415,6 @@ public class FactoryBase : MonoBehaviour, Ifactory
             for (global::System.Int32 i = 0; i < _ingredientList.Count; i++)
             {
                 text += _ingredientList[i] + ": " + CheckInputInventory(_ingredientList[i]) + "/" + _ingredientAmountForCraft[i] + "\n";
-
             }
         }
         return text;
