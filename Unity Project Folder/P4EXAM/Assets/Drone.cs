@@ -302,15 +302,14 @@ void TrackVisitedFactorys(Vector2 targetPos)
                 return false;
             }
 
-            if (tempGB.GetComponent<FactoryBase>().AddItemToInventory(_Item))
-            {
+            tempGB.GetComponent<FactoryBase>().AddItemToInventory(_Item)
+
                 _Item = null;
                 ChangeCarryingState();
 
                 _lastFactoryAccessed = tempGB;  // update here
 
                 return true;
-            }
            
             
         }
