@@ -272,10 +272,11 @@ void TrackVisitedFactorys(Vector2 targetPos)
             {
                 return false;
             }
-            if(tempGB == _lastFactory || (HasOver2Factorys == false && tempGB == _middleFactory)){
-                _lastFactoryAccessed = tempGB; 
+            if (tempGB == _lastFactory || (HasOver2Factorys == false && tempGB == _middleFactory))
+            {
+                _lastFactoryAccessed = tempGB;
                 return false;
-            }   
+            }
 
             _Item = tempGB.GetComponent<FactoryBase>().TakeItemFromOutputInventory();
 
@@ -302,17 +303,13 @@ void TrackVisitedFactorys(Vector2 targetPos)
                 return false;
             }
 
-            if (tempGB.GetComponent<FactoryBase>().AddItemToInventory(_Item))
-            {
-                _Item = null;
-                ChangeCarryingState();
+            tempGB.GetComponent<FactoryBase>().AddItemToInventory(_Item);
+            _Item = null;
+            ChangeCarryingState();
 
-                _lastFactoryAccessed = tempGB;  // update here
+            _lastFactoryAccessed = tempGB;  // update here
 
-                return true;
-            }
-           
-            
+            return true;
         }
         return false;
     }
