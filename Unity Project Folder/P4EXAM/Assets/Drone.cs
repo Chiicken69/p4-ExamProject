@@ -166,11 +166,12 @@ public class Drone : MonoBehaviour
         }
 
         // snap exactly
+        speed = 3;
         transform.position = target;
     }
 
 
-    private void Update()
+    private void FixedUpdate()
     {
         Debug.Log("aaaa im tracking ejg tracker den" + hasPatrolled + "ím" + isRunning);
         //if (!hasPatrolled && !isRunning)
@@ -284,12 +285,12 @@ public class Drone : MonoBehaviour
 
 
 
-            if ((tempGB == null || IsSameFactory(tempGB)) && !(HasOver2Factorys == true && tempGB == _middleFactory) || IsDroneIdle())
+            if ((tempGB == null || IsSameFactory(tempGB)) && !(HasOver2Factorys == true && tempGB == _middleFactory) || hasPatrolled == false || (HasOver2Factorys == false && tempGB == _middleFactory))
             {
                 return false;
             }
-            if(tempGB == _lastFactory || (HasOver2Factorys == false && tempGB == _middleFactory)){
-                _lastFactoryAccessed = tempGB; 
+            if(tempGB == _lastFactory){
+                _lastFactoryAccessed = tempGB;
                 return false;
             }
 
