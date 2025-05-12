@@ -1,7 +1,9 @@
 
 using System.Collections.Generic;
 using TMPro;
+using TMPro.Examples;
 using UnityEngine;
+using UnityEngine.UI;
 using Image = UnityEngine.UI.Image;
 
 public class ArrowMinigame : MonoBehaviour
@@ -9,6 +11,8 @@ public class ArrowMinigame : MonoBehaviour
     [SerializeField] private GameObject minigameUI;
     [SerializeField] private GameObject arrow;
     [SerializeField] private TextMeshProUGUI factoryMultText;
+
+    [SerializeField] private TextMeshProUGUI FactoryName;
 
     [SerializeField] private Transform Parent;
     [SerializeField] private Movement playerMovement;
@@ -30,8 +34,8 @@ public class ArrowMinigame : MonoBehaviour
     private bool currentRoundPlaying = false;
     private Sprite arrowImage;
 
-    int direction;
-    string result;
+//    int direction;
+  //  string result;
     public enum DirectionName { Up, Left, Right, Down, None }
 
     private int _arrowAmount = 5;
@@ -66,6 +70,7 @@ public class ArrowMinigame : MonoBehaviour
         }
         if (currentRoundPlaying == true)
         {
+            FactoryName.text = currentFactory.name;
             RunRound(currentFactory.GetComponent<FactoryBase>());
         }
     }
@@ -93,54 +98,38 @@ public class ArrowMinigame : MonoBehaviour
     {
         if (gameState == true)
         {
-
-            if (gameState == true)
+            float value;
+            for (int i = 1; i <= _arrowAmount; i++) //_arrowAmount = 5
             {
-                float value;
-                for (int i = 1; i <= _arrowAmount; i++)
-                {
-                    GameObject cloneArrow;
-                    float min = 0f;
-                    float max = _arrowAmount * 100 - 100;
+                GameObject cloneArrow;
+                float min = 0f;
+                float max = _arrowAmount * 100 - 100;
+                value = i * 100 - 100; // Simulate a value in range [0, 400]
 
-                    value = i * 100 - 100; // Simulate a value in range [0, 400]
+                // Normalize and map into UI space range (-400 to +400)
+                float normalized = Mathf.InverseLerp(min, max, value);
+                float mappedX = Mathf.Lerp(-400, 400, normalized);
 
-                    // Normalize and map into UI space range (-500 to +500)
-                    float normalized = Mathf.InverseLerp(min, max, value);
-                    float mappedX = Mathf.Lerp(-400, 400, normalized);
+                DirectionName directionEnum = (DirectionName)Random.Range(0, 4);
+                arrowImage = spriteList[(int)directionEnum];
+                arrow.SetActive(true);
+                arrow.GetComponent<Image>().sprite = arrowImage;
+                cloneArrow = Instantiate(arrow);
 
+                cloneArrow.name = "Arrow_" + directionEnum.ToString(); // Named for debuging
+                cloneArrow.transform.SetParent(Parent, false);
 
-                    DirectionName directionEnum = (DirectionName)UnityEngine.Random.Range(0, 4);
-                    arrowImage = spriteList[(int)directionEnum];
-
-
-
-                    arrow.SetActive(true);
-
-                    arrow.GetComponent<Image>().sprite = arrowImage;
-                    cloneArrow = Instantiate(arrow);
-                    // cloneArrow.transform.localScale += new Vector3(2, 2, 2);
-
-                    cloneArrow.name = "Arrow_" + directionEnum.ToString(); // Name for debug
-
-                    cloneArrow.transform.SetParent(Parent, false);
-
-                    // Set UI position properly using RectTransform
-                    RectTransform rt = cloneArrow.GetComponent<RectTransform>();
-                    rt.anchoredPosition = new Vector2(mappedX, 0f); // or set a Y offset if needed
-
-
-                    cloneArrowList.Add(cloneArrow);
-                    directionList.Add(directionEnum);
-
-                }
+                // Set UI position properly
+                RectTransform rt = cloneArrow.GetComponent<RectTransform>();
+                rt.anchoredPosition = new Vector2(mappedX, 0f); 
+                cloneArrowList.Add(cloneArrow);
+                directionList.Add(directionEnum);
             }
             currentRoundPlaying = true;
         }
         arrow.SetActive(false);
-        if (gameState == false)
+        if (gameState == false) //if 
         {
-
             foreach (GameObject cloneArrow in cloneArrowList)
             {
                 if (cloneArrow != null)
@@ -151,7 +140,6 @@ public class ArrowMinigame : MonoBehaviour
             cloneArrowList.Clear();
             directionList.Clear();
             currentArrowIndex = 0;
-
         }
     }
 
@@ -162,7 +150,6 @@ public class ArrowMinigame : MonoBehaviour
         {
             Debug.Log("All inputs correct! Round finished.");
             currentFactory.IncreaseCraftingSpeed();
-            currentFactory = null;
             minigameTutorielDone = true;
             currentRoundPlaying = false;
             cloneArrowList.Clear();
@@ -179,7 +166,6 @@ public class ArrowMinigame : MonoBehaviour
             if (inputDirection == directionList[currentArrowIndex])
             {
                 Debug.Log("Correct input for arrow " + currentArrowIndex);
-           
                 Destroy(cloneArrowList[currentArrowIndex]);
                 AudioManager.Instance.PlaySFXArrayAt("ArrowMinigameSounds", currentArrowIndex);
                 currentArrowIndex++;
@@ -187,12 +173,13 @@ public class ArrowMinigame : MonoBehaviour
             else
             {
                 Debug.Log("Incorrect input for arrow " + currentArrowIndex);
-                // Optional: feedback or penalty
+                CalculateArrows(false);
                 currentRoundPlaying = false;
-                StopMinigame();
+                AudioManager.Instance.PlaySFXArrayAt("ArrowMinigameSounds", currentArrowIndex);
+                CalculateArrows(true);
+
             }
         }
-
     }
 
 
