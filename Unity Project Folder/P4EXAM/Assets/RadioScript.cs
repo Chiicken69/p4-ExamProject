@@ -158,7 +158,7 @@ public class RadioScript : MonoBehaviour
         
         if (!factoryBuildTutorielDone)
         {
-            if (factoryManager.Factories.Count > 2)
+            if (factoryManager.Factories.Count > 3)
             {
                 factoryBuildTutorielDone = true;
             }
@@ -266,7 +266,7 @@ public class RadioScript : MonoBehaviour
         {
             EnqueueDialog("Turiel",
                 "By the way, if you ever get tired of seeing one of your placed buildings, try holding right-click while standing next to them for 3 seconds. " +
-                "They will hopefully start glowing red and get out of your sight.");
+                "They will hopefully start glowing red and get out of your sight. try it on the old factory building");
             triggeredTimes.Add(4);
             return;
         }

@@ -148,8 +148,8 @@ MonoBehaviour:
   processingSprite: {fileID: 0}
   _tempCraftingTime: 0
   speedIncreasePercentage: 0
-  _craftingTime: 60
-  _secondsToDecreaseSpeed: 5
+  _craftingTime: 25
+  _secondsToDecreaseSpeed: 2
   _ingredientList: 01000000040000000500000006000000010000000200000003000000
   _ingredientAmountForCraft: 01000000020000000200000001000000010000000200000001000000
   _itemOutputType: {fileID: 3632619094670410106, guid: 851103b43d806634f9da3b0b5ffac177, type: 3}
