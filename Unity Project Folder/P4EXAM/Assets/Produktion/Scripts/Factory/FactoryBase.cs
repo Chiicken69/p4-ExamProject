@@ -208,7 +208,6 @@ public class FactoryBase : MonoBehaviour, Ifactory
     /// <returns></returns>
     public bool CheckAgainstRecipe(GameObject gameObject)
     {
-        
         ItemBase ObjItem = gameObject.GetComponent<ItemBase>();
         foreach (var item in _ingredientList)
         {
@@ -216,11 +215,8 @@ public class FactoryBase : MonoBehaviour, Ifactory
             {
                 return true;
             }
-
-
         }
         return false;
-
     }
 
 
@@ -251,15 +247,12 @@ public class FactoryBase : MonoBehaviour, Ifactory
             var neededType = _ingredientList[i];
             var amountNeeded = _ingredientAmountForCraft[i];
             int k = 0;
-
             // collect matching GameObjects to destroy
             var toRemove = new List<GameObject>();
-
             foreach (var go in InputInventory)
             {
                 if (k >= amountNeeded)
                     break;
-
                 var currentItem = go.GetComponent<ItemBase>();
                 if (currentItem.type == neededType)
                 {
@@ -267,7 +260,6 @@ public class FactoryBase : MonoBehaviour, Ifactory
                     k++;
                 }
             }
-
             // now actually remove them
             foreach (var go in toRemove)
                 InputInventory.Remove(go);
@@ -290,14 +282,7 @@ public class FactoryBase : MonoBehaviour, Ifactory
                 StopCoroutine(Craft());
                 //break;
             }
-
         }
-
-
-
-
-
-
     }
 
     public void CheckForCraftingPossible()

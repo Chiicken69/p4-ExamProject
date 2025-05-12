@@ -55,6 +55,12 @@ MonoBehaviour:
   sfxSounds:
   - name: ButtonClick
     clip: {fileID: 8300000, guid: cfe99db9029c5494c9c776df296d479b, type: 3}
+  - name: FlipPageSound
+    clip: {fileID: 8300000, guid: ab5a1ec2f84eda34fb261fdff4bf0069, type: 3}
+  - name: BluePrintOpen
+    clip: {fileID: 8300000, guid: f601ab59cf6bb414e8178f16b48f7566, type: 3}
+  - name: DroneSelectSound
+    clip: {fileID: 8300000, guid: 9d1677dd0f1490a478f25fdd98f6a0d2, type: 3}
   sfxSoundArray:
   - name: ArrowMinigameSounds
     clip:

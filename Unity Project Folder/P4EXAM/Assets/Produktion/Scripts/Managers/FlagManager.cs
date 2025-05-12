@@ -97,6 +97,7 @@ public Sprite[] flagSprites;
             Drone drone = hit.collider.GetComponent<Drone>();
             if (drone != null)
             {
+                AudioManager.Instance.PlaySFX("DroneSelectSound");
                 // If Shift is held, add/remove the drone from the selected list
                 if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
                 {
@@ -239,6 +240,7 @@ public Sprite[] flagSprites;
 
     public void ChangeModeToFlagMode()
     {
+        AudioManager.Instance.PlaySFX("ButtonClick");
         _flagMode = !_flagMode;
         Debug.Log("FlagMode is now: " + _flagMode);
     }

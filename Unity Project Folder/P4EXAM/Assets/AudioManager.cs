@@ -6,16 +6,12 @@ using System.Collections;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager Instance;
+    
     public Sound[] musicSounds, sfxSounds;
     public SoundArray[] sfxSoundArray;
     public AudioSource musicSource, sfxSource;
 
-    private void Start()
-    {
-        StartCoroutine(playMusic());
-    }
-
+    public static AudioManager Instance;
     private void Awake()
     {
         if (Instance == null)
@@ -28,6 +24,12 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
+    private void Start()
+    {
+        StartCoroutine(playMusic());
+    }
+
 
     /// <summary>
     /// Plays music with the corresponding string name
@@ -54,6 +56,7 @@ public class AudioManager : MonoBehaviour
     /// <param name="name"></param>
     public void PlaySFX(string name)
     {
+        sfxSource.pitch = 1f;
         Sound sound = Array.Find(sfxSounds, x => x.name == name);
 
         if (sound == null)
@@ -65,12 +68,48 @@ public class AudioManager : MonoBehaviour
             sfxSource.PlayOneShot(sound.clip);
         }
     }
+    
+    public void PlaySFXLow(string name)
+    {
+        Sound sound = Array.Find(sfxSounds, x => x.name == name);
+
+        if (sound == null)
+        {
+            Debug.Log("Sound not found or is null");
+        }
+        else
+        {
+            sfxSource.pitch = 1f;
+            sfxSource.PlayOneShot(sound.clip);
+        }
+        
+    }
+    
+    public void PlaySFXHigh(string name)
+    {
+        Sound sound = Array.Find(sfxSounds, x => x.name == name);
+
+        if (sound == null)
+        {
+            Debug.Log("Sound not found or is null");
+        }
+        else
+        {
+            sfxSource.pitch = 1.5f;
+            sfxSource.PlayOneShot(sound.clip);
+        }
+
+        
+    }
+    
+    
     /// <summary>
     /// Plays a random sound from an array of sounds with corresponding array name
     /// </summary>
     /// <param name="name"></param>
     public void PlaySFXArrayRandom(string name)
     {
+        sfxSource.pitch = 1f;
         SoundArray soundArray = Array.Find(sfxSoundArray, x => x.name == name);
 
         if (soundArray == null)
@@ -88,6 +127,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySFXArrayAt(string name, int index)
     {
+        sfxSource.pitch = 1f;
         SoundArray soundArray = Array.Find(sfxSoundArray, x => x.name == name);
 
         if (soundArray == null)
@@ -101,6 +141,7 @@ public class AudioManager : MonoBehaviour
     }
 
     IEnumerator playMusic(){
+        sfxSource.pitch = 1f;
         while (true)
         {
             int polyrytmePlaytime = 229;

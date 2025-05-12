@@ -386,9 +386,11 @@ public class RadioScript : MonoBehaviour
 
     IEnumerator TypeText(string fullText, float delay = 0.03f)
     {
+        
         dialogText.text = "";
         foreach (char c in fullText)
         {
+            
             dialogText.text += c;
             yield return new WaitForSeconds(delay);
         }

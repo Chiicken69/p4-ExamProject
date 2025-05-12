@@ -1,4 +1,5 @@
 
+using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
@@ -14,6 +15,8 @@ public class BlueprintBook : MonoBehaviour
     [SerializeField] private float triggerScaler=3.2f;
 
     SpriteRenderer previewSR;
+    private bool isTransitioning = false;
+    private float transitionDuration = 0.5f; // Adjust this to control speed
 
     [SerializeField] private Text _placeingText;
     [SerializeField] private Volume _volume;
@@ -103,7 +106,7 @@ public class BlueprintBook : MonoBehaviour
             Flagmanager.SetActive(true);
         }
         //Debug.Log("no sprite at id " + buildingID);
-        CameraBPEffect();
+      //  ToggleCameraEffects(_enteredBuildingMode);
         CloseUI();
 
 
@@ -133,10 +136,13 @@ public class BlueprintBook : MonoBehaviour
         if (_scroll > 0f)
         {
             TempBuildingID++;  // Scroll up
+            AudioManager.Instance.PlaySFXHigh("FlipPageSound");
+            
         }
         else if (_scroll < 0f)
         {
             TempBuildingID--;  // Scroll down
+            AudioManager.Instance.PlaySFXLow("FlipPageSound");
         }
 
         // Wrap around the buildingID within the valid range
@@ -147,6 +153,7 @@ public class BlueprintBook : MonoBehaviour
     {
         if (!_enteredBuildingMode)
         {
+            
             blueprintUI.SetActive(true);
 
             if (!listenerAdded)
@@ -180,7 +187,7 @@ public class BlueprintBook : MonoBehaviour
 
     public void PlaceBuilding()
     {
- 
+        AudioManager.Instance.PlaySFX("BluePrintOpen");
 
         listenerAdded = false;
         _enteredBuildingMode = true;
@@ -221,31 +228,63 @@ public class BlueprintBook : MonoBehaviour
         }
         if (_LeftMouseButton == true) 
             {
+                AudioManager.Instance.PlaySFX("ButtonClick");
                 PlaceSpriteAtCell(gridPos, false);
           
             }
         
     }
-
-    private void CameraBPEffect()
+/*
+    public void ToggleCameraEffects(bool isBuildingMode)
     {
-        if (_enteredBuildingMode)
+        if (!isTransitioning)
         {
-            Debug.LogWarning("entering build mode..");
-            
-            _volume.GetComponent<WhiteBalance>().temperature = new ClampedFloatParameter(-20, -100, 100);
-            _volume.GetComponent<LensDistortion>().intensity = new ClampedFloatParameter(100, 1, 1);
-          
-            
-            
-            
-        }
-        else
-        {
-            _volume.GetComponent<WhiteBalance>().temperature = new ClampedFloatParameter(12.5f, -100, 100);
+            StartCoroutine(SmoothCameraEffects(isBuildingMode));
         }
     }
 
+    private IEnumerator SmoothCameraEffects(bool enableEffects)
+    {
+        isTransitioning = true;
+        float elapsed = 0f;
+
+        // Get initial values
+        _volume.profile.TryGet<LensDistortion>(out var lensDistortion);
+        _volume.profile.TryGet<ColorAdjustments>(out var colorAdjustments);
+
+        float startDistortion = lensDistortion?.intensity.value ?? 0f;
+        Color startColor = colorAdjustments?.colorFilter.value ?? Color.white;
+
+        // Target values - ADJUST THESE IN INSPECTOR
+        float targetDistortion = enableEffects ? 0.2f : 0f;
+        Color targetColor = enableEffects ? 
+            new Color(0.88f, 0.94f, 0.8f, 0.15f) : // Desaturated mint (harmonizes with green/yellow)
+            Color.white;
+
+        while (elapsed < transitionDuration)
+        {
+            elapsed += Time.deltaTime;
+            float rawT = elapsed / transitionDuration;
+        
+            // Smoother sine-based easing (no acceleration bumps)
+            float t = 0.5f * (1f - Mathf.Cos(rawT * Mathf.PI));
+
+            if (lensDistortion != null)
+                lensDistortion.intensity.value = Mathf.Lerp(startDistortion, targetDistortion, t);
+
+            if (colorAdjustments != null)
+                colorAdjustments.colorFilter.value = Color.Lerp(startColor, targetColor, t);
+
+            yield return null;
+        }
+
+        // Ensure final values
+        if (lensDistortion != null) lensDistortion.intensity.value = targetDistortion;
+        if (colorAdjustments != null) colorAdjustments.colorFilter.value = targetColor;
+    
+        isTransitioning = false;
+    }
+*/
     void PlaceSpriteAtCell(Vector3 cellPos, bool preview)
     {
    
