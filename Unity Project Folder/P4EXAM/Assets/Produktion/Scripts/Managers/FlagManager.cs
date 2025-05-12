@@ -20,7 +20,7 @@ public class FlagManager : MonoBehaviour
     Color PassiveColor = new Color(255, 255, 255, 1f);
     Color ToggledColor = new Color(255, 255, 255, 0.75f);
 
-public Sprite[] flagSprites; 
+    public Sprite[] flagSprites; // Drag your "1", "2", "3" sprites into this in the Inspector
 
     private void Awake()
     {
@@ -41,37 +41,35 @@ public Sprite[] flagSprites;
         CheckModeForText();
         ChangeToFlagModeKeybind();
         MouseClickDetection();
-        
+
         _mousePos = InputHandler.Instance.PassMousePosInWorld();
 
         CheckFlagsOnSelcDrone();
-        HandleFlagAmmountChange(); 
+        HandleFlagAmmountChange(); // <- Add this line
 
-
+        if (_flagMode == false)
+        {
+            unhighlight();
+        }
     }
 
     void MouseClickDetection()
     {
-        if (_flagMode != false)
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())  // Left-click detection
         {
-            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())  // Left-click detection
-            {
-                if (!TrySelectDrone(_mousePos) && selectedDrones.Count > 0)  // If no drone clicked and flag mode is active
-                {
-                    // If drones are selected, place flag
-                    foreach (var drone in selectedDrones)
-                    {
-                        PlaceFlag(_mousePos, drone);
+            bool clickedDrone = TrySelectDrone(_mousePos); //returns true if drone is clicked, also adds clicked drones to selected drones list
 
-                    }
+            if (!clickedDrone && _flagMode && selectedDrones.Count > 0)  // If no drone clicked and flag mode is active
+            {
+                // If drones are selected, place flag
+                foreach (var drone in selectedDrones)
+                {
+                    PlaceFlag(_mousePos, drone);
+
                 }
             }
-            else if (Input.GetMouseButtonDown(1) && !EventSystem.current.IsPointerOverGameObject())  // Right-click to deselect
-            {
-                unhighlight();
-            }
         }
-        else
+        else if (Input.GetMouseButtonDown(1) && !EventSystem.current.IsPointerOverGameObject())  // Right-click to deselect
         {
             unhighlight();
         }
@@ -86,7 +84,7 @@ public Sprite[] flagSprites;
             if (highlight != null)
                 highlight.gameObject.SetActive(false);
         }
-        
+
         selectedDrones.Clear();  // Clear the selection list
     }
     bool TrySelectDrone(Vector2 mousePos)
@@ -97,7 +95,6 @@ public Sprite[] flagSprites;
             Drone drone = hit.collider.GetComponent<Drone>();
             if (drone != null)
             {
-                AudioManager.Instance.PlaySFX("DroneSelectSound");
                 // If Shift is held, add/remove the drone from the selected list
                 if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
                 {
@@ -136,73 +133,84 @@ public Sprite[] flagSprites;
         return false;  // No drone was clicked
     }
 
-    void PlaceFlag(Vector2 mousePos, Drone drone)
+    void PlaceFlag(Vector2 pos, Drone drone)
     {
         var flags = drone.flagPoints;
         var flagObjs = drone.flagObjects;
-           flags.Add(mousePos);
+
+
+
+        flags.Add(pos);
         if (flags.Count > drone.maxFlagCount)
         {
             deleteLists();
-            flags.Add(mousePos);
+            flags.Add(pos);
             drone.speed = 0;
+
+
+
+
         }
-        GameObject flag = Instantiate(drone.flagPrefab, mousePos, Quaternion.identity);
+
+        GameObject flag = Instantiate(drone.flagPrefab, pos, Quaternion.identity);
         flagObjs.Add(flag);
-        // Sets different sprite based on order
+        Debug.Log("Placed flag at: " + pos);
+
+        // Set different sprite based on order
         int spriteIndex = flags.Count - 1;
         if (spriteIndex < flagSprites.Length)
         {
             flag.GetComponent<SpriteRenderer>().sprite = flagSprites[spriteIndex];
         }
-        Debug.Log("Placed flag at: " + mousePos);
+
+        Debug.Log("Placed flag at: " + pos);
     }
 
 
 
- void HandleFlagAmmountChange()
-{
-    if (_flagMode && selectedDrones.Count > 0)
+    void HandleFlagAmmountChange()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (_flagMode && selectedDrones.Count > 0)
         {
-            foreach (var drone in selectedDrones)
+            if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                deleteLists();
-                drone.maxFlagCount = 2;
-                Debug.Log("Set flag count to 2 for: " + drone.name);
+                foreach (var drone in selectedDrones)
+                {
+                    deleteLists();
+                    drone.maxFlagCount = 2;
+                    Debug.Log("Set flag count to 2 for: " + drone.name);
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                foreach (var drone in selectedDrones)
+                {
+                    deleteLists();
+                    drone.maxFlagCount = 3;
+                    Debug.Log("Set flag count to 3 for: " + drone.name);
+                }
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            foreach (var drone in selectedDrones)
-            {
-                deleteLists();
-                drone.maxFlagCount = 3;
-                Debug.Log("Set flag count to 3 for: " + drone.name);
-            }
-        }
     }
-}
 
 
- private void deleteLists()
-{
-    foreach (var drone in selectedDrones)
+    private void deleteLists()
     {
-        foreach (GameObject flagObj in drone.flagObjects)
+        foreach (var drone in selectedDrones)
         {
-            Destroy(flagObj);
+            foreach (GameObject flagObj in drone.flagObjects)
+            {
+                Destroy(flagObj);
+            }
+
+            drone.flagObjects.Clear();
+            drone.flagPoints.Clear();
+
+            drone.StopAllCoroutines();
+            drone.StartCoroutine(drone.PatrolFlags());
+            drone.speed = 0;
         }
-
-        drone.flagObjects.Clear();
-        drone.flagPoints.Clear();
-
-        drone.StopAllCoroutines();
-        drone.StartCoroutine(drone.PatrolFlags());
-        drone.speed = 0;
     }
-}
 
 
 
@@ -215,17 +223,20 @@ public Sprite[] flagSprites;
         {
             Drone droneScript = droneObj.GetComponent<Drone>();
             bool isSelected = selectedDrones.Contains(droneScript);
-            foreach (GameObject flag in droneScript.flagObjects)
-            {
-                flag.GetComponent<SpriteRenderer>().enabled = isSelected;
-            }
+            ForEachFlagSprite(isSelected, droneScript.flagObjects);
         }
     }
 
+    void ForEachFlagSprite(bool state, List<GameObject> Flags)
+    {
+        foreach (GameObject flag in Flags)
+        {
+            flag.GetComponent<SpriteRenderer>().enabled = state;
+        }
+    }
 
     public void ChangeModeToFlagMode()
     {
-        AudioManager.Instance.PlaySFX("ButtonClick");
         _flagMode = !_flagMode;
         Debug.Log("FlagMode is now: " + _flagMode);
     }
