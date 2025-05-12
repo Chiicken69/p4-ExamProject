@@ -303,7 +303,7 @@ void TrackVisitedFactorys(Vector2 targetPos)
                 return false;
             }
 
-            tempGB.GetComponent<FactoryBase>().AddItemToInventory(_Item)
+            tempGB.GetComponent<FactoryBase>().AddItemToInventory(_Item);
 
                 _Item = null;
                 ChangeCarryingState();
