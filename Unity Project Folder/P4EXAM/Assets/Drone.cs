@@ -62,44 +62,35 @@ public class Drone : MonoBehaviour
         //StartCoroutine(ItemTransferLogic());
     }
 
- public IEnumerator PatrolFlags()
-{
-    while (true)
+    public IEnumerator PatrolFlags()
     {
-        if (flagPoints.Count <= 1) // Ignore if only 0 or 1 flags
+        while (true)
         {
-            visitedFactoriesInOrder.Clear(); // clear visited factories
-            yield return null;  
-            continue;
-        }
-
-        for (int i = 0; i < flagPoints.Count; i++)
-        {
-            Vector2 targetPos = flagPoints[i];
-            while (Vector2.Distance(transform.position, targetPos) > 0.1f)
+            if (flagPoints.Count <= 1) // Ignore if only 0 or 1 flags
             {
-                yield return StartCoroutine(MoveDroneTo(targetPos));
+                visitedFactoriesInOrder.Clear(); // Optionally clear visited factories
                 yield return null;
+                continue;
             }
-            //track current factories drone is useing and deletes factories from list no longer in use
-            TrackVisitedFactorys(targetPos); 
-            yield return new WaitForSeconds(0.5f);
-        }
-        yield return null;
-    }
-}
 
-void TrackVisitedFactorys(Vector2 targetPos)
-{
-    GameObject factory = FactoryManager.Instance.ReturnFactory(transform.position);
-            if (factory != null)
+            for (int i = 0; i < flagPoints.Count; i++)
             {
-                Debug.Log($"Factory found at {targetPos}: {factory.name}");
-
-                if (!visitedFactoriesInOrder.Contains(factory) && visitedFactoriesInOrder.Count < 3)
+                Vector2 targetPos = flagPoints[i];
+                while (Vector2.Distance(transform.position, targetPos) > 0.1f)
                 {
-                    visitedFactoriesInOrder.Add(factory);
-                    Debug.Log($"Added {factory.name} to visitedFactoriesInOrder");
+                    yield return StartCoroutine(MoveDroneTo(targetPos));
+                    yield return null;
+                }
+
+                GameObject factory = FactoryManager.Instance.ReturnFactory(transform.position);
+                if (factory != null)
+                {
+                    Debug.Log($"Factory found at {targetPos}: {factory.name}");
+
+                    if (!visitedFactoriesInOrder.Contains(factory) && visitedFactoriesInOrder.Count < 3)
+                    {
+                        visitedFactoriesInOrder.Add(factory);
+                        Debug.Log($"Added {factory.name} to visitedFactoriesInOrder");
                     }
                     // Remove factories no longer located at any flag position
                     visitedFactoriesInOrder.RemoveAll(factories =>
@@ -121,9 +112,15 @@ void TrackVisitedFactorys(Vector2 targetPos)
                 }
                 else
                 {
-                Debug.Log($"No factory found at {targetPos}");
+                    Debug.Log($"No factory found at {targetPos}");
+                    //if (visitedFactoriesInOrder.Count != 2)
+                    //  visitedFactoriesInOrder.Clear();
+                }
+                yield return new WaitForSeconds(0.5f);
             }
-}
+            yield return null;
+        }
+    }
 
 
     public IEnumerator MoveDroneTo(Vector2 target)
